@@ -167,6 +167,7 @@ elif run == 3:
 elif run == 4:
     classifyPerson()
 elif run == 5:
+    # You can extract the two directories from sources/Ch02/digits.zip
     testDir = '/Users/austin/work/temp/digits/testDigits/'
     trainDir = '/Users/austin/work/temp/digits/trainingDigits/'
     handwritingClassTest(trainDir, testDir)
