@@ -1,0 +1,1 @@
+Learning OpenCV 3 Computer Vision with Python - Second Edition
