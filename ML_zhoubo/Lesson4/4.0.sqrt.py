@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # /usr/bin/python
-
+from __future__ import unicode_literals
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
