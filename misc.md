@@ -23,3 +23,9 @@ def shift_1d(src, move):
 ```
 
 ---
+namedtuple/__repr__
+```
+m collections import namedtuple
+gaussian = namedtuple('Gaussian', ['mean', 'var'])
+gaussian.__repr__ = lambda s: 'Ν(μ={:.3f}, σ={:.3f})'.format(s[0], s[1])
+```
