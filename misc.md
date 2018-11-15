@@ -1,3 +1,13 @@
+```
+students = [['john', 'A', 15],
+            ['jane', 'B', 12],
+            ['dave', 'B', 10]]
+sorted(students, key=lambda student: student[2]) 
+>>>
+[['dave', 'B', 10], ['jane', 'B', 12], ['john', 'A', 15]]
+```
+
+---
 左移或右移一维 list/np.ndarray 中所有元素（循环）
 
 > [English Writing] We can see that we correctly shifted all the values one position to the right,
