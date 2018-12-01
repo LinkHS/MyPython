@@ -1,3 +1,13 @@
+---
+## 打印精度设置
+```
+np.set_printoptions(2)
+
+np.set_printoptions(formatter={'float': '{:3.2d}'.format})
+
+np.set_printoptions(formatter={'int_kind': '{:2d}'.format}) # 整数占2个字符，不足补空格
+```
+
 
 ---
 ## `np.arctan2` 弧度、角度计算
