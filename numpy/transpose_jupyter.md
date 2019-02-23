@@ -1,7 +1,7 @@
 ## 默认转置 `array.T`
 我们构造一个三维的数组，其 shape 为 1x2x2 (例如channel x row x col)，转置后的 shape 应该为 2x2x1 (col x row x channel)。原位置如 [1,1,0] 会转置到新的位置 [0,1,1]
 
- ```
+ ```python
 import numpy as np
 array_1x2x2 = np.array([[['000', '001'], ['010', '011']]])
 array_T_2x2x1 = array_1x2x2.T
@@ -39,7 +39,7 @@ print(array_1x2x2[0, 1, 1])
 
 类似的例子，可以用`np.argwhere`辅助寻找（注意不能有相同值）:
 
- ```
+ ```python
 import numpy as np
 array_1x2x3 = np.arange(6).reshape((1,2,3))
 array_T_3x2x1 = array_1x2x3.T

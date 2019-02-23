@@ -11,7 +11,7 @@ OpenCV provides two transformation functions, `cv.warpAffine` and `cv.warpPerspe
 ### Scaling
 Scaling is just resizing of the image. OpenCV comes with a function `cv.resize()` for this purpose. The size of the image can be specified manually, or you can specify the scaling factor. Different interpolation methods are used. Preferable interpolation methods are `cv.INTER_AREA` for shrinking and `cv.INTER_CUBIC` (slow) & `cv.INTER_LINEAR` for zooming. By default, interpolation method used is cv.INTER_LINEAR for all resizing purposes. You can resize an input image either of following methods:
 
-```{.python .input}
+```{.python .input  n=1}
 import cv2
 
 img = cv2.imread('data/messi5.jpg', 0)
@@ -68,7 +68,8 @@ But OpenCV provides scaled rotation with adjustable center of rotation so that y
 
 $$\begin{bmatrix} \alpha & \beta & (1- \alpha ) \cdot center.x - \beta \cdot center.y \\ - \beta & \alpha & \beta \cdot center.x + (1- \alpha ) \cdot center.y \end{bmatrix}$$
 
-where:
+where:  
+
 $$\begin{array}{l} \alpha = scale \cdot \cos \theta , \\ \beta = scale \cdot \sin \theta \end{array}$$
 
 To find this transformation matrix, OpenCV provides a function, `cv.getRotationMatrix2D`. Check below example which rotates the image by 90 degree with respect to center without any scaling.
@@ -140,7 +141,7 @@ For perspective transformation, you need a 3x3 transformation matrix. Straight l
 
 See the code below:
 
-```{.python .input}
+```{.python .input  n=1}
 %reset -f
 import numpy as np
 import cv2

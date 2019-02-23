@@ -1,6 +1,29 @@
+# 字典 Dict
+
+## `get` 和 `[]` 获取 key 的区别
+
+```
+result = {'comment1': 'OK'}
+
+# 此时都返回 'OK'
+result.get{'comment1'} == result['comment1']
+>>>
+True
+
+# 返回 None
+result.get{'comment2'}
+
+# 程序出错
+result.[comment2]
+```
+
+
+
+# Others
+
 ---
 ## 获取 for 循环的当前步数 
-Q: Accessing the index in 'for' loops?
+Q: Accessing the index in 'for' loops? 
 Q: Using a for loop, how do I access the loop index?
 
 ```
@@ -12,10 +35,9 @@ for count, item in enumerate(items, start=1):
     print(count, item)
 ```
 
-
 ---
 ## tuple 元祖索引
-b[x:y:z] 相当于 b[start:end:step]，x默认0，y默认-1，z默认1
+`b[x:y:z]` 相当于 `b[start​:end:​step]`，x默认0，y默认-1，z默认1  
 关于溢出，如果第一次递进超过end，就算溢出
 
 ```
@@ -74,7 +96,6 @@ print('18:', b[0:3:2])  # 从0开始，到3之前结束，递进2
 17: (1, 3, 2, 4)
 18: (1, 2)
 ```
-
 
 ---
 ## 自定义排序`sorted`

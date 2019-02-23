@@ -1,5 +1,25 @@
+
+## 矩阵相乘，`np.matmul(A,B)`
+请注意W.shape
+```
+W = np.arange(2)
+X = np.arange(6).reshape(3, 2)
+b = 1
+
+print(X.shape, W.shape, '\n')
+print(np.matmul(W, X.T) + b, '\n')
+print(np.matmul(X, W) + b, '\n')
+
+>>>
+(3, 2) (2,) 
+
+[2 4 6] 
+
+[2 4 6]
+```
+
 ---
-## 打印精度设置
+## 打印精度设置, `np.set_printoptions()`
 ```
 np.set_printoptions(2)
 
