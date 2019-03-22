@@ -7,3 +7,4 @@ From our chart before, there are few situations where this might even be a poten
 Below, let's check out what happens when we try to use a pre-made model but set the weights to `None` - this means no training has occurred yet!
 
 In the following lab, you'll get a chance to actually add layers to the end of a pre-trained model, so that you can actually use the full power of transfer learning, instead of just using it toward the 1,000 ImageNet classes as a whole.
+

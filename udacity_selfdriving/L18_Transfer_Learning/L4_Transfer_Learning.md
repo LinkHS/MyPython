@@ -82,6 +82,11 @@ Here is how to visualize this approach:
 ![image](../data/L18_4_5.png)
 **Neural Network with Small Data Set, Different Data**
 
+### Case 3: Large Data Set, Similar Data
+
+![image](../data/L18_4_6.png)
+**Case 3: Large Data Set, Similar Data**
+
 If the new data set is large and similar to the original training data:
 
 - remove the last fully connected layer and replace with a layer matching the number of classes in the new data set
@@ -95,11 +100,10 @@ Because the original training set and the new data set share higher level featur
 
 Here is how to visualize this approach:
 
-![image](../data/L18_4_6.png)
-Case 3: Large Data Set, Similar Data
-
 ![image](../data/L18_4_7.png)
 **Neural Network with Large Data Set, Similar Data**
+
+### Case 4: Large Data Set, Different Data
 
 ![image](../data/L18_4_8.png)
 **Case 4: Large Data Set, Different Data**

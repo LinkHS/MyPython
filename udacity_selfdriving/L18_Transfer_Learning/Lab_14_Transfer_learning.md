@@ -141,20 +141,16 @@ Keras [callbacks](https://keras.io/callbacks/) allow you to gather and store add
 There's two key callbacks to mention here, `ModelCheckpoint` and `EarlyStopping`. As the names may suggest, model checkpoint saves down the best model so far based on a given metric, while early stopping will end training before the specified number of epochs if the chosen metric no longer improves after a given amount of time.
 
 To set these callbacks, you could do the following:
-```
-checkpoint = ModelCheckpoint(filepath=save_path, monitor='val_loss', save_best_only=True)
-```
+`checkpoint = ModelCheckpoint(filepath=save_path, monitor='val_loss', save_best_only=True)`
+
 This would save a model to a specified `save_path`, based on validation loss, and only save down the best models. If you set `save_best_only` to `False`, every single epoch will save down another version of the model.
-```
-stopper = EarlyStopping(monitor='val_acc', min_delta=0.0003, patience=5)
-```
+`stopper = EarlyStopping(monitor='val_acc', min_delta=0.0003, patience=5)`
+
 This will monitor validation accuracy, and if it has not decreased by more than 0.0003 from the previous best validation accuracy for 5 epochs, training will end early.
 
-
 You still need to actually feed these callbacks into `fit()` when you train the model (along with all other relevant data to feed into `fit`):
-```
-model.fit(callbacks=[checkpoint, stopper])
-```
+`model.fit(callbacks=[checkpoint, stopper])`
+
 
 ## GPU time
 
@@ -243,3 +239,47 @@ However, this does not tell the whole story - the training accuracy was substant
 Comparing the last line to the other two really shows the power of transfer learning. After five epochs, a model without ImageNet pre-training had only achieved 39.2% accuracy, compared to over 70% for the other two. As such, pre-training the network has saved substantial time, especially given the additional training time needed when the weights are not frozen.
 
 There is also evidence found in various research that pre-training on ImageNet weights will result in a higher overall accuracy than completely training from scratch, even when using a substantially different dataset.
+
+
+
+---
+
+# Ans
+
+Q1:
+```python
+if freeze_flag == True:
+    ## TODO: Iterate through the layers of the Inception model
+    ##       loaded above and set all of them to have trainable = False
+    for layer in inception.layers:
+        layer.trainable = False
+```
+
+Q2:
+```python
+## TODO: Use the model summary function to see all layers in the
+##       loaded Inception model
+inception.summary()
+```
+
+Q3:
+```python
+# Imports fully-connected "Dense" layers & Global Average Pooling
+from keras.layers import Dense, GlobalAveragePooling2D
+
+## TODO: Setting `include_top` to False earlier also removed the
+##       GlobalAveragePooling2D layer, but we still want it.
+##       Add it here, and make sure to connect it to the end of Inception
+x = GlobalAveragePooling2D()(inp)
+
+## TODO: Create two new fully-connected layers using the Model API
+##       format discussed above. The first layer should use `out`
+##       as its input, along with ReLU activation. You can choose
+##       how many nodes it has, although 512 or less is a good idea.
+##       The second layer should take this first layer as input, and
+##       be named "predictions", with Softmax activation and 
+##       10 nodes, as we'll be using the CIFAR10 dataset.
+x = Dense(512, activation = 'relu')(x)
+predictions = Dense(10, activation = 'softmax')(x)
+```
+
