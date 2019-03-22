@@ -135,8 +135,49 @@ def shift_1d(src, move):
 
 ---
 ## 结构体`namedtuple/__repr__`
-```
-m collections import namedtuple
+```python
+from collections import namedtuple
 gaussian = namedtuple('Gaussian', ['mean', 'var'])
 gaussian.__repr__ = lambda s: 'Ν(μ={:.3f}, σ={:.3f})'.format(s[0], s[1])
+```
+
+---
+
+## `with` Statement
+自动执行 `__enter__` 和 `__exit___`，可以用 `contextmanager` decorator 来创造
+
+```python
+from contextlib import contexmanager
+
+@contextmanager
+```
+
+----
+
+# CSV
+
+## CSV 和 namedtuple 结合
+```python
+EmployeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department, paygrade')
+
+import csv
+for emp in map(EmployeeRecord._make, csv.reader(open("employees.csv", "rb"))):
+    print emp.name, emp.title
+```
+
+---
+# argparse 
+
+```python
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('integers', metavar='N', type=int, nargs='+',
+                    help='an integer for the accumulator')
+parser.add_argument('--sum', dest='accumulate', action='store_const',
+                    const=sum, default=max,
+                    help='sum the integers (default: find the max)')
+
+args = parser.parse_args()
+print(args.accumulate(args.integers))
 ```

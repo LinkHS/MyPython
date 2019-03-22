@@ -1,4 +1,96 @@
-# Pre-trained networks
+# Model
+
+https://keras.io/layers/about-keras-layers/
+
+## [The Sequential model API](https://keras.io/models/sequential/)
+
+```python
+from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Flatten
+from keras.layers import Cropping2D
+from keras.layers import Dense, GlobalAveragePooling2D
+
+model = keras.models.Sequential()
+
+model.add(Cropping2D(cropping=((50, 20), (0, 0)), input_shape=(row, col, ch)))
+model.add(Lambda(lambda x: x / 127.5 - 1.))
+
+model.add(Conv2D(24, (5, 5), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(24, (5, 5)))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+model.add(Flatten())
+
+model.add(GlobalAveragePooling2D())
+
+model.add(Dense(1164, activation='relu'))
+```
+
+## [Model class API](https://keras.io/models/model/)
+
+```python
+from keras.models import Model
+from keras.layers import Input
+
+input_layer = Input(shape=(row, col, ch))
+
+mean_input = Lambda(lambda x: x / 127.5 - 1.)(input_layer)
+
+x = GlobalAveragePooling2D()(mean_input)
+
+output = Dense(1)(x)
+
+model = Model(input=input_layer, output=output)
+```
+
+## Compile
+
+```python
+model.compile(loss='mse', optimizer=optimizer)
+```
+
+## 查看 model
+```python
+print(model.summary())
+```
+
+---
+# Layer
+## 查看每一层 Layer
+```python
+for i, layer in enumerate(model.layers):
+    print('layer %d:'%i, layer.get_config(), layer.get_weights())
+```
+
+---
+# Others
+
+## Tensorboard and Callback
+
+在每个 epoch 结束时候将 `lr` 写到 tensorboard 中
+
+```python
+from keras import backend as K
+from keras.callbacks import TensorBoard
+
+tb = TensorBoard(log_dir=log_dir)
+
+class LRTensorboardCB(keras.callbacks.Callback):
+    def __init__(self, tb):
+        super(LRTensorboardCB, self).__init__()
+        self.tb = tb
+
+    def on_epoch_end(self, epoch, logs=None):
+        lr = float(K.get_value(self.model.optimizer.lr))
+        logs.update({'lr': lr})
+        self.tb.on_epoch_end(epoch, logs)
+```
+
+# Prre-trained networks
 
 ## ResNet50
 ```python
