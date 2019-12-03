@@ -37,7 +37,7 @@ for count, item in enumerate(items, start=1):
 
 ---
 ## tuple 元祖索引
-`b[x:y:z]` 相当于 `b[start​:end:​step]`，x默认0，y默认-1，z默认1  
+`b[x:y:z]` 相当于 `b[start:end:step]`，x默认0，y默认-1，z默认1  
 关于溢出，如果第一次递进超过end，就算溢出
 
 ```
@@ -143,15 +143,6 @@ gaussian.__repr__ = lambda s: 'Ν(μ={:.3f}, σ={:.3f})'.format(s[0], s[1])
 
 ---
 
-## `with` Statement
-自动执行 `__enter__` 和 `__exit___`，可以用 `contextmanager` decorator 来创造
-
-```python
-from contextlib import contexmanager
-
-@contextmanager
-```
-
 ----
 
 # CSV
@@ -180,4 +171,40 @@ parser.add_argument('--sum', dest='accumulate', action='store_const',
 
 args = parser.parse_args()
 print(args.accumulate(args.integers))
+```
+
+---
+# `with` Statement
+## contextlib
+自动执行 `__enter__` 和 `__exit___`，可以用 `contextmanager` decorator 来创造
+
+```python
+from contextlib import contexmanager
+
+@contextmanager
+```
+
+---
+## `with` 和 time Benchmark
+
+构造一个`Benchmark`类，配合`with`测量代码运行时间
+
+```python
+class Benchmark():
+    def __init__(self, prefix=None):
+        self.prefix = prefix + ' ' + if prefix else ''
+    
+    def __enter__(self):
+        self.start = time.time()
+        
+    def __exit__(self, *args):
+        print('%stime: %.4f sec' % (self.prefix, time.time() - self.start))
+```
+
+```python
+with Benchmark('Workloads are queued.'):
+	...
+
+with Benchmark('Workloads are finished.'):
+    ...
 ```
