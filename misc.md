@@ -1,3 +1,29 @@
+# 环境问题
+
+## `import`相对路径文件
+
+```
+DirA
+|--main.py
+|--DirB
+|----fileB.py
+|----fileB1.py
+```
+
+在"main.py"中可以直接`import DirB.fileB`，但是同级/上级调用如在"fileB.py"里`import fileB1`要分几种情况：
+
+- `python main.py`中调用了`import DirB.fileB`然后间接调用了`import fileB1`
+- `python DirB/fileB.py`中调用了`import fileB1`
+- `python fileB.py`中调用了`import fileB1`
+
+鉴于情况比较复杂，尽量避免同级/上级调用，如需要运行`python fileB.py`来执行`if __name__ == "__main__"`的入口测试可以先设置以下python绝对或者相对环境：
+
+```python
+export PYTHONPATH="/home/austin/.../DirA/DirB"
+```
+
+
+
 # 字典 Dict
 
 ## `get` 和 `[]` 获取 key 的区别
@@ -41,7 +67,7 @@ for count, item in enumerate(items, start=1):
 关于溢出，如果第一次递进超过end，就算溢出
 
 ```
-# b = np.zero((1,3,2,4)).shape
+# b = np.zeros((1,3,2,4)).shape
 b = (1, 3, 2, 4) # 等价于 np.zero((1,3,2,4)).shape
 print(b)
 print('0:', b[0:0:1])   # 从0开始，到0之前结束，递进1
@@ -192,7 +218,7 @@ from contextlib import contexmanager
 ```python
 class Benchmark():
     def __init__(self, prefix=None):
-        self.prefix = prefix + ' ' + if prefix else ''
+        self.prefix = prefix + ' ' if prefix else ''
     
     def __enter__(self):
         self.start = time.time()

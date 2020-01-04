@@ -24,4 +24,3 @@ from skimage import util
 
 sk.util.random_noise(image)
 ```
-

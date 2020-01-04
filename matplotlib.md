@@ -1,4 +1,4 @@
-```
+```python
 def plot_comparison(ori_img, res_img, ori_tit='Original', res_tit='Result', fontsize=30, 
                     ori_cmap='gray', res_cmap='gray'):
     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 9))
