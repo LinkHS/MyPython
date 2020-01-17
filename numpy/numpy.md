@@ -1,5 +1,31 @@
 # np.array 操作
-## 01 矩阵相乘，`np.matmul(A,B)`
+
+## - 生成数据、初始化
+```python
+"""快速浮点
+If the list contains all ints then the created array will also have a data type of int, otherwise it will befloat.
+"""
+np.array([1., 0, 0, 0, 0, 0])
+
+"""随机数
+""" 
+# 创建2行2列取值范围为[0,1)的数组
+np.random.rand(2,2)
+
+# 创建2行3列，取值范围为标准正态分布的数组
+arr2 = np.random.randn(2,3)
+
+# 对角矩阵
+np.diag([500., 49.])
+>>>
+array([[500.,   0.],
+       [  0.,  49.]])
+```
+
+
+
+## - 矩阵相乘，`np.matmul(A,B)`
+
 请注意W.shape
 ```python
 W = np.arange(2)
@@ -18,7 +44,7 @@ print(np.matmul(X, W) + b, '\n')
 [2 4 6]
 ```
 
-## 02 添加
+## - 添加
 `np.append`
 
 ```python
@@ -59,7 +85,7 @@ array([[0, 0, 0, 0],
        [1, 1, 1, 0]])
 ```
 
-## 03 删除
+## - 删除
 ```python
 a = [1,2,3,4]
 a.pop(-1)
@@ -68,28 +94,13 @@ a
 [1, 2, 3]
 ```
 
-## 04 位置操作
+## - 位置操作
 ```python
 a = np.array([1,1,2,3])
 a = a[(a==1) | (a==2)]
 a
 >>>
 array([1, 1, 2])
-```
-
-## 05 数组初始化
-### 001 快速浮点数
-```python
-np.array([1., 0, 0, 0, 0, 0])
-```
-If the list contains all ints then the created array will also have a data type of int, otherwise it will befloat.
-
-### 002 创建对角矩阵
-```python
-np.diag([500., 49.])
->>>
-array([[500.,   0.],
-       [  0.,  49.]])
 ```
 
 ---

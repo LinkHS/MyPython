@@ -24,7 +24,11 @@ export PYTHONPATH="/home/austin/.../DirA/DirB"
 
 
 
-# 字典 Dict
+## abs_import
+
+
+
+# 字典 Dict and Easydict
 
 ## `get` 和 `[]` 获取 key 的区别
 
@@ -45,10 +49,47 @@ result.[comment2]
 
 
 
+## Easydict
+
+```python
+from easydict import EasyDict as edict
+
+__C = edict()
+cfg = __C
+
+__C.DATASET                             = edict()
+__C.DATASET.NAME                        = 'GoPro'
+```
+
+
+
 # Others
 
----
+## Deep Copy 
+
+```python
+import copy
+copy.deepcopy()
+```
+
+
+
+## Print out nicely - `pprint`
+
+```python
+import pprint
+
+# Prints the nicely formatted dictionary
+pprint.pprint(dictionary)
+
+# Sets 'pretty_dict_str' to 
+pretty_dict_str = pprint.pformat(dictionary)
+```
+
+
+
 ## 获取 for 循环的当前步数 
+
 Q: Accessing the index in 'for' loops? 
 Q: Using a for loop, how do I access the loop index?
 
@@ -61,7 +102,8 @@ for count, item in enumerate(items, start=1):
     print(count, item)
 ```
 
----
+
+
 ## tuple 元祖索引
 `b[x:y:z]` 相当于 `b[start:end:step]`，x默认0，y默认-1，z默认1  
 关于溢出，如果第一次递进超过end，就算溢出
@@ -123,8 +165,10 @@ print('18:', b[0:3:2])  # 从0开始，到3之前结束，递进2
 18: (1, 2)
 ```
 
----
+
+
 ## 自定义排序`sorted`
+
 ```
 students = [['john', 'A', 15],
             ['jane', 'B', 12],
@@ -134,7 +178,8 @@ sorted(students, key=lambda student: student[2])
 [['dave', 'B', 10], ['jane', 'B', 12], ['john', 'A', 15]]
 ```
 
----
+
+
 ## 左移或右移一维 list/np.ndarray 中所有元素（循环）
 
 > [English Writing] We can see that we correctly shifted all the values one position to the right,
@@ -159,7 +204,8 @@ def shift_1d(src, move):
     return dst
 ```
 
----
+
+
 ## 结构体`namedtuple/__repr__`
 ```python
 from collections import namedtuple
@@ -167,7 +213,7 @@ gaussian = namedtuple('Gaussian', ['mean', 'var'])
 gaussian.__repr__ = lambda s: 'Ν(μ={:.3f}, σ={:.3f})'.format(s[0], s[1])
 ```
 
----
+
 
 ----
 

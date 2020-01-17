@@ -1,3 +1,36 @@
+## 画图
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(x, y, 'bo')  # plot x and y using blue circle markers
+plt.plot(y)           # plot y using x as index array 0..N-1
+plt.plot(y, 'r+')     # ditto, but with red plusses
+
+# 给数据打上标签
+plt.plot(x, 'r--', label="inv1") # 
+plt.legend(loc="best",fontsize=15)
+```
+
+其他格式参考 [matplotlib.pyplot.plot](https://matplotlib.org/2.1.1/api/_as_gen/matplotlib.pyplot.plot.htm)
+
+
+
+## 调整图像大小
+
+```python
+import matplotlib.pyplot as plt
+
+plt.rcParams['figure.figsize'] = [12, 9]
+```
+
+
+
+
+
+# Examples
+
+## 画图比较
 ```python
 def plot_comparison(ori_img, res_img, ori_tit='Original', res_tit='Result', fontsize=30, 
                     ori_cmap='gray', res_cmap='gray'):
