@@ -5,3 +5,5 @@ udacity_selfdriving/L13_Deep_Neural_Networks/temp/
 
 *.pyc
 *.swp
+_vnote.json
+*.jupyter.ipynb

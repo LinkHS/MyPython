@@ -1,56 +1,67 @@
 # Tensor 基本操作
 
+References:
+- [torch.Tensor](https://pytorch.org/docs/stable/tensors.html)
 - [PyTorch - Basic operations](https://jhui.github.io/2018/02/09/PyTorch-Basic-operations/)
+
+```python
+import torch
+
+torch.manual_seed(0)
+```
+
+```python
+print(torch.rand(2))
+```
 
 ## Create a Tensor
 
 ```python
-"""随机数
-"""
-torch.manual_seed(1)
-v = torch.rand(2, 3) # Initialize with random number (uniform distribution)
->>>
-tensor([[0.7576, 0.2793, 0.4031],
-        [0.7347, 0.0293, 0.7999]])
-
-# With normal distribution (SD=1, mean=0)
-v = torch.randn(2, 3) 
->>>
-tensor([[ 0.5636,  1.1431,  0.8590],
-        [ 0.7056, -0.3406, -1.2720]])
-
-# Size 4. Random permutation of integers from 0 to 3
-v = torch.randperm(4) 
->>>
-tensor([2, 0, 1, 3])
-
-# 可以用括号指定维度
-X = torch.rand((1, 3, 256, 256))
-
-"""其他
-"""
-torch.ones(2, 3, dtype=torch.long) # 2x3
-torch.ones(2, 3, 3, dtype=torch.double) # 2x3x3
-X1 = torch.zeros((2, 2, 2, 2). dtype=torch.int)
+torch.rand(2, 3) # Initialize with random number (uniform distribution)
 ```
+```python
+# With normal distribution (SD=1, mean=0)
+torch.randn(2, 3) 
+```
+```python
+# 可以用括号指定维度
+torch.rand((1, 3, 2, 4))
+```
+### `tensor.dtype`
 
+[dtype](https://pytorch.org/docs/stable/tensors.html):
+- torch.double
+- torch.long
 
+```python
+torch.zeros((2, 1, 3, 4), dtype=torch.int)
+```
+<!-- #region -->
+### 其他初始化方法
+```python
+torch.ones(2, 3, dtype=torch.long) 
+```
+<!-- #endregion -->
 
+```python
+# Size 4. Random permutation of integers from 0 to 9
+torch.randperm(10) 
+```
 ## Tensor 属性
 
 ```python
-tensorA.shape # 形状
-
-tensorA.size(0) # tensorA.shape[0]
-
-tensorA.nelement() # 元素个数, total_train += mask.nelement()
+tensorA = torch.randn(2,3,4,5)
 ```
 
-
-
+```python
+tensorA.shape, tensorA.size() # 形状
+```
+```python
+tensorA.nelement() # 元素个数, total_train += mask.nelement()
+```
 ## Operation
 
-### - `mean` 求均值
+### `mean` 求均值
 
 ```python
 """mean(求均值)
@@ -69,9 +80,6 @@ A.mean((1,2), True).shape        # torch.Size([2])
 # 在分割或者去模糊等任务评测时，需要注意将神经网路的输出截止到float型`[0.0, 1.0]`或者int型`[0, 255]`，因为最终要保存为图片看效果！
 Tensor.clamp(0., 1.)
 ```
-
-
-
 ---
 
 # 训练
@@ -84,9 +92,6 @@ Tensor.clamp(0., 1.)
 for image, target in metric_logger.log_every(data_loader, print_freq, header):
 	batch_size = blur_imgs[0].shape[0]
 ```
-
-
-
 ---
 
 # 模型
