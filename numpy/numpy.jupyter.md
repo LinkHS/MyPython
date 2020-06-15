@@ -11,7 +11,6 @@ from IPython.display import display, Math, Latex
 ### - 生成数据、初始化
 
 #### 指定数据
-
 ```python
 """
 If the list contains all ints then the created array will also have a data type of int, 
@@ -223,7 +222,7 @@ a
 ```
 
 ### 获取某些值的位置
-可以避免使用for循环
+#### 可以避免使用for循环
 ```python
 a = np.array([10, 11, 10, 12])
 ```
@@ -246,16 +245,11 @@ a
 
 ## Misc
 
-### 避免使用`for`循环
-
-#### 更改array中的某些数值
-
 ### 打印精度设置
 参考：
 - [A `printf` format reference page (cheat sheet)](https://alvinalexander.com/programming/printf-format-cheat-sheet/)
 
 此外，可以用`np.set_printoptions()`改变全局的设置
-
 ```python
 print('default:', np.array([2.0]) / 3)
 
