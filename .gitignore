@@ -2,8 +2,11 @@
 .vscode/
 .DS_Store/
 udacity_selfdriving/L13_Deep_Neural_Networks/temp/
+_build/
+.jupyter/
 
 *.pyc
 *.swp
 _vnote.json
-*.jupyter.ipynb
+
+# temporarily ignore
