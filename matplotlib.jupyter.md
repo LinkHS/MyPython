@@ -1,3 +1,5 @@
+# Matplotlib
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -32,21 +34,31 @@ plt.plot([1, 1.6, 3])
 
 ## Basic
 
+### 调整图像之间的间隔
+
 ```python
-plt.plot([1, 1.5, 3.14])
+fig, axs = plt.subplots(1, 2)
+
+axs[0].plot(range(10))
+
+plt.subplots_adjust(wspace=0.5)
 ```
 
 ## Image
 ### 注意类型和numpy的区别
 
 ```python
+import matplotlib
+
 # 注意此时 A.dtype 为 uint8
-A = matplotlib.image.imread('pic.jpg')
+A = matplotlib.image.imread('_files/liuyifei.jpg')
 B = np.zeros_like(A)
 
-# 此时A和B的dtype不一样
+# 此时A和B的dtype不一样!!!
 B = np.zeros(A.shape)
+print(A.dtype, B.dtype)
 
 # 改成
 B = np.zeros(A.shape, dtype=A.dtype)
+print(A.dtype, B.dtype)
 ```

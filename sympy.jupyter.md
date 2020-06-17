@@ -39,11 +39,3 @@ raw_latex1, raw_latex2
 display(Math(sp.latex(raw_latex1)))
 display(Math(sp.latex(raw_latex2)))
 ```
-
-```python
-
-```
-
-```python
-
-```

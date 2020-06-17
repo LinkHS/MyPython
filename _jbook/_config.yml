@@ -1,0 +1,11 @@
+# Book settings
+title: Austin's Jupyter Notes
+author: Austin.Dawei 
+logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+execute:
+  execute_notebooks: "off"
