@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>泊松分布 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="极限中心定理" href="中心极限定理.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="active">
+    <a href="Math.jupyter.html">Math</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="中心极限定理.jupyter.html">极限中心定理</a>
+    </li>
+    <li class="active">
+      <a href="">泊松分布</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/Math/Poisson-Distribution.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">1 相关知识</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#bernoulli-experiment" class="nav-link">1.1 Bernoulli Experiment (伯努利试验)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#binomial-distribution" class="nav-link">1.2 Binomial Distribution (二项式分布)</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">2 定义</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#pmfpdf" class="nav-link">2.1 PMF与PDF</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#lambda" class="nav-link">2.2 参数lambda</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">2.3 练习题</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id5" class="nav-link">3 与正态分布的关系</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>泊松分布<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">power</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>1 相关知识<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bernoulli-experiment">
+<h3>1.1 Bernoulli Experiment (伯努利试验)<a class="headerlink" href="#bernoulli-experiment" title="Permalink to this headline">¶</a></h3>
+<p>对于一个试验（事件），如果重复发生的概率是独立的（互补影响），那么它是独立试验。特别的，如果这个试验只存在<strong>两种结果</strong>，则称其为伯努利试验。</p>
+</div>
+<div class="section" id="binomial-distribution">
+<h3>1.2 Binomial Distribution (二项式分布)<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h3>
+<p>对于重复<span class="math notranslate nohighlight">\(n\)</span>次的伯努利试验，我们可以计算成功<span class="math notranslate nohighlight">\(k\)</span>次的概率：</p>
+<p><span class="math notranslate nohighlight">\(P_{k}=C_{n}^{k} p^{k}(1-p)^{n-k}=\frac{n !}{(n-k) ! k !} \cdot p^{k}(1-p)^{n-k}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">BinomialDist</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=.</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">power</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">power</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>e.g.</strong> 假设我们抛一枚硬币，总共抛10次，求10次都是正面的概率？</p>
+<p>解：<span class="math notranslate nohighlight">\(P_{10} = 0.5^{10}\)</span></p>
+<p>验证一下我们的函数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BinomialDist</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">power</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>e.g.</strong> 假设我们抛一枚硬币，总共抛10次，分别求<span class="math notranslate nohighlight">\(k=0,1,2,...,10\)</span>次是正面的概率？</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="c1">#ks=0,1,2,...,10</span>
+
+<span class="n">Plst</span> <span class="o">=</span> <span class="n">BinomialDist</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ks</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Plst</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(X=k),\ X \sim B(10,0.5)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Poisson-Distribution.jupyter_7_0.png" src="../_images/Poisson-Distribution.jupyter_7_0.png" />
+</div>
+</div>
+<p>从上图可以看出，<span class="math notranslate nohighlight">\(k=5\)</span>时候最大，这符合我们的预期：抛10次硬币，正面朝上的次数最有可能为5。即随机变量<span class="math notranslate nohighlight">\(\xi \sim B(10, 0.5)\)</span>，<span class="math notranslate nohighlight">\(E(\xi)=np=5\)</span>。</p>
+<p>简单证明一下<span class="math notranslate nohighlight">\(E(\xi)=np\)</span>：</p>
+<ol class="simple">
+<li><p>预备公式：<span class="math notranslate nohighlight">\(k c_{n}^{k}=n c_{n-1}^{k-1}\)</span></p></li>
+<li><p>离散型随机变量<span class="math notranslate nohighlight">\(\xi\)</span>的期望：<span class="math notranslate nohighlight">\(E(\xi)=\sum_i^n(x_i\cdot p(x_i))\)</span></p></li>
+<li><p>这里<span class="math notranslate nohighlight">\(x_i = k = 0,1,...,n\)</span>，而<span class="math notranslate nohighlight">\(p(x_i)=p(k)=C_{n}^{k} p^{k}(1-p)^{n-k}\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}E(\xi) &amp;= 0 \times c_{n}^{0} p^{0} q^{n}+1 \times c_{n}^{1} p^{1} q^{n-1}+ 2 \times c_{n}^{2} p^{2} q^{n-2}\ldots+n c_{n}^{n} p^{0} q^{n}\\
+&amp;= n p\left(c_{n-1}^{0} p^{0} q^{n-1}+c_{n-1}^{1} p^{0} q^{n-2}+c_{n-1}^{2} p^{0} q^{n-2} \ldots+c_{n-1}^{n-1} p^{n-1} q^{0}\right)\\
+&amp;= n p(p+q)^{n-1}\\
+&amp;= n p\end{aligned}\end{split}\]</div>
+<p>计算一下<span class="math notranslate nohighlight">\(E(\xi)=\sum_i^n(x_i\cdot p(x_i))\)</span>，<code class="docutils literal notranslate"><span class="pre">ks</span></code>相当于<span class="math notranslate nohighlight">\(x_i\)</span>，<code class="docutils literal notranslate"><span class="pre">Plst</span></code>相当于<span class="math notranslate nohighlight">\(p(x_i)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean =&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">ks</span><span class="o">*</span><span class="n">Plst</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean =&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>mean = 5.0
+mean = 5.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>其他证明方法和方差（<span class="math notranslate nohighlight">\(D(\xi)=npq\)</span>）可以参考<a class="reference external" href="https://wenku.baidu.com/view/7038047d31126edb6f1a107a.html">二项分布的期望和方差的详细证明</a>。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+D(X)=E\left(X^{2}\right)-E^{2}(X)=\sum_{k=0}^{\infty} k^{2} \cdot \frac{\lambda^{k}}{k !} e^{-\lambda}-\lambda^{2} \\
+=\lambda e^{-\lambda} \sum_{k=1}^{\infty} \frac{k \lambda^{k-1}}{(k-1) !}-\lambda^{2}=\lambda e^{-\lambda}\left[\sum_{k=2}^{\infty} \frac{\lambda^{k-1}}{(k-2) !}+\sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1) !}\right]-\lambda^{2} \\
+=\lambda e^{-\lambda}\left[\lambda e^{\lambda}+e^{\lambda}\right]-\lambda^{2}=\lambda
+\end{array}\end{split}\]</div>
+<p>总结，如果<strong>随机变量<span class="math notranslate nohighlight">\(X=k\)</span>的概率</strong>满足<span class="math notranslate nohighlight">\(P(X=k)=C_{n}^{k} p^{k}(1-p)^{n-k}\)</span>二项式分布，则<span class="math notranslate nohighlight">\(X \sim B(n,p)\)</span>。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>2 定义<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>二项式分布<span class="math notranslate nohighlight">\(P\left(k\right)=\frac{n !}{(n-k) ! k !} \cdot p^{k}(1-p)^{n-k}\)</span>要求<span class="math notranslate nohighlight">\(n\)</span>必须为已知数，但是生活中很多事情是没法统计出或者不存在精确的总数，这些事情往往是在一段连续的时间内出现一定的次数，相互之间没有影响（随机发生），并且单次事件耗时和概率几乎可以忽略（只有出现或者未出现，类似二项式分布；任意时刻发生的概率几乎为0）。例如，<a class="reference external" href="https://www.zhihu.com/question/26441147/answer/128055090">某个医院一天/一小时/一周内来的病人数量</a>；<a class="reference external" href="https://blog.csdn.net/ccnt_2012/article/details/81114920">某个包子店一天/一小时/一周内卖出的包子数量</a>，我们能得到只有一段时间内事情<strong>发生的</strong>次数。</p>
+<p>由于事情是随机发生的，也就是在统计的一定时间内，任意时刻都有可能发生，所以我们就要对二项式公式改进。假设一个小时内发生了<span class="math notranslate nohighlight">\(m\)</span>次，如果我们10分钟统计一次，总共统计<span class="math notranslate nohighlight">\(n=6\)</span>次，我们期待<span class="math notranslate nohighlight">\(p=\frac{k}{n}\)</span>，也就是<span class="math notranslate nohighlight">\(k\)</span>次需要分别散落在6个10分钟内，显然<span class="math notranslate nohighlight">\(k\)</span>次可能出现在一个10分钟内。那么1秒钟统计一次呢？还是不行，因为还是存在1秒钟发生<span class="math notranslate nohighlight">\(k\)</span>次的可能性。为了保证单位时间内最多只有一次事件发生，泊松分布将<span class="math notranslate nohighlight">\(n \rightarrow +\infty\)</span>，那么单次事件只能发生在<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>时间内。</p>
+<p>我们可以统计出一段时间内出现的平均次数<span class="math notranslate nohighlight">\(\lambda\)</span>，那么可以认为单次事件概率<span class="math notranslate nohighlight">\(p=\frac{\lambda}{n}\)</span>，于是二项式分布就变成了：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\lim _{n \rightarrow \infty} P(X=k) \\
+= \lim _{n \rightarrow \infty}\left(\begin{array}{l}n \\ k\end{array}\right) p^{k}(1-p)^{n-k}\\
+= \left(\frac{\lambda^{k}}{k !}\right) \exp (-\lambda)\\
+= \frac{\lambda^k}{k!}e^{-\lambda}\end{split}\]</div>
+<p>其实<span class="math notranslate nohighlight">\(e\)</span>的定义就是（参见：<a class="reference external" href="https://www.cnblogs.com/ronnydm/p/6523506.html">自然常数e的含义</a>）：
+<span class="math notranslate nohighlight">\($\lim_{n \rightarrow +\infty}(1+\frac{1}{n})^n\)</span>$</p>
+<p>而<span class="math notranslate nohighlight">\(e^{-\lambda} = \lim_{n \rightarrow +\infty}(1+\frac{-\lambda}{n})^n\)</span>。</p>
+<p>最终泊松分布定义为：若<span class="math notranslate nohighlight">\(X\)</span>服从参数为<span class="math notranslate nohighlight">\(\lambda\)</span>的泊松分布，记为<span class="math notranslate nohighlight">\(X\sim \pi(\lambda)\)</span>或<span class="math notranslate nohighlight">\(X\sim P(\lambda)\)</span>。</p>
+<div class="math notranslate nohighlight">
+\[P(X=k)=\frac{e^{-\lambda}}{k !}\lambda^{k}\]</div>
+<p>相关性质：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E(X) = \lambda\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D(X) = \lambda\)</span></p></li>
+</ul>
+<div class="section" id="pmfpdf">
+<h3>2.1 PMF与PDF<a class="headerlink" href="#pmfpdf" title="Permalink to this headline">¶</a></h3>
+<p>虽然<span class="math notranslate nohighlight">\(n\rightarrow +\infty\)</span>，并且公式也可以计算<span class="math notranslate nohighlight">\(k&gt;0\)</span>的非整数，但是泊松分布还是针对离散型随机变量，所以上述公式又称为泊松分布的PMF（概率质量函数）。</p>
+<ul class="simple">
+<li><p><strong>PMF</strong>（Probability Mass Function，概率质量函数）: 是对<strong>离散随机变量</strong>的定义。是离散随机变量在各个特定取值的概率。该函数通俗来说，就是对于一个离散型概率事件来说，使用这个函数来求它的各个成功事件结果的概率。</p></li>
+<li><p><strong>PDF</strong>（Probability Density Function，概率密度函数 )：是对<strong>连续性随机变量</strong>的定义。与PMF不同的是，PDF在特定点上的值并不是该点的概率, 连续随机概率事件只能求一段区域内发生事件的概率, 通过对这段区间进行积分来求。通俗来说, 使用这个概率密度函数将想要求概率的区间的临界点（最大值和最小值）带入求积分，就是该区间的概率。</p></li>
+</ul>
+</div>
+<div class="section" id="lambda">
+<h3>2.2 参数lambda<a class="headerlink" href="#lambda" title="Permalink to this headline">¶</a></h3>
+<p>我们来看不同参数<span class="math notranslate nohighlight">\(\lambda\)</span>的泊松分布情况。注意，由于是离散随机变量，所以我们对<span class="math notranslate nohighlight">\(k\)</span>只能取<span class="math notranslate nohighlight">\(\geq 0\)</span>的整数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">factorial</span>
+
+<span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">PD</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">lmd</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">lmd</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lmd</span><span class="p">)</span> <span class="o">/</span> <span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">PD</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;*--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$\lambda=1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">PD</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;^--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$\lambda=5$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">PD</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$\lambda=10$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">PD</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$\lambda=15$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Poisson-Distribution.jupyter_13_0.png" src="../_images/Poisson-Distribution.jupyter_13_0.png" />
+</div>
+</div>
+<p>从上图中，可以看出，泊松分布围绕着<span class="math notranslate nohighlight">\(\lambda\)</span>为中心的，而且<span class="math notranslate nohighlight">\(\lambda\)</span>越大，越对称，也越像正态分布。</p>
+</div>
+<div class="section" id="id4">
+<h3>2.3 练习题<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><strong>e.g.1</strong> 某餐厅早上15分钟内光临的顾客平均人数为10人，求早上15分钟内光临5人的概率？</p>
+<p>解：由题可知<span class="math notranslate nohighlight">\(\lambda=10,\ k=5\)</span>，则<span class="math notranslate nohighlight">\(P(X=5) = \frac{10^5}{5!}e^{-10}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PD</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.03783327480207071
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>e.g.2</strong> 继续上题，求这段时间内3分钟内光临5人的概率？</p>
+<p>解：由题可推测<span class="math notranslate nohighlight">\(\lambda_3=3/15\times \lambda_{15}=2\)</span>，则<span class="math notranslate nohighlight">\(P_3(X=5)=\frac{2^5}{5!}e^{-2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PD</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.03608940886309672
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>3 与正态分布的关系<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>知乎上有个<a class="reference external" href="https://www.zhihu.com/question/21756860/answer/126950765">答案</a>这样说的：</p>
+<blockquote>
+<div><p>正态分布是所有分布趋于极限大样本的分布，属于连续分布。二项分布与泊松分布，则都是离散分布。二项分布的极限分布是泊松分布，泊松分布的极限分布是正态分布，即<span class="math notranslate nohighlight">\(np=\lambda\)</span>，当<span class="math notranslate nohighlight">\(n\)</span>很大时，可以近似相等。当<span class="math notranslate nohighlight">\(n\)</span>很大时（还没达到连续的程度），可以用泊松分布近似代替二项分布；当n再变大，几乎可以看成连续时，二项分布和泊松分布都可以用正态分布来代替！</p>
+</div></blockquote>
+<p>乍一看，好像是这么回事，但是仔细想想我们本来就是假设<span class="math notranslate nohighlight">\(n \rightarrow +\infty\)</span>。从上面的实验中我们发现，<span class="math notranslate nohighlight">\(\lambda\)</span>越大越接近正态分布。</p>
+<hr class="docutils" />
+<p>简书上一篇<a class="reference external" href="https://www.jianshu.com/p/62f2402a20cd">blog</a>认为：当发生次数<span class="math notranslate nohighlight">\(k\)</span>比较大的时候，泊松分布会变成均值为<span class="math notranslate nohighlight">\(\lambda\)</span>，方差为<span class="math notranslate nohighlight">\(\lambda\)</span>的正态分布：</p>
+<div class="math notranslate nohighlight">
+\[\lim _{k \rightarrow \infty} \frac{\lambda^{k}}{k !} e^{-\lambda}=\frac{1}{\sqrt{2 \pi \lambda}} e^{-(x-\lambda)^{2} / 2 \lambda} \sim N(\lambda, \lambda)\]</div>
+<p>个人认为这个结论也是明显不对，因为不论参数<span class="math notranslate nohighlight">\(\lambda\)</span>，<span class="math notranslate nohighlight">\(k\)</span>都可以<span class="math notranslate nohighlight">\(\rightarrow \infty\)</span>。不过后半句话应该是对的。</p>
+<hr class="docutils" />
+<p>根据这篇数学<a class="reference external" href="http://www.math.wm.edu/%7Eleemis/2008amstat.pdf">文章</a>上的图（截取如下），当<span class="math notranslate nohighlight">\(\mu\)</span>也就是<span class="math notranslate nohighlight">\(\lambda\rightarrow \infty\)</span>和<span class="math notranslate nohighlight">\(\sigma^{2}=\lambda\)</span>时，变成了<span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span>：</p>
+<p><img alt="" src="assets/math1.jpg" /></p>
+<p>这与我们的实验也是相符的。</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="中心极限定理.jupyter.html" title="previous page">极限中心定理</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
