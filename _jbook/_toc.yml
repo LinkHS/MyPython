@@ -11,3 +11,19 @@
   sections:
     - file: Math/中心极限定理.jupyter.md
     - file: Math/Poisson-Distribution.jupyter.md
+
+- header: Course
+- file: Course/MathPython/Readme.md
+  sections:
+    - file: Course/MathPython/01_Introduction.jupyter.md
+    - file: Course/MathPython/02_Arithmetic.jupyter.md
+    - file: Course/MathPython/03_Sympy_and_Latex.jupyter.md
+    - file: Course/MathPython/04_Algebra1.jupyter.md
+    - file: Course/MathPython/05_Graphing_and_Visualization.jupyter.md
+    - file: Course/MathPython/06_Algebra2.jupyter.md
+    - file: Course/MathPython/07_Graphing_conic.jupyter.md
+    - file: Course/MathPython/08_Trigonometry.jupyter.md
+    - file: Course/MathPython/09_Art_from_Trigonometry.jupyter.md
+    - file: Course/MathPython/10_Calculus.jupyter.md
+    - file: Course/MathPython/11_Linear_Algebra.jupyter.md
+    - file: Course/MathPython/12_Probability_and_Histograms.jupyter.md
