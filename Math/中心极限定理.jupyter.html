@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>极限中心定理 &#8212; Austin&#39;s Jupyter Notes</title>
+    <title>中心极限定理 &#8212; Austin&#39;s Jupyter Notes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -92,12 +92,24 @@
     <a href="Math.jupyter.html">Math</a>
   <ul class="nav sidenav_l2">
     <li class="active">
-      <a href="">极限中心定理</a>
+      <a href="">中心极限定理</a>
     </li>
     <li class="">
       <a href="Poisson-Distribution.jupyter.html">泊松分布</a>
     </li>
+    <li class="">
+      <a href="XGBoost.jupyter.html">XGBoost与Python图解</a>
+    </li>
+    <li class="">
+      <a href="Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+    </li>
   </ul>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
   </li>
 </ul>
 </nav>
@@ -171,7 +183,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#id3" class="nav-link">2 标准正太分布</a><ul class="nav section-nav flex-column">
+            <a href="#id3" class="nav-link">2 标准正态分布</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
             <a href="#id4" class="nav-link">2.1 z-score变换为标准正态分布</a>
@@ -238,7 +250,7 @@
               <div>
                 
   <div class="section" id="id1">
-<h1>极限中心定理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>中心极限定理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="z-score">
 <h2>1 方差与z-score标准化<a class="headerlink" href="#z-score" title="Permalink to this headline">¶</a></h2>
 <p>方差公式<span class="math notranslate nohighlight">\(V[X]=E\left((X-E(X))^{2}\right)\)</span>，也表示为<span class="math notranslate nohighlight">\(\sigma^{2}=\frac{\sum(X-\mu)^{2}}{N}\)</span>。</p>
@@ -315,11 +327,11 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2 标准正太分布<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>对于正太分布<span class="math notranslate nohighlight">\(x \sim N\left(\mu, \sigma^{2}\right)\)</span>，其概率密度函数如下：</p>
+<h2>2 标准正态分布<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>对于正态分布<span class="math notranslate nohighlight">\(x \sim N\left(\mu, \sigma^{2}\right)\)</span>，其概率密度函数如下：</p>
 <div class="math notranslate nohighlight">
 \[f(x)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right)\]</div>
-<p>如果<span class="math notranslate nohighlight">\(\mu=0, \sigma=1\)</span>，则称为标准正太分布<span class="math notranslate nohighlight">\(x \sim N\left(\mu, \sigma^{2}\right)\)</span>，概率密度函数简化为：</p>
+<p>如果<span class="math notranslate nohighlight">\(\mu=0, \sigma=1\)</span>，则称为标准正态分布<span class="math notranslate nohighlight">\(x \sim N\left(\mu, \sigma^{2}\right)\)</span>，概率密度函数简化为：</p>
 <div class="math notranslate nohighlight">
 \[f(x)=\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2}{2}\right)\]</div>
 <div class="cell docutils container">
@@ -377,7 +389,7 @@ P(z&lt;k) &amp;=\int_{-\infty}^{k} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\fr
 <li><p>对<span class="math notranslate nohighlight">\(x=z\sigma + \mu\)</span>两边求导，得到<span class="math notranslate nohighlight">\(dx=\sigma dz\)</span></p></li>
 </ol>
 </div></blockquote>
-<p>至此，证明得到z-score变化后的数据服从标准正太分布<span class="math notranslate nohighlight">\(z \sim N(0, 1)\)</span>。</p>
+<p>至此，证明得到z-score变化后的数据服从标准正态分布<span class="math notranslate nohighlight">\(z \sim N(0, 1)\)</span>。</p>
 </div>
 </div>
 <div class="section" id="id5">

@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Genetic Algorithm &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Master Math by Coding in Python" href="../Course/MathPython/Readme.html" />
+    <link rel="prev" title="XGBoost与Python图解" href="XGBoost.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="active">
+    <a href="Math.jupyter.html">Math</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="中心极限定理.jupyter.html">中心极限定理</a>
+    </li>
+    <li class="">
+      <a href="Poisson-Distribution.jupyter.html">泊松分布</a>
+    </li>
+    <li class="">
+      <a href="XGBoost.jupyter.html">XGBoost与Python图解</a>
+    </li>
+    <li class="active">
+      <a href="">Genetic Algorithm</a>
+    </li>
+  </ul>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/Math/Genetic_Algorithm.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 求函数最值</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">1.1 问题定义</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">1.2 初始化原始种群</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">1.3 编码</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">1.4 解码和适应度函数</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id6" class="nav-link">1.5 选择与交叉</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">1.6 变异</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id8" class="nav-link">1.7 完整运行</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id9" class="nav-link">1.8 深入思考</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id10" class="nav-link">2 背包问题</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id11" class="nav-link">2.1 编码</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id12" class="nav-link">2.2 生成初始种群</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id13" class="nav-link">2.3 种群适应度计算</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id14" class="nav-link">2.4 选择</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id15" class="nav-link">2.5 交叉</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id16" class="nav-link">2.6 突变</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="genetic-algorithm">
+<h1>Genetic Algorithm<a class="headerlink" href="#genetic-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>1 求函数最值<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>遗传算法的特点有无须可导，可优化离散异构数据。</p>
+<p>参考：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/m0_38101326/article/details/90642193?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">遗传算法python实现</a></p></li>
+<li><p><a class="reference external" href="https://ai.supergenius.cn/article/12/749">科学前沿：Genetic Algorithm - 遗传算法究竟怎么回事</a></p></li>
+</ul>
+<div class="section" id="id2">
+<h3>1.1 问题定义<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>如下图所示，<span class="math notranslate nohighlight">\(f(x) = x \cdot sin(10\pi \cdot x)\)</span>在区间<code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">2]</span></code>上有很多极大值和极小值，如果要求其最大值或最小值，很多单点优化的方法（梯度下降等）就不适合，这种情况下就可以用遗传算法（Genetic Algorithm）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86e81e1278&gt;]
+</pre></div>
+</div>
+<img alt="../_images/Genetic_Algorithm.jupyter_3_1.png" src="../_images/Genetic_Algorithm.jupyter_3_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>1.2 初始化原始种群<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>遗传算法的一个特点是同时优化一批解（种群），例如下面在<code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">2]</span></code>范围内随机生成<span class="math notranslate nohighlight">\(10\)</span>个点：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 初始化原始种群</span>
+<span class="k">def</span> <span class="nf">ori_popular</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">_min</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">_max</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">_min</span><span class="p">,</span> <span class="n">_max</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="c1"># 范围[-1, 2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#__TEST__</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">ori_popular</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pop</span><span class="p">,</span> <span class="n">fit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">population</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">%5.2f</span><span class="s2">, fit=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">fit</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x= 0.65, fit=2.64
+x= 1.15, fit=0.87
+x= 0.81, fit=2.21
+x= 0.63, fit=2.56
+x= 0.27, fit=2.21
+x= 0.94, fit=1.13
+x= 0.31, fit=1.88
+x= 1.68, fit=3.17
+x= 1.89, fit=2.53
+x= 0.15, fit=1.85
+</pre></div>
+</div>
+<img alt="../_images/Genetic_Algorithm.jupyter_6_1.png" src="../_images/Genetic_Algorithm.jupyter_6_1.png" />
+</div>
+</div>
+<p>上图显示我们随机选的<span class="math notranslate nohighlight">\(10\)</span>个点离最大值（3.8左右）差距还挺远，下面用GA算法看能否求到最优解。</p>
+</div>
+<div class="section" id="id4">
+<h3>1.3 编码<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>编码，也就是由表现型到基因型，性征到染色体。</p>
+<p>二进制编码的缺点：对于一些连续函数的优化问题，由于其随机性使得其局部搜索能力较差，如对于一些高精度的问题，当解迫近于最优解后，由于其变异后表现型变化很大，不连续，所以会远离最优解，达不到稳定。而格雷码能有效地防止这类现象。</p>
+<p>TODO:</p>
+<ul class="simple">
+<li><p>[ ] 用<code class="docutils literal notranslate"><span class="pre">2**18</span></code>扩展似乎会损失精度，准备用<code class="docutils literal notranslate"><span class="pre">10000</span></code>代替</p></li>
+</ul>
+<p>下面分别将<code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">10,</span> <span class="pre">0</span></code>转成二进制编码，注意浮点数<code class="docutils literal notranslate"><span class="pre">0.1</span></code>无法转换：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1:&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;10:&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0:&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0.1:&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1: 0b1
+10: 0b1010
+0: 0b0
+Exception: TypeError &#39;float&#39; object cannot be interpreted as an integer
+</pre></div>
+</div>
+</div>
+</div>
+<p>为了能编码浮点数，需要扩大倍数转成整数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2**18 =&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+    <span class="n">tx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2"> =&gt; </span><span class="si">%6d</span><span class="s2"> =&gt; </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span class="n">tx</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2**18 = 262144 
+
+1.0000 =&gt; 262144 =&gt; 0b1000000000000000000
+0.1000 =&gt;  26214 =&gt; 0b110011001100110
+0.0020 =&gt;    524 =&gt; 0b1000001100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+    <span class="n">tx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">18</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%25s</span><span class="s2"> =&gt; </span><span class="si">%6d</span><span class="s2"> =&gt; </span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">dx</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>    0b1000000000000000000 =&gt; 262144 =&gt; 1.0000
+        0b110011001100110 =&gt;  26214 =&gt; 0.1000
+             0b1000001100 =&gt;    524 =&gt; 0.0020
+</pre></div>
+</div>
+</div>
+</div>
+<p>需要注意的是，上面用<code class="docutils literal notranslate"><span class="pre">%.4f</span></code>进行了四舍五入，实际上用<code class="docutils literal notranslate"><span class="pre">2**18=262144</span></code>来放大编码会有精度的损失，例如：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
+<span class="nb">int</span><span class="p">(</span><span class="s1">&#39;0b110011001100110&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.09999847412109375
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">popular</span><span class="p">,</span> <span class="n">_min</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">,</span> <span class="n">bin_len</span><span class="o">=</span><span class="mi">18</span><span class="p">):</span>  <span class="c1"># popular应该是float类型的列表</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        bin_len: 染色体序列长度</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">norm_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">popular</span><span class="o">-</span><span class="n">_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">_max</span><span class="o">-</span><span class="n">_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span>
+    <span class="n">bin_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bin_len</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">norm_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)])</span> <span class="c1"># 转成二进制编码</span>
+    <span class="k">return</span> <span class="n">bin_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chroms</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pop</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">fit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">chroms</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">population</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">%.2f</span><span class="s2">, chrom=</span><span class="si">%s</span><span class="s2">, fit=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">fit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x=0.65, chrom=100011000111111100, fit=2.64
+x=1.15, chrom=101101110001011010, fit=0.87
+x=0.81, chrom=100110100100111010, fit=2.21
+x=0.63, chrom=100010110111110101, fit=2.56
+x=0.27, chrom=011011000111010010, fit=2.21
+x=0.94, chrom=101001010101100101, fit=1.13
+x=0.31, chrom=011100000000010110, fit=1.88
+x=1.68, chrom=111001000100101100, fit=3.17
+x=1.89, chrom=111101101011001010, fit=2.53
+x=0.15, chrom=011000100010100100, fit=1.85
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>1.4 解码和适应度函数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>通过基因（染色体）得到个体的适应度值，也就是评判当前种群每个个体（解）表现好坏，要对编码解码后才能代入函数。</p>
+<p>注意，因为函数<span class="math notranslate nohighlight">\(f(x) = x \cdot sin(10\pi \cdot x)\)</span>的结果就是大小，所以直接用来当适应度函数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">popular_gene</span><span class="p">,</span> <span class="n">_min</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">18</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">scale</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">_min</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">popular_gene</span><span class="p">])</span>
+
+<span class="n">fitness</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">decode</span><span class="p">(</span><span class="n">chroms</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pop</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">dechrom</span><span class="p">,</span> <span class="n">fit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">chroms</span><span class="p">,</span> <span class="n">decode</span><span class="p">(</span><span class="n">chroms</span><span class="p">),</span> <span class="n">fitness</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">%5.2f</span><span class="s2">, chrom=</span><span class="si">%s</span><span class="s2">, dechrom=</span><span class="si">%.2f</span><span class="s2">, fit=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">dechrom</span><span class="p">,</span> <span class="n">fit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x= 0.65, chrom=100011000111111100, dechrom=0.65, fit=2.64
+x= 1.15, chrom=101101110001011010, dechrom=1.15, fit=0.87
+x= 0.81, chrom=100110100100111010, dechrom=0.81, fit=2.21
+x= 0.63, chrom=100010110111110101, dechrom=0.63, fit=2.56
+x= 0.27, chrom=011011000111010010, dechrom=0.27, fit=2.21
+x= 0.94, chrom=101001010101100101, dechrom=0.94, fit=1.13
+x= 0.31, chrom=011100000000010110, dechrom=0.31, fit=1.88
+x= 1.68, chrom=111001000100101100, dechrom=1.68, fit=3.17
+x= 1.89, chrom=111101101011001010, dechrom=1.89, fit=2.53
+x= 0.15, chrom=011000100010100100, dechrom=0.15, fit=1.85
+</pre></div>
+</div>
+</div>
+</div>
+<p>这里将最小的适应度调整到0.000001，主要为了防止负数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fitness</span> <span class="o">=</span> <span class="n">fitness</span> <span class="o">-</span> <span class="n">fitness</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.000001</span> <span class="c1"># 保证所有的都为正</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>1.5 选择与交叉<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>选择就是淘汰不好的染色体（解），选择方式有很多，这里用轮牌赌。</p>
+<p>交叉就是让染色体相互交换基因，方式有很多，这里在染色体中间进行交叉，交叉概率默认为0.66。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SelectandCrossover</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.6</span><span class="p">):</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">fitness</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>  <span class="c1"># 各个个体被选择的概率</span>
+    <span class="n">probs_cum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>  <span class="c1"># 概率累加分布</span>
+
+    <span class="n">each_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">fitness</span><span class="p">))</span>
+    <span class="c1">#print(np.round(fitness, 2), np.round(probs, 2), np.round(probs_cum, 2), sep=&#39;\n&#39;)</span>
+    <span class="c1">#print([np.where(probs_cum &gt; rand)[0][0] for rand in each_rand])</span>
+    
+    <span class="c1"># 根据随机概率选择出新的基因编码</span>
+    <span class="n">newX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chroms</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">probs_cum</span> <span class="o">&gt;</span> <span class="n">rand</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">rand</span> <span class="ow">in</span> <span class="n">each_rand</span><span class="p">])</span>
+    
+    <span class="c1"># 繁殖，随机配对（概率为0.6)</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newX</span><span class="p">)</span><span class="o">*</span><span class="n">prob</span><span class="o">//</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">newX</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="c1"># 在中间位置交叉</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">newX</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">newX</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">newX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="n">center</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">center</span><span class="p">:]</span>
+        <span class="n">newX</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">center</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">center</span><span class="p">:]</span>
+        <span class="c1">#print(x, y, newX[i], &#39;&#39;, sep=&#39;\n&#39;)</span>
+
+    <span class="k">return</span> <span class="n">newX</span>    
+
+<span class="n">chroms</span> <span class="o">=</span> <span class="n">SelectandCrossover</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dechroms</span> <span class="o">=</span> <span class="n">decode</span><span class="p">(</span><span class="n">chroms</span><span class="p">)</span>
+<span class="n">fitness</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">dechroms</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">gene</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">fit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">dechroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;chrom=</span><span class="si">%s</span><span class="s2">, dec=</span><span class="si">%5.2f</span><span class="s2">, fit=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">gene</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">fit</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axs1</span><span class="p">,</span> <span class="n">axs2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">axs1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+<span class="n">axs1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">axs2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+<span class="n">axs2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dechroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>chrom=111101101000010110, dec= 1.89, fit=2.64
+chrom=011100000011001010, dec= 0.31, fit=1.86
+chrom=011100000010100100, dec= 0.31, fit=1.86
+chrom=011000100000010110, dec= 0.15, fit=1.85
+chrom=100011000111111100, dec= 0.65, fit=2.64
+chrom=100011000111111100, dec= 0.65, fit=2.64
+chrom=100011000111111100, dec= 0.65, fit=2.64
+chrom=111101101011001010, dec= 1.89, fit=2.53
+chrom=111001000100101100, dec= 1.68, fit=3.17
+chrom=111101101011001010, dec= 1.89, fit=2.53
+</pre></div>
+</div>
+<img alt="../_images/Genetic_Algorithm.jupyter_23_1.png" src="../_images/Genetic_Algorithm.jupyter_23_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>1.6 变异<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>如果现在我们从生物学的角度来看这个问题，那么请问：由上述过程产生的后代是否有和其父母一样的性状呢？答案是否。在后代的生长过程中，它们体内的基因会发生一些变化，使得它们与父母不同。这个过程我们称为「变异」，它可以被定义为染色体上发生的随机变化，正是因为变异，种群中才会存在多样性。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Mutate</span><span class="p">(</span><span class="n">chroms</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">):</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">clen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chroms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span><span class="s1">&#39;0&#39;</span><span class="p">}</span>
+    <span class="n">newchroms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">each_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chroms</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chroms</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">each_prob</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">prob</span><span class="p">:</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">clen</span><span class="p">)</span>    
+            <span class="n">chrom</span> <span class="o">=</span> <span class="n">chrom</span><span class="p">[:</span><span class="n">pos</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="n">chrom</span><span class="p">[</span><span class="n">pos</span><span class="p">]]</span> <span class="o">+</span> <span class="n">chrom</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">newchroms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">newchroms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">newchroms</span> <span class="o">=</span> <span class="n">Mutate</span><span class="p">(</span><span class="n">chroms</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">PltTwoChroms</span><span class="p">(</span><span class="n">chroms1</span><span class="p">,</span> <span class="n">chroms2</span><span class="p">,</span> <span class="n">fitfun</span><span class="p">):</span>
+    <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axs1</span><span class="p">,</span> <span class="n">axs2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">dechroms</span> <span class="o">=</span> <span class="n">decode</span><span class="p">(</span><span class="n">chroms1</span><span class="p">)</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="n">fitfun</span><span class="p">(</span><span class="n">dechroms</span><span class="p">)</span>
+    <span class="n">axs1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fitfun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+    <span class="n">axs1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dechroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    
+    <span class="n">dechroms</span> <span class="o">=</span> <span class="n">decode</span><span class="p">(</span><span class="n">chroms2</span><span class="p">)</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="n">fitfun</span><span class="p">(</span><span class="n">dechroms</span><span class="p">)</span>
+    <span class="n">axs2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">fitfun</span><span class="p">(</span><span class="n">Xs</span><span class="p">))</span>
+    <span class="n">axs2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dechroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">PltTwoChroms</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">newchroms</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Genetic_Algorithm.jupyter_26_0.png" src="../_images/Genetic_Algorithm.jupyter_26_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>1.7 完整运行<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>上面我们分解了每一步的运算，下面我们用GA算法完整地迭代求出最优解，这里种群个数为100，迭代次数为1000：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">ori_popular</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">chroms</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">decode</span><span class="p">(</span><span class="n">chroms</span><span class="p">))</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="n">fitness</span> <span class="o">-</span> <span class="n">fitness</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.000001</span> <span class="c1"># 保证所有的都为正</span>
+    <span class="n">newchroms</span> <span class="o">=</span> <span class="n">Mutate</span><span class="p">(</span><span class="n">SelectandCrossover</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">fitness</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">300</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">PltTwoChroms</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">newchroms</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+    <span class="n">chroms</span> <span class="o">=</span> <span class="n">newchroms</span>
+    
+<span class="n">PltTwoChroms</span><span class="p">(</span><span class="n">chroms</span><span class="p">,</span> <span class="n">newchroms</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Genetic_Algorithm.jupyter_28_0.png" src="../_images/Genetic_Algorithm.jupyter_28_0.png" />
+<img alt="../_images/Genetic_Algorithm.jupyter_28_1.png" src="../_images/Genetic_Algorithm.jupyter_28_1.png" />
+<img alt="../_images/Genetic_Algorithm.jupyter_28_2.png" src="../_images/Genetic_Algorithm.jupyter_28_2.png" />
+<img alt="../_images/Genetic_Algorithm.jupyter_28_3.png" src="../_images/Genetic_Algorithm.jupyter_28_3.png" />
+<img alt="../_images/Genetic_Algorithm.jupyter_28_4.png" src="../_images/Genetic_Algorithm.jupyter_28_4.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>1.8 深入思考<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>其实GA每一步都有各种各样的算法，包括超参数（种群个数、交叉概率、变异概率），没有一套组合适合所有的情况，需要根据实际情况来调整。例如我们在进行“选择与交叉”时，可以考虑保留5%最优秀的（因为有一定概率被淘汰），甚至这5%都不去交叉。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>2 背包问题<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>背包问题是一个典型的优化组合问题：有一个容量固定的背包，已知<span class="math notranslate nohighlight">\(n\)</span>个物品的体积及其价值，我们该选择哪些物品装入背包使得在其容量约束限制之内所装物品的价值最大？比如：背包容量限制为<span class="math notranslate nohighlight">\(C=9\)</span>，有<span class="math notranslate nohighlight">\(4\)</span>个物品的体积为<span class="math notranslate nohighlight">\(\{2,3,4,5\}\)</span>，其价值则分别是<span class="math notranslate nohighlight">\(\{3,4,5,7\}\)</span>。</p>
+<p>背包问题在计算理论中属于NP-完全问题，传统的算法是动态规划法，可求出最优总价值为<span class="math notranslate nohighlight">\(12\)</span>，其时间复杂度对于输入是指数级的。而如果用贪心算法，计算物品性价比依次为<span class="math notranslate nohighlight">\(\{1.5,1.33,1.25,1.4\}\)</span>，依次选择物品<span class="math notranslate nohighlight">\(1\)</span>和<span class="math notranslate nohighlight">\(4\)</span>，总价值只能达到<span class="math notranslate nohighlight">\(10\)</span>，这并非最优解。</p>
+<p>现在我们试用遗传算法求解这个问题。</p>
+<div class="section" id="id11">
+<h3>2.1 编码<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>将待求解的各量表示成长度为n的二进制串。例如：<span class="math notranslate nohighlight">\(1010\)</span>代表一个解，它表示将第<span class="math notranslate nohighlight">\(1\)</span>、<span class="math notranslate nohighlight">\(3\)</span>号物体放入背包中，其它的物体则不放入。</p>
+</div>
+<div class="section" id="id12">
+<h3>2.2 生成初始种群<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>本例中，群体规模的大小取为<span class="math notranslate nohighlight">\(4\)</span>，即群体由<span class="math notranslate nohighlight">\(4\)</span>个个体组成，每个个体可通过随机的方法产生。例如：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 1, 0],
+       [1, 1, 1, 1],
+       [1, 1, 1, 0],
+       [0, 1, 0, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>2.3 种群适应度计算<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>对每个个体，计算所有物体的体积<code class="docutils literal notranslate"><span class="pre">totalSize</span></code>，所有物体的价值<code class="docutils literal notranslate"><span class="pre">totalValue</span></code>，以及个体适应度<code class="docutils literal notranslate"><span class="pre">fit</span></code>。若所有物体的总体积小于背包容量<code class="docutils literal notranslate"><span class="pre">C</span></code>，<code class="docutils literal notranslate"><span class="pre">fit</span></code>就是<code class="docutils literal notranslate"><span class="pre">totalValue</span></code>；否则应进行惩罚，<code class="docutils literal notranslate"><span class="pre">fit</span></code>应减去<code class="docutils literal notranslate"><span class="pre">alpha∗(totalSize−C)</span></code>，这里我们取<code class="docutils literal notranslate"><span class="pre">alpha=2</span></code>，得到如下结果：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">each_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">each_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">each_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">each_size</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">total_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">each_size</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">total_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">each_value</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">total_value</span> <span class="k">if</span> <span class="p">(</span><span class="n">total_size</span> <span class="o">&lt;=</span> <span class="n">C</span><span class="p">)</span> <span class="k">else</span> <span class="n">total_value</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="n">total_size</span> <span class="o">-</span> <span class="n">C</span><span class="p">)</span>
+    <span class="n">each_fit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">%s</span><span class="s2">, total_size=</span><span class="si">%d</span><span class="s2">, total_value=</span><span class="si">%d</span><span class="s2">, fit=</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">total_size</span><span class="p">,</span> <span class="n">total_value</span><span class="p">,</span> <span class="n">fit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x=[0 1 1 0], total_size=7, total_value=9, fit=9
+x=[1 1 1 1], total_size=14, total_value=19, fit=9
+x=[1 1 1 0], total_size=9, total_value=12, fit=12
+x=[0 1 0 0], total_size=3, total_value=4, fit=4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>2.4 选择<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>根据染色体适应度，我们可以采用轮盘赌进行染色体的选择，即与适应度成正比的概率来确定每个个体复制到下一代群体中的数量。具体操作过程如下：</p>
+<ol class="simple">
+<li><p>先计算出群体中所有个体的适应度的总和。</p></li>
+<li><p>然后用每个个体适应度除以总和，结果就是个体被遗传到下一代群体中的概率。</p></li>
+<li><p>每个概率值组成一个区间，全部概率值之和为<span class="math notranslate nohighlight">\(1\)</span>。</p></li>
+<li><p>最后再产生一个<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>之间的随机数，依据该随机数出现在上述哪一个区间内来确定各个个体被选中的次数。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit_sum</span> <span class="o">=</span> <span class="n">each_fit</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="n">each_fit</span> <span class="o">/</span> <span class="n">fit_sum</span>
+<span class="n">probs_cum</span> <span class="o">=</span> <span class="n">probs</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;probility of </span><span class="si">%s</span><span class="s1"> is </span><span class="si">%.2f%%</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">probs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cumulative sum of the probilities:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">probs_cum</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>probility of [0 1 1 0] is 26.47%
+probility of [1 1 1 1] is 26.47%
+probility of [1 1 1 0] is 35.29%
+probility of [0 1 0 0] is 11.76%
+cumulative sum of the probilities: [ 26.47  52.94  88.24 100.  ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_num</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">each_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">each_rand</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.96, 0.38, 0.79, 0.53])
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们随机产生了<span class="math notranslate nohighlight">\(4\)</span>个<code class="docutils literal notranslate"><span class="pre">[0-1)</span></code>之间的数<code class="docutils literal notranslate"><span class="pre">each_rand</span></code>，用于在<code class="docutils literal notranslate"><span class="pre">probs_cum</span></code>中符合的区间上选中对应的基因编码，分别选中了第<code class="docutils literal notranslate"><span class="pre">88.24~100</span></code>、<code class="docutils literal notranslate"><span class="pre">26.47~52.94</span></code>、<code class="docutils literal notranslate"><span class="pre">52.94~88.24</span></code>和<code class="docutils literal notranslate"><span class="pre">26.47~52.94</span></code>上的区间，所以新的基因编码为：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">newX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">probs_cum</span> <span class="o">&gt;</span> <span class="n">rand</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">rand</span> <span class="ow">in</span> <span class="n">each_rand</span><span class="p">])</span>
+
+<span class="n">newX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 0],
+       [1, 1, 1, 1],
+       [1, 1, 1, 0],
+       [1, 1, 1, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>没想到概率最大的<code class="docutils literal notranslate"><span class="pre">[1</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">0]</span></code>反而被淘汰了。</p>
+</div>
+<div class="section" id="id15">
+<h3>2.5 交叉<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>采用单点交叉的方法，先对群体进行随机配对，其次随机设置交叉点位置，最后再相互交换配对染色体之间的部分基因。</p>
+</div>
+<div class="section" id="id16">
+<h3>2.6 突变<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>我们采用基本位变异的方法来进行变异运算，首先确定出各个个体的基因变异位置，然后依照某一概率将变异点的原有基因值取反。若突变之后最大的适应值个体已经符合期望的价值则停止，否则返回第3步继续迭代。这里我们设突变的概率为<span class="math notranslate nohighlight">\(0.1\)</span>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mutation_prob</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">newX</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">mutation_prob</span><span class="p">:</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">newX</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">newX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 0],
+       [1, 1, 1, 1],
+       [1, 0, 1, 0],
+       [1, 1, 1, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="XGBoost.jupyter.html" title="previous page">XGBoost与Python图解</a>
+    <a class='right-next' id="next-link" href="../Course/MathPython/Readme.html" title="next page">Master Math by Coding in Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

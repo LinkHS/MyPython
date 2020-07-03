@@ -1,0 +1,1795 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Arithmetic &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction to Sympy and LaTeX" href="03_Sympy_and_Latex.jupyter.html" />
+    <link rel="prev" title="Introduction" href="01_Introduction.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">Master Math by Coding in Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="01_Introduction.jupyter.html">Introduction</a>
+    </li>
+    <li class="active">
+      <a href="">Arithmetic</a>
+    </li>
+    <li class="">
+      <a href="03_Sympy_and_Latex.jupyter.html">Introduction to Sympy and LaTeX</a>
+    </li>
+    <li class="">
+      <a href="04_Algebra1.jupyter.html">Algebra 1</a>
+    </li>
+    <li class="">
+      <a href="05_Graphing_and_Visualization.jupyter.html">Graphing</a>
+    </li>
+    <li class="">
+      <a href="06_Algebra2.jupyter.html">Algebra 2</a>
+    </li>
+    <li class="">
+      <a href="07_Graphing_conic.jupyter.html">Grahping conic</a>
+    </li>
+    <li class="">
+      <a href="08_Trigonometry.jupyter.html">Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="09_Art_from_Trigonometry.jupyter.html">Art from Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="10_Calculus.jupyter.html">Calculus</a>
+    </li>
+    <li class="">
+      <a href="11_Linear_Algebra.jupyter.html">Linear algebra</a>
+    </li>
+    <li class="">
+      <a href="12_Probability_and_Histograms.jupyter.html">Probability_and_Histograms</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/MathPython/02_Arithmetic.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#addition-subtraction-multiplication-division" class="nav-link">1 Addition, subtraction, multiplication, division</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#addition" class="nav-link">1.1 Addition</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#subtraction" class="nav-link">1.2 Subtraction</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#multiplication" class="nav-link">1.3 Multiplication</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#division" class="nav-link">1.4 Division</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercises" class="nav-link">1.5 Exercises!</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#using-variables-in-place-of-numbers" class="nav-link">2 Using variables in place of numbers</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">2.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#printing-out-equations-in-ipython" class="nav-link">3 Printing out equations in IPython</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">3.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#exponents-powers" class="nav-link">4 Exponents (powers)</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">4.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#using-for-loops-to-compute-powers" class="nav-link">5 Using for-loops to compute powers</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">5.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#order-of-operations" class="nav-link">6 Order of operations</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#reminder-about-order-of-operations" class="nav-link">7 Reminder about order of operations:</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">7.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#testing-inequalities-and-boolean-data-type" class="nav-link">8 Testing inequalities and Boolean data type</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id6" class="nav-link">8.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#if-statements-and-logical-operators" class="nav-link">9 If-statements and logical operators</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise" class="nav-link">9.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#absolute-value" class="nav-link">10 Absolute value</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">10.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#remainder-after-division-modulus" class="nav-link">11 Remainder after division (modulus)</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id8" class="nav-link">11.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#create-interactive-math-functions" class="nav-link">12 Create interactive math functions</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id9" class="nav-link">12.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#interactive-functions-guess-the-number" class="nav-link">13 Interactive functions: Guess the number!</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#arithmetic-bug-hunt" class="nav-link">14 ARITHMETIC BUG HUNT!!!</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="arithmetic">
+<h1>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="addition-subtraction-multiplication-division">
+<h2>1 Addition, subtraction, multiplication, division<a class="headerlink" href="#addition-subtraction-multiplication-division" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="addition">
+<h3>1.1 Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># use Python like a calculator</span>
+<span class="mi">4</span><span class="o">+</span><span class="mi">5</span> <span class="c1"># press Ctrl-Enter to find the answer!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can use multiple numbers at the same time:</span>
+<span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">9.4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>14.15
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="subtraction">
+<h3>1.2 Subtraction<a class="headerlink" href="#subtraction" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># exactly how you&#39;d think it should work!</span>
+<span class="mi">4</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiplication">
+<h3>1.3 Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use * to indicate multiplication (not x!)</span>
+<span class="mi">3</span><span class="o">*</span><span class="mi">4</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can mix operations</span>
+<span class="mi">3</span><span class="o">*</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="division">
+<h3>1.4 Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the forward slash</span>
+<span class="mi">3</span><span class="o">/</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.75
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h3>1.5 Exercises!<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#1)</span>
+<span class="mi">5</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#2)</span>
+<span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>29.666666666666668
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-variables-in-place-of-numbers">
+<h2>2 Using variables in place of numbers<a class="headerlink" href="#using-variables-in-place-of-numbers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a variable by assigning a number to it</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">17</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># then use that variable in place of a number</span>
+<span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can re-assign variables whenever you need to</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># note that nothing prints out to the screen here. </span>
+<span class="c1"># We didn&#39;t ask Python to compute anything, just to set a variable.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can even use a variable to reassign itself!</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="mi">5</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># multiple variables can be really useful</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># can&#39;t use a variable before it&#39;s created!</span>
+    <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">z</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception message: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Exception: NameError
+Exception message: name &#39;z&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>610
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># only the final line of code will print out an answer;</span>
+<span class="c1"># otherwise, you can use the print() function</span>
+
+<span class="mi">40</span><span class="o">+</span><span class="mi">10</span>
+
+<span class="mi">50</span><span class="o">+</span><span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">10</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>43
+16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>2.1 Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># 1)</span>
+<span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>42
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2)</span>
+<span class="o">-</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="printing-out-equations-in-ipython">
+<h2>3 Printing out equations in IPython<a class="headerlink" href="#printing-out-equations-in-ipython" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the line below will import special functions that are not otherwise available in the main Python environment</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;4 + 3 = 7&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;4 + 3 = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;4 + 3 = 7&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;4 + 3 = 7&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can also use string variables for printing</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="s1">&#39;4+5-9 = 0&#39;</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span> <span class="c1"># note that this line produces slightly nicer output</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;4+5-9 = 0&#39;
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4+5-9 = 0\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mixing variable types in outputs</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; + &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span> <span class="p">))</span> <span class="c1"># note: plus sign here is for concatenating strings, not for summing!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 + 5 = 9\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># without using latex</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;4/5 = .8&#39;</span><span class="p">))</span>
+
+<span class="c1"># with latex (much nicer!)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{4}{5}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4/5 = .8\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4}{5} = 0.8\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># alternative method for integrating numbers with string text</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{4}{5}</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="p">)))</span>
+
+<span class="c1"># Note: We&#39;ll be using the basics of substitution (%g and %s) in this course; for more details and formatting options, see</span>
+<span class="c1"># https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4}{5} = 0.8\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># more variables in the same line</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mf">3.4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">17</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> </span><span class="se">\\</span><span class="s1">times </span><span class="si">%g</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3.4 \times 17 = 57.8\]</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>3.1 Exercises<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># 1)</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;3x(4+y) = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ans</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;3</span><span class="se">\\</span><span class="s1">times</span><span class="si">%g</span><span class="s1">(4+</span><span class="si">%g</span><span class="s1">) = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ans</span><span class="p">)</span> <span class="p">))</span>
+
+
+<span class="c1"># 2)</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">z</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;-y - </span><span class="se">\\</span><span class="s1">frac{x+3}</span><span class="si">{z}</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">ans</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;-</span><span class="si">%g</span><span class="s1"> - </span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">+3}{</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">ans</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3x(4+y) = 42\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3\times7(4+-2) = 42\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle -y - \frac{x+3}{z} = 0\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle --2 - \frac{7+3}{5} = 0\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exponents-powers">
+<h2>4 Exponents (powers)<a class="headerlink" href="#exponents-powers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># use **</span>
+<span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># careful not to confuse with ^</span>
+<span class="mi">3</span><span class="o">^</span><span class="mi">1</span>
+<span class="c1"># this is actually the symbol for the XOR logical problem</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># variables can also be useful</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="mi">3</span><span class="o">**</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note about importing functions or modules: You need to do this only once per session.</span>
+<span class="c1"># Thus, you don&#39;t need the following line if you&#39;ve already imported these functions.</span>
+<span class="c1"># On the other hand, it doesn&#39;t hurt to import multiple times ;)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+
+
+<span class="c1"># using the print function</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span> <span class="p">)</span>
+
+<span class="c1"># print out the whole equation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;x^</span><span class="si">%g</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^2 = 4\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the law of exponents</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27
+27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="mi">3</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="o">**</span><span class="mi">4</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">3</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>729
+729
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># square root as fractional power</span>
+<span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>4.1 Exercises<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">5.1</span>
+
+<span class="c1"># 1)</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="o">**</span><span class="n">y</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;x^{3/4}</span><span class="se">\\</span><span class="s1">times 4^y = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">ans</span><span class="p">))</span>
+
+<span class="c1"># 2)</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">y</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{3^3}{x^y} = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">solution</span><span class="p">))</span>
+
+<span class="c1"># 3)</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;10^{x-4} = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">ans</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{3/4}\times 4^y = 3933.09\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{3^3}{x^y} = 0.00735558\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 10^{x-4} = 10\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-for-loops-to-compute-powers">
+<h2>5 Using for-loops to compute powers<a class="headerlink" href="#using-for-loops-to-compute-powers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic for loop construction</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using the range function</span>
+<span class="nb">list</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is the </span><span class="si">%g</span><span class="s1">th element.&#39;</span><span class="o">%</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>This is the 0th element.
+This is the 1th element.
+This is the 2th element.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+4
+9
+16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>5.1 Exercises<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># write code to print the following:</span>
+<span class="c1"># 2 to the power of 0 is 1</span>
+<span class="c1"># and so on for 2**0 through 2**9</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> to the power of </span><span class="si">%g</span><span class="s1"> is </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">base</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">base</span><span class="o">**</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2 to the power of 0 is 1
+2 to the power of 1 is 2
+2 to the power of 2 is 4
+2 to the power of 3 is 8
+2 to the power of 4 is 16
+2 to the power of 5 is 32
+2 to the power of 6 is 64
+2 to the power of 7 is 128
+2 to the power of 8 is 256
+2 to the power of 9 is 512
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="order-of-operations">
+<h2>6 Order of operations<a class="headerlink" href="#order-of-operations" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="reminder-about-order-of-operations">
+<h2>7 Reminder about order of operations:<a class="headerlink" href="#reminder-about-order-of-operations" title="Permalink to this headline">¶</a></h2>
+<p>PEMDAS:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Parentheses
+Exponents
+Multiplication
+Division
+Addition
+Subtraction
+</pre></div>
+</div>
+<p>(Please excuse my dear aunt Sally)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># examples from slides</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="c1"># spacing has no effect</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># will this be 24 or 10?</span>
+<span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># how about this one? can you make the be 7 or -11?</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>7.1 Exercises<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># add parentheses as needed to make the following equations true</span>
+
+<span class="c1"># 1) </span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="p">(</span><span class="mi">7</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># 2)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">9</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+0.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-inequalities-and-boolean-data-type">
+<h2>8 Testing inequalities and Boolean data type<a class="headerlink" href="#testing-inequalities-and-boolean-data-type" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The result of the below expression can only be True or False</span>
+<span class="mi">4</span><span class="o">&gt;</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="o">&lt;</span><span class="mf">5.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">*</span><span class="mf">3.33334</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="c1"># the variable class is boolean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>False
+&lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="mf">1.00000000001</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># testing for equalities requires two equals signs</span>
+
+<span class="c1"># 4 = 4</span>
+<span class="mi">4</span> <span class="o">==</span> <span class="mi">4</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>8.1 Exercises<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># which variable value(s) will make the following inequalities true?</span>
+<span class="c1"># comment out the incorrect answers!</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># 1)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+
+<span class="c1">#2) </span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">8</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">42</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>False
+True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="if-statements-and-logical-operators">
+<h2>9 If-statements and logical operators<a class="headerlink" href="#if-statements-and-logical-operators" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># start with basics:</span>
+<span class="k">if</span> <span class="mi">4</span><span class="o">+</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Nope!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using variables</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">if</span> <span class="n">x1</span><span class="o">&gt;</span><span class="n">x2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> is greater than </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">))</span>
+<span class="k">elif</span> <span class="n">x1</span><span class="o">&lt;</span><span class="n">x2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> is greater than </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">x1</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> is equal to </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4 is greater than 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with logical operators</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">&lt;</span><span class="n">z</span> <span class="ow">or</span> <span class="n">x</span><span class="o">-</span><span class="n">z</span><span class="o">&gt;</span><span class="n">y</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yeah, the first thing.&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">&gt;</span><span class="n">z</span> <span class="ow">and</span> <span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">-</span><span class="n">x</span><span class="o">&gt;</span><span class="n">y</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the second thing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>the second thing
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>9.1 Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1">^{-</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="o">**-</span><span class="n">j</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1^{-1} = 1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1^{-2} = 1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1^{-3} = 1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1^{-4} = 1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2^{-1} = 0.5\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2^{-2} = 0.25\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2^{-3} = 0.125\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2^{-4} = 0.0625\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3^{-1} = 0.333333\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3^{-2} = 0.111111\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3^{-3} = 0.037037\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3^{-4} = 0.0123457\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="absolute-value">
+<h2>10 Absolute value<a class="headerlink" href="#absolute-value" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(-4, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing out with latex</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.3</span>
+
+<span class="c1"># If the following line crashes, you need to import the display and Math functions as shown earlier</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;|</span><span class="si">%g</span><span class="s1">| = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle |-4.3| = 4.3\]</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>10.1 Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># report the absolute value of a set of numbers only if they are less than -5 or greater than +2</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># for-loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;-</span><span class="mi">5</span> <span class="ow">or</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;Absolute value of </span><span class="si">%g</span><span class="s1"> is </span><span class="si">%g</span><span class="s1">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; was not tested.&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-4 was not tested.
+Absolute value of 6 is 6.
+-1 was not tested.
+Absolute value of 43 is 43.
+Absolute value of -18 is 18.
+2 was not tested.
+0 was not tested.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="remainder-after-division-modulus">
+<h2>11 Remainder after division (modulus)<a class="headerlink" href="#remainder-after-division-modulus" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># pick some numbers</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># division</span>
+<span class="n">a</span><span class="o">/</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.3333333333333335
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># integer division</span>
+<span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with a remainder!</span>
+<span class="n">a</span><span class="o">%</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># now for a nicer printing</span>
+<span class="c1"># set variables for outputs</span>
+<span class="n">divis</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
+<span class="n">remainder</span> <span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> goes into </span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2"> times with a remainder of </span><span class="si">%g</span><span class="s2">.&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">divis</span><span class="p">,</span><span class="n">remainder</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3 goes into 10, 3 times with a remainder of 1.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>11.1 Exercises<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># determining whether a number is odd or even</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    
+    <span class="c1"># check for first character spacing</span>
+    <span class="n">firstchar</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39; &#39;</span>
+    
+    <span class="c1"># test and report</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s%g</span><span class="s1"> is an even number&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">firstchar</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s%g</span><span class="s1"> is an odd  number&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">firstchar</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-5 is an odd  number
+-4 is an even number
+-3 is an odd  number
+-2 is an even number
+-1 is an odd  number
+ 0 is an even number
+ 1 is an odd  number
+ 2 is an even number
+ 3 is an odd  number
+ 4 is an even number
+ 5 is an odd  number
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-interactive-math-functions">
+<h2>12 Create interactive math functions<a class="headerlink" href="#create-interactive-math-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a function that takes two numbers and reports the numbers, their integer division, and remainder</span>
+
+<span class="c1"># define the function</span>
+<span class="k">def</span> <span class="nf">computeremainder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">division</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span> <span class="p">)</span>
+    <span class="n">remainder</span> <span class="o">=</span> <span class="n">x</span><span class="o">%</span><span class="n">y</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> goes into </span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2"> times with a remainder of </span><span class="si">%g</span><span class="s2">.&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">remainder</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">computeremainder</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3 goes into 10, 3 times with a remainder of 1.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a function that inputs two numbers and reports the numbers, their integer division, and remainder</span>
+
+<span class="c1"># define the function</span>
+<span class="k">def</span> <span class="nf">computeremainder</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input numerator: &#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input denominator: &#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">division</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span> <span class="p">)</span>
+    <span class="n">remainder</span> <span class="o">=</span> <span class="n">x</span><span class="o">%</span><span class="n">y</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> goes into </span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2"> times with a remainder of </span><span class="si">%g</span><span class="s2">.&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">remainder</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a function that takes two numbers as input, </span>
+<span class="c1"># and returns the larger-magnitude number to the power of the smaller-magnitude number</span>
+
+<span class="k">def</span> <span class="nf">powerfun</span><span class="p">():</span>
+    <span class="n">n1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input one number &#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">n2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input a second number &#39;</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="c1"># test</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">abs</span><span class="p">(</span><span class="n">n2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="p">,</span><span class="n">n1</span><span class="o">**</span><span class="n">n2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n2</span><span class="p">,</span><span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="o">**</span><span class="n">n1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>12.1 Exercises<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># input three numbers from user, x, y, and a switch option</span>
+<span class="c1">#    Create two functions that will compute x**y and x/y</span>
+<span class="c1">#    call the appropriate function and print the result</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span><span class="n">Math</span>
+
+<span class="c1"># create functions</span>
+<span class="k">def</span> <span class="nf">powers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1">^{</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="n">y</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">)))</span>
+    
+<span class="k">def</span> <span class="nf">mainfunction</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;input X: &#39;</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;input Y: &#39;</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;Press &quot;1&quot; to compute </span><span class="si">%g</span><span class="s1">^{</span><span class="si">%g</span><span class="s1">}</span><span class="se">\\</span><span class="s1">text{ or &quot;2&quot; to compute }</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">}&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)))</span>
+    <span class="n">which</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">which</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">powers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">which</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">division</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid selection!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">false</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="k">raise</span><span class="o">-</span><span class="n">error</span>
+
+<span class="c1"># run the main function</span>
+<span class="n">mainfunction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="interactive-functions-guess-the-number">
+<h2>13 Interactive functions: Guess the number!<a class="headerlink" href="#interactive-functions-guess-the-number" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># guess a number!</span>
+<span class="c1"># write code to generate a random integer and then input user guesses of that integer. </span>
+<span class="c1"># The code should tell the user to guess higher or lower until they get the right answer.</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="k">def</span> <span class="nf">guessTheNumber</span><span class="p">():</span>
+    <span class="n">num2guess</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+    
+    <span class="n">userguess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Guess a number between 1 and 100  &#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">while</span> <span class="n">userguess</span><span class="o">!=</span><span class="n">num2guess</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">userguess</span><span class="o">&gt;</span><span class="n">num2guess</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Guess lower!&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">userguess</span><span class="o">&lt;</span><span class="n">num2guess</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Guess higher!&#39;</span><span class="p">)</span>
+        
+        <span class="n">userguess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Guess again &#39;</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Got it! The right number was </span><span class="si">%g</span><span class="s1"> and your final guess was </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">num2guess</span><span class="p">,</span><span class="n">userguess</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="arithmetic-bug-hunt">
+<h2>14 ARITHMETIC BUG HUNT!!!<a class="headerlink" href="#arithmetic-bug-hunt" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{1}{2}</span><span class="s1">&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> + </span><span class="si">%g</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 + 5 = 9\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4}{5} = 0.8\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># should equal 9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="se">\\</span><span class="s1">times2 = </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0\times2 = 0\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1\times2 = 2\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2\times2 = 4\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is greater than &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;. Time to celebrate!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>50 is greater than 40. Time to celebrate!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># division</span>
+<span class="mi">4</span><span class="o">/</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{9}{3}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{9}{3} = 3.0\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{9}{3}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{9}{3} = 3.0\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the numbers 1 through 10</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">11</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="01_Introduction.jupyter.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="03_Sympy_and_Latex.jupyter.html" title="next page">Introduction to Sympy and LaTeX</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

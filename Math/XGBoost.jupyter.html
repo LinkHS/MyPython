@@ -1,0 +1,2228 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>XGBoost与Python图解 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Genetic Algorithm" href="Genetic_Algorithm.jupyter.html" />
+    <link rel="prev" title="泊松分布" href="Poisson-Distribution.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="active">
+    <a href="Math.jupyter.html">Math</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="中心极限定理.jupyter.html">中心极限定理</a>
+    </li>
+    <li class="">
+      <a href="Poisson-Distribution.jupyter.html">泊松分布</a>
+    </li>
+    <li class="active">
+      <a href="">XGBoost与Python图解</a>
+    </li>
+    <li class="">
+      <a href="Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+    </li>
+  </ul>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/Math/XGBoost.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 背景知识</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#cart" class="nav-link">1.1 CART回归树</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#gbdt" class="nav-link">1.2 GBDT梯度提升树</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#xgboost" class="nav-link">2 XGBoost</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#additive-heuristic-training" class="nav-link">2.1 Additive/Heuristic Training</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">2.2 寻找最优结点值</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id3" class="nav-link">2.2.1 损失函数的二阶泰勒展开式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id4" class="nav-link">2.2.2 二次项极值</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id5" class="nav-link">2.2.3 最优分裂</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id6" class="nav-link">3 深入思考</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#shrinkage-and-column-subsampling" class="nav-link">3.1 Shrinkage and Column Subsampling</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">3.2 近似算法</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id8" class="nav-link">3.3 针对稀疏数据的算法（缺失值处理）</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id9" class="nav-link">3.4 XGBoost的优点</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#one-hot-encoding" class="nav-link">3.5 One-hot encoding</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id10" class="nav-link">3.5.1 为什么能使用One-Hot Encoding？</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id11" class="nav-link">3.5.2 独热编码优缺点</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id12" class="nav-link">3.5.3 One-Hot Encoding的使用场景</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id13" class="nav-link">3.6 为什么不适合处理高维稀疏特征</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id14" class="nav-link">3.7 XGBoost计算特征权重的方式有哪些 ？</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id15" class="nav-link">4 动手实践</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id16" class="nav-link">4.1 第一次分裂</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id17" class="nav-link">4.2 第二次分裂</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id18" class="nav-link">4.3 第三层分裂</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#l2" class="nav-link">4.3.1 结点L2处的分裂</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#r2" class="nav-link">4.3.2 结点R2处的分裂</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id19" class="nav-link">5 推荐阅读</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#logistic-regression" class="nav-link">6 附录：Logistic Regression</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="xgboostpython">
+<h1>XGBoost与Python图解<a class="headerlink" href="#xgboostpython" title="Permalink to this headline">¶</a></h1>
+<p>ML模型能够被应用的两个重要因素：</p>
+<ul class="simple">
+<li><p>使用有效的（统计）模型来捕获复杂的<strong>数据依赖性</strong>。</p></li>
+<li><p><strong>可伸缩</strong>的学习系统，该系统可从大型数据集中学习感兴趣的模型。</p></li>
+</ul>
+<div class="section" id="id1">
+<h2>1 背景知识<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>假设有一组总数为<span class="math notranslate nohighlight">\(n\)</span>，特征数为<span class="math notranslate nohighlight">\(m\)</span>的数据，<span class="math notranslate nohighlight">\(\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)\)</span>，用一个<span class="math notranslate nohighlight">\(K\)</span>次加法的树集成模型来逼近标签：</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}_{i}=\sum_{k=1}^{K} f_{k}\left(x_{i}\right), \quad f_{k} \in \mathcal{F}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)\)</span>，称作回归树空间（CART），<span class="math notranslate nohighlight">\(T\)</span>是每个树（共<span class="math notranslate nohighlight">\(K\)</span>个树）的叶子结点数量，<span class="math notranslate nohighlight">\(q\)</span>将一个样本映射到每棵树对应的叶子位置上，<span class="math notranslate nohighlight">\(w\)</span>就是这个叶子上的值（权重）。</p>
+<p>举个例子，如下图所示。有一组数据，<span class="math notranslate nohighlight">\(n=5\)</span>（5个人），<span class="math notranslate nohighlight">\(m=3\)</span>（年龄、性别和电脑）；树集成模型<span class="math notranslate nohighlight">\(K=2\)</span>（有两棵树），第二棵树的<span class="math notranslate nohighlight">\(q\)</span>将5个样本分别映射到2个叶子结点，这两个叶子结点的<span class="math notranslate nohighlight">\(w\)</span>分别为0.9和-0.9。</p>
+<p><img alt="image.png-74.8kB" src="http://static.zybuluo.com/AustinMxnet/qegdiq300o2po61f9kbqviy1/image.png" /></p>
+<p>这样，这组数集成模型就可以预测一个人是否喜欢电脑（或者预测喜欢的程度），输入一个男孩的特征得到预测结果为2.9（两棵树对应结点值相加）。</p>
+<p><strong>下面的CART和GBDT两个小节如果没学过，可以先略过，不影响后面的内容！</strong></p>
+<div class="section" id="cart">
+<h3>1.1 CART回归树<a class="headerlink" href="#cart" title="Permalink to this headline">¶</a></h3>
+<p>CART回归树是假设树为二叉树，通过不断将特征进行分裂。比如当前树结点是基于第<span class="math notranslate nohighlight">\(j\)</span>个特征值进行分裂的，设该特征值小于<span class="math notranslate nohighlight">\(s\)</span>的样本划分为左子树，大于<span class="math notranslate nohighlight">\(s\)</span>的样本划分为右子树。</p>
+<div class="math notranslate nohighlight">
+\[R_{1}(j, s)=\left\{x | x^{(j)} \leq s\right\}\quad \text{and}\quad R_{2}(j, s)=\left\{x | x^{(j)}&gt;s\right\}\]</div>
+<p>而CART回归树实质上就是在该特征维度对样本空间进行划分，而这种空间划分的优化是一种NP难问题，因此，在决策树模型中是使用启发式方法解决。典型CART回归树产生的目标函数为：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{x_{i} \in R_{m}}\left(y_{i}-f\left(x_{i}\right)\right)^{2}\]</div>
+<p>因此，当我们为了求解最优的切分特征<span class="math notranslate nohighlight">\(j\)</span>和最优的切分点<span class="math notranslate nohighlight">\(s\)</span>，就转化为求解这么一个目标函数：</p>
+<div class="math notranslate nohighlight">
+\[\min _{j, s}\left[\min _{c_{1}} \sum_{x_{i} \in R_{1}(j, s)}\left(y_{i}-c_{1}\right)^{2}+\min _{c_{2}} \sum_{x_{i} \in R_{2}(j, s)}\left(y_{i}-c_{2}\right)^{2}\right]\]</div>
+<p>所以我们只要遍历所有特征的所有切分点，就能找到最优的切分特征和切分点，最终得到一颗回归树（对，就一棵树，所以缺点也很明显，后面的特征只能基于前面特征切分的结果再次切分）。</p>
+</div>
+<div class="section" id="gbdt">
+<h3>1.2 GBDT梯度提升树<a class="headerlink" href="#gbdt" title="Permalink to this headline">¶</a></h3>
+<p>和XGboost最接近的就是GBDT，其采用加法模型与前向分布算法，以决策树为基学习器，多个决策树集成提成的方法：
+<span class="math notranslate nohighlight">\($f_{M}(x)=T\left(x ; \Theta_{m}\right)\)</span>$</p>
+<p><span class="math notranslate nohighlight">\(M\)</span>为树的个数，<span class="math notranslate nohighlight">\(T\)</span>是决策树。GBDT采用平方误差作为损失函数，选取特征划切分点的依据是最小化每个结点的损失函数，每一棵新树学习标签和之前所有决策树结果和的残差：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+f_{0}(x)=0 \\
+f_{m}(x)=f_{m-1}(x)+T\left(x ; \Theta_{m}\right), m=1,2, \cdots M \\
+f_{M}(x)=\sum_{m=1}^{M} T\left(x ; \Theta_{m}\right)
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\widehat{\Theta}_{m}=\arg \min _{\Theta_{m}} \sum_{i=1}^{N} L\left(y_{i}, f_{m-1}\left(x_{i}\right)+T\left(x_{i} ; \Theta_{m}\right)\right)\]</div>
+<p>采用平方误差损失函数时，损失函数变为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+L\left(y, f_{m-1}(x)+T\left(x ; \Theta_{m}\right)\right) \\
+=\left(y-f_{m-1}(x)-T\left(x ; \Theta_{m}\right)\right)^{2} \\
+=\left(r-T\left(x ; \Theta_{m}\right)\right)^{2}
+\end{array}\end{split}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(r\)</span>为之前模型拟合数据的残差，是当前优化目标。单独的使用GBDT模型，容易出现过拟合（因为先被选取分裂的特征权重较大，留给后面特征拟合的是相对比较小的残差），在实际应用中往往使用GBDT＋LR的方式做模型训练（这也是XGBoost改进之一）。</p>
+<blockquote>
+<div><p>GBDT/XGBoost VS. 随机森林：</p>
+<ul class="simple">
+<li><p>GBDT和XGBoost是逐个添加树，逐个提升，是一种Boosting算法，每一次树的添加必然会提升预测结果，最终得到最精确的预测结果。</p></li>
+<li><p>随机森林是随机生成多个树，多个树共同进行决策，是一种Bagging算法。</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="xgboost">
+<h2>2 XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h2>
+<p>XGBoost优化的目标如下：</p>
+<div class="math notranslate nohighlight">
+\[Obj = \sum_i^n(l(y_i, \hat{y}_i))+\sum_k^K\Omega\left(f_{k}\right)\]</div>
+<p><span class="math notranslate nohighlight">\(n\)</span>为样本数量，<span class="math notranslate nohighlight">\(y_i\)</span>为第<span class="math notranslate nohighlight">\(i\)</span>个样本的标签，<span class="math notranslate nohighlight">\(\hat{y}_i\)</span>为预测值，<span class="math notranslate nohighlight">\(K\)</span>为树的棵数，<span class="math notranslate nohighlight">\(\Omega(f_k)\)</span>为第<span class="math notranslate nohighlight">\(k\)</span>棵树的复杂度，<span class="math notranslate nohighlight">\(l\)</span>为损失函数。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>损失函数<span class="math notranslate nohighlight">\(l\)</span>用于描述模型拟合数据的程度</p></li>
+<li><p>正则向<span class="math notranslate nohighlight">\(\Omega\)</span>用于控制模型的复杂度</p></li>
+</ul>
+</div></blockquote>
+<p>损失函数<span class="math notranslate nohighlight">\(l\)</span>可以根据功能定义，回归可以MSE即<span class="math notranslate nohighlight">\(\frac{1}{n}\sum_i^n(y_i-\hat{y_i})^2\)</span>，分类可以用逻辑回归（见附录）。</p>
+<p>正则向则是让每棵树中叶子结点数<span class="math notranslate nohighlight">\(T\)</span>和每个叶子大小<span class="math notranslate nohighlight">\(w_j\)</span>的平方和都尽可能小，这样就控制了每棵树的叶子结点树、叶子结点绝对值、还有树的数量不能过大。让谁更小取决于超参数<span class="math notranslate nohighlight">\(\lambda\)</span>和<span class="math notranslate nohighlight">\(\gamma\)</span>的大小。</p>
+<div class="math notranslate nohighlight">
+\[\Omega\left(f\right)=\gamma T+\frac{1}{2} \lambda \sum_{j=1}^{T} w_{j}^{2}\]</div>
+<blockquote>
+<div><p>如果没有正则向，那么目标函数就变成了传统的gradient tree boosting。</p>
+</div></blockquote>
+<div class="section" id="additive-heuristic-training">
+<h3>2.1 Additive/Heuristic Training<a class="headerlink" href="#additive-heuristic-training" title="Permalink to this headline">¶</a></h3>
+<p>**重点：**由于目标函数中包含不确定函数<span class="math notranslate nohighlight">\(f_k\)</span>，所以不能用SGD在几何空间内优化（适用于优化数值向量），我们就要用additive/heuristic training。从常数0开始，每一轮训练保留原来的模型不变，尝试加入一个新的函数<span class="math notranslate nohighlight">\(f(x)\)</span>到模型中：</p>
+<p><span class="math notranslate nohighlight">\(\hat{y}_{i}^{(0)}=0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\hat{y}_{i}^{(1)}=f_{1}\left(x_{i}\right)=\hat{y}_{i}^{(0)}+f_{1}\left(x_{i}\right)\)</span></p>
+<p>…</p>
+<p><span class="math notranslate nohighlight">\(\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(\hat{y}_{i}^{(t-1)}\)</span>是上一次模型的预测结果，目标就是每轮找到一个新的函数<span class="math notranslate nohighlight">\(f_t\)</span>（第<span class="math notranslate nohighlight">\(t\)</span>棵树）使得下面的目标函数最小：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathcal{L}^{(t)} &amp;= \sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t)}\right) + \sum_{i=1}^t\Omega\left(f_{i}\right)\\
+&amp;= \sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right) + \text{constant}\end{aligned}\end{split}\]</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(t\)</span>指的是第几轮训练，个人理解应该等于树的棵树<span class="math notranslate nohighlight">\(k\)</span></p>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h3>2.2 寻找最优结点值<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h4>2.2.1 损失函数的二阶泰勒展开式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>现在问题变成了怎么找到一个合适的<span class="math notranslate nohighlight">\(f\)</span>呢？先看下泰勒公式的二阶展开式：</p>
+<div class="math notranslate nohighlight">
+\[f(x) \simeq \frac{f\left(x_{0}\right)}{0 !}+\frac{f^{\prime}\left(x_{0}\right)}{1 !}\left(x-x_{0}\right)+\frac{f^{\prime \prime}\left(x_{0}\right)}{2 !}\left(x-x_{0}\right)^{2}\]</div>
+<p>将<span class="math notranslate nohighlight">\(x\)</span>用<span class="math notranslate nohighlight">\(x+\Delta x\)</span>替换：</p>
+<div class="math notranslate nohighlight">
+\[f(x+\Delta x) \simeq f\left(x_{0}\right) + f^{\prime}\left(x_{0}\right)\left(x+\Delta x-x_{0}\right) + \frac{f^{\prime \prime}\left(x_{0}\right)}{2}\left(x+\Delta x-x_{0}\right)^{2}\]</div>
+<p>这里我们这样理解下，假设已经知道了<span class="math notranslate nohighlight">\(x\)</span>在<span class="math notranslate nohighlight">\(k\)</span>处<span class="math notranslate nohighlight">\(f(k)\)</span>的值，那么用上面的公式求<span class="math notranslate nohighlight">\(x\)</span>在<span class="math notranslate nohighlight">\(x=k+\Delta x\)</span>处的值：</p>
+<div class="math notranslate nohighlight">
+\[f(k+\Delta x) \simeq f\left(x_{0}\right) + f^{\prime}\left(x_{0}\right)\left(k+\Delta x-x_{0}\right) + \frac{f^{\prime \prime}\left(x_{0}\right)}{2}\left(k+\Delta x-x_{0}\right)^{2}\]</div>
+<p>进一步，将<span class="math notranslate nohighlight">\(x_0\)</span>设为<span class="math notranslate nohighlight">\(k\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[f(k+\Delta x) \simeq f(k)+f^{\prime}(k) \Delta x+\frac{1}{2} f^{\prime \prime}(k) \Delta x^{2}\]</div>
+<p><strong>重点来了！！！</strong>
+<strong>损失函数<span class="math notranslate nohighlight">\(l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)\)</span>中的<span class="math notranslate nohighlight">\(\hat{y}_i^{t-1}\)</span>相当于已知的<span class="math notranslate nohighlight">\(k\)</span>，本轮要增加的<span class="math notranslate nohighlight">\(f_t(x_i)\)</span>就是<span class="math notranslate nohighlight">\(\Delta x\)</span>，只要损失函数<span class="math notranslate nohighlight">\(l\)</span>有一阶和二阶导数，就可以得到：</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathcal{L}^{(t)} &amp;=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right)+\mathrm{constant}\\
+&amp;= \sum_{i=1}^{n} \left[l\left(y_{i}, \hat{y}_{i}^{(t-1)}\right)+g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right] +\Omega\left(f_{t}\right)+\mathrm{constant}
+\end{aligned}\end{split}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(g_{i}=\partial_{\hat{y}^{(t-1)}} l\left(y_{i}, \hat{y}^{(t-1)}\right)\)</span>，<span class="math notranslate nohighlight">\(h_{i}=\partial_{\hat{y}^{(t-1)}}^2 l\left(y_{i}, \hat{y}^{(t-1)}\right)\)</span>。</p>
+<p>以Square Loss <span class="math notranslate nohighlight">\((y-\hat{y})^2\)</span>为例：</p>
+<p><span class="math notranslate nohighlight">\(g_{i}=\partial_{\hat{y}^{(t-1)}}\left(\hat{y}^{(t-1)}-y_{i}\right)^{2}=2\left(\hat{y}^{(t-1)}-y_{i}\right)\)</span>
+<span class="math notranslate nohighlight">\(h_{i}=\partial_{\hat{y}^{(t-1)}}^{2}\left(y_{i}-\hat{y}^{(t-1)}\right)^{2}=2\)</span></p>
+<p>这里补充一下，对于<span class="math notranslate nohighlight">\(f(x)=(x-a)^2\)</span>来说，二阶泰勒展开式是无损的，因为其三阶之后的导数都为0，可以做个试验：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+f(x) &amp;= x^2\\
+&amp;= f(x_0)+f^{\prime}(x_0)(x-x_0) + \frac{1}{2} f^{\prime \prime}(x_0) (x-x_0)^{2}\end{aligned}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">TaylorSquare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Square</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x0</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">%d</span><span class="s1">:&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">,</span> <span class="n">Square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">TaylorSquare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">TaylorSquare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">%d</span><span class="s1">:&#39;</span><span class="o">%</span><span class="n">x</span><span class="p">,</span> <span class="n">Square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">TaylorSquare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">TaylorSquare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x = 10: 100 100 100
+x = -5: 25 25 25
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出<span class="math notranslate nohighlight">\(f(x) = x^2\)</span>的二阶泰勒展开式计算结果没有差异。</p>
+</div>
+<div class="section" id="id4">
+<h4>2.2.2 二次项极值<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>整理一下现在的目标函数：</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}^{(t)} = \sum_{i=1}^{n} \left[l\left(y_{i}, \hat{y}_{i}^{(t-1)}\right)+g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right] +\Omega\left(f_{t}\right)+\mathrm{constant}\]</div>
+<p>将不影响结果的常数项除去：</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}^{(t)} = \sum_{i=1}^{n} \left[ g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right] +\Omega\left(f_{t}\right)\]</div>
+<p>如果单独看<span class="math notranslate nohighlight">\(g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\)</span>，就是一个<span class="math notranslate nohighlight">\(ax^2+bx+c\)</span>，很容易求出极值<span class="math notranslate nohighlight">\(x^{*}=-\frac{b}{2 a}\)</span>时，<span class="math notranslate nohighlight">\(y^{*}=\frac{4 a c-b^{2}}{4 a}\)</span>，<strong>当a&gt;0时候为极小值！</strong></p>
+<p>但是现在还不能这么做，因为有<span class="math notranslate nohighlight">\(\Omega(f_t)=\gamma T+\frac{1}{2} \lambda \sum_{j=1}^{T} w_{j}^{2}\)</span>的存在，为了约束树的复杂度，由两部分组成：</p>
+<ul class="simple">
+<li><p>叶子结点的数量<span class="math notranslate nohighlight">\(T\)</span></p></li>
+<li><p>叶子结点值<span class="math notranslate nohighlight">\(L2\)</span>范数</p></li>
+</ul>
+<p>如下图中这棵树的的<span class="math notranslate nohighlight">\(\Omega = \gamma 3+\frac{1}{2} \lambda (4+0.01+1)\)</span>。
+<img alt="image.png-83.6kB" src="http://static.zybuluo.com/AustinMxnet/n0pdf3dlnxvq86xbt3yunwnp/image.png" /></p>
+<p>可以看出<span class="math notranslate nohighlight">\(\mathcal{L}^{(t)}\)</span>后半部分<span class="math notranslate nohighlight">\(\Omega\)</span>只和两个变量（<span class="math notranslate nohighlight">\(T, w_j\)</span>）有关系，如果前半部分也能变成只和这两个变量相关就好了。于是我们定义<span class="math notranslate nohighlight">\(I_{j}=\left\{i | q\left(x_{i}\right)=j\right\}\)</span>（回忆一下文章最开始“<span class="math notranslate nohighlight">\(q\)</span>将一个样本映射到每棵树对应的叶子位置上”），也就是<span class="math notranslate nohighlight">\(n\)</span>个样本<span class="math notranslate nohighlight">\(x\)</span>被<span class="math notranslate nohighlight">\(q\)</span>全部映射到这棵树<span class="math notranslate nohighlight">\(T\)</span>个节点上，即：</p>
+<div class="math notranslate nohighlight">
+\[\sum_i^nf(x_i)=\sum_j^T\left(\sum_{i\in I_j}w_j\right)\]</div>
+<p>代入目标函数：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} Obj^{(t)} &amp; \simeq \sum_{i=1}^{n}\left[g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right]+\Omega\left(f_{t}\right) \\ &amp;=\sum_{i=1}^{n}\left[g_{i} w_{q\left(x_{i}\right)}+\frac{1}{2} h_{i} w_{q\left(x_{i}\right)}^{2}\right]+\gamma T+\lambda \frac{1}{2} \sum_{j=1}^{T} w_{j}^{2} \\ &amp;=\sum_{j=1}^{T}\left[\left(\sum_{i \in I_{j}} g_{i}\right) w_{j}+\frac{1}{2}\left(\sum_{i \in I_{j}} h_{i}+\lambda\right) w_{j}^{2}\right]+\gamma T \end{aligned}\end{split}\]</div>
+<p>定义<span class="math notranslate nohighlight">\(G_{j}=\sum_{i \in I_{j}} g_{i} H_{j}=\sum_{i \in I_{j}} h_{i}\)</span>，继续简化：</p>
+<div class="math notranslate nohighlight">
+\[Obj^{(t)} = \sum_{j=1}^{T}\left[G_{j} w_{j}+\frac{1}{2}\left(H_{j}+\lambda\right) w_{j}^{2}\right]+\gamma T\]</div>
+<p>我们想利用如下公式求得<span class="math notranslate nohighlight">\(w_{j}^{*}\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{argmin}_{x} G x+\frac{1}{2} H x^{2}=-\frac{G}{H}, H&gt;0 \quad \min _{x} G x+\frac{1}{2} H x^{2}=-\frac{1}{2} \frac{G^{2}}{H}\]</div>
+<div class="math notranslate nohighlight">
+\[w_{j}^{*}=-\frac{G_{j}}{H_{j}+\lambda} \quad O b j=-\frac{1}{2} \sum_{j=1}^{T} \frac{G_{j}^{2}}{H_{j}+\lambda}+\gamma T\]</div>
+<p>现在我们得到了每个结点的权重值<span class="math notranslate nohighlight">\(w_j^*\)</span>，<strong>但是有个问题：树的结构没有确定，于是<span class="math notranslate nohighlight">\(T, H_j, G_j\)</span>都是不确定的！但是树的结构是分裂次数以及如何分裂决定的，我们的目标从最小化目标函数回归到找到最优树的结构。</strong></p>
+</div>
+<div class="section" id="id5">
+<h4>2.2.3 最优分裂<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>树的结构是有无限种可能的，我们从第一个结点分裂开始使用贪心算法，遍历所有特征的所有划分点，选出增益$
+\frac{G_{j}}{H_{j}+\lambda}$最大的点，当然为了限制增长，可以设置分裂的增益阈值，还有最大深度（max_depth），另外还有最小样本权重和（min_child_weight，分裂后任一个叶子结点值不能低于这个值），防止一个叶子结点包含的特征数量太少导致树分的太细，也是过拟合的一种措施。</p>
+<p>一个叶子结点分裂为左右两个子叶子结点，原叶子结点中的样本集将根据该结点的判断规则分散到左右两个叶子结点中，计算这次分裂是否会给损失函数带来增益，增益的定义如下：</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{Gain}=\frac{1}{2}\left[\frac{G_{L}^{2}}{H_{L}+\lambda}+\frac{G_{R}^{2}}{H_{R}+\lambda}-\frac{\left(G_{L}+G_{R}\right)^{2}}{H_{L}+H_{R}+\lambda}\right]-\gamma\]</div>
+<p>Gain公式中减去了不分裂情况下的增益，并且引入<span class="math notranslate nohighlight">\(\gamma\)</span>惩罚新增一个叶子结点带来的复杂度。当新引入的一次分裂所带来的增益Gain&lt;0时，放弃当前的分裂。这是训练损失和模型结构复杂度的博弈过程。</p>
+<p>所以一个叶子结点分裂就是：遍历<span class="math notranslate nohighlight">\(n\)</span>样本中所有特征的不重复点（不同样本可能存在相同的特征，例如A和B年龄相同），然后选出增益最大的点。</p>
+<p>例如我们对下面5个样本进行分裂，分别计算不同特征分别在不同位置处的增益，例如对年龄age在a处分裂，age小于a的放左边，大于等于a的放右边，然后分别计算出<span class="math notranslate nohighlight">\(G_L, G_R, H_L, H_R\)</span>并得到Gain。</p>
+<p><img alt="image.png-60.2kB" src="http://static.zybuluo.com/AustinMxnet/3z4afkfweipe0j1qbg9wwugk/image.png" /></p>
+<blockquote>
+<div><p>注意：计算<span class="math notranslate nohighlight">\(G\)</span>和<span class="math notranslate nohighlight">\(H\)</span>时，<span class="math notranslate nohighlight">\(g_i\)</span>和<span class="math notranslate nohighlight">\(h_i\)</span>（只和上轮结果、标签值有关）是不用重复计算的，只需计算一次就行。可以参加下面的实验章节。</p>
+</div></blockquote>
+<p>由于贪心算法每次进行分裂尝试都要遍历一遍全部候选分割点，也叫做全局扫描法。当数据量过大导致内存无法一次载入或者在分布式情况下，贪心算法的效率就会变得很低，全局扫描法不再适用。基于此，XGBoost提出了一系列加快寻找最佳分裂点的方案：</p>
+<ul class="simple">
+<li><p>特征预排序+缓存：XGBoost在训练之前，预先对每个特征按照特征值大小进行排序，然后保存为block结构，后面的迭代中会重复地使用这个结构，使计算量大大减小。</p></li>
+<li><p>分位点近似法：对每个特征按照特征值排序后，采用类似分位点选取的方式，仅仅选出常数个特征值作为该特征的候选分割点，在寻找该特征的最佳分割点时，从候选分割点中选出最优的一个。</p></li>
+<li><p>并行查找：由于各个特性已预先存储为block结构，XGBoost支持利用多个线程并行地计算每个特征的最佳分割点，这不仅大大提升了结点的分裂速度，也极利于大规模训练集的适应性扩展。</p></li>
+</ul>
+<p>至此，XGBoost主要思想全部讲完，还有一些训练上的细节留在下一章。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>3 深入思考<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>这部分内容是对XGboos深入思考，大多是训练和优化中的一些细节，决定了XGBoost能否真正被广泛应用。由于精力有限，摘抄了一些其他博客的内容，可以看本文最后“深入分析”推荐的文章。</p>
+<div class="section" id="shrinkage-and-column-subsampling">
+<h3>3.1 Shrinkage and Column Subsampling<a class="headerlink" href="#shrinkage-and-column-subsampling" title="Permalink to this headline">¶</a></h3>
+<p>XGBoost还提出了两种防止过拟合的方法：Shrinkage and Column Subsampling。Shrinkage方法就是在每次迭代中对树的每个叶子结点的分数乘上一个缩减权重η，这可以使得每一棵树的影响力不会太大，留下更大的空间给后面生成的树去优化模型。Column Subsampling类似于随机森林中的选取部分特征进行建树。其可分为两种，一种是按层随机采样，在对同一层内每个结点分裂之前，先随机选择一部分特征，然后只需要遍历这部分的特征，来确定最优的分割点。另一种是随机选择特征，则建树前随机选择一部分特征然后分裂就只遍历这些特征。一般情况下前者效果更好。</p>
+</div>
+<div class="section" id="id7">
+<h3>3.2 近似算法<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>对于连续型特征值，当样本数量非常大，该特征取值过多时，遍历所有取值会花费很多时间，且容易过拟合。因此XGBoost思想是对特征进行分桶，即找到l个划分点，将位于相邻分位点之间的样本分在一个桶中。在遍历该特征的时候，只需要遍历各个分位点，从而计算最优划分。从算法伪代码中该流程还可以分为两种，全局的近似是在新生成一棵树之前就对各个特征计算分位点并划分样本，之后在每次分裂过程中都采用近似划分，而局部近似就是在具体的某一次分裂节点的过程中采用近似算法。</p>
+</div>
+<div class="section" id="id8">
+<h3>3.3 针对稀疏数据的算法（缺失值处理）<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>当样本的第<span class="math notranslate nohighlight">\(i\)</span>个特征值缺失时，无法利用该特征进行划分时，XGBoost的想法是将该样本分别划分到左结点和右结点，然后计算其增益，哪个大就划分到哪边。</p>
+</div>
+<div class="section" id="id9">
+<h3>3.4 XGBoost的优点<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>传统GBDT以CART作为基分类器，XGBoost还支持线性分类器，这个时候XGBoost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。</p></li>
+<li><p>传统GBDT在优化时只用到一阶导数信息，XGBoost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，XGBoost工具支持自定义代价函数，只要函数可一阶和二阶求导。</p></li>
+<li><p>XGBoost在代价函数里加入了正则项，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出的score的L2模的平方和。从Bias-variance tradeoff角度来讲，正则项降低了模型的variance，使学习出来的模型更加简单，防止过拟合，这也是XGBoost优于传统GBDT的一个特性。</p></li>
+<li><p>Shrinkage（缩减），相当于学习速率（XGBoost中的eta）。XGBoost在进行完一次迭代后，会将叶子节点的权重乘上该系数，主要是为了削弱每棵树的影响，让后面有更大的学习空间。实际应用中，一般把eta设置得小一点，然后迭代次数设置得大一点。（补充：传统GBDT的实现也有学习速率）</p></li>
+<li><p>列抽样（column subsampling）即特征抽样。XGBoost借鉴了随机森林的做法，支持列抽样，不仅能降低过拟合，还能减少计算，这也是XGBoost异于传统gbdt的一个特性。</p></li>
+<li><p>对缺失值的处理。对于特征的值有缺失的样本，XGBoost可以自动学习出它的分裂方向。</p></li>
+<li><p>XGBoost工具支持并行。boosting不是一种串行的结构吗?怎么并行的？注意XGBoost的并行不是tree粒度的并行，XGBoost也是一次迭代完才能进行下一次迭代的（第t次迭代的代价函数里包含了前面t-1次迭代的预测值）。XGBoost的并行是在特征粒度上的。我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），XGBoost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。</p></li>
+<li><p>可并行的近似直方图算法。树节点在进行分裂时，我们需要计算每个特征的每个分割点对应的增益，即用贪心法枚举所有可能的分割点。当数据无法一次载入内存或者在分布式情况下，贪心算法效率就会变得很低，所以XGBoost还提出了一种可并行的近似直方图算法，用于高效地生成候选的分割点。</p></li>
+</ul>
+</div>
+<div class="section" id="one-hot-encoding">
+<h3>3.5 One-hot encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>在实际的机器学习的应用任务中，对于类别有序的类别型变量，比如 age 等，当成数值型变量处理可以的。特征有时候并不总是连续值，有可能是一些分类值，如性别可分为“male”和“female”。在机器学习任务中，对于这样的特征，通常我们需要对其进行特征数字化，比如有如下三个特征属性：</p>
+<ul class="simple">
+<li><p>性别：[“male”，”female”]</p></li>
+<li><p>地区：[“Europe”，”US”，”Asia”]</p></li>
+<li><p>浏览器：[“Firefox”，”Chrome”，”Safari”，”Internet Explorer”]</p></li>
+</ul>
+<p>对于某一个样本，如[“male”，”US”，”Internet Explorer”]，我们需要将这个分类值的特征数字化，最直接的方法，我们可以采用序列化的方式：[0,1,3]。但是，即使转化为数字表示后，上述数据也不能直接用在我们的分类器中。因为，分类器往往默认数据是连续的，并且是有序的。按照上述的表示，数字并不是有序的，而是随机分配的。这样的特征处理并不能直接放入机器学习算法中。</p>
+<p>为了解决上述问题，其中一种可能的解决方法是采用独热编码（One-Hot Encoding）。独热编码，又称为一位有效编码。其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都由他独立的寄存器位，并且在任意时候，其中只有一位有效。可以这样理解，对于每一个特征，如果它有m个可能值，那么经过独热编码后，就变成了m个二元特征。并且，这些特征互斥，每次只有一个激活。因此，数据会变成稀疏的。</p>
+<p>对于上述的问题，性别的属性是二维的，同理，地区是三维的，浏览器则是四维的，这样，我们可以采用One-Hot编码的方式对上述的样本“[“male”，”US”，”Internet Explorer”]”编码，“male”则对应着[1，0]，同理“US”对应着[0，1，0]，“Internet Explorer”对应着[0,0,0,1]。则完整的特征数字化的结果为：[1,0,0,1,0,0,0,0,1]。</p>
+<div class="section" id="id10">
+<h4>3.5.1 为什么能使用One-Hot Encoding？<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>使用one-hot编码，将离散特征的取值扩展到了欧式空间，离散特征的某个取值就对应欧式空间的某个点。在回归，分类，聚类等机器学习算法中，特征之间距离的计算或相似度的计算是非常重要的，而我们常用的距离或相似度的计算都是在欧式空间的相似度计算，计算余弦相似性，也是基于的欧式空间。
+将离散型特征使用one-hot编码，可以会让特征之间的距离计算更加合理。比如，有一个离散型特征，代表工作类型，该离散型特征，共有三个取值，不使用one-hot编码，计算出来的特征的距离是不合理。那如果使用one-hot编码，显得更合理。</p>
+</div>
+<div class="section" id="id11">
+<h4>3.5.2 独热编码优缺点<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>优点：独热编码解决了分类器不好处理属性数据的问题，在一定程度上也起到了扩充特征的作用。它的值只有0和1，不同的类型存储在垂直的空间。
+缺点：当类别的数量很多时，特征空间会变得非常大。在这种情况下，一般可以用PCA（主成分分析）来减少维度。而且One-Hot Encoding+PCA这种组合在实际中也非常有用。</p>
+</div>
+<div class="section" id="id12">
+<h4>3.5.3 One-Hot Encoding的使用场景<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>独热编码用来解决类别型数据的离散值问题。将离散型特征进行one-hot编码的作用，是为了让距离计算更合理，但如果特征是离散的，并且不用one-hot编码就可以很合理的计算出距离，那么就没必要进行one-hot编码，比如，该离散特征共有1000个取值，我们分成两组，分别是400和600,两个小组之间的距离有合适的定义，组内的距离也有合适的定义，那就没必要用one-hot 编码。
+基于树的方法是不需要进行特征的归一化，例如随机森林，bagging 和 boosting等。对于决策树来说，one-hot的本质是增加树的深度，决策树是没有特征大小的概念的，只有特征处于他分布的哪一部分的概念。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>3.6 为什么不适合处理高维稀疏特征<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>本质XGBoost是一个贪婪算法 要从候选特征集合中选择一个使分裂后信息增益最大的特征来分裂。这就是他不适合处理稀疏数据的原因 ，会产生很多的子树，训练特别慢。同时id分裂的泛化性弱。这个时候LR就会比xgb强 ，但是LR没办法自动对特征进行组合。</p>
+</div>
+<div class="section" id="id14">
+<h3>3.7 XGBoost计算特征权重的方式有哪些 ？<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>一共五种，常用Gain：</p>
+<ul class="simple">
+<li><p>‘weight’：权重形式，表示在所有树中，一个特征在分裂节点时被使用了多少次。</p></li>
+<li><p>‘gain’：（平均）增益形式，表示在所有树中，一个特征作为分裂节点存在时，带来的增益的平均值。</p></li>
+<li><p>‘cover’：（平均）覆盖度，表示在所有树中，一个特征作为分裂节点存在时，覆盖的样本数量的平均值。</p></li>
+<li><p>‘total_gain’：相对于’gain’，这里表示的是带来的总增益大小。</p></li>
+<li><p>‘total_cover’：相对于’cover’，这里表示的是覆盖的总样本数量。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>4 动手实践<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>XGBoost优化的目标如下：</p>
+<p><span class="math notranslate nohighlight">\(Obj = \sum_i^n(l(y_i, \hat{y}_i))+\sum_k^K\Omega\left(f_{k}\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(n\)</span>为样本数量，<span class="math notranslate nohighlight">\(y_i\)</span>为第<span class="math notranslate nohighlight">\(i\)</span>个样本的标签，<span class="math notranslate nohighlight">\(\hat{y}_i\)</span>为预测值，<span class="math notranslate nohighlight">\(K\)</span>为树的棵数，<span class="math notranslate nohighlight">\(\Omega(f_k)\)</span>为第<span class="math notranslate nohighlight">\(k\)</span>棵树的复杂度，<span class="math notranslate nohighlight">\(l\)</span>为损失函数。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>损失函数<span class="math notranslate nohighlight">\(l\)</span>用于描述模型拟合数据的程度</p></li>
+<li><p>正则想<span class="math notranslate nohighlight">\(\Omega\)</span>用于控制模型的复杂度</p></li>
+</ul>
+</div></blockquote>
+<p>其中<span class="math notranslate nohighlight">\(\hat{y}_{i}=\sum_{k=1}^{K} f_{k}\left(x_{i}\right), \quad f_{k} \in \mathcal{F}\)</span></p>
+<p><strong>e.g. 有一组<span class="math notranslate nohighlight">\(n=15\)</span>的样本，每个样本有2个特征（<span class="math notranslate nohighlight">\(x1, x2\)</span>）：</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>6</td>
+      <td>7</td>
+      <td>6</td>
+      <td>7</td>
+      <td>6</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>x2</th>
+      <td>-5</td>
+      <td>5</td>
+      <td>-2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>-5</td>
+      <td>5</td>
+      <td>-2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>-5</td>
+      <td>5</td>
+      <td>-2</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>我们的目标就是要让模型对15组数据预测的<span class="math notranslate nohighlight">\(\hat{y}\)</span>和标签<span class="math notranslate nohighlight">\(y\)</span>尽可能的一致，由于是二分类问题，我们可以选Logistic Regression作为损失函数：</p>
+<p><span class="math notranslate nohighlight">\(L\left(y_{i}, \hat{y}_{i}\right)=y_{i} \ln \left(1+e^{-\hat{y}_{i}}\right)+\left(1-y_{i}\right) \ln \left(1+e^{\hat{y}_{i}}\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(g_{i}=\partial_{\hat{y}_{i}^{(t-1)}} l\left(y_{i}, \hat{y}_{i}^{(t-1)}\right) = \frac{1}{1+e^{-\hat{y}_{i}}}-y_{i}\)</span></p>
+<p><span class="math notranslate nohighlight">\(h_{i}=\partial_{\hat{y}_{i}^{(t-1)}}^{2} l\left(y_{i}, \hat{y}_{i}^{(t-1)}\right)=y_{i, \text {pred}} *\left(1-y_{i, \text {pred}}\right); y_{i, \text {pred}}=\frac{1}{1+e^{-\hat{y}_{i}}}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Yhi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">ComputeGH</span><span class="p">(</span><span class="n">Yhi</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Yhi</span><span class="p">))</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">Y</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span>
+
+<span class="n">G</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">ComputeGH</span><span class="p">(</span><span class="n">Yhi</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Yhi</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">]),</span>
+             <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;y_hi&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>y_hi</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>g</th>
+      <td>0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\operatorname{Gain}=\frac{1}{2}\left[\frac{G_{L}^{2}}{H_{L}+\lambda}+\frac{G_{R}^{2}}{H_{R}+\lambda}-\frac{\left(G_{L}+G_{R}\right)^{2}}{H_{L}+H_{R}+\lambda}\right]-\gamma\)</span></p>
+<p><span class="math notranslate nohighlight">\(G_L = \sum_{i\in I_l} g_i\)</span><br />
+<span class="math notranslate nohighlight">\(G_R = \sum_{i\in I_r} g_r\)</span></p>
+<p>首先求出特征<span class="math notranslate nohighlight">\(x1\)</span>在各个值下的gain（这里我们设<span class="math notranslate nohighlight">\(\lambda=1,\gamma=0\)</span>）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">Xc</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gma</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">print_msg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">_Xu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Xc</span><span class="p">))</span>
+    <span class="n">_gains</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">_Xu</span><span class="p">:</span>
+        <span class="n">GL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">Xc</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">])</span>
+        <span class="n">GR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">Xc</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">])</span>
+        <span class="n">HL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="n">Xc</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">])</span>
+        <span class="n">HR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="n">Xc</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">])</span>
+
+        <span class="n">gain</span> <span class="o">=</span> <span class="p">(</span><span class="n">GL</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">HL</span><span class="o">+</span><span class="n">lmd</span><span class="p">)</span> <span class="o">+</span> <span class="n">GR</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">HR</span><span class="o">+</span><span class="n">lmd</span><span class="p">)</span> <span class="o">-</span>
+                <span class="p">(</span><span class="n">GL</span><span class="o">+</span><span class="n">GR</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">HL</span><span class="o">+</span><span class="n">HR</span><span class="o">+</span><span class="n">lmd</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">gma</span>
+        <span class="k">if</span> <span class="n">print_msg</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">%.2f</span><span class="s2">, GL=</span><span class="si">%.2f</span><span class="s2">, GR=</span><span class="si">%.2f</span><span class="s2">, HL=</span><span class="si">%.2f</span><span class="s2">, HR=</span><span class="si">%.2f</span><span class="s2">)&quot;</span> <span class="o">%</span>
+                  <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">GL</span><span class="p">,</span> <span class="n">GR</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">HR</span><span class="p">))</span>
+        <span class="n">_gains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gain</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">_gains</span><span class="p">),</span> <span class="n">_Xu</span>
+
+
+<span class="k">def</span> <span class="nf">GSDataFrame</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">splits</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;以DataFrame格式输出gains、split points，并打上&#39;max&#39;标签</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">gains</span><span class="p">)</span>
+    <span class="n">col</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gains</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;max&#39;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">splits</span><span class="p">,</span> <span class="n">gains</span><span class="p">]),</span> <span class="mi">3</span><span class="p">),</span>
+                      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;split point&#39;</span><span class="p">,</span> <span class="s1">&#39;gain&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="n">XC1_gains</span><span class="p">,</span> <span class="n">X1u</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">XC1_gains</span><span class="p">,</span> <span class="n">X1u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>1.0</td>
+      <td>2.000</td>
+      <td>3.000</td>
+      <td>6.000</td>
+      <td>7.000</td>
+      <td>8.000</td>
+      <td>9.00</td>
+      <td>10.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>0.028</td>
+      <td>0.063</td>
+      <td>-0.038</td>
+      <td>-0.025</td>
+      <td>-0.038</td>
+      <td>-0.04</td>
+      <td>0.308</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">false</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="k">raise</span><span class="o">-</span><span class="n">error</span>
+<span class="k">class</span> <span class="nc">Node</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">info</span><span class="p">():</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>首先求出特征<span class="math notranslate nohighlight">\(x2\)</span>在各个值下的增益gain：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XC2_gains</span><span class="p">,</span> <span class="n">X2u</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x2:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">XC2_gains</span><span class="p">,</span> <span class="n">X2u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x2:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>-</th>
+      <th>max</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>-5.0</td>
+      <td>-2.00</td>
+      <td>0.000</td>
+      <td>2.000</td>
+      <td>5.00</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>-0.04</td>
+      <td>0.109</td>
+      <td>0.109</td>
+      <td>-0.04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="id16">
+<h3>4.1 第一次分裂<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>通过计算，<span class="math notranslate nohighlight">\(x1&lt;10\)</span>时的gain=0.308最大，而<span class="math notranslate nohighlight">\(x2&lt;0\)</span>或者<span class="math notranslate nohighlight">\(x2&lt;2\)</span>时gain=0.109最大，由于<span class="math notranslate nohighlight">\(x1\)</span>的gain更大一些，所以我们以特征<span class="math notranslate nohighlight">\(x1\)</span>最大gain的位置来分裂：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gz</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">()</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;x1 &lt; 10&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
+<span class="n">gz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/XGBoost.jupyter_15_0.svg" src="../_images/XGBoost.jupyter_15_0.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="n">XGH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">XGH</span><span class="p">[:,</span> <span class="n">pos</span><span class="p">],</span> <span class="n">XGH</span><span class="p">[:,</span> <span class="o">~</span><span class="n">pos</span><span class="p">]</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">X1u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">XC1_gains</span><span class="p">)]</span> <span class="c1"># split point</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sp</span>
+<span class="n">L</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1L&#39;</span><span class="p">,</span> <span class="s1">&#39;x2L&#39;</span><span class="p">,</span> <span class="s1">&#39;hL&#39;</span><span class="p">,</span> <span class="s1">&#39;gL&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1R&#39;</span><span class="p">,</span> <span class="s1">&#39;x2R&#39;</span><span class="p">,</span> <span class="s1">&#39;hR&#39;</span><span class="p">,</span> <span class="s1">&#39;gR&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>L info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1L</th>
+      <td>1.00</td>
+      <td>2.00</td>
+      <td>3.00</td>
+      <td>1.00</td>
+      <td>2.00</td>
+      <td>6.00</td>
+      <td>7.00</td>
+      <td>6.00</td>
+      <td>7.00</td>
+      <td>6.00</td>
+      <td>8.00</td>
+      <td>9.00</td>
+      <td>8.00</td>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <th>x2L</th>
+      <td>-5.00</td>
+      <td>5.00</td>
+      <td>-2.00</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>5.00</td>
+      <td>-2.00</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>5.00</td>
+      <td>2.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>hL</th>
+      <td>0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+    </tr>
+    <tr>
+      <th>gL</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>R info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1R</th>
+      <td>10.00</td>
+    </tr>
+    <tr>
+      <th>x2R</th>
+      <td>-2.00</td>
+    </tr>
+    <tr>
+      <th>hR</th>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>gR</th>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>4.2 第二次分裂<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>因为树的深度（max_depth）设置为3，这时L和R成为了两个根节点，分别重复上面的步骤：</p>
+<ol class="simple">
+<li><p>L还有14个样本，所以此结点需要遍历x1L和x2L所有值，选取增益最大的点作为分裂点。</p></li>
+<li><p>R只有1个样本了，此结点不需要分裂了，成为一个叶子节结点，根据公式<span class="math notranslate nohighlight">\(w^{*}=-\frac{G_{j}}{H_{j}+\lambda}\)</span>计算其结点值（x1R）。</p></li>
+</ol>
+<blockquote>
+<div><p>注意：</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(h\)</span>和<span class="math notranslate nohighlight">\(g\)</span>之前已经计算过了，所以不需要重复计算。</p></li>
+<li><p>分裂是对样本而言的，所有样本其他特征（x2）也要在对应位置分裂。</p></li>
+</ol>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Gj</span><span class="p">,</span> <span class="n">Hj</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="o">-</span><span class="n">Gj</span><span class="o">/</span><span class="p">(</span><span class="n">Hj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leaf =&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>leaf = -0.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1L at node L:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1L at node L:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>-</th>
+      <th>max</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>1.0</td>
+      <td>2.000</td>
+      <td>3.000</td>
+      <td>6.000</td>
+      <td>7.000</td>
+      <td>8.000</td>
+      <td>9.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>0.056</td>
+      <td>0.127</td>
+      <td>-0.043</td>
+      <td>-0.078</td>
+      <td>-0.052</td>
+      <td>0.014</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X2L_gains</span><span class="p">,</span> <span class="n">X2Lu</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x2L at node L:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X2L_gains</span><span class="p">,</span> <span class="n">X2Lu</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x2L at node L:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>max</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>-5.0</td>
+      <td>-2.000</td>
+      <td>0.000</td>
+      <td>2.000</td>
+      <td>5.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>-0.073</td>
+      <td>-0.043</td>
+      <td>0.222</td>
+      <td>-0.073</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>计算结果显示应该以<span class="math notranslate nohighlight">\(x2&lt;2\)</span>分裂。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span> <span class="o">=</span> <span class="n">X2Lu</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X2L_gains</span><span class="p">)]</span> <span class="c1"># split point</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sp</span>
+<span class="n">L2</span><span class="p">,</span> <span class="n">R2</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L2 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">L2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1L&#39;</span><span class="p">,</span> <span class="s1">&#39;x2L&#39;</span><span class="p">,</span> <span class="s1">&#39;hL&#39;</span><span class="p">,</span> <span class="s1">&#39;gL&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">R2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1R&#39;</span><span class="p">,</span> <span class="s1">&#39;x2R&#39;</span><span class="p">,</span> <span class="s1">&#39;hR&#39;</span><span class="p">,</span> <span class="s1">&#39;gR&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>L2 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1L</th>
+      <td>1.00</td>
+      <td>3.00</td>
+      <td>2.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>8.00</td>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <th>x2L</th>
+      <td>-5.00</td>
+      <td>-2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>-2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>hL</th>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+    </tr>
+    <tr>
+      <th>gL</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>R2 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1R</th>
+      <td>2.00</td>
+      <td>1.00</td>
+      <td>7.00</td>
+      <td>7.00</td>
+      <td>9.00</td>
+      <td>8.00</td>
+    </tr>
+    <tr>
+      <th>x2R</th>
+      <td>5.00</td>
+      <td>2.00</td>
+      <td>5.00</td>
+      <td>2.00</td>
+      <td>5.00</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>hR</th>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>gR</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>第二次分裂完之后，我们画出第一棵树的情况（最后一层正圆是第三层分裂待求的）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gz</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">()</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span> <span class="s2">&quot;x1 &lt; 10&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t2_L&quot;</span><span class="p">,</span> <span class="s2">&quot;x2 &lt; 2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t2_R&quot;</span><span class="p">,</span> <span class="s2">&quot;leaf = -0.04&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span> <span class="s2">&quot;t2_L&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span> <span class="s2">&quot;t2_R&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t2_L&quot;</span><span class="p">,</span> <span class="s2">&quot;L2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t2_L&quot;</span><span class="p">,</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span>
+
+<span class="c1"># 第三层分裂待求的</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t3_L1&quot;</span><span class="p">,</span> <span class="s2">&quot;L3_1&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t3_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;R3_1&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t3_L2&quot;</span><span class="p">,</span> <span class="s2">&quot;L3_2&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t3_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;R3_2&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;L2&quot;</span><span class="p">,</span> <span class="s2">&quot;t3_L1&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;L2&quot;</span><span class="p">,</span> <span class="s2">&quot;t3_R1&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;t3_L2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;t3_R2&quot;</span><span class="p">)</span>
+
+<span class="n">gz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/XGBoost.jupyter_24_0.svg" src="../_images/XGBoost.jupyter_24_0.svg" /></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>4.3 第三层分裂<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="l2">
+<h4>4.3.1 结点L2处的分裂<a class="headerlink" href="#l2" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1L at node L2:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1L at node L2:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>max</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>1.0</td>
+      <td>2.00</td>
+      <td>3.000</td>
+      <td>6.000</td>
+      <td>8.000</td>
+      <td>9.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>0.57</td>
+      <td>0.133</td>
+      <td>-0.095</td>
+      <td>-0.133</td>
+      <td>-0.158</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X1R_gains</span><span class="p">,</span> <span class="n">X1Ru</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">L2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1R at node L2:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X1R_gains</span><span class="p">,</span> <span class="n">X1Ru</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1R at node L2:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>-</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>-5.0</td>
+      <td>-2.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>-0.095</td>
+      <td>0.032</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>计算结果显示应该以<span class="math notranslate nohighlight">\(x1&lt;2\)</span>分裂：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span> <span class="o">=</span> <span class="n">X1Lu</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X1L_gains</span><span class="p">)]</span> <span class="c1"># split point</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">L2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sp</span>
+<span class="n">L3_1</span><span class="p">,</span> <span class="n">R3_1</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="n">L2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">L2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">L2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;split point&#39;</span><span class="p">,</span> <span class="n">sp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L3_1 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">L3_1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1L&#39;</span><span class="p">,</span> <span class="s1">&#39;x2L&#39;</span><span class="p">,</span> <span class="s1">&#39;hL&#39;</span><span class="p">,</span> <span class="s1">&#39;gL&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R3_1 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">R3_1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1R&#39;</span><span class="p">,</span> <span class="s1">&#39;x2R&#39;</span><span class="p">,</span> <span class="s1">&#39;hR&#39;</span><span class="p">,</span> <span class="s1">&#39;gR&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>split point 2.0
+L3_1 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1L</th>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>x2L</th>
+      <td>-5.00</td>
+    </tr>
+    <tr>
+      <th>hL</th>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>gL</th>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>R3_1 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1R</th>
+      <td>3.00</td>
+      <td>2.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>8.00</td>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <th>x2R</th>
+      <td>-2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>-2.00</td>
+      <td>0.00</td>
+      <td>-5.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>hR</th>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+    </tr>
+    <tr>
+      <th>gR</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>因为我们设置的最大深度为3，所以不需要再分裂了，计算叶子结点值：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CalLeaf</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">lmd</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">+</span><span class="n">lmd</span><span class="p">)</span>
+
+<span class="n">w_L3_1</span> <span class="o">=</span> <span class="n">CalLeaf</span><span class="p">(</span><span class="n">L3_1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">L3_1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">w_R3_1</span> <span class="o">=</span> <span class="n">CalLeaf</span><span class="p">(</span><span class="n">R3_1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">R3_1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="n">w_L3_1</span><span class="p">,</span> <span class="n">w_R3_1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;leaf value: L3_1=</span><span class="si">%.2f</span><span class="s2">, R3_1=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">w_L3_1</span><span class="p">,</span> <span class="n">w_R3_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>leaf value: L3_1=-0.40, R3_1=0.91
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="r2">
+<h4>4.3.2 结点R2处的分裂<a class="headerlink" href="#r2" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">print_msg</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1L at node R2:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X1L_gains</span><span class="p">,</span> <span class="n">X1Lu</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1L at node R2:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>max</th>
+      <th>-</th>
+      <th>-</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>1.0</td>
+      <td>2.000</td>
+      <td>7.0</td>
+      <td>8.0</td>
+      <td>9.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>0.156</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.156</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X1R_gains</span><span class="p">,</span> <span class="n">X1Ru</span> <span class="o">=</span> <span class="n">ComputeGain</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">H</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">Xc</span><span class="o">=</span><span class="n">R2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gains of x1R at node R2:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">GSDataFrame</span><span class="p">(</span><span class="n">X1R_gains</span><span class="p">,</span> <span class="n">X1Ru</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gains of x1R at node R2:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>-</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>split point</th>
+      <td>2.0</td>
+      <td>5.000</td>
+    </tr>
+    <tr>
+      <th>gain</th>
+      <td>0.0</td>
+      <td>0.143</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span> <span class="o">=</span> <span class="n">X1Lu</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X1L_gains</span><span class="p">)]</span> 
+
+<span class="n">sp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>计算结果显示应该以<span class="math notranslate nohighlight">\(x1&lt;2\)</span>或者<span class="math notranslate nohighlight">\(x1&lt;9\)</span>分裂：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sp = X1Lu[np.argmax(X1L_gains)] # split point</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">R2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sp</span>
+<span class="n">L3_2</span><span class="p">,</span> <span class="n">R3_2</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="n">R2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">R2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">R2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;split point&#39;</span><span class="p">,</span> <span class="n">sp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L3_2 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">L3_2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1L&#39;</span><span class="p">,</span> <span class="s1">&#39;x2L&#39;</span><span class="p">,</span> <span class="s1">&#39;hL&#39;</span><span class="p">,</span> <span class="s1">&#39;gL&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R3_2 info:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">R3_2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x1R&#39;</span><span class="p">,</span> <span class="s1">&#39;x2R&#39;</span><span class="p">,</span> <span class="s1">&#39;hR&#39;</span><span class="p">,</span> <span class="s1">&#39;gR&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>split point 9
+L3_2 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1L</th>
+      <td>2.00</td>
+      <td>1.00</td>
+      <td>7.00</td>
+      <td>7.00</td>
+      <td>8.00</td>
+    </tr>
+    <tr>
+      <th>x2L</th>
+      <td>5.00</td>
+      <td>2.00</td>
+      <td>5.00</td>
+      <td>2.00</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>hL</th>
+      <td>0.50</td>
+      <td>-0.50</td>
+      <td>-0.50</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>gL</th>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>R3_2 info:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x1R</th>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <th>x2R</th>
+      <td>5.00</td>
+    </tr>
+    <tr>
+      <th>hR</th>
+      <td>-0.50</td>
+    </tr>
+    <tr>
+      <th>gR</th>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>计算叶子结点值：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w_L3_2</span> <span class="o">=</span> <span class="n">CalLeaf</span><span class="p">(</span><span class="n">L3_2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">L3_2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">w_R3_2</span> <span class="o">=</span> <span class="n">CalLeaf</span><span class="p">(</span><span class="n">R3_2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">R3_2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;leaf value: L3_2=</span><span class="si">%.2f</span><span class="s2">, R3_2=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">w_L3_2</span><span class="p">,</span> <span class="n">w_R3_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>leaf value: L3_2=-0.22, R3_2=0.40
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gz</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">()</span>
+
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;x1 &lt; 10&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_1L&quot;</span><span class="p">,</span><span class="s2">&quot;x2 &lt; 2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_1R&quot;</span><span class="p">,</span><span class="s2">&quot;leaf = -0.04&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_2L&quot;</span><span class="p">,</span><span class="s2">&quot;x1 &lt; 2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_2R&quot;</span><span class="p">,</span><span class="s2">&quot;x1 &lt; 9&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_3L1&quot;</span><span class="p">,</span><span class="s2">&quot;leaf = -0.04&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_3R1&quot;</span><span class="p">,</span><span class="s2">&quot;leaf = 0.09&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_3L2&quot;</span><span class="p">,</span><span class="s2">&quot;leaf = -0.02&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;t1_3R2&quot;</span><span class="p">,</span><span class="s2">&quot;leaf = 0.04&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+
+
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;t1_1L&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1&quot;</span><span class="p">,</span><span class="s2">&quot;t1_1R&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_1L&quot;</span><span class="p">,</span><span class="s2">&quot;t1_2L&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_1L&quot;</span><span class="p">,</span><span class="s2">&quot;t1_2R&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_2L&quot;</span><span class="p">,</span><span class="s2">&quot;t1_3L1&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_2L&quot;</span><span class="p">,</span><span class="s2">&quot;t1_3R1&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_2R&quot;</span><span class="p">,</span><span class="s2">&quot;t1_3L2&quot;</span><span class="p">)</span>
+<span class="n">gz</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;t1_2R&quot;</span><span class="p">,</span><span class="s2">&quot;t1_3R2&quot;</span><span class="p">)</span>
+
+<span class="n">gz</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/XGBoost.jupyter_40_0.svg" src="../_images/XGBoost.jupyter_40_0.svg" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>5 推荐阅读<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>基本原理：</p>
+<ul class="simple">
+<li><p>Tianqi Chen 2014：<a class="reference external" href="https://homes.cs.washington.edu/%7Etqchen/pdf/BoostedTree.pdf">Introduction to Boosted Tree</a></p></li>
+<li><p><a class="reference external" href="https://cloud.tencent.com/developer/article/1513111">XGBoost、GBDT超详细推导</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_22238533/article/details/79477547">xgboost原理分析以及实践</a></p></li>
+<li><p>网络课程：<a class="reference external" href="https://www.youtube.com/playlist?list=PLGmd9-PCMLhb5SGkPHKpAWujeXONmfvaQ">Xgboost提升算法</a></p></li>
+</ul>
+<p>深入分析：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/40129825">一文读懂机器学习大杀器XGBoost原理</a></p></li>
+<li><p><a class="reference external" href="https://www.biaodianfu.com/categorical-features.html">XGBoost之类别特征的处理</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/86816771">灵魂拷问，你看过Xgboost原文吗？</a></p></li>
+</ul>
+<p>实践部分：</p>
+<ul class="simple">
+<li><p>Python Demo：<a class="reference external" href="https://www.youtube.com/watch?v=OQKQHNCVf5k">XGBoost: How it works, with an example.</a></p></li>
+<li><p><a class="reference external" href="http://www.insightsbot.com/python-one-hot-encoding-with-scikit-learn">Python One Hot Encoding with SciKit Learn</a></p></li>
+<li><p>训练Fasion Minst：<a class="reference external" href="https://towardsdatascience.com/from-zero-to-hero-in-xgboost-tuning-e48b59bfaf58">From Zero to Hero in XGBoost Tuning</a></p></li>
+</ul>
+</div>
+<div class="section" id="logistic-regression">
+<h2>6 附录：Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[y=\frac{1}{1+e^{-x}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lgstrg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">lgstrg</span><span class="p">(</span><span class="n">Xs</span><span class="p">),</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$y=\frac</span><span class="si">{1}</span><span class="s1">{1+e^{-x}}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/XGBoost.jupyter_43_0.png" src="../_images/XGBoost.jupyter_43_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Poisson-Distribution.jupyter.html" title="previous page">泊松分布</a>
+    <a class='right-next' id="next-link" href="Genetic_Algorithm.jupyter.html" title="next page">Genetic Algorithm</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

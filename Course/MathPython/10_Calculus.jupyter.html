@@ -1,0 +1,1479 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Calculus &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Linear algebra" href="11_Linear_Algebra.jupyter.html" />
+    <link rel="prev" title="Art from Trigonometry" href="09_Art_from_Trigonometry.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">Master Math by Coding in Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="01_Introduction.jupyter.html">Introduction</a>
+    </li>
+    <li class="">
+      <a href="02_Arithmetic.jupyter.html">Arithmetic</a>
+    </li>
+    <li class="">
+      <a href="03_Sympy_and_Latex.jupyter.html">Introduction to Sympy and LaTeX</a>
+    </li>
+    <li class="">
+      <a href="04_Algebra1.jupyter.html">Algebra 1</a>
+    </li>
+    <li class="">
+      <a href="05_Graphing_and_Visualization.jupyter.html">Graphing</a>
+    </li>
+    <li class="">
+      <a href="06_Algebra2.jupyter.html">Algebra 2</a>
+    </li>
+    <li class="">
+      <a href="07_Graphing_conic.jupyter.html">Grahping conic</a>
+    </li>
+    <li class="">
+      <a href="08_Trigonometry.jupyter.html">Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="09_Art_from_Trigonometry.jupyter.html">Art from Trigonometry</a>
+    </li>
+    <li class="active">
+      <a href="">Calculus</a>
+    </li>
+    <li class="">
+      <a href="11_Linear_Algebra.jupyter.html">Linear algebra</a>
+    </li>
+    <li class="">
+      <a href="12_Probability_and_Histograms.jupyter.html">Probability_and_Histograms</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/MathPython/10_Calculus.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#computing-limits-of-a-function" class="nav-link">1 Computing limits of a function</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise" class="nav-link">1.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#piece-wise-functions" class="nav-link">2 Piece-wise functions</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">2.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#derivatives-of-polynomials" class="nav-link">3 Derivatives of polynomials</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">3.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#derivatives-of-trig-functions" class="nav-link">4 Derivatives of trig functions</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">4.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#graphing-a-function-tangent-line" class="nav-link">5 Graphing a function tangent line</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">5.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#finding-critical-points-of-a-function" class="nav-link">6 Finding critical points of a function</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">6.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#partial-derivatives" class="nav-link">7 Partial derivatives</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id6" class="nav-link">7.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#indefinite-and-definite-integrals" class="nav-link">8 Indefinite and definite integrals</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">8.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#area-between-two-curves" class="nav-link">9 Area between two curves</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id8" class="nav-link">9.1 Exercise</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#computing-the-area-between-two-functions" class="nav-link">9.2 Computing the area between two functions</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#calculus-bug-hunt" class="nav-link">10 Calculus BUG HUNT!!</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#evaluate-a-function-in-a-range" class="nav-link">10.1 evaluate a function in a range</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#compute-the-limit" class="nav-link">10.2 compute the limit</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#piece-wise-function" class="nav-link">10.3 piece-wise function</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#show-the-first-and-second-derivatives-of-sin-x" class="nav-link">10.4 show the first and second derivatives of sin(x)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#compute-critical-points-using-sympy" class="nav-link">10.5 Compute critical points using sympy</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#compute-the-area-between-two-curves" class="nav-link">10.6 Compute the area between two curves</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="calculus">
+<h1>Calculus<a class="headerlink" href="#calculus" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">find_peaks</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span><span class="n">Math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="computing-limits-of-a-function">
+<h2>1 Computing limits of a function<a class="headerlink" href="#computing-limits-of-a-function" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># the function</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="c1"># limit</span>
+<span class="n">lim_pnt</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">} </span><span class="si">%s</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">lim</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \lim_{x\to 1.5} x^{3} = 3.375\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate the function in a range</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span> <span class="c1"># a function for evaluating a sympy function</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+
+<span class="c1"># make the plot look a bit nicer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">lim</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x) = $</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_4_0.png" src="../../_images/10_Calculus.jupyter_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the function</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span> <span class="c1"># a function for evaluating a sympy function</span>
+
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># limit</span>
+<span class="n">lim_pnt</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">,</span><span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">^+} </span><span class="si">%s</span><span class="s1"> = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">lim</span><span class="p">)))</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+
+<span class="c1"># make the plot look a bit nicer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">lim</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x) = $</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \lim_{x\to 2^+} \frac{x^{2}}{x - 2} = inf\]</div>
+<img alt="../../_images/10_Calculus.jupyter_5_1.png" src="../../_images/10_Calculus.jupyter_5_1.png" />
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>1.1 Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">gx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1">## start by plotting the functions</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+<span class="n">gxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">gx</span><span class="p">)</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">gxx</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;g(x)&#39;</span><span class="p">)</span>
+
+<span class="c1"># make the plot look a bit nicer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_7_0.png" src="../../_images/10_Calculus.jupyter_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the limits separately at x=5</span>
+<span class="n">lim_pnt</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">lim_fx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">)</span>
+<span class="n">lim_gx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">} f(x)}{</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">} g(x)} = </span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">} = </span><span class="si">%g</span><span class="s1">&#39;</span> \
+             <span class="o">%</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">lim_fx</span><span class="p">,</span><span class="n">lim_gx</span><span class="p">,</span><span class="n">lim_fx</span><span class="o">/</span><span class="n">lim_gx</span><span class="p">)))</span>
+
+<span class="c1"># now compute limit of fx/gx</span>
+<span class="n">lim_fg</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">fx</span><span class="o">/</span><span class="n">gx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">} </span><span class="se">\\</span><span class="s1">frac{f(x)}{g(x)} = </span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">lim_fg</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\lim_{x\to 5} f(x)}{\lim_{x\to 5} g(x)} = \frac{0.0165045}{-0.622015} = -0.026534\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \lim_{x\to 5} \frac{f(x)}{g(x)} = -0.026534\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="piece-wise-functions">
+<h2>2 Piece-wise functions<a class="headerlink" href="#piece-wise-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># list function pieces</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+<span class="n">piece1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">piece2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">piece3</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="c1"># put them together with conditions</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="n">piece1</span><span class="p">,</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">),(</span><span class="n">piece2</span><span class="p">,(</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)),(</span><span class="n">piece3</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># evaluate the function in a range</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># make the plot look a bit nicer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_10_0.png" src="../../_images/10_Calculus.jupyter_10_0.png" />
+</div>
+</div>
+<div class="section" id="id1">
+<h3>2.1 Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># function pieces</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">),(</span><span class="n">g</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># print out the function definition</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x) = &#39;</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">)))</span>
+
+
+<span class="c1"># evaluate the function in a range</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># make the plot look a bit nicer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle f(x) = \begin{cases} x^{3} &amp; \text{for}\: x \leq 0 \\\frac{\log{\left(x \right)}}{\log{\left(2 \right)}} &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">&lt;string&gt;:2: RuntimeWarning: invalid value encountered in log
+findfont: Font family ['xkcd', 'xkcd Script', 'Humor Sans', 'Comic Neue', 'Comic Sans MS'] not found. Falling back to DejaVu Sans.
+</pre>
+</div>
+<img alt="../../_images/10_Calculus.jupyter_12_2.png" src="../../_images/10_Calculus.jupyter_12_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="derivatives-of-polynomials">
+<h2>3 Derivatives of polynomials<a class="headerlink" href="#derivatives-of-polynomials" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 x\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Leibniz notation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x) = </span><span class="si">%s</span><span class="s1">, </span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">frac</span><span class="si">{df}{dx}</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">)))))</span>
+
+<span class="c1"># Lagrange notation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x) = </span><span class="si">%s</span><span class="s1">, </span><span class="se">\\</span><span class="s1">quad f</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">)))))</span>
+
+<span class="c1"># Newton notation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x) = </span><span class="si">%s</span><span class="s1">, </span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">ddot</span><span class="si">{f}</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">))))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x) = x^{2}, \quad \frac{df}{dx} = 2 x\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x) = x^{2}, \quad f' = 2 x\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x) = x^{2}, \quad \ddot{f} = 2\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy.plotting.plot</span> <span class="k">as</span> <span class="nn">symplot</span>
+
+<span class="c1"># plot</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># generate the first plot</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">symplot</span><span class="p">(</span><span class="n">fx</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$f(x) = </span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span> <span class="c1"># create a label for the legend</span>
+
+<span class="c1"># extend to show the second plot as well</span>
+<span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">symplot</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$f(x)</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">))</span>
+
+<span class="c1"># some plotting adjustments</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">p</span><span class="o">.</span><span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># activate the legend</span>
+
+<span class="c1"># and show the plot</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_16_0.png" src="../../_images/10_Calculus.jupyter_16_0.png" />
+</div>
+</div>
+<div class="section" id="id2">
+<h3>3.1 Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">5</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">dg</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">d_f_times_g</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">g</span><span class="p">)</span>
+<span class="n">df_times_dg</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{Without applying the product rule:}&#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad (f</span><span class="se">\\</span><span class="s1">times g)</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">d_f_times_g</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad f</span><span class="se">\&#39;</span><span class="s1"> </span><span class="se">\\</span><span class="s1">times g</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">df_times_dg</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{Without applying the product rule:}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad (f\times g)' = 63 x^{8} - 35 x^{6} + 180 x^{5} + 15 x^{4} - 80 x^{3} + 24 x^{2} + 24 x\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad f' \times g' = 140 x^{7} - 50 x^{5} + 234 x^{4} - 80 x^{2} + 16 x\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply the product rule</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{With the product rule: }&#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad (f</span><span class="se">\\</span><span class="s1">times g)</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">d_f_times_g</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad f</span><span class="se">\&#39;\\</span><span class="s1">times g+f</span><span class="se">\\</span><span class="s1">times g</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="n">g</span><span class="o">+</span><span class="n">f</span><span class="o">*</span><span class="n">dg</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With the product rule: }\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad (f\times g)' = 63 x^{8} - 35 x^{6} + 180 x^{5} + 15 x^{4} - 80 x^{3} + 24 x^{2} + 24 x\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad f'\times g+f\times g' = 63 x^{8} - 35 x^{6} + 180 x^{5} + 15 x^{4} - 80 x^{3} + 24 x^{2} + 24 x\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># try again for addition</span>
+<span class="n">dfPlusg</span>  <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="o">+</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;(f+ g)</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">dfPlusg</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f</span><span class="se">\&#39;</span><span class="s1"> + g</span><span class="se">\&#39;</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">df</span><span class="o">+</span><span class="n">dg</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle (f+ g)' = 5 x^{4} + 28 x^{3} - 2 x + 2\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f' + g' = 5 x^{4} + 28 x^{3} - 2 x + 2\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="derivatives-of-trig-functions">
+<h2>4 Derivatives of trig functions<a class="headerlink" href="#derivatives-of-trig-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-sin(q)
+cos(q)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the cyclicity of sin/cos derivatives</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{d}{dx}%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)))))</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}\cos{\left(x \right)} = - \sin{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}- \sin{\left(x \right)} = - \cos{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}- \cos{\left(x \right)} = \sin{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}\sin{\left(x \right)} = \cos{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}\cos{\left(x \right)} = - \sin{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}- \sin{\left(x \right)} = - \cos{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}- \cos{\left(x \right)} = \sin{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{d}{dx}\sin{\left(x \right)} = \cos{\left(x \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy.plotting.plot</span> <span class="k">as</span> <span class="nn">symplot</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">symplot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">line_color</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">symplot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">line_color</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">p</span><span class="o">.</span><span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_24_0.png" src="../../_images/10_Calculus.jupyter_24_0.png" />
+</div>
+</div>
+<div class="section" id="id3">
+<h3>4.1 Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">+</span> <span class="n">a</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;brkm&#39;</span>
+
+
+<span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ai</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">symplot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ai</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">ai</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">symplot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ai</span><span class="p">),</span><span class="n">line_color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ai</span><span class="p">],</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">ai</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;The functions&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ai</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">symplot</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ai</span><span class="p">)),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">ai</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">symplot</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ai</span><span class="p">)),</span><span class="n">line_color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ai</span><span class="p">],</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">ai</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Their derivatives&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_26_0.png" src="../../_images/10_Calculus.jupyter_26_0.png" />
+<img alt="../../_images/10_Calculus.jupyter_26_1.png" src="../../_images/10_Calculus.jupyter_26_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="graphing-a-function-tangent-line">
+<h2>5 Graphing a function tangent line<a class="headerlink" href="#graphing-a-function-tangent-line" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># define function and its derivative</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># select x point</span>
+<span class="n">xa</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># define function and derivative values at that point</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xa</span><span class="p">)</span>
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xa</span><span class="p">)</span>
+
+<span class="c1">## evaluate function and its derivative</span>
+<span class="n">xx</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">f_fun</span>  <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">)(</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">df_fun</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="p">)(</span><span class="n">xx</span><span class="p">)</span>
+
+<span class="c1"># compute the tangent line</span>
+<span class="n">tanline</span> <span class="o">=</span> <span class="n">df_a</span> <span class="o">*</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">xa</span><span class="p">)</span> <span class="o">+</span> <span class="n">fa</span>
+
+<span class="c1"># plot it!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">f_fun</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">tanline</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;tangent&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">fa</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_28_0.png" src="../../_images/10_Calculus.jupyter_28_0.png" />
+</div>
+</div>
+<div class="section" id="id4">
+<h3>5.1 Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a function that computes the tangent line, loop through lots of points</span>
+
+<span class="k">def</span> <span class="nf">computetangent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">xa</span><span class="p">,</span><span class="n">bnds</span><span class="p">):</span>
+    <span class="c1"># define function and derivative values at that point</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">fa</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xa</span><span class="p">)</span>
+    <span class="n">df_a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xa</span><span class="p">)</span>
+
+    <span class="c1"># evaluate the tangent line</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">bnds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bnds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">200</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_a</span> <span class="o">*</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">xa</span><span class="p">)</span> <span class="o">+</span> <span class="n">fa</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">f_fun</span>  <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">)(</span><span class="n">xx</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">:</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">computetangent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">xx</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+
+
+<span class="c1"># plot it!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">f_fun</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_31_0.png" src="../../_images/10_Calculus.jupyter_31_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finding-critical-points-of-a-function">
+<h2>6 Finding critical points of a function<a class="headerlink" href="#finding-critical-points-of-a-function" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The empirical method (useful for df=0; won&#39;t work for non-differentiable points)</span>
+
+<span class="c1"># create a function</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># vs 1001</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># extrema</span>
+<span class="n">localmax</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">fx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">localmin</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="o">-</span><span class="n">fx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The critical points are &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">localmax</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">localmin</span><span class="p">]))</span>
+
+<span class="c1"># compute its derivative</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># scale by dx!</span>
+
+<span class="c1"># plot everything</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dfx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;dy/dx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">localmax</span><span class="p">],</span><span class="n">fx</span><span class="p">[</span><span class="n">localmax</span><span class="p">],</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;local max.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">localmin</span><span class="p">],</span><span class="n">fx</span><span class="p">[</span><span class="n">localmin</span><span class="p">],</span><span class="s1">&#39;gs&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;local min.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">7</span><span class="p">,</span><span class="o">.</span><span class="mi">7</span><span class="p">,</span><span class="o">.</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The critical points are [-0.995996  0.995996] [-0.00500501]
+</pre></div>
+</div>
+<img alt="../../_images/10_Calculus.jupyter_33_1.png" src="../../_images/10_Calculus.jupyter_33_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The analytic (symbolic) method</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># derivative in sympy, solve</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">critpoints</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">dfx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The critical points are: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">critpoints</span><span class="p">))</span>
+
+
+<span class="c1"># some sympy plotting</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fx</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dfx</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;dy/dx&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The critical points are: [-1, 0, 1]
+</pre></div>
+</div>
+<img alt="../../_images/10_Calculus.jupyter_34_1.png" src="../../_images/10_Calculus.jupyter_34_1.png" />
+</div>
+</div>
+<div class="section" id="id5">
+<h3>6.1 Exercise<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># what values of &#39;a&#39; give this function a critical point at x=1 or x=2?</span>
+<span class="n">a</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,x&#39;</span><span class="p">)</span>
+
+<span class="n">baseexpr</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">arange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.25</span><span class="p">,</span><span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">xrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># setup plots</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">arange</span><span class="p">:</span>
+    
+    <span class="n">fx</span> <span class="o">=</span> <span class="n">baseexpr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ai</span><span class="p">)</span>
+    <span class="n">dfx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span>
+    <span class="n">critpnts</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="n">dfx</span> <span class="p">)</span>
+    
+    <span class="c1"># also plot the function in subplot1 and its derivative in subplot2</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)(</span><span class="n">xrange</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dfx</span><span class="p">)(</span><span class="n">xrange</span><span class="p">))</span>
+    
+    
+    <span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">critpnts</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Rightarrow </span><span class="si">%s</span><span class="se">\\</span><span class="s1">text{ has a critical point at x=1! Woohoo!!}&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">)))</span>
+    <span class="k">elif</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">critpnts</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">Rightarrow </span><span class="si">%s</span><span class="se">\\</span><span class="s1">text{ has a critical point at x=2! Woohoo!!}&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad </span><span class="si">%s</span><span class="se">\\</span><span class="s1">text{ has NO critical point at x=2. :(}&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">)))</span>
+
+
+
+<span class="c1"># some adjustments to the function plot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Function&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># adjustments to the derivative plot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="c1"># ax[1].set_xlim([.5,2.5])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Its derivative&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \Rightarrow x^{2} e^{- 0.25 x^{2}}\text{ has a critical point at x=2! Woohoo!!}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 0.5 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 0.75 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \Rightarrow x^{2} e^{- 1.0 x^{2}}\text{ has a critical point at x=1! Woohoo!!}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 1.25 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 1.5 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 1.75 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad x^{2} e^{- 2.0 x^{2}}\text{ has NO critical point at x=2. :(}\]</div>
+<img alt="../../_images/10_Calculus.jupyter_36_9.png" src="../../_images/10_Calculus.jupyter_36_9.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="partial-derivatives">
+<h2>7 Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="se">\\</span><span class="s1">partial f}{</span><span class="se">\\</span><span class="s1">partial x} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="se">\\</span><span class="s1">partial f}{</span><span class="se">\\</span><span class="s1">partial y} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">y</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\partial f}{\partial x} = 2 x + y^{2}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\partial f}{\partial y} = 2 x y\]</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>7.1 Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot3d</span><span class="p">(</span><span class="n">f</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;$f(x,y)=</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot3d</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;$f_x=</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot3d</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">y</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;$f_y=</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_40_0.png" src="../../_images/10_Calculus.jupyter_40_0.png" />
+<img alt="../../_images/10_Calculus.jupyter_40_1.png" src="../../_images/10_Calculus.jupyter_40_1.png" />
+<img alt="../../_images/10_Calculus.jupyter_40_2.png" src="../../_images/10_Calculus.jupyter_40_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indefinite-and-definite-integrals">
+<h2>8 Indefinite and definite integrals<a class="headerlink" href="#indefinite-and-definite-integrals" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># a simple function</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="c1"># indefinite integration</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1"># notice no constant term</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{2}}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># definite integation (within bounds)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">f</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting...</span>
+
+<span class="n">lowbnd</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># add later</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">lowbnd</span><span class="p">)</span>
+<span class="n">intf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">intf</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">]</span>
+
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$f(x)$&#39;</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">int f(x)dx$&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x) = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">int f(x) dx = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">intf</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_44_0.png" src="../../_images/10_Calculus.jupyter_44_0.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x) = \frac{x^{3}}{x - 2}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \int f(x) dx = \frac{x^{3}}{3} + x^{2} + 4 x + 8 \log{\left(x - 2 \right)}\]</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>8.1 Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># show that the antiderivative (indefinite integral) of the derivative is the original function</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">idf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x)=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f</span><span class="se">\&#39;</span><span class="s1">=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">int (f</span><span class="se">\&#39;</span><span class="s1">)dx=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">idf</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x)=2 x^{3} + \sin{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f'=6 x^{2} + \cos{\left(x \right)}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \int (f')dx=2 x^{3} + \sin{\left(x \right)}\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="area-between-two-curves">
+<h2>9 Area between two curves<a class="headerlink" href="#area-between-two-curves" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">symf</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">symg</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">symf</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">symg</span><span class="p">)</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">g</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$f(x)=</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">symf</span><span class="p">),</span><span class="s1">&#39;$g(x)=</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">symg</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-.</span><span class="mi">25</span><span class="p">,</span><span class="mf">1.25</span><span class="p">,</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_48_0.png" src="../../_images/10_Calculus.jupyter_48_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="n">xinter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">g</span><span class="p">(</span><span class="n">xinter</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">xinter</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">g</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$f(x)=</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">symf</span><span class="p">),</span><span class="s1">&#39;$g(x)=</span><span class="si">%s</span><span class="s1">$&#39;</span><span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">symg</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-.</span><span class="mi">25</span><span class="p">,</span><span class="mf">1.25</span><span class="p">,</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_49_0.png" src="../../_images/10_Calculus.jupyter_49_0.png" />
+</div>
+</div>
+<div class="section" id="id8">
+<h3>9.1 Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="computing-the-area-between-two-functions">
+<h3>9.2 Computing the area between two functions<a class="headerlink" href="#computing-the-area-between-two-functions" title="Permalink to this headline">¶</a></h3>
+<p>The area between two functions is given by the formula <span class="math notranslate nohighlight">\(A = \int_{a}^{b}f(x) - g(x) dx\)</span></p>
+<p>In our example, <span class="math notranslate nohighlight">\(f(x)=x^2\)</span> and <span class="math notranslate nohighlight">\(g(x)=x\)</span></p>
+<p>Therefore, <span class="math notranslate nohighlight">\(A = \int_{a}^{b}(x^2 - x) dx\)</span></p>
+<p>We will compute the area between the two crossing points, that is, where the two functions are equal. This is given by the two solutions to the equation
+<span class="math notranslate nohighlight">\($x^2=x\)</span>$</p>
+<p>The two solutions are <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span>. This gives us the definite integral of
+<span class="math notranslate nohighlight">\($A = \int_{0}^{1}(x^2 - x) dx\)</span>$</p>
+<p>The final answer will be given in the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># find intersection points</span>
+<span class="n">fg_intersect</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">symf</span><span class="o">-</span><span class="n">symg</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;f(x)</span><span class="se">\\</span><span class="s1">text{ and }g(x) </span><span class="se">\\</span><span class="s1">text{ intersect at } x=</span><span class="si">%s</span><span class="s1">,</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fg_intersect</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fg_intersect</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+
+<span class="c1"># compute area and print results!</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">symf</span><span class="o">-</span><span class="n">symg</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="n">fg_intersect</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fg_intersect</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{The area between the functions is } A = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle f(x)\text{ and }g(x) \text{ intersect at } x=0,1\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{The area between the functions is } A = -1/6\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculus-bug-hunt">
+<h2>10 Calculus BUG HUNT!!<a class="headerlink" href="#calculus-bug-hunt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="evaluate-a-function-in-a-range">
+<h3>10.1 evaluate a function in a range<a class="headerlink" href="#evaluate-a-function-in-a-range" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">xrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xrange</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xrange</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xrange</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_55_0.png" src="../../_images/10_Calculus.jupyter_55_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-the-limit">
+<h3>10.2 compute the limit<a class="headerlink" href="#compute-the-limit" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">lim_pnt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">lim_pnt</span><span class="p">,</span><span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">lim_{x</span><span class="se">\\</span><span class="s1">to </span><span class="si">%g</span><span class="s1">^+} </span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">lim_pnt</span><span class="p">,</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fx</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">lim</span><span class="p">))))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \lim_{x\to -3^+} \frac{1}{x + 3} = \infty\]</div>
+<img alt="../../_images/10_Calculus.jupyter_57_1.png" src="../../_images/10_Calculus.jupyter_57_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="piece-wise-function">
+<h3>10.3 piece-wise function<a class="headerlink" href="#piece-wise-function" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="n">piece1</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">piece2</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># put them together with conditions</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="n">piece1</span><span class="p">,</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="n">piece2</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># evaluate the function in a range</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">fxx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+
+<span class="c1"># show it in a plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fxx</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_59_0.png" src="../../_images/10_Calculus.jupyter_59_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="show-the-first-and-second-derivatives-of-sin-x">
+<h3>10.4 show the first and second derivatives of sin(x)<a class="headerlink" href="#show-the-first-and-second-derivatives-of-sin-x" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ddy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dy</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;dy&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span><span class="n">ddy</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;d$^2$y&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_61_0.png" src="../../_images/10_Calculus.jupyter_61_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-critical-points-using-sympy">
+<h3>10.5 Compute critical points using sympy<a class="headerlink" href="#compute-critical-points-using-sympy" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># derivative in sympy, solve</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">critpoints</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">dfx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The critical points are: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">critpoints</span><span class="p">))</span>
+
+
+<span class="c1"># plot the function derivative and its critical points</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dfx</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">y</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">critpoints</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Function derivative&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The critical points are: [-1, 0, 1]
+</pre></div>
+</div>
+<img alt="../../_images/10_Calculus.jupyter_63_1.png" src="../../_images/10_Calculus.jupyter_63_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-the-area-between-two-curves">
+<h3>10.6 Compute the area between two curves<a class="headerlink" href="#compute-the-area-between-two-curves" title="Permalink to this headline">¶</a></h3>
+<p>(not the same thing as Between Two Ferns)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f1sym</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f2sym</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">xx</span>
+
+<span class="n">fintersect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f1</span><span class="o">-</span><span class="n">f2</span><span class="p">))</span>
+
+<span class="c1"># compute area</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">f1sym</span><span class="o">-</span><span class="n">f2sym</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xx</span><span class="p">[</span><span class="n">fintersect</span><span class="p">]))</span>
+
+<span class="n">traceX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">fintersect</span><span class="p">],</span> <span class="n">xx</span><span class="p">[</span><span class="n">fintersect</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">traceY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">fintersect</span><span class="p">],</span> <span class="n">f2</span><span class="p">[</span><span class="n">fintersect</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">traceX</span><span class="p">,</span> <span class="n">traceY</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The shaded area is </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">A</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10_Calculus.jupyter_65_0.png" src="../../_images/10_Calculus.jupyter_65_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09_Art_from_Trigonometry.jupyter.html" title="previous page">Art from Trigonometry</a>
+    <a class='right-next' id="next-link" href="11_Linear_Algebra.jupyter.html" title="next page">Linear algebra</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

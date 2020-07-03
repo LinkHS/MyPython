@@ -1,0 +1,849 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction to Sympy and LaTeX &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Algebra 1" href="04_Algebra1.jupyter.html" />
+    <link rel="prev" title="Arithmetic" href="02_Arithmetic.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">Master Math by Coding in Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="01_Introduction.jupyter.html">Introduction</a>
+    </li>
+    <li class="">
+      <a href="02_Arithmetic.jupyter.html">Arithmetic</a>
+    </li>
+    <li class="active">
+      <a href="">Introduction to Sympy and LaTeX</a>
+    </li>
+    <li class="">
+      <a href="04_Algebra1.jupyter.html">Algebra 1</a>
+    </li>
+    <li class="">
+      <a href="05_Graphing_and_Visualization.jupyter.html">Graphing</a>
+    </li>
+    <li class="">
+      <a href="06_Algebra2.jupyter.html">Algebra 2</a>
+    </li>
+    <li class="">
+      <a href="07_Graphing_conic.jupyter.html">Grahping conic</a>
+    </li>
+    <li class="">
+      <a href="08_Trigonometry.jupyter.html">Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="09_Art_from_Trigonometry.jupyter.html">Art from Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="10_Calculus.jupyter.html">Calculus</a>
+    </li>
+    <li class="">
+      <a href="11_Linear_Algebra.jupyter.html">Linear algebra</a>
+    </li>
+    <li class="">
+      <a href="12_Probability_and_Histograms.jupyter.html">Probability_and_Histograms</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/MathPython/03_Sympy_and_Latex.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#intro-to-sympy-part-1" class="nav-link">1 Intro to sympy, part 1</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercises" class="nav-link">1.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#intro-to-latex" class="nav-link">2 Intro to Latex</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#latex-code-in-a-markdown-cell" class="nav-link">2.1 Latex code in a markdown cell</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">2.2 Exercises!</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#intro-to-sympy-part-2" class="nav-link">3 Intro to sympy, part 2</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise" class="nav-link">3.1 Exercise!</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#example-use-sympy-to-understand-the-law-of-exponents" class="nav-link">4 Example: Use sympy to understand the law of exponents</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#sympy-and-latex-bug-hunt" class="nav-link">5 Sympy and LaTex: Bug hunt!</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-sympy-and-latex">
+<h1>Introduction to Sympy and LaTeX<a class="headerlink" href="#introduction-to-sympy-and-latex" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="intro-to-sympy-part-1">
+<h2>1 Intro to sympy, part 1<a class="headerlink" href="#intro-to-sympy-part-1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the sympy package</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+
+<span class="c1"># optional setup for &quot;fancy&quot; printing (used later)</span>
+<span class="c1"># sym.init_printing()</span>
+
+<span class="c1"># import additional functions for nice printing</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create symbolic variables</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y,z&#39;</span><span class="p">)</span>
+
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># x doesn&#39;t have a value; it&#39;s just a symbol</span>
+<span class="n">x</span> <span class="o">+</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x + 4\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for &quot;fancy&quot; printing (note: you need to run this line only once)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">+</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_4_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># more fun...</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">y</span><span class="o">/</span><span class="n">z</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_5_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_5_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_5_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s compare with numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># square root in symbolic math</span>
+<span class="n">display</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># square root in numeric/precision math</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_6_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_6_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_6_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_6_1.png" />
+</div>
+</div>
+<div class="section" id="exercises">
+<h3>1.1 Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 2)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="p">)</span>
+
+<span class="c1"># 3)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_8_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_8_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_8_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_8_1.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_8_2.png" src="../../_images/03_Sympy_and_Latex.jupyter_8_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="intro-to-latex">
+<h2>2 Intro to Latex<a class="headerlink" href="#intro-to-latex" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic latex coding is easy:</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;4+5=7&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4+5=7\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># special characters are indicated using \\</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">sigma = </span><span class="se">\\</span><span class="s1">mu </span><span class="se">\\</span><span class="s1">times </span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{5}</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># outside Python, use one \</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">sigma = </span><span class="se">\\</span><span class="s1">mu </span><span class="se">\t</span><span class="s1">imes </span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{5}</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># subscripts and superscripts</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;x_n + y^m - z^{m+n}&#39;</span><span class="p">))</span>
+
+<span class="c1"># fractions</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{1+x}{2e^{\pi}}&#39;</span><span class="p">))</span>
+
+<span class="c1"># right-click to change properties</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \sigma = \mu \times \sqrt{5}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \sigma = \mu 	imes \sqrt{5}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x_n + y^m - z^{m+n}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1+x}{2e^{\pi}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># regular text requires a special tag</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;Set x equal to </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">f</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{Set x equal to </span><span class="si">%g</span><span class="s1">}&#39;</span><span class="o">%</span><span class="n">f</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle Set x equal to 4\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{Set x equal to 4}\]</div>
+</div>
+</div>
+<div class="section" id="latex-code-in-a-markdown-cell">
+<h3>2.1 Latex code in a markdown cell<a class="headerlink" href="#latex-code-in-a-markdown-cell" title="Permalink to this headline">¶</a></h3>
+<p>Note: this is not for evaluating variables or other numerical code!</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1+\sqrt{2x}}{e^{i\pi}} \]</div>
+</div>
+<div class="section" id="id1">
+<h3>2.2 Exercises!<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1) </span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;4x+5y-8z=17&#39;</span><span class="p">))</span>
+
+<span class="c1"># 2) </span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">sin(2</span><span class="se">\\</span><span class="s1">pi f t+</span><span class="se">\\</span><span class="s1">theta)&#39;</span><span class="p">))</span>
+
+<span class="c1"># 3)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;e=mc^2&#39;</span><span class="p">))</span>
+
+<span class="c1"># 4)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{4+5x^2}{(1+x)(1-x)}&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4x+5y-8z=17\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \sin(2\pi f t+\theta)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle e=mc^2\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4+5x^2}{(1+x)(1-x)}\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="intro-to-sympy-part-2">
+<h2>3 Intro to sympy, part 2<a class="headerlink" href="#intro-to-sympy-part-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using Greek characters as variable names</span>
+
+<span class="n">mu</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;mu,alpha,sigma&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="p">(</span><span class="n">mu</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_17_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_17_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can also use longer and more informative variable names</span>
+<span class="n">hello</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+
+<span class="n">hello</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_18_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># substituting numbers for variables</span>
+
+<span class="c1"># don&#39;t forget to define variables before using them!</span>
+<span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_19_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_19_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_19_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_19_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># substituting multiple variables</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span> <span class="c1"># can create multiple variables in one line</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="mi">5</span>
+
+<span class="c1"># substituting one variable</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># substituting multiple variables</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>y + 10
+14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using sympy to print latex code</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># notice:</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="s1">&#39;3/4&#39;</span><span class="p">)</span> <span class="p">)</span>
+<span class="c1"># but</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="s1">&#39;3/4&#39;</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>\frac{3}{x}
+0.75
+3/4
+\frac{3}{4}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>3.1 Exercise!<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{With }x=</span><span class="si">%g</span><span class="s1">:\; x^2+4 </span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">Rightarrow </span><span class="se">\\</span><span class="s1">quad </span><span class="si">%g</span><span class="s1">^2+4 =</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">ans</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With }x=-2:\; x^2+4 \quad \Rightarrow \quad -2^2+4 =8\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With }x=-1:\; x^2+4 \quad \Rightarrow \quad -1^2+4 =5\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With }x=0:\; x^2+4 \quad \Rightarrow \quad 0^2+4 =4\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With }x=1:\; x^2+4 \quad \Rightarrow \quad 1^2+4 =5\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{With }x=2:\; x^2+4 \quad \Rightarrow \quad 2^2+4 =8\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-use-sympy-to-understand-the-law-of-exponents">
+<h2>4 Example: Use sympy to understand the law of exponents<a class="headerlink" href="#example-use-sympy-to-understand-the-law-of-exponents" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y,z&#39;</span><span class="p">)</span>
+
+<span class="n">ex</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="n">z</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_25_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_25_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_25_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_25_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr1</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="n">z</span>
+<span class="n">expr2</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span> <span class="o">/</span> <span class="n">x</span><span class="o">**</span><span class="n">z</span>
+<span class="n">expr3</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="o">**</span><span class="n">z</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr1</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr1</span><span class="p">))</span> <span class="p">)</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr2</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr2</span><span class="p">))</span> <span class="p">)</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr3</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr3</span><span class="p">))</span> <span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{y} x^{z} = x^{y + z}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{y} x^{- z} = x^{y - z}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{y} y^{z} = x^{y} y^{z}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using sym.Eq</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_27_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_27_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># using variables</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_28_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_28_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_28_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_28_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lhs</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">4</span>  <span class="c1"># -7</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
+
+<span class="c1"># or</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="o">-</span><span class="n">rhs</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_29_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_29_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_29_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_29_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">expr1</span><span class="p">))</span>
+
+<span class="c1"># but...</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">expr1</span> <span class="o">-</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr1</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expr1</span><span class="o">-</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr1</span><span class="p">)),</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_30_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_30_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_30_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_30_1.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_30_2.png" src="../../_images/03_Sympy_and_Latex.jupyter_30_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># btw, there&#39;s also a powsimp function:</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">powsimp</span><span class="p">(</span><span class="n">expr1</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># and its converse</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">powsimp</span><span class="p">(</span><span class="n">expr1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">expand_power_exp</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_31_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_31_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_31_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_31_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sympy-and-latex-bug-hunt">
+<h2>5 Sympy and LaTex: Bug hunt!<a class="headerlink" href="#sympy-and-latex-bug-hunt" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;mu,alpha&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 e^{\frac{\mu^{2}}{\alpha}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;1234 + </span><span class="se">\\</span><span class="s1">frac</span><span class="si">{3x}</span><span class="s1">{\sin(2\pi t+</span><span class="se">\\</span><span class="s1">theta)}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1234 + \frac{3x}{\sin(2\pi t+\theta)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span>
+
+<span class="c1"># answer should be 7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_36_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># part 1 of 2</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_37_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_37_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_37_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_37_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># part 2 of 2</span>
+
+<span class="n">q</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q,r&#39;</span><span class="p">)</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="s1">&#39;x^2&#39;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="s1">&#39;x**2&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">q</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{2}\]</div>
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_38_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_38_1.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_38_2.png" src="../../_images/03_Sympy_and_Latex.jupyter_38_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">equation</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span>
+<span class="n">equation</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_39_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_39_0.png" />
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_39_1.png" src="../../_images/03_Sympy_and_Latex.jupyter_39_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">equation</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/03_Sympy_and_Latex.jupyter_40_0.png" src="../../_images/03_Sympy_and_Latex.jupyter_40_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02_Arithmetic.jupyter.html" title="previous page">Arithmetic</a>
+    <a class='right-next' id="next-link" href="04_Algebra1.jupyter.html" title="next page">Algebra 1</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

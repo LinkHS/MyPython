@@ -1,0 +1,2483 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Algebra 1 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Graphing" href="05_Graphing_and_Visualization.jupyter.html" />
+    <link rel="prev" title="Introduction to Sympy and LaTeX" href="03_Sympy_and_Latex.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">Master Math by Coding in Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="01_Introduction.jupyter.html">Introduction</a>
+    </li>
+    <li class="">
+      <a href="02_Arithmetic.jupyter.html">Arithmetic</a>
+    </li>
+    <li class="">
+      <a href="03_Sympy_and_Latex.jupyter.html">Introduction to Sympy and LaTeX</a>
+    </li>
+    <li class="active">
+      <a href="">Algebra 1</a>
+    </li>
+    <li class="">
+      <a href="05_Graphing_and_Visualization.jupyter.html">Graphing</a>
+    </li>
+    <li class="">
+      <a href="06_Algebra2.jupyter.html">Algebra 2</a>
+    </li>
+    <li class="">
+      <a href="07_Graphing_conic.jupyter.html">Grahping conic</a>
+    </li>
+    <li class="">
+      <a href="08_Trigonometry.jupyter.html">Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="09_Art_from_Trigonometry.jupyter.html">Art from Trigonometry</a>
+    </li>
+    <li class="">
+      <a href="10_Calculus.jupyter.html">Calculus</a>
+    </li>
+    <li class="">
+      <a href="11_Linear_Algebra.jupyter.html">Linear algebra</a>
+    </li>
+    <li class="">
+      <a href="12_Probability_and_Histograms.jupyter.html">Probability_and_Histograms</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/MathPython/04_Algebra1.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#solving-for-x" class="nav-link">1 Solving for x</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercises" class="nav-link">1.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#expanding-terms" class="nav-link">2 Expanding terms</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">2.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#creating-and-accessing-matrices-with-numpy" class="nav-link">3 Creating and accessing matrices with numpy</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise" class="nav-link">3.1 Exercise</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#exercise-create-a-multiplication-table" class="nav-link">3.2 Exercise: Create a multiplication table</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#associative-commutative-and-distributive-properties" class="nav-link">4 Associative, commutative, and distributive properties</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#associative" class="nav-link">4.1 Associative</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#commutative" class="nav-link">4.2 Commutative</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#distributive" class="nav-link">4.3 Distributive</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">4.4 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#creating-and-working-with-python-lists" class="nav-link">5 Creating and working with Python lists</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">5.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#more-on-slicing-in-python" class="nav-link">6 More on “slicing” in Python</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#greatest-common-denominator" class="nav-link">7 Greatest common denominator</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">7.1 Exercises</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#introduction-to-dictionaries" class="nav-link">8 Introduction to dictionaries</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">8.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#prime-factorization" class="nav-link">9 Prime factorization</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id6" class="nav-link">9.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#solving-inequalities" class="nav-link">10 Solving inequalities</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">10.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#adding-polynomials" class="nav-link">11 Adding polynomials</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id8" class="nav-link">11.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#multiplying-polynomials" class="nav-link">12 Multiplying polynomials</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id9" class="nav-link">12.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#dividing-by-polynomials" class="nav-link">13 Dividing by polynomials</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id10" class="nav-link">13.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#factoring-polynomials" class="nav-link">14 Factoring polynomials</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id11" class="nav-link">14.1 Exercise</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#algebra-1-bug-hunt" class="nav-link">15 Algebra 1 BUG HUNT!</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="algebra-1">
+<h1>Algebra 1<a class="headerlink" href="#algebra-1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># It&#39;s generally good practice to import all required modules at the top of the script!</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="solving-for-x">
+<h2>1 Solving for x<a class="headerlink" href="#solving-for-x" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># the expression we want to solve is 2x+4=9</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">-</span><span class="mi">9</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[5/2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make it look a bit nicer</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;The solution to </span><span class="si">%s</span><span class="s1"> is </span><span class="si">%g</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># or</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{The solution to }</span><span class="si">%s</span><span class="se">\\</span><span class="s1">text{ is x=}</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;The solution to 2*x - 5 is 2.5&#39;
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{The solution to }2 x - 5\text{ is x=}2.5\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can input the equation directly into the solve function</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[-2, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># notice the solution is stored as a list, with one solution per element</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="nb">type</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can print them all out:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solution #&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Solution #1 is -2
+Solution #2 is 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">5</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Solved for x: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Solved for y: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">y</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Solved for x: 20/(4*y - 1)
+Solved for y: [(x + 20)/(4*x)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h3>1.1 Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1)</span>
+<span class="c1"># simplify and solve for q</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">q</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="n">q</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">eq</span><span class="o">.</span><span class="n">simplify</span><span class="p">())))</span> 
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;q=&#39;</span><span class="o">+</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span><span class="n">q</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - 2 q + 2 + \frac{3}{q}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle q=\left[ \frac{1}{2} - \frac{\sqrt{7}}{2}, \  \frac{1}{2} + \frac{\sqrt{7}}{2}\right]\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">q</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">/</span><span class="n">q</span> <span class="o">-</span> <span class="mi">4</span><span class="o">/</span><span class="n">q</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">eq</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">eq</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">eq</span><span class="p">))))</span> <span class="c1"># puts into p/q form with integer coefficients</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 q^{2} + 2 q - \frac{5}{q} - \frac{4}{q^{3}}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 q^{2} + 2 q - \frac{5}{q} - \frac{4}{q^{3}}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{3 q^{5} + 2 q^{4} - 5 q^{2} - 4}{q^{3}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3)</span>
+<span class="c1"># simplify this expression. confirm on your own using paper-and-pencil</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\sqrt{15} q + \sqrt{3}}{\sqrt{10} q + \sqrt{2}}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\sqrt{6}}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\sqrt{6}}{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1.22474487139159\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="expanding-terms">
+<h2>2 Expanding terms<a class="headerlink" href="#expanding-terms" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define our terms</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="n">term1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">term2</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">term1</span><span class="o">*</span><span class="n">term2</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term2</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term2</span><span class="p">))</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x*(4*x + 5)
+4*x**2 + 5*x
+&lt;IPython.core.display.Math object&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">term3</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">7</span> <span class="c1"># note that parentheses are not necessary!</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term3</span><span class="p">)</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term3</span><span class="p">)</span> <span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(x - 7\right) \left(4 x + 5\right)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 x^{2} - 23 x - 35\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with two variables</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">**</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - 5^{x} + 2 x y^{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># three expressions and three variables!!</span>
+<span class="c1"># but first, what variables have we already created??</span>
+<span class="o">%</span><span class="n">whos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Variable   Type        Data/Info
+--------------------------------
+Math       type        &lt;class &#39;IPython.core.display.Math&#39;&gt;
+autopep8   module      &lt;module &#39;autopep8&#39; from &#39;&lt;...&gt;te-packages/autopep8.py&#39;&gt;
+display    function    &lt;function display at 0x7f05685841e0&gt;
+eq         Add         3*q**2 + 2*q - 5/q - 4/q**3
+expr       Mul         x*(-5**x/x + 2*y**2)
+i          int         1
+json       module      &lt;module &#39;json&#39; from &#39;/hom&lt;...&gt;hon3.6/json/__init__.py&#39;&gt;
+np         module      &lt;module &#39;numpy&#39; from &#39;/ho&lt;...&gt;kages/numpy/__init__.py&#39;&gt;
+q          Symbol      q
+sol        list        n=2
+sym        module      &lt;module &#39;sympy&#39; from &#39;/ho&lt;...&gt;kages/sympy/__init__.py&#39;&gt;
+term1      Add         4*x + 5
+term2      Symbol      x
+term3      Add         x - 7
+x          Symbol      x
+y          Symbol      y
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+
+<span class="n">term1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+<span class="n">term3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="n">z</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term2</span><span class="o">*</span><span class="n">term3</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term2</span><span class="o">*</span><span class="n">term3</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">term1</span><span class="o">*</span><span class="n">term2</span><span class="o">*</span><span class="n">term3</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(x + 3\right) \left(3 x + \frac{5}{z}\right) \left(y - 4 z\right)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 x^{2} y - 12 x^{2} z + 9 x y + \frac{5 x y}{z} - 36 x z - 20 x + \frac{15 y}{z} - 60\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{5 x y + 15 y + z \left(3 x^{2} y - 12 x^{2} z + 9 x y - 36 x z - 20 x - 60\right)}{z}\]</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>2.1 Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a function of two variables</span>
+<span class="n">Fxy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fxy</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">}))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numrange</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;When x=</span><span class="si">%g</span><span class="s1"> and y=</span><span class="si">%g</span><span class="s1">, f(x,y)=</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">Fxy</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">j</span><span class="p">}))</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>When x=0 and y=0, f(x,y)=8
+When x=0 and y=1, f(x,y)=4
+When x=0 and y=2, f(x,y)=0
+When x=1 and y=0, f(x,y)=10
+When x=1 and y=1, f(x,y)=5
+When x=1 and y=2, f(x,y)=0
+When x=2 and y=0, f(x,y)=12
+When x=2 and y=1, f(x,y)=6
+When x=2 and y=2, f(x,y)=0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-and-accessing-matrices-with-numpy">
+<h2>3 Creating and accessing matrices with numpy<a class="headerlink" href="#creating-and-accessing-matrices-with-numpy" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># make it look nicer</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">A</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1 2]
+ [3 4]]
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 2\\3 &amp; 4\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># initializing a matrix with zeros</span>
+
+<span class="n">numrange</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">numrange</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">numrange</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># populating matrices using row-col indexing</span>
+
+<span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># mat[5,8] = 4</span>
+<span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can also use variables for indices</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">mat</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0.0 &amp; 1.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 4.5 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># now use a for-loop</span>
+
+<span class="n">numrange</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+        <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span>
+
+<span class="n">mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 1., -1.,  1.,  0.,  0.],
+       [-1.,  1., -1.,  0.,  0.],
+       [ 1., -1.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>3.1 Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x y&#39;</span><span class="p">)</span>
+<span class="n">Fxy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">numrange</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">funout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">numrange</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">numrange</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">numrange</span><span class="p">:</span>
+        <span class="n">funout</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fxy</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">j</span><span class="p">})</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">funout</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}8.0 &amp; 4.0 &amp; 0.0\\10.0 &amp; 5.0 &amp; 0.0\\12.0 &amp; 6.0 &amp; 0.0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-create-a-multiplication-table">
+<h3>3.2 Exercise: Create a multiplication table<a class="headerlink" href="#exercise-create-a-multiplication-table" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">multmat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="n">multmat</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
+
+        
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">multmat</span><span class="p">))))</span> <span class="c1"># no display without display</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10\\2 &amp; 4 &amp; 6 &amp; 8 &amp; 10 &amp; 12 &amp; 14 &amp; 16 &amp; 18 &amp; 20\\3 &amp; 6 &amp; 9 &amp; 12 &amp; 15 &amp; 18 &amp; 21 &amp; 24 &amp; 27 &amp; 30\\4 &amp; 8 &amp; 12 &amp; 16 &amp; 20 &amp; 24 &amp; 28 &amp; 32 &amp; 36 &amp; 40\\5 &amp; 10 &amp; 15 &amp; 20 &amp; 25 &amp; 30 &amp; 35 &amp; 40 &amp; 45 &amp; 50\\6 &amp; 12 &amp; 18 &amp; 24 &amp; 30 &amp; 36 &amp; 42 &amp; 48 &amp; 54 &amp; 60\\7 &amp; 14 &amp; 21 &amp; 28 &amp; 35 &amp; 42 &amp; 49 &amp; 56 &amp; 63 &amp; 70\\8 &amp; 16 &amp; 24 &amp; 32 &amp; 40 &amp; 48 &amp; 56 &amp; 64 &amp; 72 &amp; 80\\9 &amp; 18 &amp; 27 &amp; 36 &amp; 45 &amp; 54 &amp; 63 &amp; 72 &amp; 81 &amp; 90\\10 &amp; 20 &amp; 30 &amp; 40 &amp; 50 &amp; 60 &amp; 70 &amp; 80 &amp; 90 &amp; 100\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="associative-commutative-and-distributive-properties">
+<h2>4 Associative, commutative, and distributive properties<a class="headerlink" href="#associative-commutative-and-distributive-properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="associative">
+<h3>4.1 Associative<a class="headerlink" href="#associative" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+
+<span class="n">expr1</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="n">expr2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">y</span>
+
+<span class="c1"># show that two equations are equal by subtracting them!</span>
+<span class="n">expr1</span> <span class="o">-</span> <span class="n">expr2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="commutative">
+<h3>4.2 Commutative<a class="headerlink" href="#commutative" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create three expressions</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">y</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+<span class="n">e3</span> <span class="o">=</span> <span class="n">y</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># quick reminder about substitution in sympy</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">e1</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># multiple subsitutions</span>
+<span class="n">e3</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mi">3</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 12 y\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 24\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># now back to the task!</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">e1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">e2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">e3</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>48
+48
+48
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="distributive">
+<h3>4.3 Distributive<a class="headerlink" href="#distributive" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># another way of creating symbolic variables</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(a + b\right) \left(c + d\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle a c + a d + b c + b d\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">d</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle a^{2} - d^{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># embedding expressions</span>
+<span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,x,y,z&#39;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 12 y + 4 z\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>4.4 Exercises<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with these two expressions, show that the commutative rule applies</span>
+
+<span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;w,x,y,z&#39;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">w</span><span class="p">)</span>
+<span class="n">expr1</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="p">)</span>
+<span class="n">expr2</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr1</span><span class="o">*</span><span class="n">expr2</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">expr1</span><span class="o">*</span><span class="n">expr2</span><span class="p">))))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr2</span><span class="o">*</span><span class="n">expr1</span> <span class="o">-</span> <span class="n">expr1</span><span class="o">*</span><span class="n">expr2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(y + z\right) \left(w \left(4 - w\right) + \frac{w + 1}{w^{2}}\right) \left(\left(w \left(4 - w\right) + \frac{w + 1}{w^{2}}\right)^{2} + \frac{3}{w \left(4 - w\right) + \frac{w + 1}{w^{2}}}\right)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\left(3 w^{6} + \left(- w^{3} \left(w - 4\right) + w + 1\right)^{3}\right) \left(y + z\right)}{w^{6}}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-and-working-with-python-lists">
+<h2>5 Creating and working with Python lists<a class="headerlink" href="#creating-and-working-with-python-lists" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a list is a collection of things, and created using brackets []</span>
+<span class="c1"># A simple example is a list of numbers</span>
+
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">lst</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 3, 4, 7]
+&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can access individual list elements</span>
+<span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -1 is for the final element</span>
+<span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;slicing&quot;</span>
+
+<span class="c1"># print the first N list items</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">lst</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the last k items</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[4, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print items n through k</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">lst</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[3, 4, 5, 6, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a list of strings</span>
+<span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="s1">&#39;my&#39;</span><span class="p">,</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;Mike&#39;</span><span class="p">]</span>
+
+<span class="c1"># access each element using a for-loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>hello
+my
+name
+is
+Mike
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># simpler!</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>hello
+my
+name
+is
+Mike
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lists can also hold more than one variable type</span>
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;cookies&#39;</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alist</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+2
+cookies
+[4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># getting items from a list-within-a-list</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">alist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">alist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[4, 5]
+5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the term &#39;list&#39; is reserved:</span>
+<span class="n">alist2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;cookies&#39;</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span> <span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alist2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+2
+cookies
+[4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># importantly, we will use lists for sympy expressions!</span>
+<span class="c1"># list_of_expressions</span>
+<span class="n">expr_list</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="mi">3</span><span class="o">+</span><span class="n">x</span> <span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>5.1 Exercises<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># use sympy to expand and simplify these expressions</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">e1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">e3</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># make a list of the expressions</span>
+<span class="n">exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">e1</span><span class="p">,</span><span class="n">e2</span><span class="p">,</span><span class="n">e3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">Longleftrightarrow </span><span class="se">\\</span><span class="s1">quad </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">exprs</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">exprs</span><span class="p">[</span><span class="n">i</span><span class="p">])))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x \left(4 - 6 x\right) + 3 x \quad \Longleftrightarrow \quad - 6 x^{2} + 7 x\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - x \left(\frac{2}{x} + \frac{4}{x^{2}}\right) + \frac{x + 4}{4 x} \quad \Longleftrightarrow \quad - \frac{7}{4} - \frac{3}{x}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\left(x - 3\right) \left(x + 3\right)}{9} \quad \Longleftrightarrow \quad \frac{x^{2}}{9} - 1\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="more-on-slicing-in-python">
+<h2>6 More on “slicing” in Python<a class="headerlink" href="#more-on-slicing-in-python" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an array (vector) of numbers</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+<span class="c1"># or</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">21</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># indexing a single item</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># indexing multiple items (aka slicing)</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[12, 13]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from one element to the end</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[14, 15, 16, 17, 18, 19, 20]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the first element to a specific element</span>
+<span class="n">vec</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, 11, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the last element</span>
+<span class="n">vec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># penultimate element</span>
+<span class="n">vec</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>19
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the end to the beginning</span>
+<span class="n">vec</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with non-1 stepping</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, 12, 14]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="greatest-common-denominator">
+<h2>7 Greatest common denominator<a class="headerlink" href="#greatest-common-denominator" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># reminder: GCD is the largest integer that can divide both numbers without a remainder</span>
+
+<span class="c1"># we&#39;ll use the math package for this!</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># application: reduce fraction to lowest term</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">88</span>
+
+<span class="n">fact</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">} </span><span class="se">\\</span><span class="s1">quad = </span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">} </span><span class="se">\\</span><span class="s1">times </span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%g</span><span class="s1">}{</span><span class="si">%g</span><span class="s1">}&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">/</span><span class="n">fact</span><span class="p">,</span><span class="n">b</span><span class="o">/</span><span class="n">fact</span><span class="p">,</span><span class="n">fact</span><span class="p">,</span><span class="n">fact</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{16}{88} \quad = \quad \frac{2}{11} \times \frac{8}{8}\]</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>7.1 Exercises<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># show this property using symbols, and give an example with numbers.</span>
+
+<span class="c1"># gcd(m·a, m·b) = m·gcd(a, b)</span>
+
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,b,c&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+
+
+<span class="c1"># now with real numbers</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">display</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle c\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle c\]</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># double loop and store in matrix</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">gcdMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="o">+</span><span class="mi">99</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+        <span class="n">gcdMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">gcdMat</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{array}1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0\\1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0\\1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0\\1.0 &amp; 2.0 &amp; 1.0 &amp; 4.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 4.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 4.0 &amp; 1.0 &amp; 2.0 &amp; 1.0\\1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 5.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 5.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 5.0\\1.0 &amp; 2.0 &amp; 3.0 &amp; 2.0 &amp; 1.0 &amp; 6.0 &amp; 1.0 &amp; 2.0 &amp; 3.0 &amp; 2.0 &amp; 1.0 &amp; 6.0 &amp; 1.0 &amp; 2.0 &amp; 3.0\\1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 7.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 7.0 &amp; 1.0\\1.0 &amp; 2.0 &amp; 1.0 &amp; 4.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 8.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 4.0 &amp; 1.0 &amp; 2.0 &amp; 1.0\\1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 9.0 &amp; 1.0 &amp; 1.0 &amp; 3.0 &amp; 1.0 &amp; 1.0 &amp; 3.0\\1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 5.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 10.0 &amp; 1.0 &amp; 2.0 &amp; 1.0 &amp; 2.0 &amp; 5.0\end{array}\right]\end{split}\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-to-dictionaries">
+<h2>8 Introduction to dictionaries<a class="headerlink" href="#introduction-to-dictionaries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a dictionary</span>
+<span class="n">D</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">fruit</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span><span class="s1">&#39;apple&#39;</span><span class="p">],</span><span class="n">numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;fruit&#39;: [&#39;banana&#39;, &#39;apple&#39;], &#39;numbers&#39;: [1, 3, 4, 2, 5]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># list the &quot;keys&quot;</span>
+<span class="n">D</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;fruit&#39;, &#39;numbers&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the information from the numbers</span>
+<span class="n">D</span><span class="p">[</span><span class="s1">&#39;numbers&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 3, 4, 2, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># or this way</span>
+<span class="n">D</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fruit&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;banana&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print out all information in a loop!</span>
+<span class="k">for</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">D</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># .keys() is implied!</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">items</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;banana&#39;, &#39;apple&#39;]
+[1, 3, 4, 2, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a dictionary of equations</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">eqsWithX</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">],</span><span class="n">eqsWithY</span><span class="o">=</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">D</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="n">Dkeys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+<span class="c1"># access individual keys</span>
+<span class="n">D</span><span class="p">[</span><span class="n">Dkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[x/3 - 6, 2*x + 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>8.1 Exercise<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s make a new dictionary</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="c1"># count number of x&#39;s and y&#39;s in the equation</span>
+<span class="n">D</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">eqsWithX</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">9</span><span class="p">],</span><span class="n">eqsWithY</span><span class="o">=</span><span class="p">[</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)])</span>
+
+<span class="c1"># solve them in a loop</span>
+<span class="k">for</span> <span class="n">keyi</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Equations solving for &#39;</span> <span class="o">+</span> <span class="n">keyi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">D</span><span class="p">[</span><span class="n">keyi</span><span class="p">]:</span>
+        
+        <span class="n">fullEQ</span>     <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; = 0&#39;</span>
+        <span class="n">middlepart</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">quad </span><span class="se">\\</span><span class="s1">Rightarrow</span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">quad &#39;</span> <span class="o">+</span> <span class="n">keyi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span>
+        <span class="n">soln</span>       <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">quad &#39;</span> <span class="o">+</span> <span class="n">fullEQ</span> <span class="o">+</span> <span class="n">middlepart</span> <span class="o">+</span> <span class="n">soln</span> <span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Equations solving for X:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad\quad 4 x - 6 = 0\quad\quad \Rightarrow\quad\quad X = \left[ \frac{3}{2}\right]\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad\quad x^{2} - 9 = 0\quad\quad \Rightarrow\quad\quad X = \left[ -3, \  3\right]\]</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Equations solving for Y:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \quad\quad \sin{\left(y \right)} = 0\quad\quad \Rightarrow\quad\quad Y = \left[ 0, \  \pi\right]\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prime-factorization">
+<h2>9 Prime factorization<a class="headerlink" href="#prime-factorization" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># factor an integer into the product of prime numbers</span>
+<span class="n">number</span> <span class="o">=</span> <span class="mi">48</span>
+
+<span class="c1"># Use the sympy function factorint. The output is a dictionary!</span>
+<span class="n">fact_dict</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">factorint</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fact_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{2: 4, 3: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># just print the prime numbers</span>
+<span class="n">primenumbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span> <span class="n">fact_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The prime factors of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; are &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">primenumbers</span><span class="p">))</span>
+
+<span class="n">fact_dict</span><span class="p">[</span><span class="n">primenumbers</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The prime factors of 48 are [2, 3]
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test on prime number</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">factorint</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{2: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>9.1 Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop through numbers and report whether each number is composite or prime</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">51</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="n">di</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">factorint</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">di</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">di</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">di</span><span class="p">[</span><span class="n">ks</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is a prime number&#39;</span> <span class="o">%</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is a composite number with prime factors </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">di</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2 is a prime number
+3 is a prime number
+4 is a composite number with prime factors [2]
+5 is a prime number
+6 is a composite number with prime factors [2, 3]
+7 is a prime number
+8 is a composite number with prime factors [2]
+9 is a composite number with prime factors [3]
+10 is a composite number with prime factors [2, 5]
+11 is a prime number
+12 is a composite number with prime factors [2, 3]
+13 is a prime number
+14 is a composite number with prime factors [2, 7]
+15 is a composite number with prime factors [3, 5]
+16 is a composite number with prime factors [2]
+17 is a prime number
+18 is a composite number with prime factors [2, 3]
+19 is a prime number
+20 is a composite number with prime factors [2, 5]
+21 is a composite number with prime factors [3, 7]
+22 is a composite number with prime factors [2, 11]
+23 is a prime number
+24 is a composite number with prime factors [2, 3]
+25 is a composite number with prime factors [5]
+26 is a composite number with prime factors [2, 13]
+27 is a composite number with prime factors [3]
+28 is a composite number with prime factors [2, 7]
+29 is a prime number
+30 is a composite number with prime factors [2, 3, 5]
+31 is a prime number
+32 is a composite number with prime factors [2]
+33 is a composite number with prime factors [3, 11]
+34 is a composite number with prime factors [2, 17]
+35 is a composite number with prime factors [5, 7]
+36 is a composite number with prime factors [2, 3]
+37 is a prime number
+38 is a composite number with prime factors [2, 19]
+39 is a composite number with prime factors [3, 13]
+40 is a composite number with prime factors [2, 5]
+41 is a prime number
+42 is a composite number with prime factors [2, 3, 7]
+43 is a prime number
+44 is a composite number with prime factors [2, 11]
+45 is a composite number with prime factors [3, 5]
+46 is a composite number with prime factors [2, 23]
+47 is a prime number
+48 is a composite number with prime factors [2, 3]
+49 is a composite number with prime factors [7]
+50 is a composite number with prime factors [2, 5]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="solving-inequalities">
+<h2>10 Solving inequalities<a class="headerlink" href="#solving-inequalities" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">8</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 &lt; x \wedge x &lt; \infty\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 &lt; x \wedge x &lt; \infty\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">oo</span> <span class="o">&gt;</span> <span class="mi">10000093847529345</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \text{True}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(-\infty &lt; x \wedge x &lt; -3\right) \vee \left(1 &lt; x \wedge x &lt; \infty\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sym.solve will return the expression if not enough information</span>
+
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,b,c&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">c</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span><span class="c1">#,x</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle a x &gt; \frac{b^{2}}{c}\]</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Exception: NotImplementedError 
+inequality has more than one symbol of interest.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a slightly richer problem</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">&gt;</span><span class="mi">8</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(-\infty &lt; x \wedge x &lt; -2\right) \vee \left(2 &lt; x \wedge x &lt; \infty\right)\]</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>10.1 Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="mi">4</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)))</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4}{3} - \frac{x}{6} \leq \frac{5 x}{4} - \frac{1}{2}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{22}{17} \leq x \wedge x &lt; \infty\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-polynomials">
+<h2>11 Adding polynomials<a class="headerlink" href="#adding-polynomials" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="c1"># straight-forward version</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">p1</span><span class="o">+</span><span class="n">p2</span> <span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">) + (</span><span class="si">%s</span><span class="s1">) \quad=\quad (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p2</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="p">)</span> <span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-x**4 + 3*x**3 - 3*x**2 - x
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle (2 x^{3} + x^{2} - x) + (- x^{4} + x^{3} - 4 x^{2}) \quad=\quad (- x^{4} + 3 x^{3} - 3 x^{2} - x)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using the Poly class</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">6</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">p1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \operatorname{Poly}{\left( 2 x^{6} + x^{2} - x, x, domain=\mathbb{Z} \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># can implement several methods on the polynomial object</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">p1</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">p1</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2000090
+6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a second polynomial</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="o">.</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">p1</span><span class="o">-</span><span class="n">p2</span> <span class="p">)</span>
+
+<span class="c1"># can also call the add method on the polynomial objects</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Poly(2.0*x**6 + 1.0*x**4 - 1.0*x**3 + 1.4*x**2 - 1.0*x, x, domain=&#39;RR&#39;)
+Poly(2.0*x**6 + 1.0*x**4 - 1.0*x**3 + 1.4*x**2 - 1.0*x, x, domain=&#39;RR&#39;)
+Poly(2*x**6 + x**2 - x, x, domain=&#39;ZZ&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>11.1 Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a list of polynomials</span>
+<span class="c1"># loop through. if order is even, sum the coeffs. if order is odd, count the number of coeffs</span>
+
+<span class="n">polys</span> <span class="o">=</span> <span class="p">[</span> <span class="n">sym</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">sym</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">sym</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">5</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">poli</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">poli</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The degree of </span><span class="si">%s</span><span class="s1"> is even, and the coefficients sum to </span><span class="si">%s</span><span class="s1">.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">poli</span><span class="o">.</span><span class="n">as_expr</span><span class="p">(),</span><span class="nb">sum</span><span class="p">(</span><span class="n">poli</span><span class="o">.</span><span class="n">coeffs</span><span class="p">())))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The degree of </span><span class="si">%s</span><span class="s1"> is odd, and there are </span><span class="si">%s</span><span class="s1"> coefficients.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">poli</span><span class="o">.</span><span class="n">as_expr</span><span class="p">(),</span><span class="nb">len</span><span class="p">(</span><span class="n">poli</span><span class="o">.</span><span class="n">coeffs</span><span class="p">())))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The degree of x**2 + 2*x is even, and the coefficients sum to 3.
+The degree of -x**3 + 4*x is odd, and there are 2 coefficients.
+The degree of 1.0*x**5 - 1.0*x**4 + 0.25*x + 4.0 is odd, and there are 4 coefficients.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiplying-polynomials">
+<h2>12 Multiplying polynomials<a class="headerlink" href="#multiplying-polynomials" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{5}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a litte more complicated</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">p1</span><span class="o">*</span><span class="n">p2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(4 x^{2} - 2 x\right) \left(x^{3} + 1\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the way your math teacher would want it written out</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span> <span class="n">p1</span><span class="o">*</span><span class="n">p2</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4*x**5 - 2*x**4 + 4*x**2 - 2*x
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(4 x^{2} - 2 x\right) \left(x^{3} + 1\right)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 4 x^{5} - 2 x^{4} + 4 x^{2} - 2 x\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check our work from the slides!</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">poly1</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">poly2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+
+<span class="n">poly1</span><span class="o">*</span><span class="n">poly2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(- 3 x y + x\right) \left(x^{5} + 2 x y + y^{2}\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span> <span class="n">poly1</span><span class="o">*</span><span class="n">poly2</span> <span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - 3 x^{6} y + x^{6} - 6 x^{2} y^{2} + 2 x^{2} y - 3 x y^{3} + x y^{2}\]</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>12.1 Exercise<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with x&#39;s and y&#39;s, substitute before vs after multiplication</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">fxy</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">9</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">gxy</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)\quad</span><span class="se">\\</span><span class="s1">times\quad(</span><span class="si">%s</span><span class="s1">) \quad=\quad </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">fxy</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">gxy</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">fxy</span><span class="o">*</span><span class="n">gxy</span><span class="p">))</span> <span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle (4 x^{4} - 3 x^{2} + x y^{2} - 9 y^{3})\quad\times\quad(- x^{3} + 6 x^{2} y + 0.8 y^{3}) \quad=\quad - 4 x^{7} + 24 x^{6} y + 3 x^{5} + 3.2 x^{4} y^{3} - x^{4} y^{2} - 18 x^{4} y + 15 x^{3} y^{3} - 54 x^{2} y^{4} - 2.4 x^{2} y^{3} + 0.8 x y^{5} - 7.2 y^{6}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xval</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">yval</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+
+<span class="c1"># first substitute and then multiply</span>
+<span class="n">fxy_subs</span> <span class="o">=</span> <span class="n">fxy</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="n">xval</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">yval</span><span class="p">})</span>
+<span class="n">gxy_subs</span> <span class="o">=</span> <span class="n">gxy</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="n">xval</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">yval</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Separate substitution: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">fxy_subs</span><span class="o">*</span><span class="n">gxy_subs</span><span class="p">))</span>
+
+<span class="c1"># multiply then substitute</span>
+<span class="n">fg</span> <span class="o">=</span> <span class="p">(</span><span class="n">fxy</span><span class="o">*</span><span class="n">gxy</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="n">xval</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">yval</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Multiplied substitution: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">fg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Separate substitution: -1085833.80000000
+Multiplied substitution: -1085833.80000000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dividing-by-polynomials">
+<h2>13 Dividing by polynomials<a class="headerlink" href="#dividing-by-polynomials" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">5</span> <span class="o">-</span> <span class="n">x</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="n">x</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p2</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="o">/</span><span class="n">p2</span><span class="p">))</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p2</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">p1</span><span class="o">/</span><span class="n">p2</span><span class="p">)))</span> <span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">p2</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">p1</span><span class="o">/</span><span class="n">p2</span><span class="p">)))</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4 x^{5} - x}{2 x^{3} - x} = \frac{4 x^{5} - x}{2 x^{3} - x}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4 x^{5} - x}{2 x^{3} - x} = \frac{4 x^{5}}{2 x^{3} - x} - \frac{x}{2 x^{3} - x}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{4 x^{5} - x}{2 x^{3} - x} = 2 x^{2} + 1\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with two variables</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">pNum</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span>
+<span class="n">pDen</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">pNum</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">pDen</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">pNum</span><span class="o">/</span><span class="n">pDen</span><span class="p">)))</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{3} - 4 x^{2} y + x y + y^{2} + 4 y}{x + y} = \frac{x^{3} - 4 x^{2} y + x y + y^{2} + 4 y}{x + y}\]</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>13.1 Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># first, a primer on sym.fraction</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># num = sym.sympify(3/4)</span>
+
+<span class="n">finfo</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">fraction</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">finfo</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">finfo</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># can also isolate the numerator separately</span>
+<span class="n">num</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">fraction</span><span class="p">(</span><span class="n">num</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
+3
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># use a loop to find the integer value of y that makes this equation simplify</span>
+<span class="n">pNum</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span>  <span class="o">-</span> <span class="n">y</span>
+<span class="n">pDen</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+    
+    <span class="n">pnum</span> <span class="o">=</span> <span class="n">pNum</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">y</span><span class="p">:</span><span class="n">i</span><span class="p">})</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">frac{</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">} = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">pnum</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">pDen</span><span class="p">),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">pnum</span><span class="o">/</span><span class="n">pDen</span><span class="p">)))</span> <span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">sym</span><span class="o">.</span><span class="n">fraction</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">pnum</span><span class="o">/</span><span class="n">pDen</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">rightnumber</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;When y=</span><span class="si">%g</span><span class="s1">, there is no denominator!&#39;</span> <span class="o">%</span><span class="n">rightnumber</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 5}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 5}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 6}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 6}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 7}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 7}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 8}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 8}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 9}{x^{3} + 3} = x^{3} + 2 x - 3\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 10}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 10}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 11}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 11}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 12}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 12}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 13}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 13}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 14}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 14}{x^{3} + 3}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{x^{6} + 2 x^{4} + 6 x - 15}{x^{3} + 3} = \frac{x^{6} + 2 x^{4} + 6 x - 15}{x^{3} + 3}\]</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>When y=9, there is no denominator!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="factoring-polynomials">
+<h2>14 Factoring polynomials<a class="headerlink" href="#factoring-polynomials" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">po</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">po</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(x + 1\right) \left(x + 3\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># with output</span>
+
+<span class="n">fac</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">po</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fac</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(x + 1)*(x + 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># not every polynomial can be factored!</span>
+<span class="n">po</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">po</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{2} + 4 x - 3\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">18</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 \left(y - 3\right) \left(y - 1\right) \left(y + 3\right)\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># multiple variables</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 x \left(x y + 3\right) \left(x - y + 1\right)\]</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>14.1 Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test whether factorable, print if so.</span>
+
+<span class="n">exprs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span> <span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="o">*</span><span class="n">y</span> <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">expri</span> <span class="ow">in</span> <span class="n">exprs</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">expri</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">tmp</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">Rightarrow</span><span class="se">\\</span><span class="s1">quad </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expri</span><span class="p">)),</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">expri</span><span class="p">)))))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">Rightarrow</span><span class="se">\\</span><span class="s1">quad</span><span class="se">\\</span><span class="s1">text{ not factorable!}&#39;</span> <span class="o">%</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">expri</span><span class="p">))))</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{2} + 4 x + 3 \quad\Rightarrow\quad \left(x + 1\right) \left(x + 3\right)\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 y^{2} - 1 \quad\Rightarrow\quad\text{ not factorable!}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 y^{2} + 12 y \quad\Rightarrow\quad 3 y \left(y + 4\right)\]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="algebra-1-bug-hunt">
+<h2>15 Algebra 1 BUG HUNT!<a class="headerlink" href="#algebra-1-bug-hunt" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sympy.abc import x2</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a,b,c,d&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">8</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+<span class="c1"># make it look nice</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="n">A</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 2\\3 &amp; 4\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fact_dict</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">factorint</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span>
+<span class="n">allkeys</span> <span class="o">=</span> <span class="n">fact_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fact_dict</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> was present </span><span class="si">%g</span><span class="s1"> times.&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fact_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2 was present 2 times.
+11 was present 1 times.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span><span class="mi">5</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 20 - 5 y^{2}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># goal is to show a fraction</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sympify</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">/</span><span class="mi">9</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{5}{9}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the last 3 items from a list</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[5, 3, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span>
+
+<span class="c1"># solve for y</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[-x/2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+
+<span class="c1"># set the element in the second row, second column to 9</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1 2]
+ [3 9]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="03_Sympy_and_Latex.jupyter.html" title="previous page">Introduction to Sympy and LaTeX</a>
+    <a class='right-next' id="next-link" href="05_Graphing_and_Visualization.jupyter.html" title="next page">Graphing</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
