@@ -11,6 +11,8 @@
   sections:
     - file: Math/中心极限定理.jupyter.md
     - file: Math/Poisson-Distribution.jupyter.md
+    - file: Math/XGBoost.jupyter.md
+    - file: Math/Genetic_Algorithm.jupyter.md
 
 - header: Course
 - file: Course/MathPython/Readme.md
