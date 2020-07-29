@@ -134,6 +134,7 @@ i.quantity = 2
 
 ![](http://static.zybuluo.com/AustinMxnet/kfygyfe94kwj9yr8s057eqhb/image.png)
 
+### e.g. XML解析
 为了说明状态模式，让我们写一个XML解析工具。
 
 ```python
