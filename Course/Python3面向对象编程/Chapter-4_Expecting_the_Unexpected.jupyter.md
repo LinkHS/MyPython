@@ -1,4 +1,4 @@
-# 第四章 异常捕获
+# 第4章 异常捕获
 ## e.g.  中央认证和授权系统
 “认证”是确保当前用户是其本人，使用“用户名”和“密码”组合进行验证。“授权”则是决定一个用户是否有权执行某项操作，可以用一个许可列表系统，存储各项操作允许的特定用户列表。
 
@@ -75,7 +75,13 @@ def expect_exception(cmd):
         print("Exception: {}".format(type(E).__name__))
         print("Exception message: {}".format(E))
 
-expect_exception('raise UsernameAlreadyExists("Rachel")')
+
+def show_exception():
+    # `eval()`不支持传入`raise`开头的命令，用本函数包装一下
+    raise UsernameAlreadyExists("Rachel")
+
+expect_exception('show_exception()')
+del show_exception # 删除临时测试函数
 ```
 
 添加一个`Authenticator`类，用于管理用户，例如添加用户、用户登入和登出：

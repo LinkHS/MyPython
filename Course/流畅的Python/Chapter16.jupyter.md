@@ -1,3 +1,5 @@
+# 第16章 协程
+
 ```python
 # BEGIN YIELD_FROM_AVERAGER
 from collections import namedtuple
@@ -57,12 +59,4 @@ for key, values in data.items():
     group.send(None)  # important! <12>
 # print(results)  # uncomment to debug
 report(results)
-```
-
-```python
-
-```
-
-```python
-
 ```

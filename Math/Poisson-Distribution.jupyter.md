@@ -173,6 +173,6 @@ $$\lim _{k \rightarrow \infty} \frac{\lambda^{k}}{k !} e^{-\lambda}=\frac{1}{\sq
 ---
 根据这篇数学[文章](http://www.math.wm.edu/~leemis/2008amstat.pdf)上的图（截取如下），当$\mu$也就是$\lambda\rightarrow \infty$和$\sigma^{2}=\lambda$时，变成了$N(\mu, \sigma)$：
 
-![](assets/math1.jpg)
+![](http://static.zybuluo.com/AustinMxnet/usrz61i4botfy2nlb75ntln5/image.png)
 
 这与我们的实验也是相符的。

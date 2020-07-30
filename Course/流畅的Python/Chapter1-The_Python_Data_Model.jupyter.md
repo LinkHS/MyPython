@@ -1,4 +1,4 @@
-# Python数据模型
+# 第1章 Python数据模型
 ## 一摞Python风格的纸牌
 
 ```python
@@ -80,8 +80,8 @@ for card in sorted(deck, key=spades_high):
     i += 1
 ```
 
-# 如何使用特殊方法
-## 模拟数值类型
+## 如何使用特殊方法
+### 模拟数值类型
 
 ![image](http://static.zybuluo.com/AustinMxnet/iyahey7fown74bnzvbom0o6r/image.png)
 
@@ -130,7 +130,7 @@ v = Vector(3, 4)
 abs(v)
 ```
 
-## 字符串表现形式
+### 字符串表现形式
 
 
 在`__repr__`的实现中，**我们用到了`%r`来获取对象各个属性的标准字符串表示形式**---这是个好习惯，它暗示了一个关键：`Vector(1, 2)`和`Vector('1', '2')`是不一样的，后者在我们的定义中会报错，因为向量对象的构造函数只接受数值，不接受字符串。

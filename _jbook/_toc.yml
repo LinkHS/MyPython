@@ -15,6 +15,13 @@
     - file: Math/Genetic_Algorithm.jupyter.md
 
 - header: Course
+- file: Course/流畅的Python/Readme.md
+  sections:
+    - file: Course/流畅的Python/Chapter1-The_Python_Data_Model.jupyter.md
+    - file: Course/流畅的Python/Chapter5-First-Class_Functions.jupyter.md
+    - file: Course/流畅的Python/Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.md
+    - file: Course/流畅的Python/Chapter16.jupyter.md
+
 - file: Course/Learning_Python_Design_Patterns/Readme.md
   sections:
     - file: Course/Learning_Python_Design_Patterns/Chapter3-The_Factory_Pattern.jupyter.md
@@ -25,6 +32,18 @@
     - file: Course/Learning_Python_Design_Patterns/Chapter8_The_Template_Method_Pattern.jupyter.md
     - file: Course/Learning_Python_Design_Patterns/Chapter9_Model_View_Controller.jupyter.md
     - file: Course/Learning_Python_Design_Patterns/Chapter10_The_State_Design_Pattern.jupyter.md
+
+- file: Course/Python3面向对象编程/Readme.md
+  sections:
+    - file: Course/Python3面向对象编程/Chapter-2_Objects_in_Python.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-3_When_Objects_Are_Alike.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-4_Expecting_the_Unexpected.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-6_Python_Data_Structures.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-7_Python_Object-oriented_Shortcuts.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-9_The_Iterator_Pattern.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-10_Python_Design_Patterns_I.jupyter.md
+    - file: Course/Python3面向对象编程/Chapter-11_Python_Design_Patterns_II.jupyter.md
 
 - file: Course/MathPython/Readme.md
   sections:
