@@ -15,6 +15,17 @@
     - file: Math/Genetic_Algorithm.jupyter.md
 
 - header: Course
+- file: Course/Learning_Python_Design_Patterns/Readme.md
+  sections:
+    - file: Course/Learning_Python_Design_Patterns/Chapter3-The_Factory_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter4-The_Facade_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter5_The_Proxy_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter6_The_Observer_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter7_The_Command_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter8_The_Template_Method_Pattern.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter9_Model_View_Controller.jupyter.md
+    - file: Course/Learning_Python_Design_Patterns/Chapter10_The_State_Design_Pattern.jupyter.md
+
 - file: Course/MathPython/Readme.md
   sections:
     - file: Course/MathPython/01_Introduction.jupyter.md
