@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第5章 何时使用面向对象编程 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第6章 Python数据结构" href="Chapter-6_Python_Data_Structures.jupyter.html" />
+    <link rel="prev" title="第4章 异常捕获" href="Chapter-4_Expecting_the_Unexpected.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="active">
+      <a href="">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">1 通过属性向类数据添加行为</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">2 e.g. 文本编辑器</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第5章 何时使用面向对象编程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>找出对象是面向对象分析与编程中非常重要的任务。<strong>对象既有数据又有行为</strong>：如果只需要处理数据，那么通常更好的方法是存储在列表、集合、字典或其他的Python数据结构中；另一方面，如果只需要用到行为，不需要存储数据，那么简单的函数就足够了。</p>
+<div class="section" id="id2">
+<h2>1 通过属性向类数据添加行为<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>自定义取值方法对于需要根据其他属性计算的属性也很有用。例如，我们可能想要计算一个整数列表的平均值：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AverageList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">AverageList</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">a</span><span class="o">.</span><span class="n">average</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>这个简单的类继承自<code class="docutils literal notranslate"><span class="pre">list</span></code>，因此可以<strong>任意使用与列表相似的行为</strong>。我们只是给类添加了一个<code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>，于是奇迹般地拥有了平均值属性。当然，这里也可以将其定义为一个方法，命名为<code class="docutils literal notranslate"><span class="pre">calculate_average()</span></code>，因为方法代表的是动作。但是用一个被称为<code class="docutils literal notranslate"><span class="pre">average</span></code>的<code class="docutils literal notranslate"><span class="pre">property</span></code>更合适，易写又易读。</p>
+</div>
+<div class="section" id="e-g">
+<h2>2 e.g. 文本编辑器<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>我们将模拟一个Document，用于文本编辑器或文字处理工具。</p>
+<p>Python中的字符串是不可变的，在没有创建新字符串对象的情况下，无法插入或移除字符。如果用<code class="docutils literal notranslate"><span class="pre">str</span></code>类管理内容，会导致越来越多的<code class="docutils literal notranslate"><span class="pre">str</span></code>对象占据内存，直到Python的垃圾回收器在后台将它们清理掉。因此，我们将用字符列表代替字符串。</p>
+<blockquote>
+<div><p>真正的文本编辑器通常使用基于二叉树的数据结构，被称为rope，来模拟文档内容。</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">Document</span></code>类应该拥有哪些方法呢？对于一个文本文档，需要支持插入、删除和选中字符、剪切、复制、粘贴，以及保存或关闭文档等。看起来有大量的数据和行为需要考虑，所以把它们全都收归<code class="docutils literal notranslate"><span class="pre">Document</span></code>类是合理的。</p>
+<p>一个相关问题是，这个类应该由一堆Python基本对象组成吗？例如<code class="docutils literal notranslate"><span class="pre">str</span></code>类型的文件名、<code class="docutils literal notranslate"><span class="pre">int</span></code>类型的光标位置和<code class="docutils literal notranslate"><span class="pre">list</span></code>存储的字符。这些要用单独定义的对象吗？是否也需要由类来表示？</p>
+<p>我们先从最简单的<code class="docutils literal notranslate"><span class="pre">Document</span></code>类开始：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">,</span> <span class="n">character</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">back</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>这个版本里，我们将<code class="docutils literal notranslate"><span class="pre">cursor</span></code>作为属性放在<code class="docutils literal notranslate"><span class="pre">Document</span></code>中，可以将方向键关联到对应的方法上（例如<code class="docutils literal notranslate"><span class="pre">back</span></code>、<code class="docutils literal notranslate"><span class="pre">forward</span></code>），现在来测试一下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create &#39;abc&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">back</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete &#39;c&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Create &#39;abc&#39;: abc
+Delete &#39;c&#39;: ab
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+如果我们想要关联的不止方向键，还想要关联Home和End键呢？当然可以添加更多的方法到<code class="docutils literal notranslate"><span class="pre">Document</span></code>类中。<strong>但是如果为所有可能的移动操作（按单词移动，按句子移动，PageUp，PageDown，跳到文件结尾，跳到空格前，等等）关联一个方法，这个类将会变得很庞大，可能最好将这些方法放到一个单独的对象中</strong>。</p>
+<p>因此，让我们把光标属性变成一个对象，可以知道并且能够控制自己所在的位置：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cursor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">document</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">back</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Got to beginning of file before newline</span>
+                <span class="k">break</span>
+
+    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>注意到<code class="docutils literal notranslate"><span class="pre">Cursor</span></code>类以<code class="docutils literal notranslate"><span class="pre">Document</span></code>实例作为一个自身属性，从而可以获取文档字符列表的内容（以及未来扩展）。虽然后面我们也会让<code class="docutils literal notranslate"><span class="pre">Cursor</span></code>的实例作为<code class="docutils literal notranslate"><span class="pre">Document</span></code>的一个属性（两者交叉了），但是这并不违反规则。</p>
+<p>根据<code class="docutils literal notranslate"><span class="pre">Cursor</span></code>类改动<code class="docutils literal notranslate"><span class="pre">Document</span></code>中<code class="docutils literal notranslate"><span class="pre">cursor</span></code>相关内容（例如去除了<code class="docutils literal notranslate"><span class="pre">forward()</span></code>和<code class="docutils literal notranslate"><span class="pre">back()</span></code>）：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">insert()</span></code>中的改变见后面的<code class="docutils literal notranslate"><span class="pre">Character</span></code>类</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">Cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">position</span><span class="p">,</span>
+                               <span class="n">character</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">position</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在如果我们要操作光标，就要用<code class="docutils literal notranslate"><span class="pre">doc.cursor.xxx()</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create &#39;abc&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insert &#39;0&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Create &#39;abc&#39;: abc
+Insert &#39;0&#39;: 0abc
+</pre></div>
+</div>
+</div>
+</div>
+<p>目前这个纯文本文档框架很容易扩展。现在需要扩展到富文本：文本可以添加加粗、下画线或斜体格式。有两种方式可以做到：</p>
+<ol class="simple">
+<li><p>插入“假的”字符当作指示符（如html语言）</p></li>
+<li><p>为每个字符添加对应的说明信息</p></li>
+</ol>
+<p>如果我们选择第二种方式，很显然需要一个带有字符信息属性的<code class="docutils literal notranslate"><span class="pre">Character</span></code>类。每个字符有3个布尔值属性表示是否需要加粗、斜体或下画线。</p>
+<p><em><strong>重点！！！</strong></em><br />
+这个<code class="docutils literal notranslate"><span class="pre">Character</span></code>类需要任何方法吗？如果不需要，也许应该用Python众多的数据结构之一来实现，例如元组或命名元组可能就足够了。可能会想到对字符执行删除或复制的操作，但是这些都在<code class="docutils literal notranslate"><span class="pre">Document</span></code>中处理了，而且严格意义上应该属于修改字符列表。<strong>有需要针对单个字符的操作吗？</strong> 似乎找到一个，就是打印出或者在屏幕上画出这些富文本。也许你会说这个方法可以放在<code class="docutils literal notranslate"><span class="pre">Document</span></code>中，<strong>但是未来想改变展示的媒介（换个初始化对象就行），或者增加其他格式，就需要频繁改动<code class="docutils literal notranslate"><span class="pre">Document</span></code>类</strong>。</p>
+<p>现在我们只要重写<code class="docutils literal notranslate"><span class="pre">Character</span></code>的<code class="docutils literal notranslate"><span class="pre">__str__</span></code>，就可以让它打印出任何我们想要的东西：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">character</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">character</span> <span class="o">=</span> <span class="n">character</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bold</span> <span class="o">=</span> <span class="n">bold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">italic</span> <span class="o">=</span> <span class="n">italic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="n">underline</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">bold</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bold</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">italic</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">italic</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">underline</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underline</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">bold</span> <span class="o">+</span> <span class="n">italic</span> <span class="o">+</span> <span class="n">underline</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">character</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Character</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Character</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Character</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>*c
+/c
+/_c
+</pre></div>
+</div>
+</div>
+</div>
+<p>有了<code class="docutils literal notranslate"><span class="pre">Character</span></code>，需要对<code class="docutils literal notranslate"><span class="pre">Document</span></code>和<code class="docutils literal notranslate"><span class="pre">Cursor</span></code>几处进行简单的修改，例如<code class="docutils literal notranslate"><span class="pre">insert()</span></code>中添加对普通字符的装饰，也就是实例化<code class="docutils literal notranslate"><span class="pre">Character</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">Cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">character</span><span class="p">,</span> <span class="s1">&#39;character&#39;</span><span class="p">):</span>
+            <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">character</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">position</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+<code class="docutils literal notranslate"><span class="pre">insert()</span></code>对输入做了检查是否有<code class="docutils literal notranslate"><span class="pre">character</span></code>属性，如果不是则用<code class="docutils literal notranslate"><span class="pre">Character</span></code>实例化。然而用户完全有可能希望既不用<code class="docutils literal notranslate"><span class="pre">Character</span></code>也不用普通字符串，而是使用鸭子类型。这帮助我们的程序利用鸭子类型和多态的优点，只要一个对象拥有<code class="docutils literal notranslate"><span class="pre">character</span></code>属性，就可以被用于<code class="docutils literal notranslate"><span class="pre">Document</span></code>类。</p>
+<p>这个一般检查非常有用，例如，做一个带有语法高亮的程序员编辑器，需要字符拥有额外的数据，如这个字符属于什么类型的语法标记。注意，如果会用到大量这样的检验，可能最好将其实现为一个带有合适的<code class="docutils literal notranslate"><span class="pre">__subclasshook__</span></code>的抽象基类<code class="docutils literal notranslate"><span class="pre">Character</span></code>。</p>
+<p>最后，在<code class="docutils literal notranslate"><span class="pre">Cursor</span></code>中的<code class="docutils literal notranslate"><span class="pre">home()</span></code>和<code class="docutils literal notranslate"><span class="pre">end()</span></code>函数中检查换行符时，需要替换成<code class="docutils literal notranslate"><span class="pre">Character.character</span></code>，而不止是之前存储的字符串字符：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cursor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">document</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">back</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">character</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Got to beginning of file before newline</span>
+                <span class="k">break</span>
+
+    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">characters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">character</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Character</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Character</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create &#39;abc&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insert &#39;0&#39;:&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Create &#39;abc&#39;: a*b/c
+Insert &#39;0&#39;: 0a*b/c
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-4_Expecting_the_Unexpected.jupyter.html" title="previous page">第4章 异常捕获</a>
+    <a class='right-next' id="next-link" href="Chapter-6_Python_Data_Structures.jupyter.html" title="next page">第6章 Python数据结构</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

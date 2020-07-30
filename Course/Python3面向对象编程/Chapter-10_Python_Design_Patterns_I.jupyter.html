@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第10章 Python设计模式I &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第11章 Python设计模式II" href="Chapter-11_Python_Design_Patterns_II.jupyter.html" />
+    <link rel="prev" title="第9章 迭代器模式" href="Chapter-9_The_Iterator_Pattern.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="active">
+      <a href="">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-10_Python_Design_Patterns_I.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 装饰器模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">2 观察者模式</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g" class="nav-link">2.1 e.g. 仓库更新通知</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">3 策略模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">4 状态模式</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g-xml" class="nav-link">4.1 e.g. XML解析</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id5" class="nav-link">5 单例模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id6" class="nav-link">6 模板模式</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id7" class="nav-link">6.1 e.g. 汽车销售报告</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pythoni">
+<h1>第10章 Python设计模式I<a class="headerlink" href="#pythoni" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1 装饰器模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>下面的示例中，装饰器<code class="docutils literal notranslate"><span class="pre">log_calls</span></code>接受一个函数对象作为参数并返回一个新的函数对象：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">log_calls</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calling </span><span class="si">{0}</span><span class="s2"> with </span><span class="si">{1}</span><span class="s2"> and </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executed </span><span class="si">{0}</span><span class="s2"> in </span><span class="si">{1}</span><span class="s2">ms&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">return_value</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+
+<span class="k">def</span> <span class="nf">test1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">test1 called&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">test2 called&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">test3 called&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">test1</span> <span class="o">=</span> <span class="n">log_calls</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span>
+<span class="n">test2</span> <span class="o">=</span> <span class="n">log_calls</span><span class="p">(</span><span class="n">test2</span><span class="p">)</span>
+<span class="n">test3</span> <span class="o">=</span> <span class="n">log_calls</span><span class="p">(</span><span class="n">test3</span><span class="p">)</span>
+
+<span class="n">test1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">test2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">test3</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Calling test1 with (1, 2, 3) and {}
+	test1 called
+Executed test1 in 0.00020241737365722656ms
+Calling test2 with (4,) and {&#39;b&#39;: 5}
+	test2 called
+Executed test2 in 3.4332275390625e-05ms
+Calling test3 with (6, 7) and {}
+	test3 called
+Executed test3 in 1.0003857612609863ms
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2 观察者模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式在状态监控和事件处理的情况中很有用。用这一模式可以让指定的对象<strong>被未知的一组动态“观察者”对象所监控</strong>。</p>
+<p>核心对象中的值无论何时被更改，都会通过调用<code class="docutils literal notranslate"><span class="pre">update()</span></code>方法让所有的观察者对象知道。当核心对象被更改时，每个观察者可能负责不同的任务；<strong>核心对象不知道也不关心这些任务是什么，这些观察者彼此之间也是如此</strong>。</p>
+<p>UML图如下所示</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/tpj4qqu38056nycev59j4d5q/image.png" /></p>
+<p>核心对象首先提供<code class="docutils literal notranslate"><span class="pre">attach()</span></code>方法链接观察者（或者称注册register），需要通知这些观察者时调用<code class="docutils literal notranslate"><span class="pre">_update_observers()</span></code>方法，这个方法将会遍历所有的观察者对象并告知其发生的改变。在下面的例子中，通知时直接调用观察者对象必须实现的<code class="docutils literal notranslate"><span class="pre">__call__()</span></code>来处理更新。</p>
+<div class="section" id="e-g">
+<h3>2.1 e.g. 仓库更新通知<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h3>
+<p>当仓库的库存种类和数量有变化时，通知各个观察者：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Inventory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quantity</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_product</span>
+
+    <span class="nd">@product</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_product</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_observers</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_quantity</span>
+
+    <span class="nd">@quantity</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quantity</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_observers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_update_observers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">observer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observers</span><span class="p">:</span>
+            <span class="n">observer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看到，当<code class="docutils literal notranslate"><span class="pre">Inventory</span></code>的<code class="docutils literal notranslate"><span class="pre">product</span></code>和<code class="docutils literal notranslate"><span class="pre">quantity</span></code>属性发生变化时，会调用<code class="docutils literal notranslate"><span class="pre">_update_observers()</span></code>去调用各个观察者，所以观察者必须实现<code class="docutils literal notranslate"><span class="pre">__call__()</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConsoleObserver</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inventory</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span> <span class="o">=</span> <span class="n">inventory</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">quantity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">Inventory</span><span class="p">()</span>
+
+<span class="c1"># 观察者1</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">ConsoleObserver</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">i</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+
+<span class="n">i</span><span class="o">.</span><span class="n">product</span> <span class="o">=</span> <span class="s1">&#39;widget&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>widget
+0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 观察者2</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">ConsoleObserver</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">i</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+
+<span class="n">i</span><span class="o">.</span><span class="n">quantity</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>widget
+2
+widget
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>观察者模式将<strong>被观察的代码和观察的代码分离开来</strong>。如果不用这种模式，就不得不将代码放到属性中去处理不同的情况，例如输出日志、更新数据库或文件等。所有完成这些任务的代码都将混在被观察的对象中。维护这样一个对象将会是一场噩梦，而且在日后想要添加新的监控功能也是非常痛苦的。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3 策略模式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>策略模式的权威例子是排序程序。这些年以来，大量的算法被发明用来对一系列对象进行排序。快速排序、合并排序以及堆排序，这些都是拥有不同特征的快速排序算法。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/0bo8c85x6zmj4yctl74fhgdt/image.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>4 状态模式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>状态模式在结构上与策略模式很像，但目标却迥然不同。状态模式的目标是用于表示状态转换系统：很明显这一系统会因为特定对象处于不同的状态而产生特定的活动。</p>
+<p>为了实现这一系统，我们需要一个管理器或者上下文类来提供状态切换的接口。这个类的内部包含当前状态的指针，每个状态都知道自己可以根据特定的行为转换为哪些其他状态。</p>
+<p>因此我们需要两种类：上下文类以及多个状态类。上下文类包含了当前的状态，以及当前状态下的行为。上下文类中调用的不同状态类彼此之间是不可见的，就像黑箱一样在内部执行状态管理。下面是UML图。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/kfygyfe94kwj9yr8s057eqhb/image.png" /></p>
+<div class="section" id="e-g-xml">
+<h3>4.1 e.g. XML解析<a class="headerlink" href="#e-g-xml" title="Permalink to this headline">¶</a></h3>
+<p>为了说明状态模式，让我们写一个XML解析工具。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">book</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;book&gt;</span>
+<span class="s2">    &lt;author&gt;Dusty Phillips&lt;/author&gt;</span>
+<span class="s2">    &lt;publisher&gt;Packt Publishing&lt;/publisher&gt;</span>
+<span class="s2">    &lt;title&gt;Python 3 Object Oriented Programming&lt;/title&gt;</span>
+<span class="s2">    &lt;content&gt;</span>
+<span class="s2">        &lt;chapter&gt;</span>
+<span class="s2">            &lt;number&gt;1&lt;/number&gt;</span>
+<span class="s2">            &lt;title&gt;Object Oriented Design&lt;/title&gt;</span>
+<span class="s2">        &lt;/chapter&gt;</span>
+<span class="s2">        &lt;chapter&gt;</span>
+<span class="s2">            &lt;number&gt;2&lt;/number&gt;</span>
+<span class="s2">            &lt;title&gt;Objects In Python&lt;/title&gt;</span>
+<span class="s2">        &lt;/chapter&gt;</span>
+<span class="s2">    &lt;/content&gt;</span>
+<span class="s2">&lt;/book&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+&lt;book&gt;
+    &lt;author&gt;Dusty Phillips&lt;/author&gt;
+    &lt;publisher&gt;Packt Publishing&lt;/publisher&gt;
+    &lt;title&gt;Python 3 Object Oriented Programming&lt;/title&gt;
+    &lt;content&gt;
+        &lt;chapter&gt;
+            &lt;number&gt;1&lt;/number&gt;
+            &lt;title&gt;Object Oriented Design&lt;/title&gt;
+        &lt;/chapter&gt;
+        &lt;chapter&gt;
+            &lt;number&gt;2&lt;/number&gt;
+            &lt;title&gt;Objects In Python&lt;/title&gt;
+        &lt;/chapter&gt;
+    &lt;/content&gt;
+&lt;/book&gt;
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>上下文类将会是解析器本身，在考虑状态和解析器之前，首先考虑程序的输出。我们需要的是一个<code class="docutils literal notranslate"><span class="pre">Node</span></code>对象所组成的树，它需要知道所解析标签的名字，例如上面的<code class="docutils literal notranslate"><span class="pre">book</span></code>、<code class="docutils literal notranslate"><span class="pre">author</span></code>等。另外，由于是树形结构，因此也需要指向父节点的指针和一个按顺序排列的子节点列表。有些节点需要保存文本值，而另一些节点则不需要保存文本值：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">=</span> <span class="n">tag_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="s1">&#39;book&#39;</span><span class="p">))</span>
+
+<span class="n">author</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">Node</span><span class="p">(</span><span class="s1">&#39;book&#39;</span><span class="p">))</span>
+<span class="n">author</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Dusty Phillips&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">author</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>book
+author: Dusty Phillips
+</pre></div>
+</div>
+</div>
+</div>
+<p>在状态之间进行切换可能会比较棘手，我们怎么知道下一个节点是开始标签、结束标签还是文本节点？我们可以为每个状态添加一点逻辑流程，不过更合理的做法是创建一个新的状态全权负责状态切换。通过分析XML语法，我们可以分为如下几种状态：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FirstTag</span></code>：如<code class="docutils literal notranslate"><span class="pre">&lt;book&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ChildNone</span></code>：负责状态切换，除了<code class="docutils literal notranslate"><span class="pre">FirstTag</span></code>的其他状态</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OpenTag</span></code>：如<code class="docutils literal notranslate"><span class="pre">&lt;author&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;publisher&gt;</span></code>等，并且负责新建一个<code class="docutils literal notranslate"><span class="pre">Node</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Text</span></code>：如<code class="docutils literal notranslate"><span class="pre">Dusty</span> <span class="pre">Phillips</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CloseTag</span></code>：如<code class="docutils literal notranslate"><span class="pre">&lt;/author&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;/publisher&gt;</span></code>等</p></li>
+</ol>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/wvvdkbdt5kp8etkycb2eusc9/image.png" /></p>
+<p>第一个状态是<code class="docutils literal notranslate"><span class="pre">FirstTag</span></code>，然后到<code class="docutils literal notranslate"><span class="pre">ChildNode</span></code>，<code class="docutils literal notranslate"><span class="pre">ChildNode</span></code>根据当前内容判断下一步的状态（<code class="docutils literal notranslate"><span class="pre">OpenTag</span></code>，<code class="docutils literal notranslate"><span class="pre">Text</span></code>，<code class="docutils literal notranslate"><span class="pre">CloseTag</span></code>），这三种状态处理完都是返回到<code class="docutils literal notranslate"><span class="pre">ChildNode</span></code>。<strong>不过为了处理<code class="docutils literal notranslate"><span class="pre">Node</span></code>嵌套，<code class="docutils literal notranslate"><span class="pre">OpenTag</span></code>需要新建一个<code class="docutils literal notranslate"><span class="pre">Node</span></code>，并且将这个新<code class="docutils literal notranslate"><span class="pre">Node</span></code>添加到当前<code class="docutils literal notranslate"><span class="pre">Node</span></code>的<code class="docutils literal notranslate"><span class="pre">children</span></code>中；<code class="docutils literal notranslate"><span class="pre">CloseTag</span></code>在处理完之后要将当前的<code class="docutils literal notranslate"><span class="pre">Node</span></code>还原为<code class="docutils literal notranslate"><span class="pre">parent</span></code></strong>。</p>
+<p>有了各个状态和保存方式<code class="docutils literal notranslate"><span class="pre">Node</span></code>类，那解析器<code class="docutils literal notranslate"><span class="pre">Parser</span></code>应该如何设计呢？<strong>由于各个状态自己决定下一步的状态，所以<code class="docutils literal notranslate"><span class="pre">Parser</span></code>不需要知道下一步的状态是什么，只需要调用一个必须实现的公共接口<code class="docutils literal notranslate"><span class="pre">state.process()</span></code></strong>，各个状态通过这个接口返回剩余未处理的字节。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse_string</span> <span class="o">=</span> <span class="n">parse_string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">FirstTag</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">):</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">remaining_string</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">remaining</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="p">(</span><span class="n">remaining</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>分析到现在，在结合下面各个状态的实现，发现这个示例的设计有几点缺陷：</strong></p>
+<ol class="simple">
+<li><p>各个状态直接控制<code class="docutils literal notranslate"><span class="pre">parser.state</span></code>、<code class="docutils literal notranslate"><span class="pre">parser.current_node</span></code>等，将这些值返回给<code class="docutils literal notranslate"><span class="pre">Parser</span></code>让其自己设置更好。</p></li>
+<li><p>各个状态返回的是剩余未处理的字节，如果都是硬拷贝，消耗巨大，而且有时候由于文本过大并不适合全部load到内存中。</p></li>
+</ol>
+<p>其他设计模式也可以完成本示例：</p>
+<ol class="simple">
+<li><p>递归</p></li>
+<li><p>协程</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FirstTag</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">i_start_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+        <span class="n">i_end_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+        <span class="n">tag_name</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_start_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i_end_tag</span><span class="p">]</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">tag_name</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">ChildNode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_end_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+
+
+<span class="k">class</span> <span class="nc">ChildNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">stripped</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;/&quot;</span><span class="p">):</span>
+            <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">CloseTag</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">):</span>
+            <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">OpenTag</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">TextNode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stripped</span>
+
+
+<span class="k">class</span> <span class="nc">OpenTag</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">i_start_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+        <span class="n">i_end_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+        <span class="n">tag_name</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_start_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i_end_tag</span><span class="p">]</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">ChildNode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_end_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+
+
+<span class="k">class</span> <span class="nc">TextNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">i_start_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="p">[:</span><span class="n">i_start_tag</span><span class="p">]</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">ChildNode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_start_tag</span><span class="p">:]</span>
+
+
+<span class="k">class</span> <span class="nc">CloseTag</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remaining_string</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">i_start_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+        <span class="n">i_end_tag</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_start_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span>
+        <span class="n">tag_name</span> <span class="o">=</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_start_tag</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="n">i_end_tag</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">tag_name</span> <span class="o">==</span> <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span><span class="o">.</span><span class="n">tag_name</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">ChildNode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">remaining_string</span><span class="p">[</span><span class="n">i_end_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contents</span> <span class="o">=</span> <span class="n">book</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">root</span><span class="p">]</span>
+<span class="k">while</span> <span class="n">nodes</span><span class="p">:</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span> <span class="o">+</span> <span class="n">nodes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>book
+author: Dusty Phillips
+publisher: Packt Publishing
+title: Python 3 Object Oriented Programming
+content
+chapter
+number: 1
+title: Object Oriented Design
+chapter
+number: 2
+title: Objects In Python
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面尝试用协程来解决：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Node</span></code>类不变</p></li>
+<li><p>状态分为3类，分别为带有/没有<code class="docutils literal notranslate"><span class="pre">children</span></code>的<code class="docutils literal notranslate"><span class="pre">FatherTag</span></code>/<code class="docutils literal notranslate"><span class="pre">ChildTag</span></code>，和配对<code class="docutils literal notranslate"><span class="pre">FatherTag</span></code>的<code class="docutils literal notranslate"><span class="pre">CloseTag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">swither()</span></code>只负责状态切换，将需要运行的状态告诉<code class="docutils literal notranslate"><span class="pre">Parser</span></code>，然后<code class="docutils literal notranslate"><span class="pre">Parser</span></code>调用标准接口（参数一致）</p></li>
+<li><p>每个状态处理完后负责返回当前<code class="docutils literal notranslate"><span class="pre">base_node</span></code>，<code class="docutils literal notranslate"><span class="pre">ChildTag</span></code>还要将创建的<code class="docutils literal notranslate"><span class="pre">Node</span></code>添加到其父<code class="docutils literal notranslate"><span class="pre">Node.children</span></code>中；<code class="docutils literal notranslate"><span class="pre">FatherTag</span></code>要将创建的<code class="docutils literal notranslate"><span class="pre">Node</span></code>变为当前的<code class="docutils literal notranslate"><span class="pre">base_node</span></code>；<code class="docutils literal notranslate"><span class="pre">CloseTag</span></code>要将<code class="docutils literal notranslate"><span class="pre">base_node</span></code>还原为其父<code class="docutils literal notranslate"><span class="pre">Node</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">book</span> <span class="o">=</span> <span class="p">[</span>
+<span class="s2">&quot;&lt;book&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;    &lt;author&gt;Dusty Phillips&lt;/author&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;    &lt;publisher&gt;Packt Publishing&lt;/publisher&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;    &lt;title&gt;Python 3 Object Oriented Programming&lt;/title&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;    &lt;content&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;        &lt;chapter&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;            &lt;number&gt;1&lt;/number&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;            &lt;title&gt;Object Oriented Design&lt;/title&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;        &lt;/chapter&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;        &lt;chapter&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;            &lt;number&gt;2&lt;/number&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;            &lt;title&gt;Objects In Python&lt;/title&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;        &lt;/chapter&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;    &lt;/content&gt;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;&lt;/book&gt;&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ChildTag</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">base_node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    e.g. &lt;number&gt;1&lt;/number&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span>
+    <span class="n">i_ss_tag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i_se_tag</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+    <span class="n">i_es_tag</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;/&#39;</span><span class="p">)</span>
+    <span class="n">tag_name</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="n">i_ss_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i_se_tag</span><span class="p">]</span>
+
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">base_node</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="n">i_se_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i_es_tag</span><span class="p">]</span>
+    <span class="n">base_node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">base_node</span>
+
+
+<span class="k">def</span> <span class="nf">FatherTag</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">base_node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    e.g. &lt;book&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span>
+    <span class="n">i_ss_tag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i_se_tag</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+    <span class="n">tag_name</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="n">i_ss_tag</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i_se_tag</span><span class="p">]</span>
+
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">base_node</span><span class="p">)</span>
+    <span class="n">base_node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+
+<span class="k">def</span> <span class="nf">CloseTag</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">base_node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    e.g. &lt;/book&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span>
+    <span class="k">return</span> <span class="n">base_node</span><span class="o">.</span><span class="n">parent</span>
+
+
+<span class="k">def</span> <span class="nf">ErrorTag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">base_node</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">swither</span><span class="p">():</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="k">yield</span>
+    <span class="k">while</span> <span class="n">line</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;/&quot;</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">CloseTag</span>
+        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;/&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">ChildTag</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">FatherTag</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">ErrorTag</span>
+    <span class="k">yield</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">XML</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">XML</span> <span class="o">=</span> <span class="n">XML</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s1">&#39;XML&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">base_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span>
+        <span class="n">get_state</span> <span class="o">=</span> <span class="n">swither</span><span class="p">()</span>
+        <span class="n">get_state</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">XML</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="c1">#print(&#39;line:&#39;, line)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">get_state</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">base_node</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">base_node</span><span class="p">)</span>
+            <span class="c1">#print(&#39;base_node:&#39;, base_node)</span>
+        <span class="n">get_state</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">base_node</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">parser</span><span class="o">.</span><span class="n">node</span><span class="p">]</span>
+<span class="k">while</span> <span class="n">nodes</span><span class="p">:</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span> <span class="o">+</span> <span class="n">nodes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>XML
+book
+author: Dusty Phillips
+publisher: Packt Publishing
+title: Python 3 Object Oriented Programming
+content
+chapter
+number: 1
+title: Object Oriented Design
+chapter
+number: 2
+title: Objects In Python
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5 单例模式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>Python中没有私有构造函数，不过为了实现这一点，它有更好的解决方案。我们可以用<code class="docutils literal notranslate"><span class="pre">__new__</span></code>这一类方法来确保只会创建一个实例：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OneOnly</span><span class="p">:</span>
+    <span class="n">_singleton</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_singleton</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_singleton</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">OneOnly</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span>
+                <span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_singleton</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>两个实例化的id是一样的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">OneOnly</span><span class="p">()),</span> <span class="nb">id</span><span class="p">(</span><span class="n">OneOnly</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(140570239521960, 140570239521960)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>6 模板模式<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/6jtj3yp0azv8fuhx1fzp2l09/image.png" /></p>
+<div class="section" id="id7">
+<h3>6.1 e.g. 汽车销售报告<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>我们有两个常规任务需要执行：</p>
+<ul class="simple">
+<li><p>展示所有新车销售情况，以逗号分隔将其打印到屏幕上。</p></li>
+<li><p>输出所有销售人员及其销售总额信息，将其保存到文件中，以逗号分隔，该文件可以导入电子表格中。</p></li>
+</ul>
+<p>似乎是两个完全不同的任务，不过它们之间有一些相同的特征：</p>
+<ol class="simple">
+<li><p>连接到数据库。</p></li>
+<li><p>构造新车或销售总额的查询语句。</p></li>
+<li><p>执行查询语句。</p></li>
+<li><p>将结果格式化为以逗号分隔的字符串。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QueryTemplate</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">construct_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">do_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">format_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">output_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">process_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">construct_query</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_query</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format_results</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NewVehiclesQuery</span><span class="p">(</span><span class="n">QueryTemplate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">construct_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;select * from Sales where new=&#39;true&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">output_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;output_results:......&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UserGrossQuery</span><span class="p">(</span><span class="n">QueryTemplate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">construct_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;select salesperson, sum(amt) from Sales group by salesperson&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">output_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gross_sales_</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;20200715&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NewVehiclesQuery</span><span class="p">()</span><span class="o">.</span><span class="n">process_format</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>select * from Sales where new=&#39;true&#39;
+output_results:......
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UserGrossQuery</span><span class="p">()</span><span class="o">.</span><span class="n">process_format</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>select salesperson, sum(amt) from Sales group by salesperson
+gross_sales_20200715
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-9_The_Iterator_Pattern.jupyter.html" title="previous page">第9章 迭代器模式</a>
+    <a class='right-next' id="next-link" href="Chapter-11_Python_Design_Patterns_II.jupyter.html" title="next page">第11章 Python设计模式II</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

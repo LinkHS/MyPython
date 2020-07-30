@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第16章 协程 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python设计模式（第2版）" href="../Learning_Python_Design_Patterns/Readme.html" />
+    <link rel="prev" title="第6章 使用一等函数实现设计模式" href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">流畅的Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter1-The_Python_Data_Model.jupyter.html">第1章 Python数据模型</a>
+    </li>
+    <li class="">
+      <a href="Chapter5-First-Class_Functions.jupyter.html">第5章 一等函数</a>
+    </li>
+    <li class="">
+      <a href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html">第6章 使用一等函数实现设计模式</a>
+    </li>
+    <li class="active">
+      <a href="">第16章 协程</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/流畅的Python/Chapter16.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第16章 协程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN YIELD_FROM_AVERAGER</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">Result</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="s1">&#39;count average&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># the subgenerator</span>
+<span class="k">def</span> <span class="nf">averager</span><span class="p">():</span>  <span class="c1"># &lt;1&gt;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">average</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">term</span> <span class="o">=</span> <span class="k">yield</span>  <span class="c1"># &lt;2&gt;</span>
+        <span class="k">if</span> <span class="n">term</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># &lt;3&gt;</span>
+            <span class="k">break</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">term</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="n">total</span><span class="o">/</span><span class="n">count</span>
+    <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">average</span><span class="p">)</span>  <span class="c1"># &lt;4&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the delegating generator</span>
+<span class="k">def</span> <span class="nf">grouper</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>  <span class="c1"># &lt;5&gt;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># &lt;6&gt;</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">averager</span><span class="p">()</span>  <span class="c1"># &lt;7&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;girls;kg&#39;</span><span class="p">:</span>
+        <span class="p">[</span><span class="mf">40.9</span><span class="p">,</span> <span class="mf">38.5</span><span class="p">,</span> <span class="mf">44.3</span><span class="p">,</span> <span class="mf">42.2</span><span class="p">,</span> <span class="mf">45.2</span><span class="p">,</span> <span class="mf">41.7</span><span class="p">,</span> <span class="mf">44.5</span><span class="p">,</span> <span class="mf">38.0</span><span class="p">,</span> <span class="mf">40.6</span><span class="p">,</span> <span class="mf">44.5</span><span class="p">],</span>
+    <span class="s1">&#39;girls;m&#39;</span><span class="p">:</span>
+        <span class="p">[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.51</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.41</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">1.33</span><span class="p">,</span> <span class="mf">1.46</span><span class="p">,</span> <span class="mf">1.45</span><span class="p">,</span> <span class="mf">1.43</span><span class="p">],</span>
+    <span class="s1">&#39;boys;kg&#39;</span><span class="p">:</span>
+        <span class="p">[</span><span class="mf">39.0</span><span class="p">,</span> <span class="mf">40.8</span><span class="p">,</span> <span class="mf">43.2</span><span class="p">,</span> <span class="mf">40.8</span><span class="p">,</span> <span class="mf">43.1</span><span class="p">,</span> <span class="mf">38.6</span><span class="p">,</span> <span class="mf">41.4</span><span class="p">,</span> <span class="mf">40.6</span><span class="p">,</span> <span class="mf">36.3</span><span class="p">],</span>
+    <span class="s1">&#39;boys;m&#39;</span><span class="p">:</span>
+        <span class="p">[</span><span class="mf">1.38</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.32</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">1.48</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.49</span><span class="p">,</span> <span class="mf">1.46</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># output report</span>
+<span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">group</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:2}</span><span class="s1"> </span><span class="si">{:5}</span><span class="s1"> averaging </span><span class="si">{:.2f}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+              <span class="n">result</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">average</span><span class="p">,</span> <span class="n">unit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">grouper</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>  <span class="c1"># &lt;9&gt;</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>  <span class="c1"># &lt;10&gt;</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># &lt;11&gt;</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># important! &lt;12&gt;</span>
+<span class="c1"># print(results)  # uncomment to debug</span>
+<span class="n">report</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> 9 boys  averaging 40.42kg
+ 9 boys  averaging 1.39m
+10 girls averaging 42.04kg
+10 girls averaging 1.43m
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html" title="previous page">第6章 使用一等函数实现设计模式</a>
+    <a class='right-next' id="next-link" href="../Learning_Python_Design_Patterns/Readme.html" title="next page">Python设计模式（第2版）</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

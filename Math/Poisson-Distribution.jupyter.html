@@ -109,6 +109,15 @@
 <p class="margin-caption">Course</p>
 </li>
   <li class="">
+    <a href="../Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
     <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
   </li>
 </ul>
@@ -321,7 +330,7 @@ D(X)=E\left(X^{2}\right)-E^{2}(X)=\sum_{k=0}^{\infty} k^{2} \cdot \frac{\lambda^
 <div class="section" id="id3">
 <h2>2 定义<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>二项式分布<span class="math notranslate nohighlight">\(P\left(k\right)=\frac{n !}{(n-k) ! k !} \cdot p^{k}(1-p)^{n-k}\)</span>要求<span class="math notranslate nohighlight">\(n\)</span>必须为已知数，但是生活中很多事情是没法统计出或者不存在精确的总数，这些事情往往是在一段连续的时间内出现一定的次数，相互之间没有影响（随机发生），并且单次事件耗时和概率几乎可以忽略（只有出现或者未出现，类似二项式分布；任意时刻发生的概率几乎为0）。例如，<a class="reference external" href="https://www.zhihu.com/question/26441147/answer/128055090">某个医院一天/一小时/一周内来的病人数量</a>；<a class="reference external" href="https://blog.csdn.net/ccnt_2012/article/details/81114920">某个包子店一天/一小时/一周内卖出的包子数量</a>，我们能得到只有一段时间内事情<strong>发生的</strong>次数。</p>
-<p>由于事情是随机发生的，也就是在统计的一定时间内，任意时刻都有可能发生，所以我们就要对二项式公式改进。假设一个小时内发生了<span class="math notranslate nohighlight">\(m\)</span>次，如果我们10分钟统计一次，总共统计<span class="math notranslate nohighlight">\(n=6\)</span>次，我们期待<span class="math notranslate nohighlight">\(p=\frac{k}{n}\)</span>，也就是<span class="math notranslate nohighlight">\(k\)</span>次需要分别散落在6个10分钟内，显然<span class="math notranslate nohighlight">\(k\)</span>次可能出现在一个10分钟内。那么1秒钟统计一次呢？还是不行，因为还是存在1秒钟发生<span class="math notranslate nohighlight">\(k\)</span>次的可能性。为了保证单位时间内最多只有一次事件发生，泊松分布将<span class="math notranslate nohighlight">\(n \rightarrow +\infty\)</span>，那么单次事件只能发生在<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>时间内。</p>
+<p>由于事情是随机发生的，也就是在统计的一定时间内，任意时刻都有可能发生，所以我们就要对二项式公式改进。假设一个小时内发生了<span class="math notranslate nohighlight">\(k\)</span>次，如果我们10分钟统计一次，总共统计<span class="math notranslate nohighlight">\(n=6\)</span>次，我们期待<span class="math notranslate nohighlight">\(p=\frac{k}{n}\)</span>，也就是<span class="math notranslate nohighlight">\(k\)</span>次需要分别散落在6个10分钟内，显然<span class="math notranslate nohighlight">\(k\)</span>次可能出现在一个10分钟内。那么1秒钟统计一次呢？还是不行，因为还是存在1秒钟发生<span class="math notranslate nohighlight">\(k\)</span>次的可能性。为了保证单位时间内最多只有一次事件发生，泊松分布将<span class="math notranslate nohighlight">\(n \rightarrow +\infty\)</span>，那么单次事件只能发生在<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>时间内。</p>
 <p>我们可以统计出一段时间内出现的平均次数<span class="math notranslate nohighlight">\(\lambda\)</span>，那么可以认为单次事件概率<span class="math notranslate nohighlight">\(p=\frac{\lambda}{n}\)</span>，于是二项式分布就变成了：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\lim _{n \rightarrow \infty} P(X=k) \\
@@ -422,7 +431,7 @@ D(X)=E\left(X^{2}\right)-E^{2}(X)=\sum_{k=0}^{\infty} k^{2} \cdot \frac{\lambda^
 <p>个人认为这个结论也是明显不对，因为不论参数<span class="math notranslate nohighlight">\(\lambda\)</span>，<span class="math notranslate nohighlight">\(k\)</span>都可以<span class="math notranslate nohighlight">\(\rightarrow \infty\)</span>。不过后半句话应该是对的。</p>
 <hr class="docutils" />
 <p>根据这篇数学<a class="reference external" href="http://www.math.wm.edu/%7Eleemis/2008amstat.pdf">文章</a>上的图（截取如下），当<span class="math notranslate nohighlight">\(\mu\)</span>也就是<span class="math notranslate nohighlight">\(\lambda\rightarrow \infty\)</span>和<span class="math notranslate nohighlight">\(\sigma^{2}=\lambda\)</span>时，变成了<span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span>：</p>
-<p><img alt="" src="assets/math1.jpg" /></p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/usrz61i4botfy2nlb75ntln5/image.png" /></p>
 <p>这与我们的实验也是相符的。</p>
 </div>
 </div>

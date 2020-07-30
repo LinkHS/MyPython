@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第7章 Python面向对象的捷径 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第9章 迭代器模式" href="Chapter-9_The_Iterator_Pattern.jupyter.html" />
+    <link rel="prev" title="第6章 Python数据结构" href="Chapter-6_Python_Data_Structures.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="active">
+      <a href="">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-7_Python_Object-oriented_Shortcuts.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 Python内置函数</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#reversed" class="nav-link">1.1 reversed</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#enumerate" class="nav-link">1.2 enumerate</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#enter" class="nav-link">1.2.1 __enter__</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">2 e.g. 邮件列表管理器</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="python">
+<h1>第7章 Python面向对象的捷径<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1 Python内置函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reversed">
+<h3>1.1 <code class="docutils literal notranslate"><span class="pre">reversed</span></code><a class="headerlink" href="#reversed" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">normal_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">normal_list</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[5, 4, 3, 2, 1]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="enumerate">
+<h3>1.2 <code class="docutils literal notranslate"><span class="pre">enumerate</span></code><a class="headerlink" href="#enumerate" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="k">def</span> <span class="nf">min_max_indexes</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">minimum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">maximum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">normal_list</span><span class="p">)])</span>
+<span class="n">min_max_indexes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="enter">
+<h4>1.2.1 <code class="docutils literal notranslate"><span class="pre">__enter__</span></code><a class="headerlink" href="#enter" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">class</span> <span class="nc">StringJoiner</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;enter&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+
+<span class="k">with</span> <span class="n">StringJoiner</span><span class="p">()</span> <span class="k">as</span> <span class="n">joiner</span><span class="p">:</span>
+    <span class="n">joiner</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">joiner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>enter []
+exit [0, 1]
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g">
+<h2>2 e.g. 邮件列表管理器<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>为了将本章所讲的知识点整理到一起，我们来建造一个邮件列表管理器。这个管理器将会追踪归类到不同组中的邮箱地址。当需要发送信息时，可以挑选一个组并向该组中的所有地址发送信息。</p>
+<p>在<code class="docutils literal notranslate"><span class="pre">send_email()</span></code>函数调用中，同时用到了变量参数和关键字参数语法。变量参数列表让我们既可以按照默认情况提供一个单独的字符串作为<code class="docutils literal notranslate"><span class="pre">to_addrs</span></code>，也可以允许传递多个地址。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">send_email</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">from_addr</span><span class="p">,</span> <span class="o">*</span><span class="n">to_addrs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;from:&#39;</span><span class="p">,</span> <span class="n">from_addr</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;to:&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">to_addrs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">from_addr</span> <span class="o">=</span> <span class="s2">&quot;123@qq.com&quot;</span>
+<span class="n">to_addrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;111@qq.com&quot;</span><span class="p">,</span> <span class="s2">&quot;112@qq.com&quot;</span><span class="p">]</span>
+<span class="n">send_email</span><span class="p">(</span><span class="s1">&#39;Invitation:&#39;</span><span class="p">,</span> <span class="s1">&#39;Have dinner together.&#39;</span><span class="p">,</span> <span class="n">from_addr</span><span class="p">,</span> <span class="o">*</span><span class="n">to_addrs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Invitation: Have dinner together.
+from: 123@qq.com
+to: 111@qq.com 112@qq.com
+</pre></div>
+</div>
+</div>
+</div>
+<p>它已经将我们的邮件主题和内容“发送”给两个期望的地址。现在开始准备邮件组的管理系统：需要一个对象来将邮箱地址匹配到所属的组。由于这是一个多对多的关系（任意一封邮件都可以属于多个组，任何一个组都可以包含多个邮箱地址），现有的Python数据结构都不够理想：1. 用字典存储，将组名匹配到相关邮箱地址的列表，但是这样就会存在很多重复的邮箱地址；2. 将邮箱地址字典匹配到组，这样又会出现重复的组。它们看起来都不是最优方案，暂且先尝试后一个方案（尽管组名指向邮箱地址可能更直观）。</p>
+<p>由于字典的值将会是一些唯一邮箱地址的集合，我们将它们存储到<code class="docutils literal notranslate"><span class="pre">set</span></code>容器中，<strong>可以用<code class="docutils literal notranslate"><span class="pre">defaultdict</span></code>来确保每个键都有对应的<code class="docutils literal notranslate"><span class="pre">set</span></code>容器</strong>：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">__enter__</span></code>和<code class="docutils literal notranslate"><span class="pre">__exit__</span></code>是为了安全地操作文件，由于展示原因，省略了<code class="docutils literal notranslate"><span class="pre">save</span></code>和<code class="docutils literal notranslate"><span class="pre">load</span></code>中对文件操作的代码。</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">addresses_db</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;friend1@example.com friends&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;family1@example.com family,friends&quot;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">MailingList</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;Manage groups of e-mail addresses for sending e-mails.&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_file</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="n">data_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_to_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span><span class="p">[</span><span class="n">email</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">emails_in_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">):</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+        <span class="n">emails</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="o">&amp;</span> <span class="n">groups</span><span class="p">:</span>
+                <span class="n">emails</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">emails</span>
+
+    <span class="k">def</span> <span class="nf">send_mailing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">from_addr</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">):</span>
+        <span class="n">emails</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emails_in_groups</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="p">)</span>
+        <span class="n">send_email</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">from_addr</span><span class="p">,</span> <span class="o">*</span><span class="n">emails</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_file</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">email</span><span class="p">,</span> <span class="n">groups</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groups</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_file</span><span class="p">:</span>
+            <span class="n">email</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="n">groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">email_map</span><span class="p">[</span><span class="n">email</span><span class="p">]</span> <span class="o">=</span> <span class="n">groups</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>读取<code class="docutils literal notranslate"><span class="pre">addresses_db</span></code>，添加<code class="docutils literal notranslate"><span class="pre">friend2</span></code>地址，发送邮件给多个邮箱：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="k">with</span> <span class="n">MailingList</span><span class="p">(</span><span class="n">addresses_db</span><span class="p">)</span> <span class="k">as</span> <span class="n">ml</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;email_map:&#39;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">email_map</span><span class="p">)</span>
+    
+    <span class="n">ml</span><span class="o">.</span><span class="n">add_to_group</span><span class="p">(</span><span class="s1">&#39;friend2@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;friends&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">---sending---&#39;</span><span class="p">)</span>
+    <span class="n">ml</span><span class="o">.</span><span class="n">send_mailing</span><span class="p">(</span><span class="s2">&quot;What&#39;s up&quot;</span><span class="p">,</span> <span class="s2">&quot;hey friends, how&#39;s it going&quot;</span><span class="p">,</span> <span class="s1">&#39;me@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;friends&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">addresses_db:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">addresses_db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>email_map:
+defaultdict(&lt;class &#39;set&#39;&gt;,
+            {&#39;family1@example.com&#39;: {&#39;family&#39;, &#39;friends&#39;},
+             &#39;friend1@example.com&#39;: {&#39;friends&#39;}})
+
+---sending---
+What&#39;s up hey friends, how&#39;s it going
+from: me@example.com
+to: family1@example.com friend2@example.com friend1@example.com
+
+addresses_db:
+[&#39;friend1@example.com friends\n&#39;,
+ &#39;family1@example.com family,friends\n&#39;,
+ &#39;friend2@example.com friends\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-6_Python_Data_Structures.jupyter.html" title="previous page">第6章 Python数据结构</a>
+    <a class='right-next' id="next-link" href="Chapter-9_The_Iterator_Pattern.jupyter.html" title="next page">第9章 迭代器模式</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

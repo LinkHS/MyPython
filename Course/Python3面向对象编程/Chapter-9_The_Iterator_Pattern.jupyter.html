@@ -1,0 +1,909 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第9章 迭代器模式 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第10章 Python设计模式I" href="Chapter-10_Python_Design_Patterns_I.jupyter.html" />
+    <link rel="prev" title="第7章 Python面向对象的捷径" href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="active">
+      <a href="">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-9_The_Iterator_Pattern.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">1 迭代器</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">1.1 迭代器协议</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">2 列表推导</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id5" class="nav-link">3 生成器表达式</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g-warningfilter" class="nav-link">3.1 e.g. WarningFilter</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g-yield-fromwalk" class="nav-link">4 e.g. 基于yield from的walk()</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#coroutines" class="nav-link">5 协程[Coroutines]</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g-kernel-log" class="nav-link">5.1 e.g. Kernel Log</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g-k" class="nav-link">6 e.g. K近邻判断颜色种类</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第9章 迭代器模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>此章节内容很重要！！！</strong></p>
+<div class="section" id="id2">
+<h2>1 迭代器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>用设计模式的术语来说，迭代器是一个拥有<code class="docutils literal notranslate"><span class="pre">next()</span></code>和<code class="docutils literal notranslate"><span class="pre">done()</span></code>方法的对象，后者在序列迭代结束时返回<code class="docutils literal notranslate"><span class="pre">True</span></code>。在没有<strong>内置支持迭代器</strong>的编程语言中，迭代器的遍历过程看起来可能像这样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">iterator</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+   <span class="n">item</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>在Python中，迭代是一个特殊的特征，迭代对象<code class="docutils literal notranslate"><span class="pre">iterator</span></code>需要有<code class="docutils literal notranslate"><span class="pre">__next__()</span></code>方法。这个方法可以通过内置的<code class="docutils literal notranslate"><span class="pre">next(iterator)</span></code>访问。当遍历结束时，迭代器协议会抛出一个<code class="docutils literal notranslate"><span class="pre">StopIteration</span></code>异常，而不是通过<code class="docutils literal notranslate"><span class="pre">done</span></code>方法。</p>
+<div class="section" id="id3">
+<h3>1.1 迭代器协议<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Python的<code class="docutils literal notranslate"><span class="pre">collections.abc</span></code>模块中的抽象基类<code class="docutils literal notranslate"><span class="pre">Iterator</span></code>定义了迭代器协议。任何提供<code class="docutils literal notranslate"><span class="pre">__iter__()</span></code>方法的类都是可迭代的，这一方法必须返回一个<code class="docutils literal notranslate"><span class="pre">Iterator</span></code>实例（即实例化后的对象要有<code class="docutils literal notranslate"><span class="pre">__next__()</span></code>，用于每次迭代返回需要的值），通常<code class="docutils literal notranslate"><span class="pre">__iter__</span></code>函数通常返回它自己。</p>
+<p>例如下面的示例中，<code class="docutils literal notranslate"><span class="pre">CapitalIterable</span></code>只有<code class="docutils literal notranslate"><span class="pre">__iter__()</span></code>但是返回了一个包含<code class="docutils literal notranslate"><span class="pre">__next__()</span></code>的对象<code class="docutils literal notranslate"><span class="pre">CapitalIterator</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CapitalIterable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">string</span> <span class="o">=</span> <span class="n">string</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">CapitalIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CapitalIterator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">word</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">CapitalIterable</span><span class="p">(</span><span class="s1">&#39;hello world !&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Hello
+World
+!
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+用<code class="docutils literal notranslate"><span class="pre">yield</span></code>实现一个可迭代的函数会更简单。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>2 列表推导<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>列表推导是通过高度优化的C代码实现的，在遍历大量元素时列表推导比<code class="docutils literal notranslate"><span class="pre">for</span></code>循环快得多。如果只是可读性还不足以说服你尽可能使用它，那么速度的提升应该可以做到这一点。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">odd_integers</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">odd_integers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{1, 3, 5, 7, 9}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                   <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">}</span>
+<span class="n">coordinates</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 0, 1: 1, 2: 2, 3: 3, 4: 4}
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+列表推导会将所有结果存储在容器中，当处理的信息量很大时，会比较占内存，可以用生成器表达式。</p>
+</div>
+<div class="section" id="id5">
+<h2>3 生成器表达式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>有时候我们只希望处理一个序列，而不需要将一个新的列表、集合或字典放到系统内存中。例如每次遍历一个元素，就不浪费内存（尤其是数据量很大时），这时就要用到生成器表达式：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">odd_integers</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">odd_integers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7f44ec366ba0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>此时<code class="docutils literal notranslate"><span class="pre">odd_integers</span></code>没有任何结果产生，变成了一个可迭代的对象：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">odd_integers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+3
+5
+7
+9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-warningfilter">
+<h3>3.1 e.g. <code class="docutils literal notranslate"><span class="pre">WarningFilter</span></code><a class="headerlink" href="#e-g-warningfilter" title="Permalink to this headline">¶</a></h3>
+<p>我们想要从下面的日志文件中删除WARNING行：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="p">[</span>
+<span class="s2">&quot;Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:25:36  INFO        This is an information method.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:25:46  WARNING     This is a warning. It could be serious.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:25:52  WARNING     Another warning sent.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:26:40  WARNING     Warnings should be heeded.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Jan 26, 2010 11:26:54  WARNING     Watch for warnings.&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最简单的方法：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;WARNING&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="c1"># file.write(line)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.
+Jan 26, 2010 11:25:36  INFO        This is an information method.
+Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.
+Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.
+Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.
+</pre></div>
+</div>
+</div>
+</div>
+<p>这样的代码似乎可读性很高，但是仅仅几行代码就有这么多缩进，非常难看。<strong>如果我们想要对每一行做些别的事，可能逻辑会变得很糟糕</strong>。</p>
+<p>先不加其他逻辑，用列表推导试一下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">no_warning</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span> <span class="k">if</span> <span class="s1">&#39;WARNING&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">no_warning</span><span class="p">:</span>
+    <span class="c1"># file.write(line)    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.
+Jan 26, 2010 11:25:36  INFO        This is an information method.
+Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.
+Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.
+Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">no_warning</span></code>存储了所有的结果，如果日志很长，这会很消耗内存。我们可以用生成器表达式：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">no_warning</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span> <span class="k">if</span> <span class="s1">&#39;WARNING&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">no_warning</span><span class="p">:</span>
+    <span class="c1"># file.write(line)    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.
+Jan 26, 2010 11:25:36  INFO        This is an information method.
+Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.
+Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.
+Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在来考虑一种面向对象解决方案，不用任何简写：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WarningFilter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">insequence</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insequence</span> <span class="o">=</span> <span class="n">insequence</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">insequence</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+                <span class="k">break</span>
+
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="s1">&#39;WARNING&#39;</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span> <span class="o">=</span> <span class="n">WarningFilter</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.
+Jan 26, 2010 11:25:36  INFO        This is an information method.
+Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.
+Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.
+Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.
+</pre></div>
+</div>
+</div>
+</div>
+<p>似乎更复杂了？别急，用<code class="docutils literal notranslate"><span class="pre">yield</span></code>试一下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">warnings_filter</span><span class="p">(</span><span class="n">insequence</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">insequence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;WARNING&#39;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">yield</span> <span class="n">l</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span> <span class="o">=</span> <span class="n">warnings_filter</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Jan 26, 2010 11:25:25  DEBUG       This is a debugging message.
+Jan 26, 2010 11:25:36  INFO        This is an information method.
+Jan 26, 2010 11:25:59  INFO        Here&#39;s some information.
+Jan 26, 2010 11:26:13  DEBUG       Debug messages are only useful if you want to figure something out.
+Jan 26, 2010 11:26:32  INFO        Information is usually harmless, but helpful.
+</pre></div>
+</div>
+</div>
+</div>
+<p>这样，就可以把复杂的逻辑全部放在<code class="docutils literal notranslate"><span class="pre">warnings_filter</span></code>中，主程序专注于自己的事情，也方便后期维护。</p>
+</div>
+</div>
+<div class="section" id="e-g-yield-fromwalk">
+<h2>4 e.g. 基于<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code>的<code class="docutils literal notranslate"><span class="pre">walk()</span></code><a class="headerlink" href="#e-g-yield-fromwalk" title="Permalink to this headline">¶</a></h2>
+<p>我们考虑一个经典的计算机科学问题：遍历树。最常见的树形数据结构就是计算机的文件系统。我们首先来模拟UNIX文件系统中的目录和文件，然后用<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code>来高效地遍历：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">File</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Folder</span><span class="p">(</span><span class="n">File</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">etc</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;etc&#39;</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">etc</span><span class="p">)</span>
+<span class="n">etc</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;passwd&#39;</span><span class="p">))</span>
+<span class="n">etc</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">))</span>
+<span class="n">httpd</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;httpd&#39;</span><span class="p">)</span>
+<span class="n">etc</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">httpd</span><span class="p">)</span>
+<span class="n">httpd</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;http.conf&#39;</span><span class="p">))</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;var&#39;</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">var</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;messages&#39;</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;kernel&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>整个目录结构如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">groups</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">http</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">messages</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">kernel</span>
+</pre></div>
+</div>
+<p>我们可以用递归方式打印出来：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Walk</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">father</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Folder</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">Walk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">Walk</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>/
+/etc/
+/etc/passwd
+/etc/groups
+/etc/httpd/
+/etc/httpd/http.conf
+/var/
+/var/log/
+/var/log/messages
+/var/log/kernel
+</pre></div>
+</div>
+</div>
+</div>
+<p>当遍历文件时候，为了避免大量的内存消耗，或者找到想要处理的文件就可以，我们可以用<code class="docutils literal notranslate"><span class="pre">yield</span></code>和<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code>达到读一个处理一个的目的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Walk</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">father</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Folder</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">yield from</span> <span class="n">Walk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">name</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">Walk</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;/&#39;,
+ &#39;/etc/&#39;,
+ &#39;/etc/passwd&#39;,
+ &#39;/etc/groups&#39;,
+ &#39;/etc/httpd/&#39;,
+ &#39;/etc/httpd/http.conf&#39;,
+ &#39;/var/&#39;,
+ &#39;/var/log/&#39;,
+ &#39;/var/log/messages&#39;,
+ &#39;/var/log/kernel&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+如果把<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code>替换成<code class="docutils literal notranslate"><span class="pre">yield</span></code>会怎样：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Walk</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">father</span> <span class="o">+</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Folder</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">Walk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">name</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">Walk</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;/&#39;,
+ &lt;generator object Walk at 0x7f44ec334468&gt;,
+ &lt;generator object Walk at 0x7f44ec3344c0&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>从结果可以看出<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">Walk()</span></code>没有继续迭代下去，<strong>而<code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span> <span class="pre">Walk()</span></code>是可以迭代<code class="docutils literal notranslate"><span class="pre">Walk()</span></code>中所有的<code class="docutils literal notranslate"><span class="pre">yield</span></code>或<code class="docutils literal notranslate"><span class="pre">__next__</span></code>结果</strong>。</p>
+<p>因为递归有一些缺陷，这里给出了非递归版本：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Walk</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">todo</span> <span class="o">=</span> <span class="p">[[</span><span class="n">file</span><span class="p">,</span> <span class="n">father</span><span class="p">]]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo</span><span class="p">):</span>
+        <span class="n">file</span><span class="p">,</span> <span class="n">father</span> <span class="o">=</span> <span class="n">todo</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Folder</span><span class="p">):</span>
+            <span class="n">father</span> <span class="o">=</span> <span class="n">father</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">father</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="n">todo</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">c</span><span class="p">,</span> <span class="n">father</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">father</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="n">Walk</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>/
+/var/
+/var/log/
+/var/log/kernel
+/var/log/messages
+/etc/
+/etc/httpd/
+/etc/httpd/http.conf
+/etc/groups
+/etc/passwd
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="coroutines">
+<h2>5 协程[Coroutines]<a class="headerlink" href="#coroutines" title="Permalink to this headline">¶</a></h2>
+<p>协程本质上就是一个线程，以前线程任务的切换是由操作系统控制的，遇到I/O自动切换，现在我们用协程的目的就是较少操作系统切换的开销（开关线程，创建寄存器、堆栈、互斥锁等），应用程序自己控制任务的切换。</p>
+<p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">=</span> <span class="pre">yiled</span> <span class="pre">output</span></code>的功能很强大，例如实现一个异步计分器：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tally</span><span class="p">():</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">increment</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">score</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">increment</span>
+
+<span class="n">Houston</span> <span class="o">=</span> <span class="n">tally</span><span class="p">()</span> <span class="c1"># 休斯顿队</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">Houston</span><span class="p">)</span> <span class="c1"># 初始化</span>
+<span class="n">Houston</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 得2分</span>
+<span class="n">Houston</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># 得3分</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">=</span> <span class="pre">yiled</span> <span class="pre">output</span></code>的语法让我们得以根据输入计算需要返回的输出。如果只有<code class="docutils literal notranslate"><span class="pre">yield</span></code>，生成器只能按提前安排好的设置返回值。</p>
+<div class="section" id="e-g-kernel-log">
+<h3>5.1 e.g. Kernel Log<a class="headerlink" href="#e-g-kernel-log" title="Permalink to this headline">¶</a></h3>
+<p>前面的例子可以很容易地通过几个整数变量和<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">increment</span></code>来实现。让我们来看第二个例子，协程真正能够帮上忙的地方。</p>
+<p>Linux内核日志文件看起来类似下面的日志：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log_file</span><span class="o">=</span><span class="p">[</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 0:0:0:0 Attached Disk Drive&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 0:0:0:0 (SERIAL=ZZ12345)&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 0:0:0:0 [sda] Options&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;XFS ERROR [sda]&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 2:0:0:1 Attached Disk Drive&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 2:0:0:1 (SERIAL=ZZ67890)&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 2:0:0:1 [sdb] Options&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 3:0:1:8 Attached Disk Drive&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 3:0:1:8 (SERIAL=WW11111)&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sd 3:0:1:8 [sdc] Options&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="s2">&quot;XFS ERROR [sdc]&quot;</span><span class="p">,</span>
+<span class="s2">&quot;unrelated log messages&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>需要从日志尾部找带有<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>的行，然后根据这行里的bus名称(如<code class="docutils literal notranslate"><span class="pre">[sdc]</span></code>)找到带有序列号Serial number（如<code class="docutils literal notranslate"><span class="pre">3:0:1:8</span></code>）的行。</p>
+<p>我们用正则表达式提取有<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>的行：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_file</span><span class="p">:</span>
+    <span class="n">ERROR_RE</span> <span class="o">=</span> <span class="s1">&#39;XFS ERROR (\[sd[a-z]\])&#39;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ERROR_RE</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>XFS ERROR [sda]
+XFS ERROR [sdc]
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以用正则表达式识别每一行内容，但是在遍历所有行的过程中<strong>不得不更换正则表达式</strong>，因为当前要查找的信息会因上一条信息不同而不同。总共需要3种类型的正则表达式，而且顺序还有依赖性，可能需要用的状态机和大量的<code class="docutils literal notranslate"><span class="pre">if...else...</span></code>来解决。</p>
+<p>但是如果用协程就简单的多：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">match_regex</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">regex</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">regex</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">get_serials</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+    <span class="n">ERROR_RE</span> <span class="o">=</span> <span class="s1">&#39;XFS ERROR (\[sd[a-z]\])&#39;</span>
+    <span class="n">matcher</span> <span class="o">=</span> <span class="n">match_regex</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">ERROR_RE</span><span class="p">)</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">matcher</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">bus</span> <span class="o">=</span> <span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;(sd \S+) </span><span class="si">{}</span><span class="s1">.*&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">device</span><span class="p">)))</span>
+        <span class="n">serial</span> <span class="o">=</span> <span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> \(SERIAL=([^)]*)\)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bus</span><span class="p">))</span>
+        <span class="k">yield</span> <span class="n">serial</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ERROR_RE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出两个函数分工非常明确：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">match_regex()</span></code>只负责查找符合规则的语句，具体规则由<code class="docutils literal notranslate"><span class="pre">get_serials()</span></code>通过<code class="docutils literal notranslate"><span class="pre">matcher.sned()</span></code>传递。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_serials()</span></code>只负责分配规则，并返回找到的信息。<code class="docutils literal notranslate"><span class="pre">get_serials</span></code>不需要逻辑判断切换规则，只要按既定规则顺序就可以，<strong>这要归功于<code class="docutils literal notranslate"><span class="pre">match_regex()</span></code>只会返回符合的信息</strong>。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">serial_number</span> <span class="ow">in</span> <span class="n">get_serials</span><span class="p">(</span><span class="n">log_file</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">serial_number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>WW11111
+ZZ12345
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/austin/anaconda3/envs/gluon/lib/python3.6/site-packages/ipykernel_launcher.py:1: DeprecationWarning: generator 'get_serials' raised StopIteration
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-k">
+<h2>6 e.g. K近邻判断颜色种类<a class="headerlink" href="#e-g-k" title="Permalink to this headline">¶</a></h2>
+<p>本章节最后是个案例，用K近邻算法判断颜色种类的，时间关系不多介绍，只介绍两点：</p>
+<ol class="simple">
+<li><p>读取文件用到了<code class="docutils literal notranslate"><span class="pre">yield</span></code>方法，并且直接返回一个<code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_colors</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">dataset_file</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>写文件用到了<code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">=</span> <span class="pre">yield</span></code>进行同步操作</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">write_results</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;output.csv&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">color</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="k">yield</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">name</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html" title="previous page">第7章 Python面向对象的捷径</a>
+    <a class='right-next' id="next-link" href="Chapter-10_Python_Design_Patterns_I.jupyter.html" title="next page">第10章 Python设计模式I</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

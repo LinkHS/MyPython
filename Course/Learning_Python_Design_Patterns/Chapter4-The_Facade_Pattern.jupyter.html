@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter-4 门面模式 —— 与门面相适 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chapter-5 代理模式——控制对象的访问" href="Chapter5_The_Proxy_Pattern.jupyter.html" />
+    <link rel="prev" title="Chapter-3 工厂模式：建立创建对象的工厂" href="Chapter3-The_Factory_Pattern.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python设计模式（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter3-The_Factory_Pattern.jupyter.html">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    </li>
+    <li class="active">
+      <a href="">Chapter-4 门面模式 —— 与门面相适</a>
+    </li>
+    <li class="">
+      <a href="Chapter5_The_Proxy_Pattern.jupyter.html">Chapter-5 代理模式——控制对象的访问</a>
+    </li>
+    <li class="">
+      <a href="Chapter6_The_Observer_Pattern.jupyter.html">Chapter-6 观察者模式——了解对象的情况</a>
+    </li>
+    <li class="">
+      <a href="Chapter7_The_Command_Pattern.jupyter.html">Chapter-7 命令模式——封装调用</a>
+    </li>
+    <li class="">
+      <a href="Chapter8_The_Template_Method_Pattern.jupyter.html">Chapter-8 模板方法模式——封装算法</a>
+    </li>
+    <li class="">
+      <a href="Chapter9_Model_View_Controller.jupyter.html">Chapter9 模型-视图-控制器——复合模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter10_The_State_Design_Pattern.jupyter.html">Chapter10 状态设计模式</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Learning_Python_Design_Patterns/Chapter4-The_Facade_Pattern.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 结构性设计模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">2 门面模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">3 e.g. 婚礼安排</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-4">
+<h1>Chapter-4 门面模式 —— 与门面相适<a class="headerlink" href="#chapter-4" title="Permalink to this headline">¶</a></h1>
+<p>The Façade Pattern - Being Adaptive with Façade</p>
+<p>工厂模式和单例模式都属于<strong>创建型设计模式</strong>，这一章介绍的门面模式属于<strong>结构型设计模式</strong>。</p>
+<div class="section" id="id1">
+<h2>1 结构性设计模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>以下几点将有助于我们更好地了解结构型设计模式。</p>
+<ul class="simple">
+<li><p>结构型模式描述如何将对象和类组合成更大的结构。</p></li>
+<li><p>结构型模式是一种能够简化设计工作的模式，因为它能够找出更简单的方法来认识或表示实体之间的关系（面向对象中，实体指的是对象或类）。</p></li>
+<li><p>类Class通过继承来描述抽象，从而提供更有用的程序接口；而对象Object则描述了如何将对象联系起来从而组合成更大的对象。<strong>结构型模式是类和对象模式的综合体</strong>。</p></li>
+</ul>
+<p>下面给出结构型设计模式的几个例子，它们都是通过对象或类之间的交互来实现更高级的设计或架构目标：</p>
+<ul class="simple">
+<li><p><strong>适配器模式</strong>：将一个接口转换成客户希望的另外一个接口。它试图根据客户端的需求来匹配不同类的接口。</p></li>
+<li><p><strong>桥接模式</strong>：该模式将对象的接口与其实现进行解耦，使得两者可以独立工作。</p></li>
+<li><p><strong>装饰器模式</strong>：该模式允许在运行时或以动态方式为对象添加职责。我们可以通过接口给对象添加某些属性。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2 门面模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>门面（facade）通常是指建筑物的表面，尤其是最有吸引力的那一面。它也可以表示一种容易让人误解某人的真实感受或情况的行为或面貌。当人们从建筑物外面经过时，可以欣赏其外部面貌，却不了解建筑物结构的复杂性。这就是门面模式的使用方式。门面在隐藏内部系统复杂性的同时，为客户端提供了一个接口，以便它们可以非常轻松地访问系统。</p>
+<p>假设你要到某个商店去买东西，但是你对这个商店的布局并不清楚。通常情况下，你会去找店主，只要你告诉他/她要买什么，店主就会把这些商品拿给你。顾客不必了解店面的情况，可以通过一个简单的接口来完成购物，这里的接口就是店主。</p>
+<p>门面设计模式实际上完成了下列事项：</p>
+<ul class="simple">
+<li><p>它为子系统中的一组接口提供一个统一的接口，并定义一个高级接口来帮助客户端通过更加简单的方式使用子系统。</p></li>
+<li><p>门面所解决问题是，如何用单个接口对象来表示复杂的子系统。<strong>实际上，它并不是封装子系统，而是对底层子系统进行组合</strong>。</p></li>
+<li><p>它利于解耦多个客户端的实现。</p></li>
+</ul>
+<p>门面模式的UML类图如下：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/fck6dum3f6dk10pzzcqxgkb7/image.png" /></p>
+<p>如图所示，门面模式有3个主要的参与者：</p>
+<ul class="simple">
+<li><p>门面：门面的主要责任是，将一组复杂导致系统封装起来，从而为外部世界提供一个舒适的外观。</p>
+<ul>
+<li><p>它是一个接口，它知道某个请求可以交由哪个子系统进行处理。</p></li>
+<li><p>它使用组合将客户端的请求委派给相应的子系统对象。</p></li>
+</ul>
+</li>
+<li><p>系统：这代表一组不同的子系统，使整个系统混杂在一起，难以观察或使用。</p>
+<ul>
+<li><p>它实现子系统的功能，同时，系统由一个类表示。理想情况下，系统应该由一组负责不同任务的类来表示。</p></li>
+<li><p>它处理门面对象分配的工作，但并不知道门面，而且不引用它。</p></li>
+</ul>
+</li>
+<li><p>客户端：客户端与门面进行交互，这样就可以轻松地与子系统进行通信并完成工作了。不必担心系统的复杂性。</p>
+<ul>
+<li><p>客户端是实例化门面的类。</p></li>
+<li><p>为了让子系统完成相应的工作，客户端需要向门面提出请求。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="e-g">
+<h2>3 e.g. 婚礼安排<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>假设你要举行一场婚礼，这是一个艰巨的任务，需要预订一家酒店或场地、与餐饮人员交代酒菜、布置场景、并安排背景音乐等。你可以自己搞定一切，例如找相关人员谈话、与他们进行协调、敲定价格等。此外，你还可以去找会务经理，让他/她为你处理这些事情。会务经理负责跟各个服务提供商交涉，并为你争取最优惠的价格。</p>
+<p>我们从门面模式的角度来看待这些事情：</p>
+<ul class="simple">
+<li><p>客户端：你需要在婚礼前及时完成所有的准备工作。每一项安排都应该是顶级的，这样客人才会喜欢这些庆祝活动。</p></li>
+<li><p>门面：会务经理负责与所有相关人员进行交涉，这些人员负责处理食物、花卉装饰等。</p></li>
+<li><p>子系统：它们代表提供餐饮、酒店管理和花卉装饰等服务的系统。</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">EventManager</span></code>扮演了门面的角色，简化了你的工作。门面负责与子系统进行交流，并代表你为婚姻完成所有的预订和准备工作：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EventManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Event Manager:: Let me talk to the folks</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">arrange</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hotelier</span> <span class="o">=</span> <span class="n">Hotelier</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hotelier</span><span class="o">.</span><span class="n">bookHotel</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">florist</span> <span class="o">=</span> <span class="n">Florist</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">florist</span><span class="o">.</span><span class="n">setFlowerRequirements</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">caterer</span> <span class="o">=</span> <span class="n">Caterer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">caterer</span><span class="o">.</span><span class="n">setCuisine</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">musician</span> <span class="o">=</span> <span class="n">Musician</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">musician</span><span class="o">.</span><span class="n">setMusicType</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面是各个子系统：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hotelier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Arranging the Hotel for Marriage? --&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__isAvailable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is the Hotel free for the event on given day?&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">bookHotel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isAvailable</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Registered the Booking</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Florist</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flower Decorations for the Event? --&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setFlowerRequirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Carnations, Roses and Lilies would be used for Decorations</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Caterer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Food Arrangements for the Event --&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setCuisine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chinese &amp; Continental Cuisine to be served</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Musician</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Musical Arrangements for the Marriage --&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setMusicType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jazz and Classical will be played</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>你很聪明，将这些事情都委托给了会务经理。在<code class="docutils literal notranslate"><span class="pre">You</span></code>中，创建了一个<code class="docutils literal notranslate"><span class="pre">EventManager</span></code>类的对象，这样经理就会通过与相关人员进行交涉来筹备婚礼，而你则可以找个地方喝大茶了：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">You</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: Whoa! Marriage Arrangements??!!!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">askEventManager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: Let&#39;s Contact the Event Manager</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">em</span> <span class="o">=</span> <span class="n">EventManager</span><span class="p">()</span>
+        <span class="n">em</span><span class="o">.</span><span class="n">arrange</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: Thanks to Event Manager, all preparations done! Phew!&quot;</span><span class="p">)</span>
+
+
+<span class="n">you</span> <span class="o">=</span> <span class="n">You</span><span class="p">()</span>
+<span class="n">you</span><span class="o">.</span><span class="n">askEventManager</span><span class="p">()</span>
+<span class="k">del</span> <span class="n">you</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>You:: Whoa! Marriage Arrangements??!!!
+You:: Let&#39;s Contact the Event Manager
+
+
+Event Manager:: Let me talk to the folks
+
+Arranging the Hotel for Marriage? --
+Is the Hotel free for the event on given day?
+Registered the Booking
+
+
+Flower Decorations for the Event? --
+Carnations, Roses and Lilies would be used for Decorations
+
+
+Food Arrangements for the Event --
+Chinese &amp; Continental Cuisine to be served
+
+
+Musical Arrangements for the Marriage --
+Jazz and Classical will be played
+
+
+You:: Thanks to Event Manager, all preparations done! Phew!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter3-The_Factory_Pattern.jupyter.html" title="previous page">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    <a class='right-next' id="next-link" href="Chapter5_The_Proxy_Pattern.jupyter.html" title="next page">Chapter-5 代理模式——控制对象的访问</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

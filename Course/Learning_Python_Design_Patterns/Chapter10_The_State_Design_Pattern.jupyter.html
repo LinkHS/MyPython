@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter10 状态设计模式 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python3面向对象编程（第2版）" href="../Python3面向对象编程/Readme.html" />
+    <link rel="prev" title="Chapter9 模型-视图-控制器——复合模式" href="Chapter9_Model_View_Controller.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python设计模式（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter3-The_Factory_Pattern.jupyter.html">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    </li>
+    <li class="">
+      <a href="Chapter4-The_Facade_Pattern.jupyter.html">Chapter-4 门面模式 —— 与门面相适</a>
+    </li>
+    <li class="">
+      <a href="Chapter5_The_Proxy_Pattern.jupyter.html">Chapter-5 代理模式——控制对象的访问</a>
+    </li>
+    <li class="">
+      <a href="Chapter6_The_Observer_Pattern.jupyter.html">Chapter-6 观察者模式——了解对象的情况</a>
+    </li>
+    <li class="">
+      <a href="Chapter7_The_Command_Pattern.jupyter.html">Chapter-7 命令模式——封装调用</a>
+    </li>
+    <li class="">
+      <a href="Chapter8_The_Template_Method_Pattern.jupyter.html">Chapter-8 模板方法模式——封装算法</a>
+    </li>
+    <li class="">
+      <a href="Chapter9_Model_View_Controller.jupyter.html">Chapter9 模型-视图-控制器——复合模式</a>
+    </li>
+    <li class="active">
+      <a href="">Chapter10 状态设计模式</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Learning_Python_Design_Patterns/Chapter10_The_State_Design_Pattern.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">1 e.g. 计算机系统</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter10">
+<h1>Chapter10 状态设计模式<a class="headerlink" href="#chapter10" title="Permalink to this headline">¶</a></h1>
+<p>状态模式也属于行为模式的范畴。在此模式中，一个对象可以基于其内部状态封装多个行为。状态模式也可以看作是在运行时改变对象行为的一种方式。<strong>实际上，在运行时改变行为正好是Python所擅长的事情！</strong></p>
+<p>状态设计模式在3个主要参与者的协助下工作：</p>
+<ul class="simple">
+<li><p>State：封装对象行为的接口，对象行为与对象的状态相关联。</p></li>
+<li><p>ConcreteState：实现State接口的子类，也就是与对象的特定状态相关联的实际行为。</p></li>
+<li><p>Context：定义了客户感兴趣的接口。Context还<strong>维护一个ConcreteState子类的实例</strong>，该子类在内部定义了对象的特定状态的实现。</p></li>
+</ul>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/cqt7m7w7njixo00052pruqqx/image.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">ABCMeta</span>
+
+
+<span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">Handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">ConcreteStateB</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">Handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ConcreteStateB&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ConcreteStateA</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">Handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ConcreteStateA&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">getState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">setState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">Handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Handle</span><span class="p">()</span>
+
+
+<span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">()</span>
+<span class="n">stateA</span> <span class="o">=</span> <span class="n">ConcreteStateA</span><span class="p">()</span>
+<span class="n">stateB</span> <span class="o">=</span> <span class="n">ConcreteStateB</span><span class="p">()</span>
+<span class="n">context</span><span class="o">.</span><span class="n">setState</span><span class="p">(</span><span class="n">stateA</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">Handle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>ConcreteStateA
+</pre></div>
+</div>
+</div>
+</div>
+<p>例如用按钮控制电视遥控器，<code class="docutils literal notranslate"><span class="pre">State</span></code>接口将会定义相应的方法（<code class="docutils literal notranslate"><span class="pre">doThis()</span></code>）来执行诸如打开/关闭电视等操作。我们还需要定义<code class="docutils literal notranslate"><span class="pre">ConcreteState</span></code>类来处理不同的状态：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">ABCMeta</span>
+
+
+<span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">doThis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">StartState</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">doThis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TV Switching ON..&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">StopState</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">doThis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TV Switching OFF..&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TVContext</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">getState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">setState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">doThis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">doThis</span><span class="p">()</span>
+
+
+<span class="n">context</span> <span class="o">=</span> <span class="n">TVContext</span><span class="p">()</span>
+<span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">()</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">StartState</span><span class="p">()</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="n">StopState</span><span class="p">()</span>
+<span class="n">context</span><span class="o">.</span><span class="n">setState</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">doThis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>TV Switching OFF..
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g">
+<h2>1 e.g. 计算机系统<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>以一个计算机系统为例，它可以有多个状态，如开机、关机、挂起或休眠。现在利用状态设计模式来表述这些状态。</p>
+<p>首先，我们不妨从<code class="docutils literal notranslate"><span class="pre">ComputerState</span></code>接口开始入手：<code class="docutils literal notranslate"><span class="pre">state</span></code>应定义两个属性，它们是<code class="docutils literal notranslate"><span class="pre">name</span></code>和<code class="docutils literal notranslate"><span class="pre">allowed</span></code>。属性<code class="docutils literal notranslate"><span class="pre">name</span></code>表示对象的状态，而属性<code class="docutils literal notranslate"><span class="pre">allowed</span></code>是定义允许进入的状态的对象的列表；<code class="docutils literal notranslate"><span class="pre">state</span></code>必须定义一个<code class="docutils literal notranslate"><span class="pre">switch()</span></code>方法，由它来实际改变对象的状态：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ComputerState</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;state&quot;</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="s1">&#39; =&gt; switched to new state&#39;</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="s1">&#39; =&gt; switching to&#39;</span><span class="p">,</span>
+                  <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;not possible.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Off</span><span class="p">(</span><span class="n">ComputerState</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;off&quot;</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;on&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">On</span><span class="p">(</span><span class="n">ComputerState</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;on&quot;</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="s1">&#39;suspend&#39;</span><span class="p">,</span> <span class="s1">&#39;hibernate&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Suspend</span><span class="p">(</span><span class="n">ComputerState</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;suspend&quot;</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;on&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Hibernate</span><span class="p">(</span><span class="n">ComputerState</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;hibernate&quot;</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;on&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Computer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;HP&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">Off</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">switch</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">Computer</span><span class="p">()</span>
+<span class="c1"># Switch on</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">On</span><span class="p">)</span>
+<span class="c1"># Switch off</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">Off</span><span class="p">)</span>
+<span class="c1"># Switch on again</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">On</span><span class="p">)</span>
+<span class="c1"># Suspend</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">Suspend</span><span class="p">)</span>
+<span class="c1"># Try to hibernate - cannot!</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">Hibernate</span><span class="p">)</span>
+<span class="c1"># switch on back</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">On</span><span class="p">)</span>
+<span class="c1"># Finally off</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">Off</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Current: off  =&gt; switched to new state on
+Current: on  =&gt; switched to new state off
+Current: off  =&gt; switched to new state on
+Current: on  =&gt; switched to new state suspend
+Current: suspend  =&gt; switching to hibernate not possible.
+Current: suspend  =&gt; switched to new state on
+Current: on  =&gt; switched to new state off
+</pre></div>
+</div>
+</div>
+</div>
+<p>状态设计模式中由于每个状态都是一个类的实例，很容易引起“类爆炸”等问题。</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter9_Model_View_Controller.jupyter.html" title="previous page">Chapter9 模型-视图-控制器——复合模式</a>
+    <a class='right-next' id="next-link" href="../Python3面向对象编程/Readme.html" title="next page">Python3面向对象编程（第2版）</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter9 模型-视图-控制器——复合模式 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chapter10 状态设计模式" href="Chapter10_The_State_Design_Pattern.jupyter.html" />
+    <link rel="prev" title="Chapter-8 模板方法模式——封装算法" href="Chapter8_The_Template_Method_Pattern.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python设计模式（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter3-The_Factory_Pattern.jupyter.html">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    </li>
+    <li class="">
+      <a href="Chapter4-The_Facade_Pattern.jupyter.html">Chapter-4 门面模式 —— 与门面相适</a>
+    </li>
+    <li class="">
+      <a href="Chapter5_The_Proxy_Pattern.jupyter.html">Chapter-5 代理模式——控制对象的访问</a>
+    </li>
+    <li class="">
+      <a href="Chapter6_The_Observer_Pattern.jupyter.html">Chapter-6 观察者模式——了解对象的情况</a>
+    </li>
+    <li class="">
+      <a href="Chapter7_The_Command_Pattern.jupyter.html">Chapter-7 命令模式——封装调用</a>
+    </li>
+    <li class="">
+      <a href="Chapter8_The_Template_Method_Pattern.jupyter.html">Chapter-8 模板方法模式——封装算法</a>
+    </li>
+    <li class="active">
+      <a href="">Chapter9 模型-视图-控制器——复合模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter10_The_State_Design_Pattern.jupyter.html">Chapter10 状态设计模式</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Learning_Python_Design_Patterns/Chapter9_Model_View_Controller.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g-web" class="nav-link">1 e.g. Web应用程序</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter9">
+<h1>Chapter9 模型-视图-控制器——复合模式<a class="headerlink" href="#chapter9" title="Permalink to this headline">¶</a></h1>
+<p>Model-View-Controller (MVC)不仅是一种实现用户界面的软件模式，同时也是一种易于修改和维护的架构。通常来说，MVC模式将应用程序分为3个基本部分：模型、视图和控制器。这3个部分是相互关联的，并且有助于将信息的处理与信息的呈现分离开来。MVC模式的工作机制为：模型提供数据和业务逻辑（如何存储和查询信息），视图负责数据的展示（如何呈现），而控制器是两者之间的粘合剂，根据用户要求的呈现方式来协调模型和视图。有趣的是，<strong>视图和控制器依赖于模型</strong>，而不是反过来，这是因为用户关心的是数据，而模型是可以独立工作的，这是MVC模式的关键所在。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/r2k9064qxsr0adudjtfgofjd/image.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">services</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="p">},</span>
+        <span class="s1">&#39;sms&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="p">},</span>
+        <span class="s1">&#39;voice&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="p">},</span>
+    <span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">list_services</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">services</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">svc</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">list_pricing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">services</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">svc</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For&quot;</span><span class="p">,</span> <span class="n">Model</span><span class="o">.</span><span class="n">services</span><span class="p">[</span><span class="n">svc</span><span class="p">][</span><span class="s1">&#39;number&#39;</span><span class="p">],</span>
+                  <span class="n">svc</span><span class="p">,</span> <span class="s2">&quot;message you pay $&quot;</span><span class="p">,</span>
+                  <span class="n">Model</span><span class="o">.</span><span class="n">services</span><span class="p">[</span><span class="n">svc</span><span class="p">][</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Controller</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">View</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_services</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">services</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">list_services</span><span class="p">(</span><span class="n">services</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_pricing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">services</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">list_pricing</span><span class="p">(</span><span class="n">services</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Services Provided:&quot;</span><span class="p">)</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">get_services</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pricing for Services:&quot;</span><span class="p">)</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">get_pricing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Services Provided:
+email  
+sms  
+voice  
+Pricing for Services:
+For 1000 email message you pay $ 2
+For 1000 sms message you pay $ 10
+For 1000 voice message you pay $ 15
+</pre></div>
+</div>
+</div>
+</div>
+<p>在UML图中，我们可以看到这个模式中的3个主要类：</p>
+<ul class="simple">
+<li><p>Model：定义与客户端的某些任务有关的业务逻辑或操作。</p></li>
+<li><p>View：定义客户端查看的视图或展示。模型根据业务逻辑向视图呈现数据。</p></li>
+<li><p>Controller：这实际上是视图和模型之间的接口。当客户端采取某些操作时，控制器将来自视图的查询传递给模型。</p></li>
+</ul>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/a7qigkwt6jharjdc9cuaq85u/image.png" /></p>
+<div class="section" id="e-g-web">
+<h2>1 e.g. Web应用程序<a class="headerlink" href="#e-g-web" title="Permalink to this headline">¶</a></h2>
+<p>Web应用程序框架也是基于MVC的优秀理念的。以Django或Rails（Ruby）为例：它们都是以模式—视图—控制器格式来构造项目的，只是形式为模型、模版、视图（Model-Template-View，MTV），其中模型是数据库，模板是视图，控制器是视图/路由。举例来说，假设要用<a class="reference external" href="http://www.tornadoweb.org/en/stable/">Tornado Web应用程序框架</a>来开发一个单页应用程序。这个应用程序用于管理用户的各种任务，同时用户还具有添加任务、更新任务和删除任务的权限。</p>
+<ol class="simple">
+<li><p>在Tornado中，控制器被定义为视图/应用程序路由。我们需要定义多个视图，例如列出任务、创建新任务、关闭任务，以及在无法处理请求时的操作；</p></li>
+<li><p>我们还应该定义模型，即列出、创建或删除任务的数据库操作；</p></li>
+<li><p>最后，视图由Tornado中的模板显示。对于应用程序来说，我们需要一个模板来显示、创建或删除任务，以及另一个模板用于没有找到URL时的情形。</p></li>
+</ol>
+<p>在Tornado中，数据库操作是在不同的处理程序下执行的。处理程序根据用户在Web应用程序中请求的路由对数据库执行操作。在这里讨论的是在这个例子中创建的4个处理程序：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IndexHandler</span></code>：返回存储在数据库中的所有任务。它返回一个与关键任务有关的字典。它执行SELECT数据库操作来获取这些任务。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NewHandler</span></code>：顾名思义，它对添加新任务很有用。它检查是否有一个POST调用来创建一个新任务，并在数据库中执行INSERT操作。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UpdateHandler</span></code>：在将任务标记为完成或重新打开给定任务时非常有用。在这种情况下，将执行UPDATE数据库操作，将任务的状态设置为open / closed。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DeleteHandler</span></code>：这将从数据库中删除指定的任务。一旦删除，任务将会从任务列表中消失。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">tornado.httpserver</span>
+<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+<span class="kn">import</span> <span class="nn">tornado.web</span>
+<span class="kn">import</span> <span class="nn">tornado</span>
+
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select * from task&quot;</span>
+        <span class="n">todos</span> <span class="o">=</span> <span class="n">_execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">todos</span><span class="o">=</span><span class="n">todos</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NewHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;create table if not exists task (id INTEGER </span><span class="se">\</span>
+<span class="s2">        PRIMARY KEY, name TEXT, status NUMERIC) &quot;</span>
+        <span class="n">_execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;insert into task (name, status) </span><span class="se">\</span>
+<span class="s2">        values (&#39;</span><span class="si">%s</span><span class="s2">&#39;, </span><span class="si">%d</span><span class="s2">) &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">_execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;new.html&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UpdateHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;update task set status=</span><span class="si">%d</span><span class="s2"> where </span><span class="se">\</span>
+<span class="s2">        id=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">),</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">_execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DeleteHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;delete from task where id=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">id</span>
+        <span class="n">_execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>在这个示例中，我们有4个应用程序路由：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/</span></code>：这用于列出所有任务的路由。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/todo/new</span></code>：这是创建新任务的路由。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/todo/update</span></code>：这是将任务状态更新为打开或关闭的路由。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/todo/delete</span></code>：这是删除已完成任务的路由。</p></li>
+</ul>
+<p>base.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="cp">&lt;!DOCTYPE&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>{% block header %}{% end %}<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>{% block body %}{% end %}<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>index.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+&lt;title&gt;ToDo&lt;/title&gt;
+{% block body %}
+&lt;h3&gt;Your Tasks&lt;/h3&gt;
+&lt;table border=&quot;1&quot; &gt;
+&lt;tralign=&quot;center&quot;&gt;&lt;td&gt;Id&lt;/td&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;Status&lt;/td&gt;
+&lt;td&gt;Update&lt;/td&gt;
+&lt;td&gt;Delete&lt;/td&gt;
+&lt;tr&gt;
+  {% for todo in todos %}
+&lt;tralign=&quot;center&quot;&gt;
+&lt;td&gt;{{todo[0]}}&lt;/td&gt;
+&lt;td&gt;{{todo[1]}}&lt;/td&gt;
+    {% if todo[2] %}
+&lt;td&gt;Open&lt;/td&gt;
+    {% else %}
+&lt;td&gt;Closed&lt;/td&gt;
+    {% end %}
+    {% if todo[2] %}
+&lt;td&gt;&lt;a href=&quot;/todo/update/{{todo[0]}}/0&quot;&gt;Close Task&lt;/a&gt;&lt;/td&gt;
+    {% else %}
+&lt;td&gt;&lt;a href=&quot;/todo/update/{{todo[0]}}/1&quot;&gt;Open Task&lt;/a&gt;&lt;/td&gt;
+  {% end %}
+&lt;td&gt;&lt;a href=&quot;/todo/delete/{{todo[0]}}&quot;&gt;X&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+{% end %}
+&lt;/table&gt;
+&lt;div&gt;
+&lt;h3&gt;&lt;a href=&quot;/todo/new&quot;&gt;Add Task&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+{% end %}
+</pre></div>
+</div>
+<p>new.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>ToDo<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+{% block body %}
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Add Task to your List<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/todo/new&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;new&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter task&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;add&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% end %}
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="k">class</span> <span class="nc">RunApp</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Handlers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">IndexHandler</span><span class="p">),</span>
+            <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/todo/new&#39;</span><span class="p">,</span> <span class="n">NewHandler</span><span class="p">),</span>
+            <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/todo/update/(\d+)/status/(\d+)&#39;</span><span class="p">,</span> <span class="n">UpdateHandler</span><span class="p">),</span>
+            <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/todo/delete/(\d+)&#39;</span><span class="p">,</span> <span class="n">DeleteHandler</span><span class="p">)]</span>
+
+        <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">template_path</span><span class="o">=</span><span class="s1">&#39;templates&#39;</span><span class="p">,</span>
+            <span class="n">static_path</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Handlers</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">RunApp</span><span class="p">())</span>
+<span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>当我们运行这个Python程序时：</p>
+<ol class="simple">
+<li><p>服务器将启动，并在端口5000上运行，适当的视图、模板和控制器已经配置好了；</p></li>
+<li><p>浏览http:// localhost:5000 /，可以看到任务列表。</p></li>
+</ol>
+<p>由于需要安装tornado和sqlite3，这里就没有实际运行，运行结果如下图所示：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/4wfg8e59fdmvg06dtamry5rz/image.png" /></p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter8_The_Template_Method_Pattern.jupyter.html" title="previous page">Chapter-8 模板方法模式——封装算法</a>
+    <a class='right-next' id="next-link" href="Chapter10_The_State_Design_Pattern.jupyter.html" title="next page">Chapter10 状态设计模式</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

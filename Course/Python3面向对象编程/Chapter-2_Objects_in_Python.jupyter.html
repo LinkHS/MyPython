@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第2章 Python对象 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第3章 对象相似时" href="Chapter-3_When_Objects_Are_Alike.jupyter.html" />
+    <link rel="prev" title="Python3面向对象编程（第2版）" href="Readme.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="active">
+      <a href="">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-2_Objects_in_Python.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">1 e.g. 笔记本</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="python">
+<h1>第2章 Python对象<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
+<p>学习完本章以后，你将会理解：</p>
+<ul class="simple">
+<li><p>如何在Python中创建类和继承对象</p></li>
+<li><p>如何为Python对象添加属性和行为</p></li>
+<li><p>如何将类组织成包和模块</p></li>
+<li><p>如何建议人们不要乱动我们的数据</p></li>
+</ul>
+<div class="section" id="e-g">
+<h2>1 e.g. 笔记本<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>创建一个简单的命令行笔记本应用。笔记是保存在笔记本中的备忘录，每条笔记应该有标签（用于添加和查询）和创建日期，笔记可以被修改，内容也可以被搜索，这些都是通过命令完成。</p>
+<p>关于命令行菜单接口的设计，为了让笔记本兼容未来可能添加的新接口（例如GUI工具集或基于Web的接口），所以菜单应该是一个单独的模块。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/rro8z4dfzzbmm48nt71n3tt3/image.png" /></p>
+<p>下面实现笔记类（<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Note</span></code>）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="k">class</span> <span class="nc">Note</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represent a note in the notebook. Match against a</span>
+<span class="sd">    string in searches and store tags for each note.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a note with memo and optional</span>
+<span class="sd">        space-separated tags. Automatically set the note&#39;s</span>
+<span class="sd">        creation date and a unique id.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memo</span> <span class="o">=</span> <span class="n">memo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="n">tags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creation_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ID</span>
+    
+    <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine if this note matches the keyword</span>
+<span class="sd">        text. Return True if it matches, False otherwise.</span>
+<span class="sd">        </span>
+<span class="sd">        Search is case sensutuve and matches both text and tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">memo</span> <span class="ow">or</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试一下<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Note</span></code>的“初始化”和“查找”功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n1</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;first memo&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n1</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n1</span><span class="o">.</span><span class="n">memo</span><span class="p">,</span> <span class="n">n1</span><span class="o">.</span><span class="n">tags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n2</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n2</span><span class="o">.</span><span class="n">memo</span><span class="p">,</span> <span class="n">n2</span><span class="o">.</span><span class="n">tags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n1</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n2</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0 first memo 
+1 hello world 
+False
+True
+</pre></div>
+</div>
+</div>
+</div>
+<p>接着实现笔记本类（<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Notebook</span></code>），提供了“新建笔记”、“修改笔记内容/标签”、“查找笔记”的功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Notebook</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represent a collection of notes that can be tagged,</span>
+<span class="sd">    modified, and searched.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a notebook with an empty list.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span> <span class="nf">new_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new note and add it to the list.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="n">memo</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">),</span> <span class="n">tags</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">_find_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Locate the note with the given id&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">note_id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">note</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">modify_memo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_id</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the note with the given id and change its</span>
+<span class="sd">        memo to the given value.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_find_note</span><span class="p">(</span><span class="n">note_id</span><span class="p">)</span><span class="o">.</span><span class="n">memo</span> <span class="o">=</span> <span class="n">memo</span>
+    
+    <span class="k">def</span> <span class="nf">modify_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_id</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the note with the given id and change its</span>
+<span class="sd">        tags to the given value.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">ID</span> <span class="o">==</span> <span class="n">note_id</span><span class="p">:</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="n">tags</span>
+                <span class="k">break</span>
+    
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find all notes that match the given filter string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">note</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">keyword</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Notebook</span></code>的“新建笔记”功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">Notebook</span><span class="p">()</span>
+<span class="n">n</span><span class="o">.</span><span class="n">new_note</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+<span class="n">n</span><span class="o">.</span><span class="n">new_note</span><span class="p">(</span><span class="s1">&#39;hello again&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notes:&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;id1:&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">memo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;id2:&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">memo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>notes: [&lt;__main__.Note object at 0x7fb550073208&gt;, &lt;__main__.Note object at 0x7fb550073048&gt;]
+id1: 0 hello world
+id2: 1 hello again
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Notebook</span></code>的“修改笔记”功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">.</span><span class="n">modify_memo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;new msg&#39;</span><span class="p">)</span>
+<span class="n">n</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">memo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;new msg&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>尝试修改不存在的笔记：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">n</span><span class="o">.</span><span class="n">modify_memo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;sasa&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception message: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Exception: AttributeError
+Exception message: &#39;NoneType&#39; object has no attribute &#39;memo&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>继续完成命令行菜单类<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Menu</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Menu</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Display a menu and respond to choices when run.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span> <span class="o">=</span> <span class="n">Notebook</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_notes</span><span class="p">,</span>
+            <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_notes</span><span class="p">,</span>
+            <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_note</span><span class="p">,</span>
+            <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">modify_note</span><span class="p">,</span>
+            <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">display_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Notebook Menu</span>
+
+<span class="s2">1. Show all Notes</span>
+<span class="s2">2. Search Notes</span>
+<span class="s2">3. Add Note</span>
+<span class="s2">4. Modify Note</span>
+<span class="s2">5. Quit</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Display the menu and respond to choices.&quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_menu</span><span class="p">()</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an option: &quot;</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">action</span><span class="p">:</span>
+                <span class="n">action</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is not a valid choice&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">show_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">notes</span><span class="p">:</span>
+            <span class="n">notes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">notes</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">notes</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">: </span><span class="si">{1}</span><span class="se">\n</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">memo</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">search_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">keyword</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Search for: &quot;</span><span class="p">)</span>
+        <span class="n">notes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_notes</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">add_note</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">memo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a memo: &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">new_note</span><span class="p">(</span><span class="n">memo</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your note has been added.&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">modify_note</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ID</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a note id: &quot;</span><span class="p">)</span>
+        <span class="n">memo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a memo: &quot;</span><span class="p">)</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter tags:&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">memo</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">modify_memo</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tags</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">modify_tags</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thank you for using your notebook today.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试一下命令行的菜单功能，需要手动打开<code class="docutils literal notranslate"><span class="pre">menu.run()</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">()</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">display_menu</span><span class="p">()</span>
+<span class="c1">#menu.run()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+Notebook Menu
+
+1. Show all Notes
+2. Search Notes
+3. Add Note
+4. Modify Note
+5. Quit
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Readme.html" title="previous page">Python3面向对象编程（第2版）</a>
+    <a class='right-next' id="next-link" href="Chapter-3_When_Objects_Are_Alike.jupyter.html" title="next page">第3章 对象相似时</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

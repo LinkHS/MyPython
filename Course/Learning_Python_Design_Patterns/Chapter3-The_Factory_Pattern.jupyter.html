@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter-3 工厂模式：建立创建对象的工厂 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chapter-4 门面模式 —— 与门面相适" href="Chapter4-The_Facade_Pattern.jupyter.html" />
+    <link rel="prev" title="Python设计模式（第2版）" href="Readme.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python设计模式（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="active">
+      <a href="">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    </li>
+    <li class="">
+      <a href="Chapter4-The_Facade_Pattern.jupyter.html">Chapter-4 门面模式 —— 与门面相适</a>
+    </li>
+    <li class="">
+      <a href="Chapter5_The_Proxy_Pattern.jupyter.html">Chapter-5 代理模式——控制对象的访问</a>
+    </li>
+    <li class="">
+      <a href="Chapter6_The_Observer_Pattern.jupyter.html">Chapter-6 观察者模式——了解对象的情况</a>
+    </li>
+    <li class="">
+      <a href="Chapter7_The_Command_Pattern.jupyter.html">Chapter-7 命令模式——封装调用</a>
+    </li>
+    <li class="">
+      <a href="Chapter8_The_Template_Method_Pattern.jupyter.html">Chapter-8 模板方法模式——封装算法</a>
+    </li>
+    <li class="">
+      <a href="Chapter9_Model_View_Controller.jupyter.html">Chapter9 模型-视图-控制器——复合模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter10_The_State_Design_Pattern.jupyter.html">Chapter10 状态设计模式</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Learning_Python_Design_Patterns/Chapter3-The_Factory_Pattern.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 简单工厂模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">2 工厂方法模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">3 抽象工厂模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">4 工厂模式与抽象工厂模式</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-3">
+<h1>Chapter-3 工厂模式：建立创建对象的工厂<a class="headerlink" href="#chapter-3" title="Permalink to this headline">¶</a></h1>
+<p>Factory模式有3种变体：</p>
+<ul class="simple">
+<li><p>简单工厂模式：允许接口创建对象，但不会暴露对象的创建逻辑。</p></li>
+<li><p>工厂方法模式：允许接口创建对象，但使用哪个类来创建对象，则是交由子类决定的。</p></li>
+<li><p>抽象工厂模式：抽象工厂是一个能够创建一系列相关的对象而无需指定/公开其具体类的接口。该模式能够提供其他工厂的对象，在其内部创建其他对象。</p></li>
+</ul>
+<div class="section" id="id1">
+<h2>1 简单工厂模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>这种模式下，工厂可以帮助开发人员<strong>创建不同类型的对象，而不是直接将对象实例化</strong>。下图是简单工厂的UML图，客户端类使用的是<code class="docutils literal notranslate"><span class="pre">Factory</span></code>类，该类具有<code class="docutils literal notranslate"><span class="pre">create_type()</span></code>方法。当客户端使用类型参数调用<code class="docutils literal notranslate"><span class="pre">create_type()</span></code>方法时，<code class="docutils literal notranslate"><span class="pre">Factory</span></code>会根据传入的参数，返回<code class="docutils literal notranslate"><span class="pre">Product1</span></code>或<code class="docutils literal notranslate"><span class="pre">Product2</span></code>。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/z6do394regvm9mmc8768kw4i/image.png" /></p>
+<p>在下面的代码段中，我们将创建一个名为<code class="docutils literal notranslate"><span class="pre">Animal</span></code>的抽象产品。<code class="docutils literal notranslate"><span class="pre">Animal</span></code>是一个抽象的基类（<code class="docutils literal notranslate"><span class="pre">ABCMeta</span></code>是Python的特殊元类，用来生成类<code class="docutils literal notranslate"><span class="pre">Abstract</span></code>），它带有方法<code class="docutils literal notranslate"><span class="pre">do_say()</span></code>。我们利用<code class="docutils literal notranslate"><span class="pre">Animal</span></code>接口创建了两种产品（<code class="docutils literal notranslate"><span class="pre">Cat</span></code>和<code class="docutils literal notranslate"><span class="pre">Dog</span></code>），并实现了<code class="docutils literal notranslate"><span class="pre">do_say()</span></code>方法来提供这些动物的相应的叫声。<code class="docutils literal notranslate"><span class="pre">ForestFactory</span></code>是一个带有<code class="docutils literal notranslate"><span class="pre">make_sound()</span></code>方法的工厂。根据客户端传递的参数类型，它就可以在运行时创建适当的<code class="docutils literal notranslate"><span class="pre">Animal</span></code>实例，并输出正确的声音：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">do_say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bhow Bhow!!&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Meow Meow!!&quot;</span><span class="p">)</span>
+
+<span class="c1"># forest factory defined</span>
+<span class="k">class</span> <span class="nc">ForestFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">make_sound</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_type</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">object_type</span><span class="p">)()</span><span class="o">.</span><span class="n">do_say</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>客户端的代码：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ff</span> <span class="o">=</span> <span class="n">ForestFactory</span><span class="p">()</span>
+<span class="n">animal</span> <span class="o">=</span> <span class="s1">&#39;Dog&#39;</span> <span class="c1"># Dog or Cat</span>
+<span class="n">ff</span><span class="o">.</span><span class="n">make_sound</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Bhow Bhow!!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2 工厂方法模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>工厂方法模式的特点：</p>
+<ul class="simple">
+<li><p>工厂定义了接口来创建对象，本身并不负责创建对象，而是将这一任务交由子类来完成，即子类决定了要实例化哪些类。</p></li>
+<li><p>工厂方法的创建是<strong>通过继承而不是通过实例化</strong>来完成的。</p></li>
+<li><p>工厂方法使设计更加具有可定制性。它可以返回相同的实例或子类，而不是某种类型的对象（就像在简单工厂方法中的那样）。</p></li>
+</ul>
+<p>在下面的UML图中，有一个包含<code class="docutils literal notranslate"><span class="pre">factoryMethod()</span></code>方法的抽象类<code class="docutils literal notranslate"><span class="pre">Creator</span></code>。<code class="docutils literal notranslate"><span class="pre">FactoryMethod()</span></code>方法负责创建指定类型的对象。<code class="docutils literal notranslate"><span class="pre">ConcreteCreator</span></code>类提供了一个实现<code class="docutils literal notranslate"><span class="pre">Creator</span></code>抽象类的<code class="docutils literal notranslate"><span class="pre">factoryMethod()</span></code>方法，这种方法可以在运行时修改已创建的对象。<code class="docutils literal notranslate"><span class="pre">ConcreteCreator</span></code>创建<code class="docutils literal notranslate"><span class="pre">ConcreteProduct</span></code>，并确保其创建的对象实现了<code class="docutils literal notranslate"><span class="pre">Product</span></code>类，同时为<code class="docutils literal notranslate"><span class="pre">Product</span></code>接口中的所有方法提供相应的实现。</p>
+<p>简而言之，<code class="docutils literal notranslate"><span class="pre">Creator</span></code>接口的<code class="docutils literal notranslate"><span class="pre">factoryMethod()</span></code>方法和<code class="docutils literal notranslate"><span class="pre">ConcreteCreator</span></code>类共同决定了要创建<code class="docutils literal notranslate"><span class="pre">Product</span></code>的哪个子类。因此，工厂方法模式定义了一个接口来创建对象，但具体实例化哪个类则是由它的子类决定的。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/6gztekvrkf84rbz74c4zpi2n/image.png" /></p>
+<p><strong>e.g. 用一个现实世界的场景来理解工厂方法的实现：</strong><br />
+假设我们想在不同类型的社交网络（例如LinkedIn、Facebook等）上为个人或公司建立简介。那么，每个简介都有某些特定的组成区：</p>
+<ul class="simple">
+<li><p>在LinkedIn的简介中，有一个区是关于个人申请的专利或出版作品的。</p></li>
+<li><p>在Facebook上，你将在相册中看到最近度假地点的照片区。</p></li>
+<li><p>此外，在这两个简介中，都有一个个人信息的区。</p></li>
+</ul>
+<p>因此，我们在创建不同类型的简介<code class="docutils literal notranslate"><span class="pre">Profile</span></code>（对应上图<code class="docutils literal notranslate"><span class="pre">Creator</span></code>）时，要添加正确的区<code class="docutils literal notranslate"><span class="pre">Section</span></code>（对应上图<code class="docutils literal notranslate"><span class="pre">Product</span></code>）到相应的简介中。首先定义接口<code class="docutils literal notranslate"><span class="pre">Section</span></code>抽象类，并提供抽象方法<code class="docutils literal notranslate"><span class="pre">describe()</span></code>，然后定义具体<code class="docutils literal notranslate"><span class="pre">ConcreteProduct</span></code>，也就是<code class="docutils literal notranslate"><span class="pre">PersonalSection</span></code>等：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">PersonalSection</span><span class="p">(</span><span class="n">Section</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Personal Section&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AlbumSection</span><span class="p">(</span><span class="n">Section</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Album Section&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PatentSection</span><span class="p">(</span><span class="n">Section</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Patent Section&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PublicationSection</span><span class="p">(</span><span class="n">Section</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Publication Section&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>有了<code class="docutils literal notranslate"><span class="pre">Product</span></code>类，接着创建<code class="docutils literal notranslate"><span class="pre">Creator</span></code>抽象类，即<code class="docutils literal notranslate"><span class="pre">Profile</span></code>，<code class="docutils literal notranslate"><span class="pre">Profile</span></code>抽象类提供了一个工厂抽象方法<code class="docutils literal notranslate"><span class="pre">createProfile()</span></code>。这个抽象方法应该由<code class="docutils literal notranslate"><span class="pre">ConcreteClass</span></code>实现，去实际创建带有适当区<code class="docutils literal notranslate"><span class="pre">ConcreteProduct</span></code>的<code class="docutils literal notranslate"><span class="pre">Profile</span></code>。<strong>由于<code class="docutils literal notranslate"><span class="pre">Profile</span></code>抽象类不知道简介应具有哪些区（例如Facebook的简介应该提供个人信息区和相册区），所以让子类<code class="docutils literal notranslate"><span class="pre">linkedin</span></code>等来决定这些事情</strong>。</p>
+<p>下面创建了两个<code class="docutils literal notranslate"><span class="pre">ConcreteCreator</span></code>类(<code class="docutils literal notranslate"><span class="pre">linkedin</span></code>和<code class="docutils literal notranslate"><span class="pre">facebook</span></code>)，每个类根据实际情况实现了<code class="docutils literal notranslate"><span class="pre">createProfile()</span></code>抽象方法，由该方法在运行时实际创建（实例化）多个区（<code class="docutils literal notranslate"><span class="pre">ConcreteProducts</span></code>）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Profile</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createProfile</span><span class="p">()</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">createProfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">getSections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sections</span>
+
+    <span class="k">def</span> <span class="nf">addSections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">linkedin</span><span class="p">(</span><span class="n">Profile</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">createProfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSections</span><span class="p">(</span><span class="n">PersonalSection</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSections</span><span class="p">(</span><span class="n">PatentSection</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSections</span><span class="p">(</span><span class="n">PublicationSection</span><span class="p">())</span>
+
+
+<span class="k">class</span> <span class="nc">facebook</span><span class="p">(</span><span class="n">Profile</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">createProfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSections</span><span class="p">(</span><span class="n">PersonalSection</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addSections</span><span class="p">(</span><span class="n">AlbumSection</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最后客户端代码根据指定的选项创建所需的简介，即决定实例化哪个<code class="docutils literal notranslate"><span class="pre">Creator</span></code>类：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">profile_type</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LinkedIn&#39;</span><span class="p">,</span> <span class="s1">&#39;FaceBook&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">profile_type</span><span class="o">.</span><span class="n">lower</span><span class="p">())()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating Profile..&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Profile has sections --&quot;</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">getSections</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Creating Profile.. linkedin
+Profile has sections -- [&lt;__main__.PersonalSection object at 0x7fb73828c1d0&gt;, &lt;__main__.PatentSection object at 0x7fb73828c550&gt;, &lt;__main__.PublicationSection object at 0x7fb73828c208&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>通过示例可以看出工厂方法模式的优点：</p>
+<ol class="simple">
+<li><p>灵活性，使得代码通用，因为不必绑定到某个类进行实例化。这样，只依赖于接口（<code class="docutils literal notranslate"><span class="pre">Product</span></code>）而不依赖于<code class="docutils literal notranslate"><span class="pre">ConcreteProduct</span></code>类。</p></li>
+<li><p>松耦合性，因为创建对象的代码与使用对象的代码是分开的。客户端不必费心传递什么参数和实例化哪个类。而且增加新类非常容易，维护成本低。</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>3 抽象工厂模式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>抽象工厂模式的主要目的是提供一个接口来创建一系列相关对象，而无需指定具体的类。工厂方法将创建实例的任务委托给了子类，而抽象工厂方法的目标是创建一系列相关对象。如下图所示，<code class="docutils literal notranslate"><span class="pre">ConcreteFactory1</span></code>和<code class="docutils literal notranslate"><span class="pre">ConcreteFactory2</span></code>是通过<code class="docutils literal notranslate"><span class="pre">AbstractFactory</span></code>接口创建的。此接口具有创建多种产品的相应方法。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/a27h38w9pswewt4iwnl6t1ii/image.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">ConcreteFactory1</span></code>和<code class="docutils literal notranslate"><span class="pre">ConcreteFactory2</span></code>实现了<code class="docutils literal notranslate"><span class="pre">AbstractFactory</span></code>，并分别创建实例<code class="docutils literal notranslate"><span class="pre">ConcreteProduct1</span></code>、<code class="docutils literal notranslate"><span class="pre">ConcreteProduct2</span></code>和<code class="docutils literal notranslate"><span class="pre">AnotherConcreteProduct1</span></code>、<code class="docutils literal notranslate"><span class="pre">AnotherConcreteProduct2</span></code>。</p>
+<p>实际上，抽象工厂模式不仅确保<strong>客户端与对象的创建相互隔离</strong>，同时还确保客户端能够使用创建的对象。但是，客户端只能通过接口访问对象，如果要使用一个系列中的多个产品，那么抽象工厂模式能够帮助客户端一次使用来自一个产品/系列的多个对象。例如，如果正在开发的应用应该与平台无关，它需要对各种依赖项进行抽象处理，这些依赖项包括操作系统、文件系统调用等等。抽象工厂模式负责为整个平台创建所需的服务，这样的话，客户端就不必直接创建平台对象了。</p>
+<p><strong>e.g. 实际案例：披萨店</strong><br />
+假设我们开办了一家披萨店，供应美味的印式和美式披萨饼。我们首先创建一个抽象基类<code class="docutils literal notranslate"><span class="pre">PizzaFactory</span></code>（<code class="docutils literal notranslate"><span class="pre">AbstractFactory</span></code>见前面的UML图）。<code class="docutils literal notranslate"><span class="pre">PizzaFactory</span></code>类有两个抽象方法即<code class="docutils literal notranslate"><span class="pre">createVegPizza()</span></code>和<code class="docutils literal notranslate"><span class="pre">createNonVegPizza()</span></code>，它们需要通过<code class="docutils literal notranslate"><span class="pre">ConcreteFactory</span></code>实现。在这个例子中，我们创造了两个具体的工厂，分别名为<code class="docutils literal notranslate"><span class="pre">IndianPizzaFactory</span></code>和<code class="docutils literal notranslate"><span class="pre">USPizzaFactory</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span> <span class="nc">PizzaFactory</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">createVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">createNonVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">IndianPizzaFactory</span><span class="p">(</span><span class="n">PizzaFactory</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">createVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DeluxVeggiePizza</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">createNonVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ChickenPizza</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">USPizzaFactory</span><span class="p">(</span><span class="n">PizzaFactory</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">createVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">MexicanVegPizza</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">createNonVegPizza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">HamPizza</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在进一步定义<code class="docutils literal notranslate"><span class="pre">AbstractProducts</span></code>，将创建两个抽象类：<code class="docutils literal notranslate"><span class="pre">VegPizza</span></code>和<code class="docutils literal notranslate"><span class="pre">NonVegPizza</span></code>。它们都定义了自己的方法，分别是<code class="docutils literal notranslate"><span class="pre">prepare()</span></code>和<code class="docutils literal notranslate"><span class="pre">serve()</span></code>。然后为每个<code class="docutils literal notranslate"><span class="pre">AbstractProducts</span></code>定义<code class="docutils literal notranslate"><span class="pre">ConcreteProducts</span></code>，就本例而言，<code class="docutils literal notranslate"><span class="pre">ConcreteProducts1</span></code>和<code class="docutils literal notranslate"><span class="pre">ConcreteProducts2</span></code>分别对应<code class="docutils literal notranslate"><span class="pre">DeluxVeggiePizza</span></code>和<code class="docutils literal notranslate"><span class="pre">MexicanVegPizza</span></code>，<code class="docutils literal notranslate"><span class="pre">AnotherConcreteProducts1</span></code>和<code class="docutils literal notranslate"><span class="pre">AnotherConcreteProducts2</span></code>分别对应<code class="docutils literal notranslate"><span class="pre">ChickenPizza</span></code>和<code class="docutils literal notranslate"><span class="pre">HamPizza</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VegPizza</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">VegPizza</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">NonVegPizza</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">VegPizza</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">DeluxVeggiePizza</span><span class="p">(</span><span class="n">VegPizza</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prepare &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ChickenPizza</span><span class="p">(</span><span class="n">NonVegPizza</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">VegPizza</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot; is served with Chicken on &quot;</span><span class="p">,</span>
+              <span class="nb">type</span><span class="p">(</span><span class="n">VegPizza</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MexicanVegPizza</span><span class="p">(</span><span class="n">VegPizza</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prepare &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">HamPizza</span><span class="p">(</span><span class="n">NonVegPizza</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">VegPizza</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot; is served with Ham on &quot;</span><span class="p">,</span>
+              <span class="nb">type</span><span class="p">(</span><span class="n">VegPizza</span><span class="p">)</span><span class="o">.</span> <span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PizzaStore</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">makePizzas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">factory</span> <span class="ow">in</span> <span class="p">[</span><span class="n">IndianPizzaFactory</span><span class="p">(),</span> <span class="n">USPizzaFactory</span><span class="p">()]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="n">factory</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NonVegPizza</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">createNonVegPizza</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">VegPizza</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">createVegPizza</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">VegPizza</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NonVegPizza</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VegPizza</span><span class="p">)</span>
+
+<span class="n">pizza</span> <span class="o">=</span> <span class="n">PizzaStore</span><span class="p">()</span>
+<span class="n">pizza</span><span class="o">.</span><span class="n">makePizzas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Prepare  DeluxVeggiePizza
+ChickenPizza  is served with Chicken on  DeluxVeggiePizza
+Prepare  MexicanVegPizza
+HamPizza  is served with Ham on  MexicanVegPizza
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4 工厂模式与抽象工厂模式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>工厂模式</p></th>
+<th class="text-align:center head"><p>抽象工厂模式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>向客户端开放了一个创建对象的方法</p></td>
+<td class="text-align:center"><p>包含一个或多个工厂方法来创建一个系列的相关对象</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>使用继承和子类来决定要创建何种对象</p></td>
+<td class="text-align:center"><p>使用组合委派责任创建其他类的对象</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>创建一个产品</p></td>
+<td class="text-align:center"><p>创建相关产品的系列</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Readme.html" title="previous page">Python设计模式（第2版）</a>
+    <a class='right-next' id="next-link" href="Chapter4-The_Facade_Pattern.jupyter.html" title="next page">Chapter-4 门面模式 —— 与门面相适</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

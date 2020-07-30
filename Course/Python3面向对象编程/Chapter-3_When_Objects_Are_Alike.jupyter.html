@@ -1,0 +1,1324 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第3章 对象相似时 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第4章 异常捕获" href="Chapter-4_Expecting_the_Unexpected.jupyter.html" />
+    <link rel="prev" title="第2章 Python对象" href="Chapter-2_Objects_in_Python.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="active">
+      <a href="">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="">
+      <a href="Chapter-11_Python_Design_Patterns_II.jupyter.html">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-3_When_Objects_Are_Alike.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#basic-inheritance" class="nav-link">1 基本的继承 [Basic Inheritance]</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g" class="nav-link">1.1 e.g. 联系人管理器</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#multiple-inheritance" class="nav-link">2 多重继承 [Multiple Inheritance]</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#polymorphism" class="nav-link">3 多态 [Polymorphism]</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">3.1 e.g. 多媒体播放器</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#abstract-base-classes" class="nav-link">4 抽象基类 [Abstract Base Classes]</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#duck-typing" class="nav-link">4.1 鸭子类型 [Duck Typing]</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">4.2 创建抽象基类</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">4.3 e.g. 房地产</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#property" class="nav-link">4.3.1 设计Property类</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#houseapartment" class="nav-link">4.3.2 设计House和Apartment类</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#purchaserental" class="nav-link">4.3.3 设计Purchase和Rental类</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#house-apartmentpurchase-rental" class="nav-link">4.3.4 组合House/Apartment和Purchase/Rental</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#agent" class="nav-link">4.3.5 设计Agent类</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#a-super-init" class="nav-link">4.4 附录A：多重继承的super().__init__()</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第3章 对象相似时<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-inheritance">
+<h2>1 基本的继承 [Basic Inheritance]<a class="headerlink" href="#basic-inheritance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="e-g">
+<h3>1.1 e.g. 联系人管理器<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h3>
+<p>这个案例包含了**“扩展内置对象”<strong>和</strong>“重写和<code class="docutils literal notranslate"><span class="pre">super</span></code>”**等关键知识。</p>
+<p>联系人管理器可以追踪多个人的名字和Email地址，先设计联系人的类：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Contact</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">John</span> <span class="o">=</span> <span class="n">Contact</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;john@email.com&quot;</span><span class="p">)</span>
+<span class="n">John</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">John</span><span class="o">.</span><span class="n">email</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;John&#39;, &#39;john@email.com&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>思考一个问题：如果某些联系人也是供货商，我们需要从他们那里下单，该如何处理？</p>
+<p>我们可以为<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Contact</span></code>添加一个<code class="docutils literal notranslate"><span class="pre">order</span></code>的方法，但是家人、朋友、客户等联系人也有了这个方法，会被意外地下单。</p>
+<p>于是我们创建一个<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Supplier</span></code>，继承<code class="docutils literal notranslate"><span class="pre">Contact</span></code>，但是拥有<code class="docutils literal notranslate"><span class="pre">order</span></code>方法：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Supplier</span><span class="p">(</span><span class="n">Contact</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order &#39;</span><span class="si">{0}</span><span class="s2">&#39; from </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AppleSupplier</span> <span class="o">=</span> <span class="n">Supplier</span><span class="p">(</span><span class="s1">&#39;Apple&#39;</span><span class="p">,</span> <span class="s1">&#39;apple@emial.com&#39;</span><span class="p">)</span>
+<span class="n">AppleSupplier</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s1">&#39;apples&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order &#39;apples&#39; from Apple
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>扩展内置对象</strong></p>
+<p>联系人管理器至少需要满足“存储”、“插入”和“删除”联系人等功能，不需要重复造轮子，于是用Python自带的<code class="docutils literal notranslate"><span class="pre">list</span></code>来管理联系人：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_contacts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">John</span><span class="p">)</span>
+<span class="n">all_contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AppleSupplier</span><span class="p">)</span>
+<span class="n">all_contacts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;__main__.Contact at 0x7fb550073cf8&gt;, &lt;__main__.Supplier at 0x7fb550073e48&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">list</span></code>功能很强大，但是有些特定需求无法满足，例如根据名字搜索联系人，于是我们可以继承<code class="docutils literal notranslate"><span class="pre">list</span></code>创建一个带有<code class="docutils literal notranslate"><span class="pre">search</span></code>方法的类：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ContactList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return all contacts that contain the search value in their name.&quot;&quot;&quot;</span>
+        <span class="n">matching_contacts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">contact</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">contact</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="n">matching_contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contact</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">matching_contacts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_contacts</span> <span class="o">=</span> <span class="n">ContactList</span><span class="p">()</span>
+<span class="n">all_contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">John</span><span class="p">)</span>
+<span class="n">all_contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AppleSupplier</span><span class="p">)</span>
+<span class="n">all_contacts</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">email</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;john@email.com&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>大多数内置类型都可以被扩展，例如<code class="docutils literal notranslate"><span class="pre">set</span></code>、<code class="docutils literal notranslate"><span class="pre">dict</span></code>、<code class="docutils literal notranslate"><span class="pre">file</span></code>、<code class="docutils literal notranslate"><span class="pre">str</span></code>，甚至数字类型<code class="docutils literal notranslate"><span class="pre">int</span></code>、<code class="docutils literal notranslate"><span class="pre">float</span></code>也可以。</p>
+<p><strong>重写和<code class="docutils literal notranslate"><span class="pre">super</span></code></strong></p>
+<p>对于大部分联系人来说，我们只要存储“姓名”和“邮箱”就可以了，但是对于好朋友，我们还想添加一个电话号码，同样新建<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Friend</span></code>继承<code class="docutils literal notranslate"><span class="pre">Contact</span></code>，然后只需要调用<code class="docutils literal notranslate"><span class="pre">super</span></code>方法就可以完成超类<code class="docutils literal notranslate"><span class="pre">Contact</span></code>中的操作：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Friend</span><span class="p">(</span><span class="n">Contact</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">phone</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phone</span> <span class="o">=</span> <span class="n">phone</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-inheritance">
+<h2>2 多重继承 [Multiple Inheritance]<a class="headerlink" href="#multiple-inheritance" title="Permalink to this headline">¶</a></h2>
+<p>由于多重继承会带来很多问题，而且任何提供了正确接口的对象都可以在Python中互相使用，通常当多重继承作为一种可用方案时，可用鸭子类型来模拟其中一个超类，因此本文不准备详细介绍多重继承，可以参考原书。</p>
+</div>
+<div class="section" id="polymorphism">
+<h2>3 多态 [Polymorphism]<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>3.1 e.g. 多媒体播放器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>多态继承可以简化设计。例如多媒体播放器加载Audio File然后Play，不同文件（”.mp3”，”.wma”，”.ogg”等）的解压缩和提取音频文件的过程是不一样的，于是可以设计一个基类<code class="docutils literal notranslate"><span class="pre">AudioFile</span></code>，其子类<code class="docutils literal notranslate"><span class="pre">WavFile</span></code>、<code class="docutils literal notranslate"><span class="pre">MP3File</span></code>等都有<code class="docutils literal notranslate"><span class="pre">play()</span></code>方法。<strong>多媒体播放器永远不需要知道指向的是哪个子类，只需要调用<code class="docutils literal notranslate"><span class="pre">play()</span></code>方法并多态地让对象自己处理实际播放过程</strong>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AudioFile</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid file format&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>重点！！！</strong><br />
+<code class="docutils literal notranslate"><span class="pre">AudioFile</span></code>的<code class="docutils literal notranslate"><span class="pre">__init__</span></code>中有个非常巧妙的设计，检查文件后缀和<code class="docutils literal notranslate"><span class="pre">self.ext</span></code>是否匹配。虽然本身没有<code class="docutils literal notranslate"><span class="pre">ext</span></code>变量，但是不妨碍它访问子类中的类变量，这就强制了所有子类在初始化时候检查文件是否匹配，而且没有在子类中重复实现代码。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MP3File</span><span class="p">(</span><span class="n">AudioFile</span><span class="p">):</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;mp3&quot;</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;playing </span><span class="si">{}</span><span class="s2"> as mp3&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">WavFile</span><span class="p">(</span><span class="n">AudioFile</span><span class="p">):</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;wav&quot;</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;playing </span><span class="si">{}</span><span class="s2"> as wav&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">OggFile</span><span class="p">(</span><span class="n">AudioFile</span><span class="p">):</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;ogg&quot;</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;playing </span><span class="si">{}</span><span class="s2"> as ogg&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mp3</span> <span class="o">=</span> <span class="n">MP3File</span><span class="p">(</span><span class="s2">&quot;myfile.mp3&quot;</span><span class="p">)</span>
+<span class="n">mp3</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>playing myfile.mp3 as mp3
+</pre></div>
+</div>
+</div>
+</div>
+<p>文件后缀不匹配时：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">Ogg</span> <span class="o">=</span> <span class="n">OggFile</span><span class="p">(</span><span class="s2">&quot;myfile.mp3&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception message: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Exception: Exception
+Exception message: Invalid file format
+</pre></div>
+</div>
+</div>
+</div>
+<p>在很多面向对象的场景中，多态是使用继承关系最重要的原因之一。</p>
+</div>
+</div>
+<div class="section" id="abstract-base-classes">
+<h2>4 抽象基类 [Abstract Base Classes]<a class="headerlink" href="#abstract-base-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="duck-typing">
+<h3>4.1 鸭子类型 [Duck Typing]<a class="headerlink" href="#duck-typing" title="Permalink to this headline">¶</a></h3>
+<p>任何提供了正确接口的对象都可以在Python中互换使用，如果所有共享的都是公共接口（没有私有属性和方法调用），那用鸭子类型就可以满足，用继承来共享代码的需求就会降低。</p>
+<p>另外鸭子类型另一个有用的特征是，鸭子类型的对象只需要提供真正被访问的方法和属性，不需要提供所需对象的整个接口。例如如果只有对文件只读需求，就可以创建一个新的对象，只实现<code class="docutils literal notranslate"><span class="pre">read()</span></code>而不需要实现<code class="docutils literal notranslate"><span class="pre">write()</span></code>。</p>
+<p>例如Python内置的<code class="docutils literal notranslate"><span class="pre">list</span></code>、<code class="docutils literal notranslate"><span class="pre">dict</span></code>等都属于容器<code class="docutils literal notranslate"><span class="pre">Container</span></code>类：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Container</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">Container</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">list</span><span class="p">(),</span> <span class="n">Container</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Container</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">Container</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True True
+True True
+</pre></div>
+</div>
+</div>
+</div>
+<p>但是<strong>并不需要继承<code class="docutils literal notranslate"><span class="pre">Container</span></code>就可以创建一个属于<code class="docutils literal notranslate"><span class="pre">Container</span></code>类的对象</strong>。下面我们来实现一个能判断给定值是否属于奇数集合的容器：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OddContainer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2 is odd:&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">OddContainer</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3 is odd:&quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="ow">in</span> <span class="n">OddContainer</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2 is odd: False
+3 is odd: True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">OddContainer</span><span class="p">(),</span> <span class="n">Container</span><span class="p">),</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">OddContainer</span><span class="p">,</span> <span class="n">Container</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(True, True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>为什么会这样呢？我们看一下<code class="docutils literal notranslate"><span class="pre">Container</span></code>的抽象方法：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="o">.</span><span class="n">__abstractmethods__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;__contains__&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出如果继承<code class="docutils literal notranslate"><span class="pre">Container</span></code>只需要实现一个抽象方法<code class="docutils literal notranslate"><span class="pre">__contains__</span></code>，再看下这个方法需要的参数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">Container</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Help on function __contains__ in module collections.abc:
+
+__contains__(self, x)
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>很明显，这个参数就是需要被检查是否在这个容器中的值。</p>
+<p><strong>从结果看出，<code class="docutils literal notranslate"><span class="pre">OddContainer</span></code>并没有继承<code class="docutils literal notranslate"><span class="pre">Container</span></code>，但是本身属于子类，并且实例化的对象也是一个<code class="docutils literal notranslate"><span class="pre">Container</span></code>的对象</strong>。这就是鸭子类型比传统多态更实用的原因，可以避免继承甚至多重继承。</p>
+<p>下面是另一个示例：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterator</span>
+
+<span class="k">class</span> <span class="nc">MyIterator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">MyIterator</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">MyIterator</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">MyIterator</span><span class="p">(),</span> <span class="n">Iterable</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">MyIterator</span><span class="p">(),</span> <span class="n">Iterator</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
+True
+True
+True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>4.2 创建抽象基类<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>虽然并不一定需要抽象基类才能用鸭子类型，但是为了避免使用者出错，我们需要强制子类实现某些方法或者属性，例如之前的多媒体播放器，其各个子类需要实现各自的<code class="docutils literal notranslate"><span class="pre">play()</span></code>方法和文件类型<code class="docutils literal notranslate"><span class="pre">ext</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">abc</span>
+
+
+<span class="k">class</span> <span class="nc">MediaLoader</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractclassmethod</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractproperty</span>
+    <span class="k">def</span> <span class="nf">ext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshoo__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="n">MediaLoader</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__abstractmethods__</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">attrs</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果继承了<code class="docutils literal notranslate"><span class="pre">MediaLoader</span></code>而没实现<code class="docutils literal notranslate"><span class="pre">ext()</span></code>和<code class="docutils literal notranslate"><span class="pre">play()</span></code>就不能被实例化：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wav</span><span class="p">(</span><span class="n">MediaLoader</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">Wav</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">E</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception message: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Exception: TypeError
+Exception message: Can&#39;t instantiate abstract class Wav with abstract methods ext, play
+</pre></div>
+</div>
+</div>
+</div>
+<p>需要注意的是，<code class="docutils literal notranslate"><span class="pre">__subclasshoo__</span></code>用<code class="docutils literal notranslate"><span class="pre">#classmethod</span></code>装饰器包装成了一个类方法，用于检查<code class="docutils literal notranslate"><span class="pre">C</span></code>类是否是子类。注意，它不会检查<code class="docutils literal notranslate"><span class="pre">C</span></code>是否实现了这些方法，而检查是否存在，<strong>因此<code class="docutils literal notranslate"><span class="pre">C</span></code>类如果是一个子类，但仍然可能是一个抽象类</strong>。</p>
+<p>这时我们再用之前的非继承方法就不可取了（但是还可以使用，就是无法通过<code class="docutils literal notranslate"><span class="pre">isinstance</span></code>的检测）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ogg</span><span class="p">:</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="s1">&#39;.ogg&#39;</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">Ogg</span><span class="p">,</span> <span class="n">MediaLoader</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ogg</span><span class="p">(),</span> <span class="n">MediaLoader</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>False False
+</pre></div>
+</div>
+</div>
+</div>
+<p>必须继承<code class="docutils literal notranslate"><span class="pre">MediaLoader</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ogg</span><span class="p">(</span><span class="n">MediaLoader</span><span class="p">):</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="s1">&#39;.ogg&#39;</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">Ogg</span><span class="p">,</span> <span class="n">MediaLoader</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ogg</span><span class="p">(),</span> <span class="n">MediaLoader</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>4.3 e.g. 房地产<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>我们将设计一个简单的房地产应用，允许经纪人管理可出售或出租的房产，房产有两类：Apartment和House。Agent应该可以输入与Property相关的信息，列出当前空闲的Porperty。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/9lnem8s28f82wgvqzyuz0suz/image.png" /></p>
+<div class="section" id="property">
+<h4>4.3.1 设计<code class="docutils literal notranslate"><span class="pre">Property</span></code>类<a class="headerlink" href="#property" title="Permalink to this headline">¶</a></h4>
+<p>虽然<code class="docutils literal notranslate"><span class="pre">House</span></code>和<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>是两类房产，但是有一些共同的属性，例如面积、卧室数量和洗手间数量等，因此<code class="docutils literal notranslate"><span class="pre">Property</span></code>可以作为它们的超类。</p>
+<p><em><strong>重点！！！</strong></em><br />
+<code class="docutils literal notranslate"><span class="pre">prompt_init</span></code>让用户根据提示输入正确的房产信息，这些信息作为实例化<code class="docutils literal notranslate"><span class="pre">Property</span></code>各种子类的参数（包括父类共有参数和子类独有参数），简单示例如下，详情见<code class="docutils literal notranslate"><span class="pre">Agent.add_property()</span></code>。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">init_args</span> <span class="o">=</span> <span class="n">PropertyClass</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+<span class="n">PropertyClass</span><span class="p">(</span><span class="o">**</span><span class="n">init_args</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_input</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">inp</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;jupyter notebook自动化测试中代替内置`input()`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">inp</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">inp</span>
+
+
+<span class="k">class</span> <span class="nc">Property</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">square_feet</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">beds</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">baths</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">square_feet</span> <span class="o">=</span> <span class="n">square_feet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_bedrooms</span> <span class="o">=</span> <span class="n">beds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_baths</span> <span class="o">=</span> <span class="n">baths</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PROPERTY DETAILS&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;square footage: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">square_feet</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bedrooms: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_bedrooms</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bathrooms: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_baths</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># return dict(square_feet=input(&quot;Enter the square feet: &quot;),</span>
+        <span class="c1">#            beds=input(&quot;Enter number of bedrooms: &quot;, ),</span>
+        <span class="c1">#            baths=input(&quot;Enter number of baths: &quot;))</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">square_feet</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;Enter the square feet: &quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+                    <span class="n">beds</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;Enter number of bedrooms: &quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                    <span class="n">baths</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;Enter number of baths: &quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Property</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Enter the square feet: : 100
+Enter number of bedrooms: : 3
+Enter number of baths: : 2
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;square_feet&#39;: 100, &#39;beds&#39;: 3, &#39;baths&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>重点！！！</strong></em><br />
+因为我们知道<code class="docutils literal notranslate"><span class="pre">Property</span></code>将用于多重继承，所以给<code class="docutils literal notranslate"><span class="pre">__init__</span></code>添加了额外的<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>参数。并且也调用了<code class="docutils literal notranslate"><span class="pre">super().__init__</span></code>，<strong>以防它不是在继承链的最后一层被调用</strong>（这里的<code class="docutils literal notranslate"><span class="pre">super().__init__</span></code>并不是因为<code class="docutils literal notranslate"><span class="pre">Property</span></code>有父类，而是其子类会有多重继承，详情见附录A）。</p>
+</div>
+<div class="section" id="houseapartment">
+<h4>4.3.2 设计<code class="docutils literal notranslate"><span class="pre">House</span></code>和<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>类<a class="headerlink" href="#houseapartment" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Apartment</span></code>和<code class="docutils literal notranslate"><span class="pre">House</span></code>继承<code class="docutils literal notranslate"><span class="pre">Property</span></code>，并添加独有的属性和方法。<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>需要说明是否有阳台、是否有洗衣房等，这些信息是需要用户输入的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_valid_input</span><span class="p">(</span><span class="n">input_string</span><span class="p">,</span> <span class="n">valid_options</span><span class="p">):</span>
+    <span class="n">input_string</span> <span class="o">+=</span> <span class="s2">&quot; (</span><span class="si">{}</span><span class="s2">) &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">valid_options</span><span class="p">))</span>
+    <span class="c1">#response = input(input_string)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">my_input</span><span class="p">(</span><span class="n">input_string</span><span class="p">,</span> <span class="n">valid_options</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">while</span> <span class="n">response</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_options</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">input_string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_valid_input</span><span class="p">(</span><span class="s1">&#39;Which laundry?&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;coin&quot;</span><span class="p">,</span> <span class="s2">&quot;ensuite&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Which laundry? (coin, ensuite, none) : coin
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;coin&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_valid_input()</span></code>需要被多处调用，而且其他类无关，所以作为模块层的函数使用。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Apartment</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="n">valid_laundries</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;coin&quot;</span><span class="p">,</span> <span class="s2">&quot;ensuite&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="n">valid_balconies</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;solarium&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balcony</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">laundry</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balcony</span> <span class="o">=</span> <span class="n">balcony</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laundry</span> <span class="o">=</span> <span class="n">laundry</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;APARTMENT DETAILS&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;laundry: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">laundry</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;has balcony: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balcony</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">parent_init</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">laundry</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span><span class="s2">&quot;Laundry&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">valid_laundries</span><span class="p">)</span>
+        <span class="n">balcony</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span><span class="s2">&quot;Balcony&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">valid_balconies</span><span class="p">)</span>
+        <span class="n">parent_init</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s2">&quot;laundry&quot;</span><span class="p">:</span> <span class="n">laundry</span><span class="p">,</span>
+            <span class="s2">&quot;balcony&quot;</span><span class="p">:</span> <span class="n">balcony</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">parent_init</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apartment</span> <span class="o">=</span> <span class="n">Apartment</span><span class="p">(</span><span class="o">**</span><span class="n">Apartment</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">apartment</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Enter the square feet: : 100
+Enter number of bedrooms: : 3
+Enter number of baths: : 2
+Laundry (coin, ensuite, none) : coin
+Balcony (yes, no, solarium) : yes
+
+
+PROPERTY DETAILS
+================
+square footage: 100
+bedrooms: 3
+bathrooms: 2
+
+APARTMENT DETAILS
+laundry: coin
+has balcony: yes
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">House</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="n">valid_garage</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;attached&quot;</span><span class="p">,</span> <span class="s2">&quot;detached&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="n">valid_fenced</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_stories</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">garage</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fenced</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">garage</span> <span class="o">=</span> <span class="n">garage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fenced</span> <span class="o">=</span> <span class="n">fenced</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_stories</span> <span class="o">=</span> <span class="n">num_stories</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HOUSE DETAILS&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# of stories: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_stories</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;garage: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">garage</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fenced yard: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fenced</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">parent_init</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">fenced</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span><span class="s2">&quot;Is the yard fenced? &quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">valid_fenced</span><span class="p">)</span>
+        <span class="n">garage</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span><span class="s2">&quot;Is there a garage? &quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">valid_garage</span><span class="p">)</span>
+        <span class="c1">#num_stories = input(&quot;How many stories? &quot;)</span>
+        <span class="n">num_stories</span> <span class="o">=</span> <span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;How many stories?&quot;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">)</span>
+
+        <span class="n">parent_init</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s2">&quot;fenced&quot;</span><span class="p">:</span> <span class="n">fenced</span><span class="p">,</span>
+            <span class="s2">&quot;garage&quot;</span><span class="p">:</span> <span class="n">garage</span><span class="p">,</span>
+            <span class="s2">&quot;num_stories&quot;</span><span class="p">:</span> <span class="n">num_stories</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">parent_init</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="n">House</span><span class="p">(</span><span class="o">**</span><span class="n">House</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">house</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Enter the square feet: : 100
+Enter number of bedrooms: : 3
+Enter number of baths: : 2
+Is the yard fenced?  (yes, no) : yes
+Is there a garage?  (attached, detached, none) : attached
+How many stories?: 20
+
+
+PROPERTY DETAILS
+================
+square footage: 100
+bedrooms: 3
+bathrooms: 2
+
+HOUSE DETAILS
+# of stories: 20
+garage: attached
+fenced yard: yes
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="purchaserental">
+<h4>4.3.3 设计<code class="docutils literal notranslate"><span class="pre">Purchase</span></code>和<code class="docutils literal notranslate"><span class="pre">Rental</span></code>类<a class="headerlink" href="#purchaserental" title="Permalink to this headline">¶</a></h4>
+<p>我们继续探讨<code class="docutils literal notranslate"><span class="pre">Purchase</span></code>和<code class="docutils literal notranslate"><span class="pre">Rental</span></code>类。除了目的明显不同之外，它们与刚刚讨论过的几个类在设计上也很相似。</p>
+<p><em><strong>重点！！！</strong></em><br />
+因为我们是按照多重继承来设计的，所以我们知道这两个类会被子类以多重继承的方式继承（如<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">HouseRental(Rental,</span> <span class="pre">House)</span></code>），并且顺序在前，所以我们在<code class="docutils literal notranslate"><span class="pre">display()</span></code>中加了<code class="docutils literal notranslate"><span class="pre">super().display()</span></code>，这样会导致这两个类的实例化无法调用<code class="docutils literal notranslate"><span class="pre">display()</span></code>，因为其父类<code class="docutils literal notranslate"><span class="pre">object</span></code>没有此方法。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Purchase</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">taxes</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taxes</span> <span class="o">=</span> <span class="n">taxes</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PURCHASE DETAILS&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;selling price: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;estimated taxes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxes</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="c1">#price=input(&quot;What is the selling price? &quot;),</span>
+            <span class="c1">#taxes=input(&quot;What are the estimated taxes? &quot;))</span>
+            <span class="n">price</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;What is the selling price?&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">),</span>
+            <span class="n">taxes</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;What are the estimated taxes?&quot;</span><span class="p">,</span> <span class="s2">&quot;20%&quot;</span><span class="p">))</span>
+    <span class="n">prompt_init</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prompt_init</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Rental</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">furnished</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">utilities</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">rent</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">furnished</span> <span class="o">=</span> <span class="n">furnished</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rent</span> <span class="o">=</span> <span class="n">rent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">utilities</span> <span class="o">=</span> <span class="n">utilities</span>
+
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RENTAL DETAILS&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rent: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rent</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;estimated utilities: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">utilities</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;furnished: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">furnished</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="c1">#rent=input(&quot;What is the monthly rent? &quot;),</span>
+            <span class="c1">#utilities=input(&quot;What are the estimated utilities? &quot;),</span>
+            <span class="n">rent</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;What is the monthly rent?&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">),</span>
+            <span class="n">utilities</span><span class="o">=</span><span class="n">my_input</span><span class="p">(</span><span class="s2">&quot;What are the estimated utilities?&quot;</span><span class="p">,</span> <span class="s2">&quot;bed&quot;</span><span class="p">),</span>
+            <span class="n">furnished</span><span class="o">=</span><span class="n">get_valid_input</span><span class="p">(</span><span class="s2">&quot;Is the property furnished? &quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">)))</span>
+    <span class="n">prompt_init</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prompt_init</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Purchase</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Rental</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>What is the selling price?: 100
+What are the estimated taxes?: 20%
+{&#39;price&#39;: &#39;100&#39;, &#39;taxes&#39;: &#39;20%&#39;}
+
+What is the monthly rent?: 12
+What are the estimated utilities?: bed
+Is the property furnished?  (yes, no) : yes
+{&#39;rent&#39;: &#39;12&#39;, &#39;utilities&#39;: &#39;bed&#39;, &#39;furnished&#39;: &#39;yes&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="house-apartmentpurchase-rental">
+<h4>4.3.4 组合<code class="docutils literal notranslate"><span class="pre">House/Apartment</span></code>和<code class="docutils literal notranslate"><span class="pre">Purchase/Rental</span></code><a class="headerlink" href="#house-apartmentpurchase-rental" title="Permalink to this headline">¶</a></h4>
+<p>下面对<code class="docutils literal notranslate"><span class="pre">House/Apartment</span></code>和<code class="docutils literal notranslate"><span class="pre">Purchase/Rental</span></code>分别两两配对，注意新的子类既没有<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>也没有<code class="docutils literal notranslate"><span class="pre">display()</span></code>方法，因为都在父类中实现了。默认的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>会调用父类的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HouseRental</span><span class="p">(</span><span class="n">Rental</span><span class="p">,</span> <span class="n">House</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="n">House</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">init</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Rental</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">init</span>
+
+
+<span class="k">class</span> <span class="nc">ApartmentRental</span><span class="p">(</span><span class="n">Rental</span><span class="p">,</span> <span class="n">Apartment</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="n">Apartment</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">init</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Rental</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">init</span>
+
+
+<span class="k">class</span> <span class="nc">ApartmentPurchase</span><span class="p">(</span><span class="n">Purchase</span><span class="p">,</span> <span class="n">Apartment</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="n">Apartment</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">init</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Purchase</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">init</span>
+
+
+<span class="k">class</span> <span class="nc">HousePurchase</span><span class="p">(</span><span class="n">Purchase</span><span class="p">,</span> <span class="n">House</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">prompt_init</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="n">House</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="n">init</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Purchase</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">init</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">init_args</span> <span class="o">=</span> <span class="n">HouseRental</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">HouseRental</span><span class="p">(</span><span class="o">**</span><span class="n">init_args</span><span class="p">)</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Enter the square feet: : 100
+Enter number of bedrooms: : 3
+Enter number of baths: : 2
+Is the yard fenced?  (yes, no) : yes
+Is there a garage?  (attached, detached, none) : attached
+How many stories?: 20
+What is the monthly rent?: 12
+What are the estimated utilities?: bed
+Is the property furnished?  (yes, no) : yes
+
+
+PROPERTY DETAILS
+================
+square footage: 100
+bedrooms: 3
+bathrooms: 2
+
+HOUSE DETAILS
+# of stories: 20
+garage: attached
+fenced yard: yes
+RENTAL DETAILS
+rent: 12
+estimated utilities: bed
+furnished: yes
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="agent">
+<h4>4.3.5 设计<code class="docutils literal notranslate"><span class="pre">Agent</span></code>类<a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h4>
+<p>回顾一开始的需求：设计一个简单的房地产应用，允许<code class="docutils literal notranslate"><span class="pre">Agent</span></code>管理可出售或出租的<code class="docutils literal notranslate"><span class="pre">Property</span></code>（<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>和<code class="docutils literal notranslate"><span class="pre">House</span></code>）。<code class="docutils literal notranslate"><span class="pre">Agent</span></code>可以添加<code class="docutils literal notranslate"><span class="pre">Property</span></code>，展示出当前空闲的<code class="docutils literal notranslate"><span class="pre">Porperty</span></code>。有了前面实现的各个对象（<code class="docutils literal notranslate"><span class="pre">Property</span></code>，<code class="docutils literal notranslate"><span class="pre">HouseRental</span></code>等），实现<code class="docutils literal notranslate"><span class="pre">Agent</span></code>就非常简单：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+    <span class="n">type_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">(</span><span class="s2">&quot;house&quot;</span><span class="p">,</span> <span class="s2">&quot;rental&quot;</span><span class="p">):</span> <span class="n">HouseRental</span><span class="p">,</span>
+        <span class="p">(</span><span class="s2">&quot;house&quot;</span><span class="p">,</span> <span class="s2">&quot;purchase&quot;</span><span class="p">):</span> <span class="n">HousePurchase</span><span class="p">,</span>
+        <span class="p">(</span><span class="s2">&quot;apartment&quot;</span><span class="p">,</span> <span class="s2">&quot;rental&quot;</span><span class="p">):</span> <span class="n">ApartmentRental</span><span class="p">,</span>
+        <span class="p">(</span><span class="s2">&quot;apartment&quot;</span><span class="p">,</span> <span class="s2">&quot;purchase&quot;</span><span class="p">):</span> <span class="n">ApartmentPurchase</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">display_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">property</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">property_list</span><span class="p">:</span>
+            <span class="nb">property</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">add_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">property_type</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span>
+            <span class="s2">&quot;What type of property? &quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="s2">&quot;house&quot;</span><span class="p">,</span> <span class="s2">&quot;apartment&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">payment_type</span> <span class="o">=</span> <span class="n">get_valid_input</span><span class="p">(</span>
+            <span class="s2">&quot;What payment type? &quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="s2">&quot;purchase&quot;</span><span class="p">,</span> <span class="s2">&quot;rental&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">PropertyClass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_map</span><span class="p">[(</span><span class="n">property_type</span><span class="p">,</span> <span class="n">payment_type</span><span class="p">)]</span>
+        <span class="n">init_args</span> <span class="o">=</span> <span class="n">PropertyClass</span><span class="o">.</span><span class="n">prompt_init</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PropertyClass</span><span class="p">(</span><span class="o">**</span><span class="n">init_args</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">add_property</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">display_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>What type of property?  (house, apartment) : house
+What payment type?  (purchase, rental) : purchase
+Enter the square feet: : 100
+Enter number of bedrooms: : 3
+Enter number of baths: : 2
+Is the yard fenced?  (yes, no) : yes
+Is there a garage?  (attached, detached, none) : attached
+How many stories?: 20
+What is the selling price?: 100
+What are the estimated taxes?: 20%
+
+
+PROPERTY DETAILS
+================
+square footage: 100
+bedrooms: 3
+bathrooms: 2
+
+HOUSE DETAILS
+# of stories: 20
+garage: attached
+fenced yard: yes
+PURCHASE DETAILS
+selling price: 100
+estimated taxes: 20%
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-super-init">
+<h3>4.4 附录A：多重继承的<code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code><a class="headerlink" href="#a-super-init" title="Permalink to this headline">¶</a></h3>
+<p>首先看下父类和子类都没有<code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code>的情况：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Father1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Father1&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Father2</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Father2&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Child1</span><span class="p">(</span><span class="n">Father1</span><span class="p">,</span> <span class="n">Father2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Child1&#39;</span><span class="p">)</span>
+
+<span class="n">Child1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Child1
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Child1 at 0x7fb550039c88&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>结果显示，<code class="docutils literal notranslate"><span class="pre">Child1</span></code>初始化时候只调用了自己的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。</p>
+<p>如果子类加入<code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code>呢：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child2</span><span class="p">(</span><span class="n">Father1</span><span class="p">,</span> <span class="n">Father2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Child2&#39;</span><span class="p">)</span>
+
+<span class="n">Child2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Father1
+Child2
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Child2 at 0x7fb550039cc0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>结果显示，<code class="docutils literal notranslate"><span class="pre">Child2</span></code>初始化时候先调用了<code class="docutils literal notranslate"><span class="pre">Father1.__init__()</span></code>，然后再调用了自己的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。</p>
+<p>如果<code class="docutils literal notranslate"><span class="pre">Father1</span></code>加入<code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code>呢：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Father1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Father1&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Child3</span><span class="p">(</span><span class="n">Father1</span><span class="p">,</span> <span class="n">Father2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Child3&#39;</span><span class="p">)</span>
+
+<span class="n">Child3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Father2
+Father1
+Child3
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Child3 at 0x7fb5500374e0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>结果显示，<code class="docutils literal notranslate"><span class="pre">Child3</span></code>初始化时候先调用了<code class="docutils literal notranslate"><span class="pre">Father1.__init__()</span></code>，<code class="docutils literal notranslate"><span class="pre">Father1</span></code>调用了<code class="docutils literal notranslate"><span class="pre">Father2.__init__()</span></code>，最后调用了自己的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。</p>
+<p>如果<code class="docutils literal notranslate"><span class="pre">Child</span></code>换个继承顺序呢：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child4</span><span class="p">(</span><span class="n">Father2</span><span class="p">,</span> <span class="n">Father1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Child4&#39;</span><span class="p">)</span>
+
+<span class="n">Child4</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Father2
+Child4
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Child4 at 0x7fb55008fe48&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>结果显示，<code class="docutils literal notranslate"><span class="pre">Child4</span></code>初始化时候先调用了<code class="docutils literal notranslate"><span class="pre">Father2.__init__()</span></code>，然后调用了自己的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。</p>
+<p>所以多重继承时候，父类的顺序和前一个父类是否有<code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code>都会影响子类是否能正确调用多个父类的<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>。另外由于多个父类参数不一样，所以在使用多重继承时候，每个父类都要加上<code class="docutils literal notranslate"><span class="pre">super().__init__(**kwargs)</span></code>，如下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Father1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Father1&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Father2</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Father2&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Child5</span><span class="p">(</span><span class="n">Father1</span><span class="p">,</span> <span class="n">Father2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Child5&#39;</span><span class="p">)</span>
+
+<span class="n">Child5</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Father2
+Father1
+Child5
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Child5 at 0x7fb550031860&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-2_Objects_in_Python.jupyter.html" title="previous page">第2章 Python对象</a>
+    <a class='right-next' id="next-link" href="Chapter-4_Expecting_the_Unexpected.jupyter.html" title="next page">第4章 异常捕获</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

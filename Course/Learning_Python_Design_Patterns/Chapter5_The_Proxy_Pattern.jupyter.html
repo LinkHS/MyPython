@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter-5 代理模式——控制对象的访问 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chapter-6 观察者模式——了解对象的情况" href="Chapter6_The_Observer_Pattern.jupyter.html" />
+    <link rel="prev" title="Chapter-4 门面模式 —— 与门面相适" href="Chapter4-The_Facade_Pattern.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python设计模式（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter3-The_Factory_Pattern.jupyter.html">Chapter-3 工厂模式：建立创建对象的工厂</a>
+    </li>
+    <li class="">
+      <a href="Chapter4-The_Facade_Pattern.jupyter.html">Chapter-4 门面模式 —— 与门面相适</a>
+    </li>
+    <li class="active">
+      <a href="">Chapter-5 代理模式——控制对象的访问</a>
+    </li>
+    <li class="">
+      <a href="Chapter6_The_Observer_Pattern.jupyter.html">Chapter-6 观察者模式——了解对象的情况</a>
+    </li>
+    <li class="">
+      <a href="Chapter7_The_Command_Pattern.jupyter.html">Chapter-7 命令模式——封装调用</a>
+    </li>
+    <li class="">
+      <a href="Chapter8_The_Template_Method_Pattern.jupyter.html">Chapter-8 模板方法模式——封装算法</a>
+    </li>
+    <li class="">
+      <a href="Chapter9_Model_View_Controller.jupyter.html">Chapter9 模型-视图-控制器——复合模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter10_The_State_Design_Pattern.jupyter.html">Chapter10 状态设计模式</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Learning_Python_Design_Patterns/Chapter5_The_Proxy_Pattern.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 不同类型的代理</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">1.1 虚拟代理</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id3" class="nav-link">1.2 远程代理</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id4" class="nav-link">1.3 保护代理</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">1.4 智能代理</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#e-g" class="nav-link">2 e.g. 刷卡消费</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id6" class="nav-link">3 门面模式和代理模式的比较</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-5">
+<h1>Chapter-5 代理模式——控制对象的访问<a class="headerlink" href="#chapter-5" title="Permalink to this headline">¶</a></h1>
+<p>代理模式和门面模式一样，也属于<strong>结构性设计模式</strong>。</p>
+<p>代理通常就是一个介于寻求方和提供方之间的中介系统。寻求方是发出请求的一方，而提供方则是根据请求提供资源的一方。在Web世界中，它相当于代理服务器。客户端（万维网中的用户）在向网站发出请求时，首先连接到代理服务器，向它请求诸如网页之类的资源。代理服务器在内部评估此请求，将其发送到适当的服务器，当它收到响应后，就会将响应传递给客户端。因此，代理服务器可以封装请求、保护隐私，并且非常适合在分布式架构中运行。</p>
+<p>在设计模式的上下文中，代理是充当实际对象接口的类。对象类型可以是多样化的，例如网络连接、内存和文件中的大对象，等等。简而言之，代理就是封装实际服务对象的包装器或代理人。代理可以为其包装的对象提供附加功能，而无需更改对象的代码。代理模式的主要目的是为其他对象提供一个代理者或占位符，从而控制对实际对象的访问。</p>
+<p>代理模式可以用于多种场景:</p>
+<ul class="simple">
+<li><p><strong>以更简单的方式表示一个复杂的系统</strong>。例如，涉及多个复杂计算或过程的系统应该提供一个更简单的接口，让它充当客户端的代理。</p></li>
+<li><p><strong>提高现有的实际对象的安全性</strong>。在许多情况下，都不允许客户端直接访问实际对象。这是因为实际对象可能受到恶意活动的危害。这时候，代理就能起到抵御恶意活动的盾牌作用，从而保护了实际的对象。</p></li>
+<li><p><strong>为不同服务器上的远程对象提供本地接口</strong>。一个明显的例子是客户端希望在远程系统上运行某些命令的分布式系统，但客户端可能没有直接的权限来实现这一点。因此它将请求转交给本地对象（代理），然后由远程机器上的代理执行该请求。</p></li>
+<li><p><strong>为消耗大量内存的对象提供了一个轻量级的句柄</strong>。一个典型的例子是网站用户的个人简介头像，最好在列表视图中显示简介头像的缩略图，而在需要展示用户详细介绍时，再加载实际图片。</p></li>
+</ul>
+<p>不妨以演员与他的经纪人为例，当制作公司想要找演员拍电影时，他们通常会与经纪人交流，而不是直接跟演员交流。经纪人会根据演员的日程安排和其他合约情况，来答复制作公司该演员是否有空，以及是否对该影片感兴趣和片酬问题等。</p>
+<p>下面的Python代码实现了这种场景，代理<code class="docutils literal notranslate"><span class="pre">Agent</span></code>用于查看<code class="docutils literal notranslate"><span class="pre">Actor</span></code>是否正处于忙碌状态：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Actor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isBusy</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">occupied</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isBusy</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;is occupied with current movie&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isBusy</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;is free for the movie&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isBusy</span>
+
+
+<span class="k">class</span> <span class="nc">Agent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">principal</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actor</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="o">.</span><span class="n">getStatus</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="o">.</span><span class="n">occupied</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">actor</span><span class="o">.</span><span class="n">available</span><span class="p">()</span>
+
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">work</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Actor is free for the movie
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/6d7bfm3nx1ta5u6e4rig9l2p/image.png" /></p>
+<div class="section" id="id1">
+<h2>1 不同类型的代理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>1.1 虚拟代理<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>如果一个对象实例化后会占用大量内存的话，可以先利用占位符来表示，这就是虚拟代理。例如，假设你想在网站上加载大型图片，而这个请求需要很长时间才能加载完成。通常，开发人员将在网页上创建一个占位符图标，以提示这里有图像。但是，只有当用户实际点击图标时才会加载图像，从而节省了向存储器中加载大型图像的开销。因此，在虚拟代理中，当客户端请求或访问对象时，才会创建实际对象。</p>
+</div>
+<div class="section" id="id3">
+<h3>1.2 远程代理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>它给位于远程服务器或不同地址空间上的实际对象提供了一个本地表示。例如，你希望为应用程序建立一个监控系统，而该应用涉及多个Web服务器、数据库服务器、芹菜（celery）任务服务器、缓存服务器，等等。如果我们要监视这些服务器的CPU和磁盘利用率，就需要建立一个对象，该对象能够用于监视应用程序运行的上下文中，同时还可以执行远程命令以获取实际的参数值。</p>
+</div>
+<div class="section" id="id4">
+<h3>1.3 保护代理<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>这种代理能够控制<code class="docutils literal notranslate"><span class="pre">RealSubject</span></code>的敏感对象的访问。例如分布式系统中，Web应用会提供多个服务，这些服务相互协作来提供各种功能，如认证服务充当负责认证和授权的保护性代理服务器。在这种情况下，代理自然有助于保护网站的核心功能，防止无法识别或未授权的代理访问它们。</p>
+</div>
+<div class="section" id="id5">
+<h3>1.4 智能代理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>智能代理在访问对象时插入其他操作。例如，系统中有一个核心组件，它将状态信息集中保存在一个地点。通常情况下，这样的组件需要被多个不同的服务调用，可能导致共享资源的问题。智能代理是内置的，在访问核心组件之前会检查实际对象是否被锁定。</p>
+</div>
+</div>
+<div class="section" id="e-g">
+<h2>2 e.g. 刷卡消费<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h2>
+<p>假设你在商场溜达，看中了一件漂亮的牛仔衫。你想买这件衬衫，但手里的现金却不够了。这时你可以去银行取钱，再回来付款。由于银行在商家处有刷卡机（代理），所以你只要在商家刷一下借记卡，这笔钱就会划入商家的账户，从而完成支付<code class="docutils literal notranslate"><span class="pre">do_pay()</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span> <span class="nc">Payment</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">do_pay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Bank</span></code>除了实现<code class="docutils literal notranslate"><span class="pre">do_pay()</span></code>，还有别的操作，这里主要是检查账户有效性、余额等：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bank</span><span class="p">(</span><span class="n">Payment</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">card</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__getAccount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Assume card number is account number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">card</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span>
+
+    <span class="k">def</span> <span class="nf">__hasFunds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bank:: Checking if Account&quot;</span><span class="p">,</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">__getAccount</span><span class="p">(),</span> <span class="s2">&quot;has enough funds&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">setCard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">card</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">card</span> <span class="o">=</span> <span class="n">card</span>
+
+    <span class="k">def</span> <span class="nf">do_pay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__hasFunds</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bank:: Paying the merchant&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bank:: Sorry, not enough funds!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>代理需要获取客户的银行卡号，并发送给银行：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DebitCard</span><span class="p">(</span><span class="n">Payment</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bank</span> <span class="o">=</span> <span class="n">Bank</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">do_pay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#card = input(&quot;Proxy:: Punch in Card Number: &quot;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proxy:: Punch in Card Number&quot;</span><span class="p">);</span> <span class="n">card</span> <span class="o">=</span> <span class="s2">&quot;62220120&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bank</span><span class="o">.</span><span class="n">setCard</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bank</span><span class="o">.</span><span class="n">do_pay</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">You</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: Lets buy the Denim shirt&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debitCard</span> <span class="o">=</span> <span class="n">DebitCard</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isPurchased</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">make_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isPurchased</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">debitCard</span><span class="o">.</span><span class="n">do_pay</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isPurchased</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: Wow! Denim shirt is Mine :-)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You:: I should earn more :(&quot;</span><span class="p">)</span>
+
+<span class="n">you</span> <span class="o">=</span> <span class="n">You</span><span class="p">()</span>
+<span class="n">you</span><span class="o">.</span><span class="n">make_payment</span><span class="p">()</span>
+<span class="k">del</span> <span class="n">you</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>You:: Lets buy the Denim shirt
+Proxy:: Punch in Card Number
+Bank:: Checking if Account 62220120 has enough funds
+Bank:: Paying the merchant
+You:: Wow! Denim shirt is Mine :-)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>3 门面模式和代理模式的比较<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>代理模式</p></th>
+<th class="text-align:center head"><p>门面模式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>为其他对象提供了代理或占位符，以控制对原始对象的访问</p></td>
+<td class="text-align:center"><p>为类的大型子系统提供了一个接口</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>代理对象具有与其目标对象相同的接口，并保存有目标对象的引用</p></td>
+<td class="text-align:center"><p>实现了子系统之间的通信和依赖性的最小化</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter4-The_Facade_Pattern.jupyter.html" title="previous page">Chapter-4 门面模式 —— 与门面相适</a>
+    <a class='right-next' id="next-link" href="Chapter6_The_Observer_Pattern.jupyter.html" title="next page">Chapter-6 观察者模式——了解对象的情况</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

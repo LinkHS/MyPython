@@ -1,0 +1,1035 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第11章 Python设计模式II &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Master Math by Coding in Python" href="../MathPython/Readme.html" />
+    <link rel="prev" title="第10章 Python设计模式I" href="Chapter-10_Python_Design_Patterns_I.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="active">
+    <a href="Readme.html">Python3面向对象编程（第2版）</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter-2_Objects_in_Python.jupyter.html">第2章 Python对象</a>
+    </li>
+    <li class="">
+      <a href="Chapter-3_When_Objects_Are_Alike.jupyter.html">第3章 对象相似时</a>
+    </li>
+    <li class="">
+      <a href="Chapter-4_Expecting_the_Unexpected.jupyter.html">第4章 异常捕获</a>
+    </li>
+    <li class="">
+      <a href="Chapter-5_When_to_Use_Object-oriented_Programming.jupyter.html">第5章 何时使用面向对象编程</a>
+    </li>
+    <li class="">
+      <a href="Chapter-6_Python_Data_Structures.jupyter.html">第6章 Python数据结构</a>
+    </li>
+    <li class="">
+      <a href="Chapter-7_Python_Object-oriented_Shortcuts.jupyter.html">第7章 Python面向对象的捷径</a>
+    </li>
+    <li class="">
+      <a href="Chapter-9_The_Iterator_Pattern.jupyter.html">第9章 迭代器模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter-10_Python_Design_Patterns_I.jupyter.html">第10章 Python设计模式I</a>
+    </li>
+    <li class="active">
+      <a href="">第11章 Python设计模式II</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/Python3面向对象编程/Chapter-11_Python_Design_Patterns_II.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">1 适配器模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">2 门面模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">3 享元模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">4 命令模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id5" class="nav-link">5 抽象工厂模式</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id6" class="nav-link">6 复合模式</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pythonii">
+<h1>第11章 Python设计模式II<a class="headerlink" href="#pythonii" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1 适配器模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>在结构上，适配器模式和简化版的装饰器模式很像。装饰器提供与被它替换对象同样的接口，而适配器在两个不同的接口之间进行映射。下面是UML图</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ayw1tdoqnqe2cvp7nxdc4hwx/image.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Interface1</span></code>会调用名为<code class="docutils literal notranslate"><span class="pre">make_action(some,</span> <span class="pre">arguments)</span></code>的方法，然而我们也有一个相当完美的<code class="docutils literal notranslate"><span class="pre">Interface2</span></code>类可以完成所有我们想要做的事，只是提供了名为<code class="docutils literal notranslate"><span class="pre">different_action(other,</span> <span class="pre">arguments)</span></code>的方法。<code class="docutils literal notranslate"><span class="pre">Adapter</span></code>类实现了<code class="docutils literal notranslate"><span class="pre">make_action()</span></code>方法，且将参数映射到已有的接口上。</p>
+<p>适配器的优势在于从一个接口映射到另一个接口<strong>全部在一个地方完成</strong>。例如，我们有下面这样一个类，接受格式为<code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code>的日期字符串并计算一个人在某一天的年龄：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AgeCalculator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">birthday</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">day</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">birthday</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">calculate_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">day</span><span class="p">):</span>
+            <span class="n">age</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">age</span>
+
+    
+<span class="n">born_date</span> <span class="o">=</span> <span class="s1">&#39;1990-2-21&#39;</span>
+<span class="n">curren_date</span> <span class="o">=</span> <span class="s1">&#39;2001-3-20&#39;</span>
+<span class="n">AgeCalculator</span><span class="p">(</span><span class="n">born_date</span><span class="p">)</span><span class="o">.</span><span class="n">calculate_age</span><span class="p">(</span><span class="n">curren_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<p>然后Python内置的<code class="docutils literal notranslate"><span class="pre">datetime</span></code>模块提供了各种日期和时间对象，另一个程序希望接收<code class="docutils literal notranslate"><span class="pre">datetime.date</span></code>的对象：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">born_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">curren_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">born_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">born_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m,%Y&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1990-12-22
+22-12,1990
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们有很多解决方法，例如重写<code class="docutils literal notranslate"><span class="pre">AgeCalculator</span></code>并接受<code class="docutils literal notranslate"><span class="pre">datetime</span></code>对象。但是如果这个类是由第三方库提供的，我们不知道或者不能修改其内部结构，那就需要尝试其他方法。我们还可以在每次计算<code class="docutils literal notranslate"><span class="pre">datetime.date</span></code>对象对应的年龄时，可以通过调用<code class="docutils literal notranslate"><span class="pre">datetime.date.strftime('%Y-%m-%d')</span></code>在传入<code class="docutils literal notranslate"><span class="pre">AgeCalculator</span></code>，但是这种转换每次都要写，将来所有地方都要维护，并且违反了DRY原则。</p>
+<p>我们可以用适配器来模式（任何时候只要维护这个类即可）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DateAgeAdapter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_str_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">birthday</span><span class="p">):</span>
+        <span class="n">birthday</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_date</span><span class="p">(</span><span class="n">birthday</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span> <span class="o">=</span> <span class="n">AgeCalculator</span><span class="p">(</span><span class="n">birthday</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_date</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">calculate_age</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+
+<span class="n">DateAgeAdapter</span><span class="p">(</span><span class="n">born_date</span><span class="p">)</span><span class="o">.</span><span class="n">get_age</span><span class="p">(</span><span class="n">curren_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2 门面模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>3 享元模式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>享元模式是一种内存优化的设计模式。注意Python程序员往往会忽略内存优化，并默认为内置的垃圾回收器将会处理这些问题。通常来说这是没有问题的；不过当我们需要开发大型应用，其中包含许多彼此相关的对象时，注意考虑内存问题将会带来很大收益。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/2y9ipzsiketncg407neuwcak/image.png" /></p>
+<p>每个Flyweight都没有特定的状态，无论何时它需要执行<code class="docutils literal notranslate"><span class="pre">SpecificState</span></code>上的操作，都需要通过调用者传入或者已经传入的<code class="docutils literal notranslate"><span class="pre">Flyweight</span></code>对象。</p>
+<p>考虑一个汽车销售的清单系统。每辆汽车都有一个特定的序列号和特定的颜色等，但是同一型号汽车的大部分配置（如长度、宽度、座位数等）都是相同的
+。Honda一年销售汽车的数量很可观，如果对每辆车都单独存储这些共有信息将会浪费大量的内存空间。通过使用享元模式，我们可以让同一型号的汽车共用同一个特征对象，之后对于每辆车只需要引用型号特征和特定的序列号与颜色即可。</p>
+<p>在Python中，享元对象的生产者通常通过<code class="docutils literal notranslate"><span class="pre">__new__</span></code>构造函数来实现，类似单例模式。但是<strong>单例模式只需要返回一个实例，而享元模式需要根据键返回不同的实例</strong>。</p>
+<blockquote>
+<div><p>这里不对<code class="docutils literal notranslate"><span class="pre">weakref.WeakValueDictionary()</span></code>展开介绍。引用官方介绍：For example, if you have a number of large binary image objects, you may wish to associate a name with each. If you used a Python dictionary to map names to images, or images to names, the image objects would remain alive just because they appeared as values or keys in the dictionaries. The <code class="docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code> and <code class="docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code> classes supplied by the <code class="docutils literal notranslate"><span class="pre">weakref</span></code> module are an alternative, using weak references to construct mappings that don’t keep objects alive solely because they appear in the mapping objects. If, for example, an image object is a value in a <code class="docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code>, then when the last remaining references to that image object are the weak references held by weak mappings, garbage collection can reclaim the object, and its corresponding entries in weak mappings are simply deleted.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weakref</span>
+
+
+<span class="k">class</span> <span class="nc">CarModel</span><span class="p">:</span>
+    <span class="n">_models</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakValueDictionary</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_models</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">model</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_models</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="k">return</span> <span class="n">model</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">air</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tilt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">cruise_control</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">power_locks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">alloy_wheels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">usb_charger</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;initted&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">air</span> <span class="o">=</span> <span class="n">air</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tilt</span> <span class="o">=</span> <span class="n">tilt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cruise_control</span> <span class="o">=</span> <span class="n">cruise_control</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">power_locks</span> <span class="o">=</span> <span class="n">power_locks</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alloy_wheels</span> <span class="o">=</span> <span class="n">alloy_wheels</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">usb_charger</span> <span class="o">=</span> <span class="n">usb_charger</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initted</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">check_serial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serial_number</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorry, we are unable to check &quot;</span>
+              <span class="s2">&quot;the serial number </span><span class="si">{0}</span><span class="s2"> on the </span><span class="si">{1}</span><span class="s2"> &quot;</span>
+              <span class="s2">&quot;at this time&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">serial_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">serial</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="n">serial</span>
+
+    <span class="k">def</span> <span class="nf">check_serial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">check_serial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">serial</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="n">CarModel</span><span class="p">(</span><span class="s2">&quot;FIT DX&quot;</span><span class="p">)</span>
+<span class="n">lx</span> <span class="o">=</span> <span class="n">CarModel</span><span class="p">(</span><span class="s2">&quot;FIT LX&quot;</span><span class="p">,</span> <span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lx1</span> <span class="o">=</span> <span class="n">CarModel</span><span class="p">(</span><span class="s2">&quot;FIT LX&quot;</span><span class="p">)</span>
+
+<span class="n">Car1</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;12345&quot;</span><span class="p">)</span>
+<span class="n">Car2</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;12346&quot;</span><span class="p">)</span>
+<span class="n">Car3</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;12347&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lx1</span></code>的得到的对象其实还是<code class="docutils literal notranslate"><span class="pre">lx</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">lx</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lx1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4 命令模式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>命令模式在必须执行的动作与调用这些动作的对象之间增加了一个抽象层。在命令模式中，客户端创建一个<code class="docutils literal notranslate"><span class="pre">Command</span></code>对象并且稍后执行，这个对象知道接收对象<code class="docutils literal notranslate"><span class="pre">Receiver</span></code>在执行命令时能管理内部状态。<code class="docutils literal notranslate"><span class="pre">Command</span></code>对象实现一个特定的接口（通常是<code class="docutils literal notranslate"><span class="pre">execute</span></code>或<code class="docutils literal notranslate"><span class="pre">do_action</span></code>方法），并负责执行操作所需的所有参数。最后，一个或多个<code class="docutils literal notranslate"><span class="pre">Invoker</span></code>对象将会在正确的时间执行这一命令。</p>
+<p>下面是UML图</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/0n8yzrv5rll9xbthgeopgoy1/image.png" /></p>
+<p>图形窗口是命令模式的一个例子，通过菜单选项、键盘快捷键、工具条上的图标或上下文菜单来触发操作。这些都是<code class="docutils literal notranslate"><span class="pre">Invoker</span></code>对象。真正发生的操作，例如<code class="docutils literal notranslate"><span class="pre">Exit</span></code>、<code class="docutils literal notranslate"><span class="pre">Save</span></code>或<code class="docutils literal notranslate"><span class="pre">Copy</span></code>则是<code class="docutils literal notranslate"><span class="pre">CommandInterface</span></code>的具体实现。GUI窗口可以接收退出操作，文档可以接收保存操作，ClipboardManager可以接收复制操作，这些都是可能的Receivers的例子。</p>
+<p>先看一种简单的形式：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">class</span> <span class="nc">Window</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># sys.exit(0)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;window is exiting...&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MenuItem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+
+
+<span class="n">window</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span>
+<span class="n">exit_menu</span> <span class="o">=</span> <span class="n">MenuItem</span><span class="p">()</span>
+<span class="n">exit_menu</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">exit</span>
+
+<span class="n">exit_menu</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>window is exiting...
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果有多个<code class="docutils literal notranslate"><span class="pre">window</span></code>对象，用上面的代码就需要多个<code class="docutils literal notranslate"><span class="pre">exit_menu</span></code>，如果menu很多，就会很难维护。我们可以考虑用一个<code class="docutils literal notranslate"><span class="pre">exit_menu</span></code>对应多个<code class="docutils literal notranslate"><span class="pre">window</span></code>对象：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Window</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;window &#39;</span><span class="si">{}</span><span class="s2">&#39; is exiting...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">MenuItem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<span class="n">window1</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="s1">&#39;note1&#39;</span><span class="p">)</span>
+<span class="n">window2</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="s1">&#39;note2&#39;</span><span class="p">)</span>
+
+<span class="n">exit_menu</span> <span class="o">=</span> <span class="n">MenuItem</span><span class="p">()</span>
+<span class="n">exit_menu</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">exit</span>
+<span class="n">exit_menu</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">window1</span><span class="p">)</span>
+<span class="n">exit_menu</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">window2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>window &#39;note1&#39; is exiting...
+window &#39;note2&#39; is exiting...
+</pre></div>
+</div>
+</div>
+</div>
+<p>上面代码利用了类函数默认带有<code class="docutils literal notranslate"><span class="pre">self</span></code>参数的性质，由于不确定实例对象，所以我们将对应类的函数传给<code class="docutils literal notranslate"><span class="pre">command</span></code>对象，最后在运行时传入需要被执行的实例化对象。当然，我们可以<code class="docutils literal notranslate"><span class="pre">MenuItem</span></code>对象添加<code class="docutils literal notranslate"><span class="pre">__call__</span></code>方法，不需要限定为函数（如这里的<code class="docutils literal notranslate"><span class="pre">click</span></code>）。</p>
+<p>前面的例子适用于不需要维护状态信息的场景，在更复杂的应用中，我们也可以采用下面这段代码：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="s2">&quot;This file cannot be modified&quot;</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save &#39;</span><span class="si">{0}</span><span class="s2">&#39; to &#39;</span><span class="si">{1}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">KeyboardShortcut</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">keypress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">SaveCommand</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">document</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+<span class="n">document</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s2">&quot;a_file.txt&quot;</span><span class="p">)</span>
+<span class="n">shortcut</span> <span class="o">=</span> <span class="n">KeyboardShortcut</span><span class="p">()</span>
+<span class="n">save_command</span> <span class="o">=</span> <span class="n">SaveCommand</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="n">shortcut</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">save_command</span>
+
+<span class="n">shortcut</span><span class="o">.</span><span class="n">keypress</span><span class="p">()</span>
+<span class="n">save_command</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Save &#39;This file cannot be modified&#39; to &#39;a_file.txt&#39;
+Save &#39;This file cannot be modified&#39; to &#39;a_file.txt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>命令模式通常需要扩展支持撤销指令。例如，一个文本程序可能将每一次插入关联到一个不同的命令，这一命令不光有<code class="docutils literal notranslate"><span class="pre">execute</span></code>方法，还有一个<code class="docutils literal notranslate"><span class="pre">undo</span></code>方法用来删除刚刚插入的内容。一个绘图程序可能会将每一次绘制操作（长方形、线条、徒手绘画等）关联到一个命令，该命令拥有一个<code class="docutils literal notranslate"><span class="pre">undo</span></code>方法以重置像素到初始状态。在这些例子中，命令模式的解耦特性就显得更加有用了，因为每个动作都维护了足够的状态，以便用来撤销操作。</p>
+<p>由于刚才的方法需要对每个命令都创建一个类（如刚才的<code class="docutils literal notranslate"><span class="pre">SaveCommand</span></code>），个人不是很喜欢，所以尝试用之前方法实现了一个带<code class="docutils literal notranslate"><span class="pre">undo</span></code>功能的文本编辑器：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+
+<span class="k">class</span> <span class="nc">DocText</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmdh</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># command history</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">undo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">undo</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">):]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doctext</span> <span class="o">=</span> <span class="n">DocText</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save &#39;</span><span class="si">{0}</span><span class="s2">&#39; to &#39;</span><span class="si">{1}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doctext</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">reload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reload from &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s1">&#39;I love you! &#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Ship Girl&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Save &#39;I love you! Ship Girl&#39; to &#39;test.txt&#39;
+I love you! Ship Girl
+</pre></div>
+</div>
+</div>
+</div>
+<p>利用Python的装饰器存储每次调用的函数和其参数，实现<code class="docutils literal notranslate"><span class="pre">undo</span></code>功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+
+<span class="k">class</span> <span class="nc">DocText</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmdh</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># command history</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">record_cmd</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cmdh</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="nd">@record_cmd</span>
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">undo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">undo</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">):]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d</span><span class="p">]</span>
+            
+    <span class="k">def</span> <span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmdh</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No history to undo!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmdh</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">undo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doctext</span> <span class="o">=</span> <span class="n">DocText</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save &#39;</span><span class="si">{0}</span><span class="s2">&#39; to &#39;</span><span class="si">{1}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doctext</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">reload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reload from &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s1">&#39;I love you! &#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Ship Girl&#39;</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">undo</span><span class="p">()</span> <span class="c1"># 撤销上一次命令</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">undo</span><span class="p">()</span> <span class="c1"># 撤销上一次命令</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="o">.</span><span class="n">undo</span><span class="p">()</span> <span class="c1"># 没有命令可以被撤销</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Save &#39;I love you! Ship Girl&#39; to &#39;test.txt&#39;
+I love you! 
+No history to undo!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DocMenu</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmd</span>
+
+
+<span class="n">menu</span> <span class="o">=</span> <span class="n">DocMenu</span><span class="p">()</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;Save&#39;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">Document</span><span class="o">.</span><span class="n">save</span><span class="p">)</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;Reload&#39;</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">Document</span><span class="o">.</span><span class="n">reload</span><span class="p">)</span>
+
+<span class="n">menu</span><span class="p">[</span><span class="s1">&#39;Save&#39;</span><span class="p">](</span><span class="n">doc</span><span class="p">)</span>
+<span class="n">reload_menu</span> <span class="o">=</span> <span class="n">menu</span><span class="p">[</span><span class="s1">&#39;Reload&#39;</span><span class="p">]</span>
+<span class="n">reload_menu</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+
+<span class="n">menu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Save &#39;&#39; to &#39;test.txt&#39;
+Reload from &#39;test.txt&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;Save&#39;: &lt;function __main__.Document.save(self)&gt;,
+ &#39;Reload&#39;: &lt;function __main__.Document.reload(self)&gt;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KeyboardShortcut</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Register </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">cmd</span>
+
+    <span class="k">def</span> <span class="nf">keypress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<span class="n">undo_shortcut</span> <span class="o">=</span> <span class="n">KeyboardShortcut</span><span class="p">(</span><span class="s1">&#39;ctrl+z&#39;</span><span class="p">,</span> <span class="n">DocText</span><span class="o">.</span><span class="n">undo</span><span class="p">)</span>
+<span class="n">undo_shortcut</span><span class="o">.</span><span class="n">keypress</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">doctext</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Register ctrl+z to undo
+No history to undo!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5 抽象工厂模式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>当有多种配置需求或多种系统平台时，一般会用抽象工厂模式。调用者向抽象工厂请求对象时，并不知道返回的是哪一种类（虽然接口一样），其底层实现可能依赖于很多因素，例如当前时区、操作系统或本地的配置信息。</p>
+<p>抽象工厂模式的一个常见例子就是跨平台的工具、数据库和不同国家特有的格式或计算器。我们创建一个具体的例子，对日期和货币进行格式化输出，需要根据不同的地域信息返回不同的格式化标准。首先创建一个抽象工厂类为不同国家选择不同的工厂，然后创建几个具体的工厂，其中一个用于法国标准，另一个用于美国标准，下面是UML图</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/km5p9oqy6cqfsskqq43l0opw/image.png" /></p>
+<p>两国日期和货币的格式如下：</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p></p></th>
+<th class="text-align:center head"><p>美国</p></th>
+<th class="text-align:center head"><p>法国</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>日期</p></td>
+<td class="text-align:center"><p>mm-ydd-yyy</p></td>
+<td class="text-align:center"><p>dd/mm/yyyy</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>货币</p></td>
+<td class="text-align:center"><p>$14,500.50</p></td>
+<td class="text-align:center"><p>14 500€50</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FranceDateFormatter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">format_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span> <span class="o">+</span> <span class="n">y</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">y</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">m</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">m</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">d</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">d</span>
+        <span class="k">return</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">USADateFormatter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">format_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span> <span class="o">+</span> <span class="n">y</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">y</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">m</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">m</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">d</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">d</span>
+        <span class="k">return</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">-</span><span class="si">{1}</span><span class="s2">-</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">france_date</span> <span class="o">=</span> <span class="n">FranceDateFormatter</span><span class="p">()</span>
+<span class="n">usa_date</span> <span class="o">=</span> <span class="n">USADateFormatter</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">france_date</span><span class="o">.</span><span class="n">format_date</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usa_date</span><span class="o">.</span><span class="n">format_date</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>02/12/2012
+12-02-2012
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FranceCurrencyFormatter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">format_currency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">):</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">cents</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">cents</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">cents</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">cents</span>
+
+        <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">base</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">digits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="n">digits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">digits</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">€</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">USACurrencyFormatter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">format_currency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">):</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">cents</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">cents</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">cents</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">cents</span>
+
+        <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">base</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">digits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="n">digits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">digits</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;$</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">cents</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">france_currency</span> <span class="o">=</span> <span class="n">FranceCurrencyFormatter</span><span class="p">()</span>
+<span class="n">usa_currency</span> <span class="o">=</span> <span class="n">USACurrencyFormatter</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">france_currency</span><span class="o">.</span><span class="n">format_currency</span><span class="p">(</span><span class="mi">120000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usa_currency</span><span class="o">.</span><span class="n">format_currency</span><span class="p">(</span><span class="mi">120000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>120 000€02
+$120,000.02
+</pre></div>
+</div>
+</div>
+</div>
+<p>有了格式化类，只需要创建格式化工厂：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">USAFormatterFactory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">create_date_formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">USADateFormatter</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_currency_formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">USACurrencyFormatter</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">FranceFormatterFactory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">create_date_formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">FranceDateFormatter</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_currency_formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">FranceCurrencyFormatter</span><span class="p">()</span>
+
+
+<span class="n">country_code</span> <span class="o">=</span> <span class="s2">&quot;US&quot;</span>
+<span class="n">factory_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;US&quot;</span><span class="p">:</span> <span class="n">USAFormatterFactory</span><span class="p">,</span>
+               <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="n">FranceFormatterFactory</span><span class="p">}</span>
+<span class="n">formatter_factory</span> <span class="o">=</span> <span class="n">factory_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country_code</span><span class="p">)()</span>
+
+<span class="n">formatter_factory</span><span class="o">.</span><span class="n">create_date_formatter</span><span class="p">()</span><span class="o">.</span><span class="n">format_date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;02-13-2010&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>上面的代码似乎仍有很多在Python中不需要的代码。我们可以通过不同的模块来表示不同的工厂类型（例如：美国和法国），然后确保每个工厂采用正确的模块，其目录结构可能是这样的：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>localize/
+    __init__.py
+    backends/
+        __init__.py
+        USA.py
+    France.py
+    …
+</pre></div>
+</div>
+<p>这里的小技巧是，<code class="docutils literal notranslate"><span class="pre">localize</span></code>包的<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>可以包含一些逻辑代码来将需求导向正确的工厂，例如其中一种：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.backends</span> <span class="kn">import</span> <span class="n">USA</span><span class="p">,</span> <span class="n">France</span>
+
+<span class="k">if</span> <span class="n">country_code</span> <span class="o">==</span> <span class="s2">&quot;US&quot;</span><span class="p">:</span>
+    <span class="n">current_backend</span> <span class="o">=</span> <span class="n">USA</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>6 复合模式<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>复合模式允许从简单的组件构建复杂的树状结构。这些组件称为复合对象，复合对象为容器对象，其中的内容可能是另一个复合对象。如果一个组件包含子组件，则类似于容器，否则类似于普通变量。</p>
+<p>一般来说，复合对象中的每个组件都必须是叶节点（不能包含其他对象）或者是复合节点，关键是包含具有相同的接口，如下图所示</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/2m9x0k3e46tgk1s3lv4fgvw9/image.png" /></p>
+<p>这种模式虽然简单，但是可以组合成复杂的结构：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ejn9komfcpwd9bygb5kfvxo4/image.png" /></p>
+<p>复合模式适合用在文件/文件夹的树形结构中。不管树中的节点是文件还是文件夹，都可以作为移动、复制或删除等操作的对象。我们可以创建一个包含这些操作的组件接口（component interface），然后用复合对象（composite object）表示文件夹，用叶子节点（leaf node）表示文件。我们先利用Python鸭子类型来隐式地（分别）提供这一接口：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Folder</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">File</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>将一些通用方法抽象到父类<code class="docutils literal notranslate"><span class="pre">Component</span></code>接口并改为一个基类：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Component</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="n">new_folder</span> <span class="o">=</span> <span class="n">get_node</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">new_folder</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">new_folder</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Folder</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们为<code class="docutils literal notranslate"><span class="pre">Component</span></code>类创建了<code class="docutils literal notranslate"><span class="pre">move</span></code>和<code class="docutils literal notranslate"><span class="pre">delete</span></code>方法。但是要注意两点：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">move</span></code>方法用了一个模块层的<code class="docutils literal notranslate"><span class="pre">get_node</span></code>函数，该函数从一个<strong>预先定义的根节点</strong>开始查找目标节点。因为所有文件/文件夹的操作都都要基于一个根节点。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">move</span></code>访问了一个神奇的尚未定义的<code class="docutils literal notranslate"><span class="pre">parent</span></code>变量，这个变量是在添加子节点时候定义的，而且<strong>添加子节点<code class="docutils literal notranslate"><span class="pre">add_child</span></code>只能在<code class="docutils literal notranslate"><span class="pre">Folder</span></code>对象中完成</strong>
+，所以<code class="docutils literal notranslate"><span class="pre">File</span></code>对象虽然有<code class="docutils literal notranslate"><span class="pre">parent</span></code>属性，但是我们并没有在<code class="docutils literal notranslate"><span class="pre">File</span></code>对象的代码里看到。</p></li>
+</ol>
+<p>所有文件都会被添加到根节点，或者根节点的某个子节点。对于 move 方法，移动的目的地应该是已经存在的文件夹，否则将会出现错误。和许多技术书籍中的例子一样，错误处理的部分都被忽略了，以帮助我们集中注意力于当前考虑的准则。
+首先让我们来设定这个神奇的parent变量，这发生在文件夹的add_child方法中：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_node</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">root</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">node</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder1</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;folder1&#39;</span><span class="p">)</span>
+<span class="n">folder2</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;folder2&#39;</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folder1</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folder2</span><span class="p">)</span>
+<span class="n">folder11</span> <span class="o">=</span> <span class="n">Folder</span><span class="p">(</span><span class="s1">&#39;folder11&#39;</span><span class="p">)</span>
+<span class="n">folder1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folder11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_node</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">children</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;folder1&#39;: &lt;__main__.Folder at 0x7f954439ed30&gt;,
+ &#39;folder2&#39;: &lt;__main__.Folder at 0x7f954439eb00&gt;}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter-10_Python_Design_Patterns_I.jupyter.html" title="previous page">第10章 Python设计模式I</a>
+    <a class='right-next' id="next-link" href="../MathPython/Readme.html" title="next page">Master Math by Coding in Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

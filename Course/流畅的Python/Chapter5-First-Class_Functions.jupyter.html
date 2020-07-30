@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第5章 一等函数 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="第6章 使用一等函数实现设计模式" href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html" />
+    <link rel="prev" title="第1章 Python数据模型" href="Chapter1-The_Python_Data_Model.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../../Math/Math.jupyter.html">Math</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="active">
+    <a href="Readme.html">流畅的Python</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="Chapter1-The_Python_Data_Model.jupyter.html">第1章 Python数据模型</a>
+    </li>
+    <li class="active">
+      <a href="">第5章 一等函数</a>
+    </li>
+    <li class="">
+      <a href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html">第6章 使用一等函数实现设计模式</a>
+    </li>
+    <li class="">
+      <a href="Chapter16.jupyter.html">第16章 协程</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/Course/流畅的Python/Chapter5-First-Class_Functions.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">1 函数内省</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">2 从定位参数到仅限关键字参数</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g-taghtml" class="nav-link">2.1 e.g. tag函数用于生成HTML标签</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">3 获取关于参数的信息</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#e-g" class="nav-link">3.1 e.g. 在指定长度附近截断字符串的函数</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">3.2 e.g. 提取关于函数参数的信息</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id6" class="nav-link">3.3 e.g. 提取函数的签名</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id7" class="nav-link">4 支持函数式编程的包</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#operator" class="nav-link">4.1 operator模块</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#e-g-reducelambda" class="nav-link">4.1.1 e.g. 使用reduce函数和一个lambda计算阶乘</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#e-g-reduceoperator-mul" class="nav-link">4.1.2 e.g. 使用reduce和operator.mul函数计算阶乘</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#e-g-itemgetter" class="nav-link">4.1.3 e.g. 使用itemgetter排序一个元组列表</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#e-g-attrgetternamedtuple" class="nav-link">4.1.4 e.g. 使用attrgetter处理namedtuple</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#e-g-methodcaller" class="nav-link">4.1.5 e.g. 使用methodcaller冻结参数</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#functools-partial" class="nav-link">4.2 使用functools.partial冻结参数</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第5章 一等函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>1 函数内省<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>列出常规对象没有而函数有的属性：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">obj</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">func</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;__annotations__&#39;,
+ &#39;__call__&#39;,
+ &#39;__closure__&#39;,
+ &#39;__code__&#39;,
+ &#39;__defaults__&#39;,
+ &#39;__get__&#39;,
+ &#39;__globals__&#39;,
+ &#39;__kwdefaults__&#39;,
+ &#39;__name__&#39;,
+ &#39;__qualname__&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>2 从定位参数到仅限关键字参数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="e-g-taghtml">
+<h3>2.1 e.g. <code class="docutils literal notranslate"><span class="pre">tag</span></code>函数用于生成HTML标签<a class="headerlink" href="#e-g-taghtml" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">content</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">attrs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate one or more HTML tags&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span>
+    <span class="k">if</span> <span class="n">attrs</span><span class="p">:</span>
+        <span class="n">attr_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">%s</span><span class="s1">=&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span>
+                           <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">attr_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&lt;</span><span class="si">%s%s</span><span class="s1">&gt;</span><span class="si">%s</span><span class="s1">&lt;/</span><span class="si">%s</span><span class="s1">&gt;&#39;</span> <span class="o">%</span>
+                         <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attr_str</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">content</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;</span><span class="si">%s%s</span><span class="s1"> /&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attr_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>传入单个定位参数，生成一个指定名称的空标签：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tag</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;&lt;br /&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>第一个参数后面的任意个参数会被<code class="docutils literal notranslate"><span class="pre">*content</span></code>捕获，存入一个元组：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;&lt;p&gt;hello&lt;/p&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tag</span></code>函数签名中没有明确指定名称的关键字参数会被<code class="docutils literal notranslate"><span class="pre">**attrs</span></code>捕获，存入一个字典：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;&lt;p id=&quot;33&quot;&gt;hello&lt;/p&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cls</span></code>参数只能作为关键字参数传入：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="s1">&#39;sidebar&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;p class=&quot;sidebar&quot;&gt;hello&lt;/p&gt;
+&lt;p class=&quot;sidebar&quot;&gt;world&lt;/p&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>调用<code class="docutils literal notranslate"><span class="pre">tag</span></code>函数时，即便第一个定位参数也能作为关键字参数传入：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tag</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s1">&#39;testing&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;img&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;&lt;img content=&quot;testing&quot; /&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>在<code class="docutils literal notranslate"><span class="pre">my_tag</span></code>前面加上<code class="docutils literal notranslate"><span class="pre">**</span></code>，字典中的所有元素作为单个参数传入，同名键会绑定到对应的具名参数上，余下的则被<code class="docutils literal notranslate"><span class="pre">**attrs</span></code>捕获：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_tag</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;img&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Sunset Boulevard&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;src&#39;</span><span class="p">:</span> <span class="s1">&#39;sunset.jpg&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;cls&#39;</span><span class="p">:</span> <span class="s1">&#39;framed&#39;</span><span class="p">}</span>
+
+<span class="n">tag</span><span class="p">(</span><span class="o">**</span><span class="n">my_tag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;&lt;img class=&quot;framed&quot; src=&quot;sunset.jpg&quot; title=&quot;Sunset Boulevard&quot; /&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>3 获取关于参数的信息<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="e-g">
+<h3>3.1 e.g. 在指定长度附近截断字符串的函数<a class="headerlink" href="#e-g" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;在max_len前面或后面的第一个空格处截断文本&quot;&quot;&quot;</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_len</span><span class="p">:</span>
+        <span class="n">space_before</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_len</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">space_before</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">space_before</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">space_after</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">max_len</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">space_after</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="n">space_after</span>
+    <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># 没找到空格</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span><span class="p">[:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>3.2 e.g. 提取关于函数参数的信息<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clip</span><span class="o">.</span><span class="vm">__defaults__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(80,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clip</span><span class="o">.</span><span class="vm">__code__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;code object clip at 0x7f826c6775d0, file &quot;&lt;ipython-input-9-476a9d424fed&gt;&quot;, line 1&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clip</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_varnames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;text&#39;, &#39;max_len&#39;, &#39;end&#39;, &#39;space_before&#39;, &#39;space_after&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clip</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_argcount</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>上述结果可以看出，这种组织信息的方式并不是最便利的。参数名称在<code class="docutils literal notranslate"><span class="pre">__code__.co_varnames</span></code>中， 不过里面还有函数定义体中创建的局部变量。因此，参数名称是前<span class="math notranslate nohighlight">\(N\)</span>个字符串，<span class="math notranslate nohighlight">\(N\)</span>的值由<code class="docutils literal notranslate"><span class="pre">__code__.co_argcount</span></code>确定。</p>
+<p>顺便说一下，这里不包含前缀为<code class="docutils literal notranslate"><span class="pre">*</span></code>或<code class="docutils literal notranslate"><span class="pre">**</span></code>的变长参数。参数的默认值只能通过它们在<code class="docutils literal notranslate"><span class="pre">__defaults__</span></code>元组中的位置确定，因此要从后向前扫描才能把参数和默认值对应起来。在这个示例中<code class="docutils literal notranslate"><span class="pre">clip</span></code>函数有两个参数，<code class="docutils literal notranslate"><span class="pre">text</span></code>和<code class="docutils literal notranslate"><span class="pre">max_len</span></code>，其中一个有默认值，即80，因此它必然属于最后一个参数，即<code class="docutils literal notranslate"><span class="pre">max_len</span></code>。</p>
+<p>幸好，我们有更好的方式——使用<code class="docutils literal notranslate"><span class="pre">inspect</span></code>模块，见下面的示例。</p>
+</div>
+<div class="section" id="id6">
+<h3>3.3 e.g. 提取函数的签名<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
+
+<span class="n">sig</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">clip</span><span class="p">)</span>
+<span class="n">sig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Signature (text, max_len=80)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+
+<span class="nb">str</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>POSITIONAL_OR_KEYWORD : text = &lt;class &#39;inspect._empty&#39;&gt;
+POSITIONAL_OR_KEYWORD : max_len = 80
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;(text, max_len=80)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">kind</span></code>属性的值是<code class="docutils literal notranslate"><span class="pre">_ParameterKind</span></code>类中的5个值之一：</p>
+<ul class="simple">
+<li><p>POSITIONAL_OR_KEYWORD</p></li>
+<li><p>VAR_POSITIONAL</p></li>
+<li><p>VAR_KEYWORD</p></li>
+<li><p>KEYWORD_ONLY</p></li>
+<li><p>POSITIONAL_ONLY</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>4 支持函数式编程的包<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="operator">
+<h3>4.1 <code class="docutils literal notranslate"><span class="pre">operator</span></code>模块<a class="headerlink" href="#operator" title="Permalink to this headline">¶</a></h3>
+<p>在函数式编程中，经常需要把算术运算符当作函数使用。例如，不使用递归计算阶乘。operator模块提供了多个算数运算符对应的函数，另外还有能代替<code class="docutils literal notranslate"><span class="pre">lambda</span></code>读取元素或对象属性的<code class="docutils literal notranslate"><span class="pre">itemgetter</span></code>和<code class="docutils literal notranslate"><span class="pre">attrgetter</span></code>（会自行创建函数，类似<code class="docutils literal notranslate"><span class="pre">lambda</span></code>）等。</p>
+<p><strong>V.S. lambda</strong><br />
+<a class="reference external" href="https://stackoverflow.com/questions/2705104/lambda-vs-operator-attrgetterxxx-as-a-sort-key-function">stackoverflow</a>说<code class="docutils literal notranslate"><span class="pre">itemgetter</span></code>等是调用对象的内置函数，速度上更快，而<code class="docutils literal notranslate"><span class="pre">lamdba</span></code>通过外部函数调用。</p>
+<p>下面是<code class="docutils literal notranslate"><span class="pre">operator</span></code>模块中定义的部分函数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="nb">print</span><span class="p">([</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;abs&#39;, &#39;add&#39;, &#39;and_&#39;, &#39;attrgetter&#39;, &#39;concat&#39;, &#39;contains&#39;, &#39;countOf&#39;, &#39;delitem&#39;, &#39;eq&#39;, &#39;floordiv&#39;, &#39;ge&#39;, &#39;getitem&#39;, &#39;gt&#39;, &#39;iadd&#39;, &#39;iand&#39;, &#39;iconcat&#39;, &#39;ifloordiv&#39;, &#39;ilshift&#39;, &#39;imatmul&#39;, &#39;imod&#39;, &#39;imul&#39;, &#39;index&#39;, &#39;indexOf&#39;, &#39;inv&#39;, &#39;invert&#39;, &#39;ior&#39;, &#39;ipow&#39;, &#39;irshift&#39;, &#39;is_&#39;, &#39;is_not&#39;, &#39;isub&#39;, &#39;itemgetter&#39;, &#39;itruediv&#39;, &#39;ixor&#39;, &#39;le&#39;, &#39;length_hint&#39;, &#39;lshift&#39;, &#39;lt&#39;, &#39;matmul&#39;, &#39;methodcaller&#39;, &#39;mod&#39;, &#39;mul&#39;, &#39;ne&#39;, &#39;neg&#39;, &#39;not_&#39;, &#39;or_&#39;, &#39;pos&#39;, &#39;pow&#39;, &#39;rshift&#39;, &#39;setitem&#39;, &#39;sub&#39;, &#39;truediv&#39;, &#39;truth&#39;, &#39;xor&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>以<code class="docutils literal notranslate"><span class="pre">i</span></code>开头、后面是另一个运算符的那些名称（如<code class="docutils literal notranslate"><span class="pre">iadd</span></code>、<code class="docutils literal notranslate"><span class="pre">iand</span></code>等），对应的是增量赋值运算符（如<code class="docutils literal notranslate"><span class="pre">+=</span></code>、<code class="docutils literal notranslate"><span class="pre">&amp;=</span></code>等）。</p>
+<div class="section" id="e-g-reducelambda">
+<h4>4.1.1 e.g. 使用<code class="docutils literal notranslate"><span class="pre">reduce</span></code>函数和一个<code class="docutils literal notranslate"><span class="pre">lambda</span></code>计算阶乘<a class="headerlink" href="#e-g-reducelambda" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+
+<span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-reduceoperator-mul">
+<h4>4.1.2 e.g. 使用<code class="docutils literal notranslate"><span class="pre">reduce</span></code>和<code class="docutils literal notranslate"><span class="pre">operator.mul</span></code>函数计算阶乘<a class="headerlink" href="#e-g-reduceoperator-mul" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">mul</span>
+
+
+<span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+
+<span class="n">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-itemgetter">
+<h4>4.1.3 e.g. 使用<code class="docutils literal notranslate"><span class="pre">itemgetter</span></code>排序一个元组列表<a class="headerlink" href="#e-g-itemgetter" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="n">metro_data</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">,</span> <span class="mf">36.933</span><span class="p">,</span> <span class="p">(</span><span class="mf">35.689722</span><span class="p">,</span> <span class="mf">139.691667</span><span class="p">)),</span>
+              <span class="p">(</span><span class="s1">&#39;Delhi NCR&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">,</span> <span class="mf">21.935</span><span class="p">,</span> <span class="p">(</span><span class="mf">28.613889</span><span class="p">,</span> <span class="mf">77.208889</span><span class="p">)),</span>
+              <span class="p">(</span><span class="s1">&#39;Mexico City&#39;</span><span class="p">,</span> <span class="s1">&#39;MX&#39;</span><span class="p">,</span> <span class="mf">20.142</span><span class="p">,</span> <span class="p">(</span><span class="mf">19.433333</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.133333</span><span class="p">)),</span>
+              <span class="p">(</span><span class="s1">&#39;New York-Newark&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="mf">20.104</span><span class="p">,</span> <span class="p">(</span><span class="mf">40.808611</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.020386</span><span class="p">)),</span>
+              <span class="p">(</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">,</span> <span class="s1">&#39;BR&#39;</span><span class="p">,</span> <span class="mf">19.649</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">23.547778</span><span class="p">,</span> <span class="o">-</span><span class="mf">46.635833</span><span class="p">)),</span> <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">metro_data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;Sao Paulo&#39;, &#39;BR&#39;, 19.649, (-23.547778, -46.635833))
+(&#39;Delhi NCR&#39;, &#39;IN&#39;, 21.935, (28.613889, 77.208889))
+(&#39;Tokyo&#39;, &#39;JP&#39;, 36.933, (35.689722, 139.691667))
+(&#39;Mexico City&#39;, &#39;MX&#39;, 20.142, (19.433333, -99.133333))
+(&#39;New York-Newark&#39;, &#39;US&#39;, 20.104, (40.808611, -74.020386))
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果把多个参数传给<code class="docutils literal notranslate"><span class="pre">itemgetter</span></code>，它构建的函数会返回提取的值构成的元组：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cc_name</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">metro_data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cc_name</span><span class="p">(</span><span class="n">city</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;JP&#39;, &#39;Tokyo&#39;)
+(&#39;IN&#39;, &#39;Delhi NCR&#39;)
+(&#39;MX&#39;, &#39;Mexico City&#39;)
+(&#39;US&#39;, &#39;New York-Newark&#39;)
+(&#39;BR&#39;, &#39;Sao Paulo&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-attrgetternamedtuple">
+<h4>4.1.4 e.g. 使用<code class="docutils literal notranslate"><span class="pre">attrgetter</span></code>处理<code class="docutils literal notranslate"><span class="pre">namedtuple</span></code><a class="headerlink" href="#e-g-attrgetternamedtuple" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">metro_data</span></code>同上</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">LatLong</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;LatLong&#39;</span><span class="p">,</span> <span class="s1">&#39;lat long&#39;</span><span class="p">)</span>
+<span class="n">Metropolis</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Metropolis&#39;</span><span class="p">,</span> <span class="s1">&#39;name cc pop coord&#39;</span><span class="p">)</span>
+
+<span class="n">metro_areas</span> <span class="o">=</span> <span class="p">[</span><span class="n">Metropolis</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cc</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">LatLong</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">))</span>
+               <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">cc</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">)</span> <span class="ow">in</span> <span class="n">metro_data</span><span class="p">]</span>
+<span class="n">metro_areas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[Metropolis(name=&#39;Tokyo&#39;, cc=&#39;JP&#39;, pop=36.933, coord=LatLong(lat=35.689722, long=139.691667)),
+ Metropolis(name=&#39;Delhi NCR&#39;, cc=&#39;IN&#39;, pop=21.935, coord=LatLong(lat=28.613889, long=77.208889)),
+ Metropolis(name=&#39;Mexico City&#39;, cc=&#39;MX&#39;, pop=20.142, coord=LatLong(lat=19.433333, long=-99.133333)),
+ Metropolis(name=&#39;New York-Newark&#39;, cc=&#39;US&#39;, pop=20.104, coord=LatLong(lat=40.808611, long=-74.020386)),
+ Metropolis(name=&#39;Sao Paulo&#39;, cc=&#39;BR&#39;, pop=19.649, coord=LatLong(lat=-23.547778, long=-46.635833))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>按照纬度排序城市列表：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metro_areas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">lat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>35.689722
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">attrgetter</span>
+
+<span class="c1"># 定义一个attrgetter，获取name和嵌套的coord.lat</span>
+<span class="n">name_lat</span> <span class="o">=</span> <span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;coord.lat&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">metro_areas</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;coord.lat&#39;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name_lat</span><span class="p">(</span><span class="n">city</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;Sao Paulo&#39;, -23.547778)
+(&#39;Mexico City&#39;, 19.433333)
+(&#39;Delhi NCR&#39;, 28.613889)
+(&#39;Tokyo&#39;, 35.689722)
+(&#39;New York-Newark&#39;, 40.808611)
+</pre></div>
+</div>
+</div>
+</div>
+<p>其实<code class="docutils literal notranslate"><span class="pre">lambda</span></code>也能达到同样的功能：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">metro_areas</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">coord</span><span class="o">.</span><span class="n">lat</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name_lat</span><span class="p">(</span><span class="n">city</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;Sao Paulo&#39;, -23.547778)
+(&#39;Mexico City&#39;, 19.433333)
+(&#39;Delhi NCR&#39;, 28.613889)
+(&#39;Tokyo&#39;, 35.689722)
+(&#39;New York-Newark&#39;, 40.808611)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-g-methodcaller">
+<h4>4.1.5 e.g. 使用methodcaller冻结参数<a class="headerlink" href="#e-g-methodcaller" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">methodcaller</span></code>允许使用字符串方式调用对象并冻结参数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">methodcaller</span>
+
+<span class="n">upcase</span> <span class="o">=</span> <span class="n">methodcaller</span><span class="p">(</span><span class="s1">&#39;upper&#39;</span><span class="p">)</span>
+<span class="n">upcase</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;HELLO&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hiphenate</span> <span class="o">=</span> <span class="n">methodcaller</span><span class="p">(</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">hiphenate</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;hello-world&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functools-partial">
+<h3>4.2 使用<code class="docutils literal notranslate"><span class="pre">functools.partial</span></code>冻结参数<a class="headerlink" href="#functools-partial" title="Permalink to this headline">¶</a></h3>
+<p>TBD</p>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Chapter1-The_Python_Data_Model.jupyter.html" title="previous page">第1章 Python数据模型</a>
+    <a class='right-next' id="next-link" href="Chapter6-Design_Patterns_with_First-Class_Functions.jupyter.html" title="next page">第6章 使用一等函数实现设计模式</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
