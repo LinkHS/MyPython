@@ -11,8 +11,11 @@
   sections:
     - file: Math/中心极限定理.jupyter.md
     - file: Math/Poisson-Distribution.jupyter.md
-    - file: Math/XGBoost.jupyter.md
     - file: Math/Genetic_Algorithm.jupyter.md
+
+- header: Machine&Deep Learning
+- file: Math/XGBoost.jupyter.md
+- file: ML/CNN.jupyter.md 
 
 - header: Course
 - file: Course/流畅的Python/Readme.md
@@ -59,3 +62,5 @@
     - file: Course/MathPython/10_Calculus.jupyter.md
     - file: Course/MathPython/11_Linear_Algebra.jupyter.md
     - file: Course/MathPython/12_Probability_and_Histograms.jupyter.md
+
+- file: Course/pedometer.jupyter.md
