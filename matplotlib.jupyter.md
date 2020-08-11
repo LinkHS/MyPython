@@ -1,5 +1,7 @@
 # Matplotlib
 
+![](http://static.zybuluo.com/AustinMxnet/tqi0tspg5phwlaakhptpwg8w/image.png)
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
