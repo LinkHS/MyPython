@@ -16,6 +16,8 @@
 - header: Machine&Deep Learning
 - file: Math/XGBoost.jupyter.md
 - file: ML/CNN.jupyter.md 
+- file: ML/YOLO-V3.jupyter.md 
+- file: ML/Faster-RCNN.jupyter.md 
 
 - header: Course
 - file: Course/流畅的Python/Readme.md
