@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Transformer &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pytorch" href="../PyTorch.jupyter.html" />
+    <link rel="prev" title="Faster R-CNN" href="Faster-RCNN.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../Math/Math.jupyter.html">Math</a>
+  </li>
+  <li class="">
+    <a href="../Math/中心极限定理.jupyter.html">中心极限定理</a>
+  </li>
+  <li class="">
+    <a href="../Math/Poisson-Distribution.jupyter.html">泊松分布</a>
+  </li>
+  <li class="">
+    <a href="../Math/Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine&Deep Learning</p>
+</li>
+  <li class="">
+    <a href="../Math/XGBoost.jupyter.html">XGBoost与Python图解</a>
+  </li>
+  <li class="">
+    <a href="CNN.jupyter.html">CNN</a>
+  </li>
+  <li class="">
+    <a href="YOLO-V3.jupyter.html">YOLO-V3</a>
+  </li>
+  <li class="">
+    <a href="Faster-RCNN.jupyter.html">Faster R-CNN</a>
+  </li>
+  <li class="active">
+    <a href="">Transformer</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../PyTorch.jupyter.html">Pytorch</a>
+  </li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/pedometer.jupyter.html">A Pedometer in the Real World</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/ML/transformer.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#word-embeddeing" class="nav-link">1 Word Embeddeing</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#positional-encoding" class="nav-link">2 Positional Encoding</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#encoder" class="nav-link">3 Encoder</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#self-attention" class="nav-link">3.1 Self-Attention</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#multi-head-attention" class="nav-link">3.2 Multi-Head Attention</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#normalization" class="nav-link">3.3 Normalization</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#feed-forward" class="nav-link">3.4 Feed Forward</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#encoder-layer" class="nav-link">3.5 Encoder Layer</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">3.6 Encoder</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#decoder" class="nav-link">4 Decoder</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#target-mask" class="nav-link">4.1 Target Mask</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#decoder-layer" class="nav-link">4.2 Decoder Layer</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">4.3 Decoder</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">5 Transformer</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#beam-search" class="nav-link">6 Beam search</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transformer">
+<h1>Transformer<a class="headerlink" href="#transformer" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/rvmk73cqyxew8yqlvqxvz2pt/image.png" /></p>
+<p>Transformer中抛弃了传统的CNN和RNN，整个网络结构完全是由Attention机制组成。更准确地讲，Transformer由且仅由self-Attenion和Feed Forward Neural Network组成。一个基于Transformer的可训练的神经网络可以通过堆叠Transformer的形式进行搭建，作者的实验是通过搭建编码器和解码器各6层，总共12层的Encoder-Decoder，并在机器翻译中取得了BLEU值得新高。</p>
+<p>作者采用Attention机制的原因是考虑到RNN（或者LSTM，GRU等）的计算限制为是顺序的，也就是说RNN相关算法只能从左向右依次计算或者从右向左依次计算，这种机制带来了两个问题：</p>
+<ol class="simple">
+<li><p>时间片<span class="math notranslate nohighlight">\(t\)</span>的计算依赖<span class="math notranslate nohighlight">\(t-1\)</span>时刻的计算结果，这样限制了模型的并行能力；</p></li>
+<li><p>顺序计算的过程中信息会丢失，尽管LSTM等门机制的结构一定程度上缓解了长期依赖的问题，但是对于特别长期的依赖现象,LSTM依旧无能为力。</p></li>
+</ol>
+<p>Transformer的提出解决了上面两个问题，首先它使用了Attention机制，将序列中的任意两个位置之间的距离是缩小为一个常量；其次它不是类似RNN的顺序结构，因此具有更好的并行性，符合现有的GPU框架。</p>
+<p>参考：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/48508221">详解Transformer</a></p></li>
+<li><p><a class="reference external" href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a></p></li>
+</ul>
+<div class="section" id="word-embeddeing">
+<h2>1 Word Embeddeing<a class="headerlink" href="#word-embeddeing" title="Permalink to this headline">¶</a></h2>
+<p>Word embedding的权重矩阵通常有两种选择：</p>
+<ol class="simple">
+<li><p>使用Pre-trained的Embeddings并固化，这种情况下实际就是一个 Lookup Table。</p></li>
+<li><p>对其进行随机初始化(当然也可以选择Pre-trained 的结果)，但设为Trainable。这样在training过程中不断地对Embeddings进行改进。</p></li>
+</ol>
+<p>注意结果乘以<code class="docutils literal notranslate"><span class="pre">np.math.sqrt(d)</span></code>，在原文中是这样解释的：”In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Embedder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">d_model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @vocab, 词汇表的数量</span>
+<span class="sd">        @d_model, embedding的维度</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+ 
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lut</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面构造一个维度为1000的，词汇表数量为512的<code class="docutils literal notranslate"><span class="pre">embeddings</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># batch_size=2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">Embedder</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([2, 4, 1000])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="positional-encoding">
+<h2>2 Positional Encoding<a class="headerlink" href="#positional-encoding" title="Permalink to this headline">¶</a></h2>
+<p>和RNN、LSTM按顺序输入不同，Transformer需要给输入加上位置信息，可以参考下面几篇文章：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.zhihu.com/question/347678607/answer/864217252">如何理解Transformer论文中的positional encoding，和三角函数有什么关系？</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/121126531">如何优雅地编码文本中的位置信息？三种positional encoding方法简述</a></p></li>
+</ul>
+<p>总结一下：</p>
+<ol class="simple">
+<li><p>位置编码需要有值域范围，避免后面的位置编码非常大</p></li>
+<li><p>位置编码步长要一致，避免在不同长度的文本中不一致</p></li>
+<li><p>不同维度上应该用不同的函数操纵位置编码（例如上例的embeddings的维度为1000）</p></li>
+</ol>
+<p>Transformer中选择了正弦和余弦函数：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+P E_{(p o s, 2 i)}=\sin \left(p o s / 10000^{2 i / d_{\text {model}}}\right) \\
+P E_{(p o s, 2 i+1)}=\cos \left(p o s / 10000^{2 i / d_{\text {model}}}\right)
+\end{array}\end{split}\]</div>
+<p>这样设计的好处是位置<span class="math notranslate nohighlight">\(pos+k\)</span>的positional encoding可以被位置<span class="math notranslate nohighlight">\(pos\)</span><strong>线性表示</strong>，反应其相对位置关系，因为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\sin (\alpha+\beta)=\sin \alpha \cdot \cos \beta+\cos \alpha \cdot \sin \beta \\
+\cos (\alpha+\beta)=\cos \alpha \cdot \cos \beta-\sin \alpha \cdot \sin \beta
+\end{array}\end{split}\]</div>
+<p>可以得到，其中系数<span class="math notranslate nohighlight">\(sin(w_ik)\)</span>和<span class="math notranslate nohighlight">\(cos(w_ik)为常数\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+P E_{(p o s+k, 2 i)} &amp;=\cos \left(w_{i} k\right) P E_{(p o s, 2 i)}+\sin \left(w_{i} k\right) P E_{(p o s, 2 i+1)} \\
+P E_{(p o s+k, 2 i+1)} &amp;=\cos \left(w_{i} k\right) P E_{(p o s, 2 i+1)}-\sin \left(w_{i} k\right) P E_{(p o s, 2 i)}
+\end{aligned}\end{split}\]</div>
+<p>这种方式也有缺点，例如虽然能够反映相对位置的距离关系，但是无法区分方向：</p>
+<div class="math notranslate nohighlight">
+\[P E_{p o s+k} P E_{p o s}=P E_{p o s-k} P E_{p o s}\]</div>
+<p>后来也有其他方式，例如Bert中好像直接用网络去学习positional embedding。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PositionalEncoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+
+        <span class="n">pe</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_len</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">div_term</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span>
+                             <span class="o">-</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">10000.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_model</span><span class="p">))</span>
+
+        <span class="n">pe</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">position</span> <span class="o">*</span> <span class="n">div_term</span><span class="p">)</span>    <span class="c1"># 偶数列</span>
+        <span class="n">pe</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">position</span> <span class="o">*</span> <span class="n">div_term</span><span class="p">)</span>    <span class="c1"># 奇数列</span>
+        <span class="n">pe</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>           <span class="c1"># (1, max_len, d_model)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;pe&#39;</span><span class="p">,</span> <span class="n">pe</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">Variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pe</span><span class="p">[:,</span> <span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面我们看下一个20维数据长度为100的<code class="docutils literal notranslate"><span class="pre">PositionalEncoding</span></code>情况，为了显示效果只展示4, 5, 6, 7四维：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pe</span> <span class="o">=</span> <span class="n">PositionalEncoder</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;dim </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/transformer.jupyter_9_0.png" src="../_images/transformer.jupyter_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="encoder">
+<h2>3 Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/lc026w45sbgbb35jrxarl791/image.png" /></p>
+<div class="section" id="self-attention">
+<h3>3.1 Self-Attention<a class="headerlink" href="#self-attention" title="Permalink to this headline">¶</a></h3>
+<p>Self-Attention的核心内容是为输入向量的每个单词学习一个权重，例如我们需要判断<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">animal</span> <span class="pre">didn't</span> <span class="pre">cross</span> <span class="pre">the</span> <span class="pre">street</span> <span class="pre">because</span> <span class="pre">it</span> <span class="pre">was</span> <span class="pre">too</span> <span class="pre">tired</span></code>这句话中<code class="docutils literal notranslate"><span class="pre">it</span></code>代指的内容，可以让网络学习<code class="docutils literal notranslate"><span class="pre">it</span></code>和每个单词之间的相关性：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/fb3qndx43fh7iy7wthczw2gg/image.png" /></p>
+<p>Self-attention公式如下：
+<span class="math notranslate nohighlight">\($\text { Attention }(Q, K, V)=\operatorname{softmax}\left(\frac{Q K^{T}}{\sqrt{d_{k}}}\right) V\)</span>$</p>
+<p>实际运算时将<span class="math notranslate nohighlight">\(x_1, x_2\)</span>叠加起来组成矩阵形式（这里第一行是<span class="math notranslate nohighlight">\(x_1\)</span>，第二行是<span class="math notranslate nohighlight">\(x_2\)</span>）：
+<img alt="" src="http://static.zybuluo.com/AustinMxnet/d73kejzqzg1x8zo1sy6twyel/image.png" /></p>
+<p>为了梯度的稳定，Transformer使用了score归一化，即除以<span class="math notranslate nohighlight">\(\sqrt{d_k}\)</span>，其中<span class="math notranslate nohighlight">\(Q、K、V\)</span>分别是Query、Key、Value，由<span class="math notranslate nohighlight">\(X\)</span>分别进行三次矩阵乘法得到的向量：
+<img alt="" src="http://static.zybuluo.com/AustinMxnet/pjs6n09wzp4054dykqqcvdz9/image.png" /></p>
+<p>有了<span class="math notranslate nohighlight">\(Q, K, V\)</span>后的Softmax计算分解图，这里假设<span class="math notranslate nohighlight">\(q, k, v\)</span>的长度为64：
+<img alt="" src="http://static.zybuluo.com/AustinMxnet/wiz4y8234dcit0u00zhjvi6a/image.png" /></p>
+<p>下面是Attention的代码，并且将Softmax的结果<code class="docutils literal notranslate"><span class="pre">score</span></code>打印出来供分析：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d_k</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d_k</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scores:&#39;</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>scores:
+tensor([[0.3984, 0.6016],
+        [0.2946, 0.7054]], grad_fn=&lt;SoftmaxBackward&gt;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[-0.0775,  0.2905, -0.1161],
+        [-0.1295,  0.3622, -0.0777]], grad_fn=&lt;MmBackward&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>从<code class="docutils literal notranslate"><span class="pre">scores</span></code>的结果可以看到，每一行的sum都为1，即上图中的<span class="math notranslate nohighlight">\(z_1, z_2\)</span>都是由<span class="math notranslate nohighlight">\(v_1, v_2\)</span>加权求和得到。</p>
+</div>
+<div class="section" id="multi-head-attention">
+<h3>3.2 Multi-Head Attention<a class="headerlink" href="#multi-head-attention" title="Permalink to this headline">¶</a></h3>
+<p>Multi-head Attention可以增加模型关注不同位置的能力，例如”it”，网络不仅要知道它是指代”the animal”，也要知道它的属性”tired”：
+<img alt="" src="http://static.zybuluo.com/AustinMxnet/8hp2oqamcje0ajtt3hpfpx7l/image.png" /></p>
+<p>实现起来很简单，可以让<span class="math notranslate nohighlight">\(X\)</span>多经过几个Self-Attention即可：
+<img alt="" src="http://static.zybuluo.com/AustinMxnet/y88wq32mcqt9jxwsjev6i4vs/image.png" /></p>
+<p>代码的实现和图中稍微有点区别，将<span class="math notranslate nohighlight">\(X\)</span>切分为<span class="math notranslate nohighlight">\(n_{heads}\)</span>份（<span class="math notranslate nohighlight">\(n_{heads}\)</span>就是attention的次数），假设emmbedding后的<span class="math notranslate nohighlight">\(X\)</span>维度为<span class="math notranslate nohighlight">\(d_{model}=512\)</span>，那么每个attention的输入数据的维度就是<span class="math notranslate nohighlight">\(512/n_{heads}\)</span>，整个运算过程都是矩阵形式，而非分别运行<span class="math notranslate nohighlight">\(n_{heads}\)</span>次。代码中通过通过<code class="docutils literal notranslate"><span class="pre">view()</span></code>函数将<code class="docutils literal notranslate"><span class="pre">k,</span> <span class="pre">q,</span> <span class="pre">v</span></code>从<span class="math notranslate nohighlight">\(bs\times n_{words} \times d_{model}\)</span>划分成<span class="math notranslate nohighlight">\(bs\times n_{words} \times n_{heads} \times \frac{d_{model}}{n_{heads}}\)</span>，然后通过<code class="docutils literal notranslate"><span class="pre">transpose()</span></code>转为<span class="math notranslate nohighlight">\(bs\times n_{heads} \times n_{words}  \times \frac{d_{model}}{n_{heads}}\)</span>，再送入<code class="docutils literal notranslate"><span class="pre">attention()</span></code>同时做了<span class="math notranslate nohighlight">\(n_{heads}\)</span>次attention。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d_k</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d_k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dropout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">dropout</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scores:&#39;</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+
+<span class="k">class</span> <span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span> <span class="o">=</span> <span class="n">d_model</span> <span class="o">//</span> <span class="n">heads</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">heads</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k_linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">bs</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># perform linear operation and split into N heads</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_linear</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_linear</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_linear</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span>
+
+        <span class="c1"># transpose to get dimensions bs * N * sl * d_model</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># calculate attention using function we will define next</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="c1"># concatenate heads and put through final linear layer</span>
+        <span class="n">concat</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">concat</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看到<code class="docutils literal notranslate"><span class="pre">attention()</span></code>的结果为<span class="math notranslate nohighlight">\(bs\times n_{heads} \times n_{words}  \times \frac{d_{model}}{n_{heads}}\)</span>，通过<code class="docutils literal notranslate"><span class="pre">transpose()</span></code>和<code class="docutils literal notranslate"><span class="pre">view()</span></code>合并回了<span class="math notranslate nohighlight">\(bs\times n_{words}  \times d_{model}\)</span>，这里<span class="math notranslate nohighlight">\(d_{model}\)</span>是为了配合最后一步<code class="docutils literal notranslate"><span class="pre">nn.Linear()</span></code>（<code class="docutils literal notranslate"><span class="pre">out()</span></code>）的输入要求，也可以如下图所示在最后一步<code class="docutils literal notranslate"><span class="pre">nn.Linear()</span></code>完成数据维度转换，图中最后输出的<span class="math notranslate nohighlight">\(d_{model}=4\)</span>。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/bnzhgvy62x2v2ldtdigldp42/image.png" /></p>
+<p>测试时需要将<code class="docutils literal notranslate"><span class="pre">dropout=0</span></code>，否则每行softmax的概率和不为1。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
+<span class="n">MultiHeadAttention</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>scores:
+tensor([[[[0.4696, 0.5304],
+          [0.3954, 0.6046]],
+
+         [[0.3188, 0.6812],
+          [0.5634, 0.4366]],
+
+         [[0.4143, 0.5857],
+          [0.4766, 0.5234]],
+
+         [[0.6160, 0.3840],
+          [0.4563, 0.5437]]]], grad_fn=&lt;SoftmaxBackward&gt;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 2, 512])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="normalization">
+<h3>3.3 Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h3>
+<p>经过Self-Attention后，先通过shutcut又称residual求和，然后用LayerNorm进行归一化：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/y02t43jybl2tia980lkfht10/image.png" /></p>
+<p>LayerNorm是在一个样本上进行归一化，一个word embedding的维度为<span class="math notranslate nohighlight">\(1\times d_{model}\)</span>，一张图片则为<span class="math notranslate nohighlight">\(1\times H \times W \times C\)</span>：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ocffurtndo7kbkqdgbmkcj08/image.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Norm</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">d_model</span>
+
+        <span class="c1"># create two learnable parameters to calibrate normalisation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="o">/</span> \
+            <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
+        <span class="k">return</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>由于单个word维度为<span class="math notranslate nohighlight">\(1\times d_{model}\)</span>，只需要对最后一位<span class="math notranslate nohighlight">\(d_{model}\)</span>归一化即可：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[1.],
+         [1.],
+         [1.]],
+
+        [[1.],
+         [1.],
+         [1.]]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feed-forward">
+<h3>3.4 Feed Forward<a class="headerlink" href="#feed-forward" title="Permalink to this headline">¶</a></h3>
+<p>Feed Forward有两个线性层组成，很简单：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FeedForward</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># We set d_ff as a default to 2048</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_ff</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="encoder-layer">
+<h3>3.5 Encoder Layer<a class="headerlink" href="#encoder-layer" title="Permalink to this headline">¶</a></h3>
+<p>上面实现了一个Encoder Layer的各个部分，只要组合起来即可。这里提一下<code class="docutils literal notranslate"><span class="pre">mask</span></code>，因为每个句子长短不一，所以通过padding将句子补齐至长度一致，这样<code class="docutils literal notranslate"><span class="pre">mask</span></code>让padding部分不参与attention操作。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EncoderLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attn</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ff</span> <span class="o">=</span> <span class="n">FeedForward</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attn</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">mask</span><span class="p">))</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ff</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>3.6 Encoder<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="k">class</span> <span class="nc">Encoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="o">=</span> <span class="n">Embedder</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pe</span> <span class="o">=</span> <span class="n">PositionalEncoder</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="n">_enc</span> <span class="o">=</span> <span class="n">EncoderLayer</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">_enc</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">Encoder</span><span class="p">(</span><span class="n">vocab_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">d_model</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">heads</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mi">0</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([2, 3, 512])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="decoder">
+<h2>4 Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="target-mask">
+<h3>4.1 Target Mask<a class="headerlink" href="#target-mask" title="Permalink to this headline">¶</a></h3>
+<p>因为decoding是一个顺序操作的过程，也就是解码第<span class="math notranslate nohighlight">\(k\)</span>个特征向量时，此时输入网络的只有<span class="math notranslate nohighlight">\(k\)</span>之前的decoding结果。以翻译结果”I am a student”为例，在<strong>预测</strong>时，encoder每一步的输入为：</p>
+<ol class="simple">
+<li><p>encoder的输出和开始符号<code class="docutils literal notranslate"><span class="pre">&lt;/s&gt;</span></code>，decoder正确情况下输出”I”</p></li>
+<li><p>encoder的输出和”</s>I”，decoder正确情况下输出”am”</p></li>
+<li><p>encoder的输出和”</s>I am”，decoder正确情况下输出”a”</p></li>
+<li><p>encoder的输出和”</s>I am a”，decoder正确情况下输出”student”</p></li>
+<li><p>encoder的输出和”</s>I am a student”，decoder正确情况下输出结束符号”</eos>”</p></li>
+</ol>
+<p>但是在<strong>训练时，由于我们已经知道了正确的结果，上面的5步是可以并行进行的</strong>，例如第二步无需理会第一步的输出是什么，直接讲正确结果”I am a student”的”</s>I”（使用mask实现）作为输入，这样也可以<strong>避免第一步如果输出错误信息，导致后面的结果都是错误的</strong>。关于mask的分析可以看<a class="reference external" href="https://www.cnblogs.com/wevolf/p/12484972.html">Transformer 源码中 Mask 机制的实现</a>。</p>
+<p>如果包含开始符号<code class="docutils literal notranslate"><span class="pre">&lt;/s&gt;</span></code>，那么”I am a student”的<code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">mask</span></code>应该如下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subsequentmask</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="s2">&quot;Mask out subsequent positions.&quot;</span>
+    <span class="n">attn_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">subsequent_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">attn_shape</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subsequent_mask</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">subsequentmask</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[[ True False False False False]
+  [ True  True False False False]
+  [ True  True  True False False]
+  [ True  True  True  True False]
+  [ True  True  True  True  True]]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="decoder-layer">
+<h3>4.2 Decoder Layer<a class="headerlink" href="#decoder-layer" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/klwfy4fo45lsow2ilyffsu2o/image.png" /></p>
+<p>Decoder Layer和Encoder Layer基本一致，但是有几点区别：</p>
+<ol class="simple">
+<li><p>Decoder有两个MultiHead Attention，第一个Self-Attention的输入是上一个Encoder Layer的输出（DECODER#1除外，见下文），但是第二个称为Encoder-Decoder Attention，因为<span class="math notranslate nohighlight">\(K, V\)</span>来自最后一个Encoder Layer的输出。</p></li>
+<li><p>第一个MultiHead Attention的<code class="docutils literal notranslate"><span class="pre">target_mask</span></code>用于忽略还未预测的数据。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># build a decoder layer with two multi-head attention layers and</span>
+<span class="c1"># one feed-forward layer</span>
+<span class="k">class</span> <span class="nc">DecoderLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_3</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">attn_1</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attn_2</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ff</span> <span class="o">=</span> <span class="n">FeedForward</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">):</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attn_1</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">))</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attn_2</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span>
+                                           <span class="n">src_mask</span><span class="p">))</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ff</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>4.3 Decoder<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/jlkqskkw0hieniw5i8zqawrn/image.png" /></p>
+<p>第一个Decoder的输入是已经预测的结果（最后一层Softmax的输出），并且也要经过Embedding和Position Encoding，例如图中第一次预测的结果是”I”，作为第二次预测的输入。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Decoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="o">=</span> <span class="n">Embedder</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pe</span> <span class="o">=</span> <span class="n">PositionalEncoder</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="n">_dec</span> <span class="o">=</span> <span class="n">DecoderLayer</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">_dec</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trg</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">trg</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>5 Transformer<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/eqefi7nvowb7li20hrlm1eca/image.png" /></p>
+<p>有了Encoder和Decoder，最后再加上一层<code class="docutils literal notranslate"><span class="pre">Linear</span></code>和<code class="docutils literal notranslate"><span class="pre">Softmax</span></code>就是完整的Transformer网络。但是<strong>为了计算梯度方便，将<code class="docutils literal notranslate"><span class="pre">Softmax</span></code>和<code class="docutils literal notranslate"><span class="pre">Cross-entropy</span></code>合并了</strong>，所以代码中没有Softmax：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Transformer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_vocab</span><span class="p">,</span> <span class="n">trg_vocab</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">(</span><span class="n">src_vocab</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span><span class="n">trg_vocab</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">heads</span><span class="p">,</span> <span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">trg_vocab</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">trg</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">):</span>
+        <span class="n">e_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">)</span>
+        <span class="c1"># print(&quot;DECODER&quot;)</span>
+        <span class="n">d_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">trg</span><span class="p">,</span> <span class="n">e_outputs</span><span class="p">,</span> <span class="n">src_mask</span><span class="p">,</span> <span class="n">trg_mask</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">d_output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="beam-search">
+<h2>6 Beam search<a class="headerlink" href="#beam-search" title="Permalink to this headline">¶</a></h2>
+<p>之前说了预测是一个顺序过程，我们可以每次都选概率最高的word，这种方式叫作greedy decoding。另外也可以每次保留概率最高的2个words，这种方式称为beam search，实现方式可以参考<a class="reference external" href="https://github.com/SamLynnEvans/Transformer/blob/master/Beam.py">github</a>。</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Faster-RCNN.jupyter.html" title="previous page">Faster R-CNN</a>
+    <a class='right-next' id="next-link" href="../PyTorch.jupyter.html" title="next page">Pytorch</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

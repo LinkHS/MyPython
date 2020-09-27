@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>YOLO-V3 &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Faster R-CNN" href="Faster-RCNN.jupyter.html" />
+    <link rel="prev" title="CNN" href="CNN.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../Math/Math.jupyter.html">Math</a>
+  </li>
+  <li class="">
+    <a href="../Math/中心极限定理.jupyter.html">中心极限定理</a>
+  </li>
+  <li class="">
+    <a href="../Math/Poisson-Distribution.jupyter.html">泊松分布</a>
+  </li>
+  <li class="">
+    <a href="../Math/Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine&Deep Learning</p>
+</li>
+  <li class="">
+    <a href="../Math/XGBoost.jupyter.html">XGBoost与Python图解</a>
+  </li>
+  <li class="">
+    <a href="CNN.jupyter.html">CNN</a>
+  </li>
+  <li class="active">
+    <a href="">YOLO-V3</a>
+  </li>
+  <li class="">
+    <a href="Faster-RCNN.jupyter.html">Faster R-CNN</a>
+  </li>
+  <li class="">
+    <a href="transformer.jupyter.html">Transformer</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../PyTorch.jupyter.html">Pytorch</a>
+  </li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/pedometer.jupyter.html">A Pedometer in the Real World</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/ML/YOLO-V3.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#a-fully-convolutional-neural-network" class="nav-link">1 A Fully Convolutional Neural Network</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#interpreting-the-output" class="nav-link">2 Interpreting the output</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#anchor-boxes" class="nav-link">3 Anchor Boxes</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#objectness-score" class="nav-link">4 Objectness Score</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#class-predication" class="nav-link">5 Class Predication</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#loss-function" class="nav-link">6 Loss Function</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#darknet-53" class="nav-link">7 Darknet-53</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#yolo-v3-structure" class="nav-link">8 YOLO-V3 Structure</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#backup" class="nav-link">9 Backup</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="yolo-v3">
+<h1>YOLO-V3<a class="headerlink" href="#yolo-v3" title="Permalink to this headline">¶</a></h1>
+<p>推荐阅读：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch">How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 1</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/49995236">史上最详细的Yolov3边框预测分析</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/161083602">一文读懂YOLO V5 与 YOLO V4</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection#a-detour">a-PyTorch-Tutorial-to-Object-Detection</a></p></li>
+</ul>
+<div class="section" id="a-fully-convolutional-neural-network">
+<h2>1 A Fully Convolutional Neural Network<a class="headerlink" href="#a-fully-convolutional-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>因为YOLO-V3仅使用卷积层，所以又称为完全卷积网络（FCN）。它具有75个卷积层，包括skip connections和upsampling layers；没有任何池化层（因为会造成low-level features丢失），而是使用<code class="docutils literal notranslate"><span class="pre">stride=2</span></code>的卷积层对特征图进行下采样。</p>
+<p>尽管FCN不需要固定输入图像尺寸，但是由于各种潜在问题，我们还是希望固定输入图像尺寸。例如如果我们希望批处理图像（尤其GPU并行处理能大大提高速度），我们就需保证所有图像尺寸统一然后组成一个batch（concatenating many PyTorch tensors into one）。</p>
+</div>
+<div class="section" id="interpreting-the-output">
+<h2>2 Interpreting the output<a class="headerlink" href="#interpreting-the-output" title="Permalink to this headline">¶</a></h2>
+<p>通常，目标检测器将卷积层学习到的feature maps传递给分类器/回归器进行预测，包括边界框的坐标，类标签等。YOLO通过1x1卷积完成预测，因此最后的feature maps经过1x1卷积得到predication maps，两种maps的宽高一样，只是channel数不一样。如下图所示，predication maps中的每个cell的channels包括<span class="math notranslate nohighlight">\(B\times(5+C)\)</span>的信息，其中<span class="math notranslate nohighlight">\(B\)</span>表示这个cell预测的bound box数量（YOLO中设为3，即一个cell可以预测3个目标框）；<span class="math notranslate nohighlight">\(5\)</span>表示Box Coordinates（<span class="math notranslate nohighlight">\(t_x, t_y, t_w, t_h\)</span>）和Objectness Score（<span class="math notranslate nohighlight">\(p_0\)</span>）；<span class="math notranslate nohighlight">\(C\)</span>表示所有类别的Class Scores。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/juhi4kgk0hmqlocby7vx8n6g/image.png" /></p>
+<p>只要一个目标的中心落在某个cell的receptive field中，这个cell的输出就包含这个目标。假设上图输入尺寸为416x416，网络最后输出的feature maps缩小了32倍变为13x13，我们可以将原图分为13x13个grid，于是图中狗的中心属于第7行第7列的grid，对应prediction maps的第7行和第7列上的cell，如果模型性能好，这个cell就应该输出狗的准确位置。</p>
+<p>下面模拟一下网络的predication maps，大小为<span class="math notranslate nohighlight">\(13\times13\)</span>，每个cell预测<span class="math notranslate nohighlight">\(B=3\)</span>个框，物体种类<span class="math notranslate nohighlight">\(C=10\)</span>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># num of boxes</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># num of classes</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">+</span><span class="n">C</span><span class="p">))))</span>
+
+<span class="n">output</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([13, 13, 45])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="anchor-boxes">
+<h2>3 Anchor Boxes<a class="headerlink" href="#anchor-boxes" title="Permalink to this headline">¶</a></h2>
+<p>YOLO中输出目标的bounding box为<span class="math notranslate nohighlight">\(t_x, t_y, t_w, t_h\)</span>，而不是直接输出<span class="math notranslate nohighlight">\(b_x, b_y, b_w, b_h\)</span>（中心x，中心y，宽w，高h），这是因为<span class="math notranslate nohighlight">\(b_x, b_y, b_w, b_h\)</span>变化太大，如果直接预测会导致训练时候梯度很不稳定。几乎所有目标检测器输出目标bounding box时都是预测其归一化的结果，YOLO的结果需要做如下转化：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+b_{x} &amp;=\sigma\left(t_{x}\right)+c_{x} \\
+b_{y} &amp;=\sigma\left(t_{y}\right)+c_{y} \\
+b_{w} &amp;=p_{w} e^{t_{w}} \\
+b_{h} &amp;=p_{h} e^{t_{h}}
+\end{aligned}\end{split}\]</div>
+<p>以下图为例，蓝色实线框是根据YOLO预测的<span class="math notranslate nohighlight">\(t_x,t_y,t_w,t_h\)</span>计算得到的目标框，蓝色点为<span class="math notranslate nohighlight">\(b_x, b_y\)</span>。<strong>重点是黑色虚线的预设框，称为anchor</strong>，为什么要有预设框？如果没有预设框anchor，那么网络需要直接预测目标形状和大小，而目标形状和大小变化范围太广，无疑给网络增加了学习的难度，并且导致训练不稳定。<strong>个人认为这里的黑色框画的有些问题，因为黑色框中心在cell中心，所以应该围绕当前cell上下左右对称</strong>，可以参见下文具体讨论anchor如何设置。而有预设框之后，网络只需要微调，即学习/预测目标框（蓝色实线框）和预设框（黑色虚线框）之间的偏移和缩放。其中：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_x, c_y\)</span>为当前cell左上角（红色点）到原点距离（单位为grid），是直接计算出来的。例如下图中蓝色点所在cell的<span class="math notranslate nohighlight">\(c_x=1, c_y=1\)</span>；而上图红色cell的<span class="math notranslate nohighlight">\(c_x=6, c_y=6\)</span>。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma()\)</span>为sigmoid激活函数，目的是为了将<span class="math notranslate nohighlight">\(t_x, t_y\)</span>限制在<span class="math notranslate nohighlight">\([0, 1]\)</span>范围内，即<span class="math notranslate nohighlight">\(b_x, b_y\)</span>的范围限制在当前cell中。这点符合之前我们说的YOLO设计原则之一：每个cell预测中心落在这个cell对应grid中的目标。</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_w, p_h\)</span>为当前cell的预设框anchor（黑色虚线框）大小，是提前设置好的。</p></li>
+<li><p><em><strong>重点！！！</strong></em> <span class="math notranslate nohighlight">\(e^{t_w}, e^{t_h}\)</span>是缩放比例。为什么要加个指数<span class="math notranslate nohighlight">\(e\)</span>呢？<strong>这是因为缩放比例必须大于0，这是一个有不等式条件约束的优化问题，没法直接用SGD来优化，所以取指数变换后恒大于0，<span class="math notranslate nohighlight">\(t\)</span>的值就没有约束了</strong>。</p></li>
+</ul>
+<blockquote>
+<div><p>之前有个疑问，为什么要从grid左上角开始学习/预测和目标中心的偏移量，为什么不用grid中心也就是预设框anchor的中心？我猜测和<span class="math notranslate nohighlight">\(\sigma\)</span>函数有关系，<span class="math notranslate nohighlight">\(t_x/y\)</span>初始化为0时，<span class="math notranslate nohighlight">\(\sigma(0)=0.5\)</span>正好是当前cell的中心。</p>
+</div></blockquote>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ktl4b6xtgdyqe8ygura4prfq/image.png" /></p>
+<p>anchors的大小是如何得到的呢？在YOLO-V3中是对数据集中所有目标框用K-Means分类后得到的，例如COCO数据集中对于13x13（原图416缩小了32倍）大小的feature maps中每个cell预设了三种，分别为<code class="docutils literal notranslate"><span class="pre">(116,</span> <span class="pre">90),</span> <span class="pre">(156,</span> <span class="pre">198),</span> <span class="pre">(373,</span> <span class="pre">326)</span></code>，下面我们来看一下之前图中狗的中心<span class="math notranslate nohighlight">\((7, 7)\)</span>画出来的预设框是怎样的：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+
+
+<span class="k">def</span> <span class="nf">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">416</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">416</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">13</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">w</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="n">grid</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">/</span><span class="n">grid</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">plot_anchors</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">anchors</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">anchors</span><span class="p">:</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">cx</span><span class="o">-</span><span class="n">w</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">cy</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+                         <span class="n">edgecolor</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="c1"># 图片尺寸</span>
+<span class="n">img_w</span> <span class="o">=</span> <span class="mi">416</span>
+<span class="n">img_h</span> <span class="o">=</span> <span class="mi">416</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="n">anchors</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">156</span><span class="p">,</span> <span class="mi">198</span><span class="p">),</span> <span class="p">(</span><span class="mi">373</span><span class="p">,</span> <span class="mi">326</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">img_h</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
+<span class="n">plot_anchors</span><span class="p">(</span><span class="mi">208</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="n">anchors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">208</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="s1">&#39;.r&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">img_w</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">img_h</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/YOLO-V3.jupyter_6_0.png" src="../_images/YOLO-V3.jupyter_6_0.png" />
+</div>
+</div>
+<p>结合下图左可以看出，三个预设框（蓝色）和目标框（黄色）匹配的还是很不错的（除了最小的预设框）。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/clbyyn5hf9l0hzmfphfgjwhv/image.png" /></p>
+<p>但是有个问题：这只狗在图片中属于目标比较大的物体，如果目标很小，这三种预设框就不适合了（YOLO-V1把图片分为7x7个grids，而且还没anchor机制，所以小目标检测性能很不好）。如果我们在13x13的feature maps上增加anchor虽然有效果，但是13x13的feature maps中每个cell的感受野已经很大了，此时原图中很小的目标已经被缩放了32倍，在feature maps中占比很小，所以YOLO-V3引入了多尺度特征融合，并且在3个尺度上进行预测，新增的26x26和52x52尺度上的anchors见上图，网络结果如下图所示。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/nfpcfozo42j6lwci8pad9ur0/image.png" /></p>
+<p>COCO数据集上经过K-Means计算得到的3类共9个anchors如下表所示，对于一个416x416的输入图像总共有13x13x3 + 26x26x3 + 52x52x3 = 10647个预测框（而YOLO-V2为13x13x5 = 845）。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/pvh81wfa6g20rspsqcdkmrqt/image.png" /></p>
+<p>目标定位的损失函数为L2 loss，其中<span class="math notranslate nohighlight">\(l\)</span>表示网络预测的目标框与对应anchor框之间的偏移量，而<span class="math notranslate nohighlight">\(g\)</span>表示实际的目标框与anchor框之间的偏移量，所以预测的目标框和实际的目标框越接近，他们分别与anchor之间的偏移量<span class="math notranslate nohighlight">\(l, g\)</span>就会越接近：</p>
+<div class="math notranslate nohighlight">
+\[L_{l o c}(l, g)=\sum_{i \in P} \sum_{m \in\{x, y, w, h\}}\left(\hat{l}_{i}^{m}-\hat{g}_{i}^{m}\right)^{2}\]</div>
+<p>我们先看一下<span class="math notranslate nohighlight">\(l\)</span>是怎么计算的，<span class="math notranslate nohighlight">\(l\)</span>包括四个维度上的差距，分别是框中心坐标<span class="math notranslate nohighlight">\(x, y\)</span>和框宽高<span class="math notranslate nohighlight">\(w, h\)</span>。在本小节开头已经介绍过，<span class="math notranslate nohighlight">\(b^x, b^y, b^w, b^h\)</span>是预测框, <span class="math notranslate nohighlight">\(c^x, c^y, p^w, p^h\)</span>是对应的anchor。值得一提<span class="math notranslate nohighlight">\(b^x-c^x\)</span>和<span class="math notranslate nohighlight">\(b^y-c^y\)</span>已经被归一化了，范围不会超过一个grid：</p>
+<div class="math notranslate nohighlight">
+\[\hat{l}_{i}^{x}=b_{i}^{x}-c_{i}^{x}, \quad \hat{l}_{i}^{y}=b_{i}^{y}-c_{i}^{y}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{l}_{i}^{w}=\log \left(b_{i}^{w} / p_{i}^{w}\right), \quad \hat{l}_{i}^{h}=\log \left(b_{i}^{h} / p_{i}^{h}\right)\]</div>
+<p>同理<span class="math notranslate nohighlight">\(g\)</span>就是实际的目标框<span class="math notranslate nohighlight">\(b^x, b^y, b^w, b^h\)</span>和对应anchor<span class="math notranslate nohighlight">\(c^x, c^y, p^w, p^h\)</span>之间的差距：</p>
+<div class="math notranslate nohighlight">
+\[\hat{g}_{i}^{x}=g_{i}^{x}-c_{i}^{x}, \quad \hat{g}_{i}^{y}=g_{i}^{y}-c_{i}^{y}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{g}_{i}^{w}=\log \left(g_{i}^{w} / p_{i}^{w}\right), \hat{g}_{i}^{h}=\log \left(g_{i}^{h} / p_{i}^{h}\right)\]</div>
+<p>注意<span class="math notranslate nohighlight">\(L_{loc}\)</span>不需要计算所有的预测框，即<span class="math notranslate nohighlight">\(P\)</span>不等于anchors的个数，YOLO-V3都每个ground truth的目标只选一个最匹配的anchor，所以没被选中的anchor对应的预测框是不参与坐标和分类loss计算的。置于选哪一个anchor，就需要用到下面的Objectness Score了。</p>
+</div>
+<div class="section" id="objectness-score">
+<h2>4 Objectness Score<a class="headerlink" href="#objectness-score" title="Permalink to this headline">¶</a></h2>
+<p>之前我们说到每个cell除了输出预测框的大小和位置，还有一个Objectness Score，表示这个预测框是否有需要的目标。这个由sigmoid输出的概率，用于判断预测框是否有物体（IOU的Threshold=0.5）。<em><strong>重点！！！</strong></em> 同一尺度下每个cell有三个anchor，其中Objectness Score最高的anchor才参与坐标和分类的loss计算，但是所有anchors都参与目标置信度loss计算。</p>
+<div class="math notranslate nohighlight">
+\[S(x)=\frac{1}{1+e^{-x}}\]</div>
+<p>sigmoid函数公式如上，输出范围为(0,1)。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sigmoid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/YOLO-V3.jupyter_9_0.png" src="../_images/YOLO-V3.jupyter_9_0.png" />
+</div>
+</div>
+<p>目标置信度Objectness Score的loss如下，<span class="math notranslate nohighlight">\(N\)</span>为预测框的个数，<span class="math notranslate nohighlight">\(o_i\in\{0，1\}表示框是否有效包含物体\)</span>：
+<span class="math notranslate nohighlight">\($
+L_{\text{conf}}(o, c)=-\sum^\text{N}{\left(o_{i} \ln \left(\hat{c}_{i}\right)+\left(1-o_{i}\right) \ln \left(1-\hat{c}_{i}\right)\right)}
+$\)</span></p>
+<div class="math notranslate nohighlight">
+\[\hat{c}_{i}=S\left(c_{i}\right)\]</div>
+</div>
+<div class="section" id="class-predication">
+<h2>5 Class Predication<a class="headerlink" href="#class-predication" title="Permalink to this headline">¶</a></h2>
+<p>YOLO-V3没有用softmax而是对每一类都用了逻辑回归（sigmoid为激活函数）进行预测，比较适合数据集中有交叉类的情况，例如Woman和Person。</p>
+<p>因为逻辑回归为二分类，所以训练时候class predcitation的loss function就要用binary cross-entropy：</p>
+<div class="math notranslate nohighlight">
+\[L_{cla}(o, c)=-\sum_{i \in P} \sum_{j \in M}\left(o_{ij} \ln \left(\hat{c}_{ij}\right)+\left(1-o_{ij}\right) \ln \left(1-\hat{c}_{i j}\right)\right)\]</div>
+<p>其中<span class="math notranslate nohighlight">\(P\)</span>为真实目标的数量（之前我们说过每个真实目标只对应一个最好的anchor），<span class="math notranslate nohighlight">\(M\)</span>为目标的类别数。</p>
+</div>
+<div class="section" id="loss-function">
+<h2>6 Loss Function<a class="headerlink" href="#loss-function" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[L=\lambda_{1} L_{\text {conf}}(o, c)+\lambda_{2} L_{\text {cla}}(o_1, c_1)+\lambda_{3} L_{l o c}(l, g)\]</div>
+</div>
+<div class="section" id="darknet-53">
+<h2>7 Darknet-53<a class="headerlink" href="#darknet-53" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ya5yy4v1e01w25x5a05ih0un/image.png" /></p>
+<p>YOLO-V3的主干网络是基于Darknet-53（如上图所示），只是把最后用于分类的层踢除，替换为预测bbox的网络，如下图：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/1bmyr5iugbols4no4z0sophv/image.png" /></p>
+</div>
+<div class="section" id="yolo-v3-structure">
+<h2>8 YOLO-V3 Structure<a class="headerlink" href="#yolo-v3-structure" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/gx6gy2jya234mlmadgqipw4k/image.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="backup">
+<h2>9 Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BBox</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cx</span> <span class="o">=</span> <span class="n">cx</span>  <span class="c1"># center x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cy</span> <span class="o">=</span> <span class="n">cy</span>  <span class="c1"># center y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>  <span class="c1"># width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>  <span class="c1"># height</span>
+
+    <span class="k">def</span> <span class="nf">mprect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; return the bbox as the style of matplotlib Rectangle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># left-bottom (x, y)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cx</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mf">2.</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cy</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mf">2.</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+
+<span class="n">object_bbox</span> <span class="o">=</span> <span class="n">BBox</span><span class="p">(</span><span class="mi">125</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">(</span><span class="o">*</span><span class="n">object_bbox</span><span class="o">.</span><span class="n">mprect</span><span class="p">(),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">edgecolor</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Rectangle at 0x7f8d4ef7e828&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="CNN.jupyter.html" title="previous page">CNN</a>
+    <a class='right-next' id="next-link" href="Faster-RCNN.jupyter.html" title="next page">Faster R-CNN</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

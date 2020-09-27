@@ -1,0 +1,1155 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>CNN &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="YOLO-V3" href="YOLO-V3.jupyter.html" />
+    <link rel="prev" title="XGBoost与Python图解" href="../Math/XGBoost.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../Math/Math.jupyter.html">Math</a>
+  </li>
+  <li class="">
+    <a href="../Math/中心极限定理.jupyter.html">中心极限定理</a>
+  </li>
+  <li class="">
+    <a href="../Math/Poisson-Distribution.jupyter.html">泊松分布</a>
+  </li>
+  <li class="">
+    <a href="../Math/Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine&Deep Learning</p>
+</li>
+  <li class="">
+    <a href="../Math/XGBoost.jupyter.html">XGBoost与Python图解</a>
+  </li>
+  <li class="active">
+    <a href="">CNN</a>
+  </li>
+  <li class="">
+    <a href="YOLO-V3.jupyter.html">YOLO-V3</a>
+  </li>
+  <li class="">
+    <a href="Faster-RCNN.jupyter.html">Faster R-CNN</a>
+  </li>
+  <li class="">
+    <a href="transformer.jupyter.html">Transformer</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../PyTorch.jupyter.html">Pytorch</a>
+  </li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/pedometer.jupyter.html">A Pedometer in the Real World</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/ML/CNN.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#basic" class="nav-link">1 Basic</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#batchnorm" class="nav-link">2 BatchNorm</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#paper" class="nav-link">3 Paper</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#senet" class="nav-link">3.1 SENet</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#sknet" class="nav-link">3.2 SKNet</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#resnext" class="nav-link">3.3 ResNeXt</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#resnest" class="nav-link">3.4 ResNeSt</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#tricks" class="nav-link">3.4.1 Tricks</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#cv-attention" class="nav-link">4 CV Attention</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#cbam" class="nav-link">4.1 CBAM</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cnn">
+<h1>CNN<a class="headerlink" href="#cnn" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torchsummary</span> <span class="kn">import</span> <span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="basic">
+<h2>1 Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="batchnorm">
+<h2>2 BatchNorm<a class="headerlink" href="#batchnorm" title="Permalink to this headline">¶</a></h2>
+<p>BatchNorm的介绍具体参考<a class="reference external" href="https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html">动手深度学习</a>。对于FC层输出在每个通道上进行BS(batch size)级别的归一化；对于Conv层输出在每个通道上HxWxBS级别的归一化。</p>
+<p>BatchNorm虽然好用，但是也有一些问题（详见<a class="reference external" href="https://www.techbeat.net/talks/MTU5NzEyNzg2MjU2MC0yOTktNzUzMjI=">Devils in BatchNorm</a>），例如不一致性（inconsistency）问题：</p>
+<ol class="simple">
+<li><p>使用了<a class="reference external" href="https://zhuanlan.zhihu.com/p/68748778">指数移动平均</a>会让学习的参数更加适应最新训练批次的样本</p></li>
+<li><p>训练集得到的batchnorm参数不一定适合测试集</p></li>
+</ol>
+<p>第1个不一致性问题可以使用Precise BatchNorm，例如暂停更新网络参数，只更新BatchNorm层的参数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># target output size of 10x7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveMaxPool2d</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="paper">
+<h2>3 Paper<a class="headerlink" href="#paper" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="senet">
+<h3>3.1 SENet<a class="headerlink" href="#senet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/76033612">[论文笔记]-SENet和SKNet(附代码)</a></p></li>
+<li><p>Pytorch代码：https://github.com/moskomule/senet.pytorch</p></li>
+</ul>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/6sfp5yrczet76xl5qitd9cv4/image.png" /></p>
+<p>一共有三步，分别是Squeeze，Excitation和Fscale。代码中的<code class="docutils literal notranslate"><span class="pre">r</span></code>是一个缩放参数，默认16，文中说引入这个参数是为了减少<code class="docutils literal notranslate"><span class="pre">channel</span></code>个数从而降低计算量。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SEBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avg_pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">channel</span><span class="o">//</span><span class="n">r</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">channel</span><span class="o">//</span><span class="n">r</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="c1"># Squeeze</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+        <span class="c1"># Excitation</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Fscale</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SEBlock</span><span class="p">(</span><span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 128, 28, 28])
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看到<code class="docutils literal notranslate"><span class="pre">SEBlock</span></code>并没有改变<code class="docutils literal notranslate"><span class="pre">x.shape</span></code>，只是给每个通道根据计算的权重重新赋值。</p>
+<p><code class="docutils literal notranslate"><span class="pre">SEBlock</span></code>很容易集成到现有的模块中，例如对ResNet来说只需要对<code class="docutils literal notranslate"><span class="pre">Residual</span></code>加一步<code class="docutils literal notranslate"><span class="pre">SEBlock</span></code>即可：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/jk0x9zla6pe93few53nz7vow/image.png" /></p>
+<p>集成的SE-ResNet可以参考<a class="reference external" href="https://github.com/moskomule/senet.pytorch/blob/master/senet/se_resnet.py#L11">github</a>，部分代码如下所示。注意这个仓库中命名的是<code class="docutils literal notranslate"><span class="pre">SELayer</span></code>而不是<code class="docutils literal notranslate"><span class="pre">SEBlock</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+<span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">ResNet</span>
+
+
+<span class="k">def</span> <span class="nf">se_resnet34</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">1_000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Constructs a ResNet-34 model.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        pretrained (bool): If True, returns a model pre-trained on ImageNet</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ResNet</span><span class="p">(</span><span class="n">SEBasicBlock</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">avgpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="k">def</span> <span class="nf">se_resnet50</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">1_000</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Constructs a ResNet-50 model.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        pretrained (bool): If True, returns a model pre-trained on ImageNet</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ResNet</span><span class="p">(</span><span class="n">SEBottleneck</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">avgpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pretrained</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">load_state_dict_from_url</span><span class="p">(</span>
+            <span class="s2">&quot;https://github.com/moskomule/senet.pytorch/releases/download/archive/seresnet50-60a8950a85b2b.pkl&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sknet">
+<h3>3.2 SKNet<a class="headerlink" href="#sknet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/76033612">[论文笔记]-SENet和SKNet(附代码)</a></p></li>
+</ul>
+<p>SKNet的核心就是Selective Kernel Convolution，如下图所示：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/j8m6bvndtwx4zgq6m9sy73tm/image.png" /></p>
+<p>Selective Kernel Convolution主要有三步：</p>
+<ol class="simple">
+<li><p><strong>Split</strong>：用了两组不同大小的Kernel对<span class="math notranslate nohighlight">\(X\)</span>分别做卷积运算，得到两个相同shape的输出<span class="math notranslate nohighlight">\(\widetilde{\mathbf{U}}\)</span>和<span class="math notranslate nohighlight">\(\widehat{\mathbf{U}}\)</span>。</p></li>
+<li><p><strong>Fuse</strong>：将<span class="math notranslate nohighlight">\(\widetilde{\mathbf{U}}\)</span>和<span class="math notranslate nohighlight">\(\widehat{\mathbf{U}}\)</span>相加得到<span class="math notranslate nohighlight">\(\mathbf{U}\)</span>，然后类似SENet对<span class="math notranslate nohighlight">\(\mathbf{U}\)</span>计算通道之间的权重<span class="math notranslate nohighlight">\(a,b\)</span>。但是不同于SENet计算一组通道之间的权重，即一次softmax运算；而SKNet计算每个通道在两个分支上的权重，共channel次softmax运算，也就是<span class="math notranslate nohighlight">\(a,b\)</span>每个相同位置上的值加起来为1。</p></li>
+<li><p><strong>Select</strong>：根据计算<span class="math notranslate nohighlight">\(a,b\)</span>对<span class="math notranslate nohighlight">\(\widetilde{\mathbf{U}}\)</span>和<span class="math notranslate nohighlight">\(\widehat{\mathbf{U}}\)</span>做加权求和，得到<span class="math notranslate nohighlight">\(\mathbf{V}\)</span>。</p></li>
+</ol>
+<p>下面的代码实现了Selective Kernel Convolution。注意几点：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code>对应分支数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code>对应SENet中的r，是一个缩放参数，目的减少channel个数从而降低计算量</p></li>
+<li><p>论文中说可以用dilated的<code class="docutils literal notranslate"><span class="pre">conv3x3</span></code>代替<code class="docutils literal notranslate"><span class="pre">conv5x5</span></code>，对应代码<code class="docutils literal notranslate"><span class="pre">dilation=1+i</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">forward</span></code>中的<code class="docutils literal notranslate"><span class="pre">feats</span></code>对应<span class="math notranslate nohighlight">\(\mathbf{U}\)</span>，shape和<code class="docutils literal notranslate"><span class="pre">x</span></code>相同</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SKConv</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span>
+                          <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">channels</span><span class="p">),</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+            <span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">att</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">channels</span><span class="o">//</span><span class="n">reduction</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">channels</span><span class="o">//</span><span class="n">reduction</span><span class="p">,</span> <span class="n">channels</span> <span class="o">*</span> <span class="n">M</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">splited</span> <span class="o">=</span> <span class="p">[</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">conv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">]</span>
+        <span class="n">feats</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">splited</span><span class="p">)</span>  
+        <span class="n">att</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">att</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span> <span class="c1"># shape = (batch num, (channels*M), 1, 1)</span>
+        <span class="c1"># shape = (batch num, M, channels)</span>
+        <span class="n">att</span> <span class="o">=</span> <span class="n">att</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> 
+        <span class="n">att</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">att</span> <span class="o">=</span> <span class="n">att</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">att</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a</span> <span class="o">*</span> <span class="n">s</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="n">splited</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试一下<span class="math notranslate nohighlight">\(14\times 14\)</span>块（见下面第二个图）中的<code class="docutils literal notranslate"><span class="pre">SKConv</span></code>。注意如果不是块中第一次卷积运算（即输入不是<span class="math notranslate nohighlight">\(28\times 28\)</span>的输出），是不需要改变feature maps的大小，使用默认<code class="docutils literal notranslate"><span class="pre">stride=1</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">skconv</span> <span class="o">=</span> <span class="n">SKConv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">skconv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+
+<span class="c1"># 测试backward()和loss</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">L1Loss</span><span class="p">()</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loss value : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 1024, 14, 14])
+loss value : 0.4172205328941345
+</pre></div>
+</div>
+</div>
+</div>
+<p>有了<code class="docutils literal notranslate"><span class="pre">SKConv</span></code>，我们就可以构建基于SKNet的ResNet了，例如SKNet-50，只需要替换ResNet模块中的<span class="math notranslate nohighlight">\(3\times 3\)</span>卷积。ResNet模块如下图所示，左边是普通的ResNet模块，右边是bottlenecck结构的ResNet模块：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/geba8sxfed73kwumnyrdwiy7/image.png" /></p>
+<p>完整的SKNet结构如下图所示。在max pool之后，每个block会重复一定的次数（3，4，6，3），这些block第一次时候都需要将feature maps减半，此时输入的通道数是输出的一半。例如<span class="math notranslate nohighlight">\(56\times 56\)</span>中最后一次输出的通道数为256，即<span class="math notranslate nohighlight">\(28\times 28\)</span>的输入，而<span class="math notranslate nohighlight">\(28\times 28\)</span>的输出为512。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/f7cgwxi5o8xmvyry1oysr56h/image.png" /></p>
+<p>代码中使用了<code class="docutils literal notranslate"><span class="pre">in_channels</span> <span class="pre">==</span> <span class="pre">out_channels</span></code>来判断是否需要对feature maps的大小减半：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.nn.quantized</span> <span class="kn">import</span> <span class="n">FloatFunctional</span>
+
+
+<span class="k">class</span> <span class="nc">SKUnit</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">in_channels</span> <span class="o">==</span> <span class="n">out_channels</span><span class="p">:</span>
+            <span class="n">mid_channels</span> <span class="o">=</span> <span class="n">in_channels</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mid_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">))</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">mid_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">mid_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">SKConv</span><span class="p">(</span><span class="n">mid_channels</span><span class="p">,</span> <span class="n">stride</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">mid_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">mid_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">FloatFunctional</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="o">.</span><span class="n">add_relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试不需要减半的<code class="docutils literal notranslate"><span class="pre">SKUnit</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SKUnit</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([8, 64, 32, 32])
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试需要减半的SKUnit：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">SKUnit</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([8, 128, 16, 16])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="resnext">
+<h3>3.3 ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.zhihu.com/question/323424817">ResNeXt的分类效果为什么比Resnet好?</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/78019001">薰风读论文：ResNeXt 深入解读与模型实现</a></p></li>
+</ul>
+<p>神经网络有两个重要的参数，深度和宽度（这里指的是通道数：the number of channels in a layer），经过ResNet等文章改进后，这两个参数对目前的网络的提升效果不是很明显了，大家开始对各种超参下手，这样很容易导致某一数据集碰巧适合一个“乱调”的超参，使网络丧失了泛化性。本文提出了一个新的参数cardinality，如下图右边网络中的“total 32 paths”，本质上就是对图中左边的3x3 conv做分组卷积：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/4i1l4zpoi5h4f197on71hcs2/image.png" /></p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/g0ttoq6klzia3adzxtz81prs/image.png" /></p>
+<p>作者这么做的原因是受到Inception结构和AlexNet分组卷积启发，认为<strong>split-transform-merge结构能达到大型密集网络的表达能力</strong>，而计算量却要小很多。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.zhihu.com/question/323424817/answer/1078704765">ResNeXt的分类效果为什么比Resnet好?</a> 一个答案认为多个cardinality和NLP中的multi-head attention是一个思路。每组是不同的subspace，就能学到更diverse的表示。</p>
+</div></blockquote>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/b5cahsk10t89licwxt5s8ek1/image.png" /></p>
+<p>接着为了简化计算，作者证明了上图中3个block是等价的，于是<strong>输入和输出就简化成了一次1x1的卷积</strong>，而不是原来cardinality（上图中为32）次。对比原来的ResNet结构（第一张图左），ResNeXt中的通道总数反而增多了（从64变成了128），这样其实也是增加了模型的能力，<strong>但是重点是几乎没有增加任何的计算量和参数量！！！，原理类似Depthwise Conv</strong>，计算量和参数量参见下图最后一行。</p>
+<p>代码很简单，只需要对ResNet的代码微调：一是输入的通道数；二是将中间的conv3x3变成分组卷积，只要传入<code class="docutils literal notranslate"><span class="pre">groups=cardinality</span></code>参数即可：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Block</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Grouped convolution block.&#39;&#39;&#39;</span>
+    <span class="n">expansion</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">gw</span><span class="p">,</span> <span class="n">cardinality</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @gw, group width</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="n">out_channels</span> <span class="o">=</span> <span class="n">gw</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">expansion</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">gw</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">gw</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">gw</span><span class="p">,</span> <span class="n">gw</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span>
+                      <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">cardinality</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">gw</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">gw</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">stride</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">in_channels</span> <span class="o">!=</span> <span class="n">out_channels</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span>
+                          <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">),</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试下图中conv4第一次之后的输入：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">Block</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">512</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 1024, 14, 14])
+</pre></div>
+</div>
+</div>
+</div>
+<p>测试下图中conv4第一次输入，即conv3的输出：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">Block</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 1024, 14, 14])
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/a8sd9f5m8g0vz762s07iqxco/image.png" /></p>
+<p>有了基础的<code class="docutils literal notranslate"><span class="pre">Block</span></code>就可以构建完整的<code class="docutils literal notranslate"><span class="pre">ResNeXt</span></code>了，例如上图对比了<code class="docutils literal notranslate"><span class="pre">ResNet-50</span></code>和<code class="docutils literal notranslate"><span class="pre">ResNeXt-50</span></code>。代码类似<a class="reference external" href="https://github.com/pytorch/vision/blob/3942b192e33dd79b6d9770149371bd58a483d47b/torchvision/models/resnet.py#L101">ResNet</a>，提换为上面的<code class="docutils literal notranslate"><span class="pre">Block</span></code>并新增<code class="docutils literal notranslate"><span class="pre">cardinality</span></code>参数：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ResNeXt</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">cardinality</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ResNeXt</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inplanes</span> <span class="o">=</span> <span class="mi">64</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span> <span class="o">=</span> <span class="n">cardinality</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                               <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_layer</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                       <span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_layer</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span>  <span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_layer</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span>  <span class="n">layers</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_layer</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">layers</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">avgpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">group_width</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">in_channels</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">in_channels</span> <span class="o">=</span> <span class="n">group_width</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">group_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="n">inchannels</span> <span class="o">=</span> <span class="n">group_width</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">):</span>
+            <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">block</span><span class="p">(</span><span class="n">inchannels</span><span class="p">,</span> <span class="n">group_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer4</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avgpool</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span> <span class="nf">ResNeXt50_32x4d</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">ResNeXt</span><span class="p">(</span><span class="n">Block</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">cardinality</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">ResNeXt50_32x4d</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="c1">#summary(ResNeXt50_32x4d(), (3, 224, 224))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 1000])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="resnest">
+<h3>3.4 ResNeSt<a class="headerlink" href="#resnest" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>作者视频讲解：<a class="reference external" href="https://www.bilibili.com/video/BV1PV411k7ch">张航-ResNeSt：拆分注意力网络</a></p></li>
+</ul>
+<p>虽然论文中给的图比较了SENet和SKNet，但是ResNeSt主要结合了SKNet的分支间通道attention，和ResNeXt多分支的特点。在ResNeSt提出cardinality的基础上，在每个cardinality维度中又新增了radix参数，也就是分支中的分支：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/c4tn4s3wfk9m1f70o871zero/image.png" /></p>
+<p>首先看下单独cardinality模块的处理，先经过1x1卷积缩小通道，然后经过3x3卷积提取特征，这和标准的ResNet没区别（除了是radix个分支）。下面就是ResNeSt中重点<strong>Split Attention</strong>：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/z6bbl89fjw9k7wpgm068z6nz/image.png" /></p>
+<p>图中<span class="math notranslate nohighlight">\(r\)</span>个<span class="math notranslate nohighlight">\(h \times w \times c'\)</span>的输入经过Global Average Pooling和2个FC层后，得到<span class="math notranslate nohighlight">\(r\)</span>（radix）个<code class="docutils literal notranslate"><span class="pre">Dense</span> <span class="pre">c</span></code>，然后在<span class="math notranslate nohighlight">\(c\)</span>（channel）维度上做softmax，得到<span class="math notranslate nohighlight">\(r \times c\)</span>的权重图，权重图的第<span class="math notranslate nohighlight">\(i\)</span>列对应第<span class="math notranslate nohighlight">\(i\)</span>个channel的<span class="math notranslate nohighlight">\(r\)</span>个权重分布，下面的代码省略了GAP和FC：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">xs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3744, 0.5641, 0.6910],
+        [0.6256, 0.4359, 0.3090]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>结果权重<code class="docutils literal notranslate"><span class="pre">xs</span></code>中每一列有<span class="math notranslate nohighlight">\(r=2\)</span>个权重（每一列和为1）。</p>
+<p><strong>这样虽然能求得cardinality个大分支的输出，但是要计算cardinality次</strong>。在附录中，作者将<span class="math notranslate nohighlight">\(\text{radix} \times \text{cardinality}\)</span>等价变换为<span class="math notranslate nohighlight">\(\text{cardinality} \times \text{radix}\)</span>，这样只需计算一次就可以得到<span class="math notranslate nohighlight">\(\text{radix} \times \text{cardinality} \times c\)</span>的softmax权重图：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cardinality</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x_gap</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">cardinality</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="c1"># after global average pooling</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">x_gap</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">xs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[0.3929, 0.5925, 0.6940],
+         [0.5490, 0.5550, 0.4919],
+         [0.4783, 0.5026, 0.4754],
+         [0.5935, 0.5793, 0.6971]],
+
+        [[0.6071, 0.4075, 0.3060],
+         [0.4510, 0.4450, 0.5081],
+         [0.5217, 0.4974, 0.5246],
+         [0.4065, 0.4207, 0.3029]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>注意虽然输入的shape为<span class="math notranslate nohighlight">\(\text{cardinality} \times r \times c\)</span>，但是经过<code class="docutils literal notranslate"><span class="pre">transpose(0,</span> <span class="pre">1)</span></code>后就对调了<span class="math notranslate nohighlight">\(\text{cardinality}\)</span>和<span class="math notranslate nohighlight">\(r\)</span>。如下图所示（k=cardinality），若将<span class="math notranslate nohighlight">\((h,w,c)\)</span>分为<span class="math notranslate nohighlight">\((k, r, h, w, c')\)</span>，并按照相同<span class="math notranslate nohighlight">\(r\)</span>的<span class="math notranslate nohighlight">\(k \times (h,w,c')\)</span>放在一起，只需要用一个group conv生成：<code class="docutils literal notranslate"><span class="pre">nn.Conv2d(c,</span> <span class="pre">c'*radix,</span> <span class="pre">groups=cardinality*radix)</span></code>。</p>
+<blockquote>
+<div><p>图中一共有<span class="math notranslate nohighlight">\(\text{cardinality}=k\)</span>组，每组有<span class="math notranslate nohighlight">\(\text{radix}=r\)</span>个分支，每个分支通道数为<span class="math notranslate nohighlight">\(c'/k\)</span>。所以当<code class="docutils literal notranslate"><span class="pre">Conv2d</span></code>的参数<code class="docutils literal notranslate"><span class="pre">out_channel=c*radix</span></code>而<code class="docutils literal notranslate"><span class="pre">groups=k*radix</span></code>时，<code class="docutils literal notranslate"><span class="pre">Conv2d</span></code>每一<code class="docutils literal notranslate"><span class="pre">group</span></code>输出的通道数就是等于<span class="math notranslate nohighlight">\(c'/k\)</span>！！！</p>
+</div></blockquote>
+<p>有了权重<code class="docutils literal notranslate"><span class="pre">xs</span></code>后，只需要将<code class="docutils literal notranslate"><span class="pre">xs</span></code>乘上相同shape的<code class="docutils literal notranslate"><span class="pre">x</span></code>再加上<code class="docutils literal notranslate"><span class="pre">x</span></code>就得到了Split-Attention的输出（注意这里省略了1x1缩小和放大通道的步骤）。这里有证明两者等价证明和论文作者测试代码（载入等价的网络权重，提供相同的输入，通过测试输出是否相同来验证模型是否等价），详见<a class="reference external" href="https://zhuanlan.zhihu.com/p/135220104">ResNeSt 实现有误？</a>。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/8hjis3n8sybi782qv7g2fks1/image.png" /></p>
+<p>注意图中使用的是<strong>r-Softmax</strong>，当<code class="docutils literal notranslate"><span class="pre">radix=1</span></code>时用<code class="docutils literal notranslate"><span class="pre">sigmoid</span></code>，公式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a_{i}^{k}(c)=\left\{\begin{array}{ll}
+\frac{\exp \left(\mathcal{G}_{i}^{c}\left(s^{k}\right)\right)}{\sum_{j=0}^{R} \exp \left(\mathcal{G}_{j}^{c}\left(s^{k}\right)\right)} &amp; \text { if } R&gt;1 \\
+\frac{1}{1+\exp \left(-\mathcal{G}_{i}^{c}\left(s^{k}\right)\right)} &amp; \text { if } R=1
+\end{array}\right.\end{split}\]</div>
+<p>具体实现如下，注意<code class="docutils literal notranslate"><span class="pre">x.transpose</span></code>操作调换了radix和cardinality维度：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">rSoftMax</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radix</span><span class="p">,</span> <span class="n">cardinality</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radix</span> <span class="o">=</span> <span class="n">radix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span> <span class="o">=</span> <span class="n">cardinality</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">radix</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radix</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># batch, radix, cardinality, -1</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">radix</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cardinality</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">radix</span><span class="o">*</span><span class="n">cardinality</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">rSoftMax</span><span class="p">(</span><span class="n">radix</span><span class="p">,</span> <span class="n">cardinality</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([1, 128])
+</pre></div>
+</div>
+</div>
+</div>
+<p>增加了Split-Attention的ResNet模块代码，注意代码中<strong>用1x1的Conv代替了cardinality*radix个并行FC的预算</strong>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SplAtConv2d</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Split-Attention Conv2d</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">radix</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SplAtConv2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">inter_channels</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">in_channels</span><span class="o">*</span><span class="n">radix</span><span class="o">//</span><span class="n">reduction_factor</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radix</span> <span class="o">=</span> <span class="n">radix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="n">channels</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">channels</span><span class="o">*</span><span class="n">radix</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span>
+                              <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="o">*</span><span class="n">radix</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">channels</span><span class="o">*</span><span class="n">radix</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span> <span class="n">inter_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">inter_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">inter_channels</span><span class="p">,</span> <span class="n">channels</span> <span class="o">*</span>
+                             <span class="n">radix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cardinality</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rsoftmax</span> <span class="o">=</span> <span class="n">rSoftMax</span><span class="p">(</span><span class="n">radix</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn0</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">batch</span><span class="p">,</span> <span class="n">rchannel</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">radix</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">splited</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rchannel</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">radix</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">gap</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">splited</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gap</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">gap</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">adaptive_avg_pool2d</span><span class="p">(</span><span class="n">gap</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">gap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+
+        <span class="n">gap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+        <span class="n">gap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+
+        <span class="n">atten</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+        <span class="n">atten</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsoftmax</span><span class="p">(</span><span class="n">atten</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">radix</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">attens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">atten</span><span class="p">,</span> <span class="n">rchannel</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">radix</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">att</span><span class="o">*</span><span class="n">split</span> <span class="k">for</span> <span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="n">split</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">attens</span><span class="p">,</span> <span class="n">splited</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">atten</span> <span class="o">*</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>因为代码中对FC输出用了BatchNorm，所以测试时候batch size &gt; 1：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SplAtConv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 32, 56, 56])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tricks">
+<h4>3.4.1 Tricks<a class="headerlink" href="#tricks" title="Permalink to this headline">¶</a></h4>
+<p>本篇论文训练时用到了很多tricks。首先ResNet-D：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/scdvz53jz5elyfjsgdwugxco/image.png" /></p>
+<ol class="simple">
+<li><p>ResNet-B将<code class="docutils literal notranslate"><span class="pre">s=2</span></code>下采样（downsampling）从第一个（最下面）1x1移到了3x3卷积中，避免信息丢失（因为<code class="docutils literal notranslate"><span class="pre">s=2</span></code>的1x1会直接跳过像素）。</p></li>
+<li><p>ResNet-C中将ResNet第一层的7x7卷积用3个3x3卷积代替。</p></li>
+<li><p>ResNet-D中解决了ResNet-B中旁路上1x1在<code class="docutils literal notranslate"><span class="pre">s=2</span></code>时信息丢失的问题，先用<code class="docutils literal notranslate"><span class="pre">AvgPool</span></code>进行下采样。</p></li>
+</ol>
+<p>其他还有Label Smoothing，Mixup Training，Auto Augment等。作者实现的<a class="reference external" href="https://github.com/zhanghang1989/ResNeSt">代码</a>提供了MXNet和PyTorch版本。</p>
+</div>
+</div>
+</div>
+<div class="section" id="cv-attention">
+<h2>4 CV Attention<a class="headerlink" href="#cv-attention" title="Permalink to this headline">¶</a></h2>
+<p>注意力机制可以分为：</p>
+<ul class="simple">
+<li><p>通道注意力机制：对通道生成掩码mask，进行打分，代表是SENet, Channel Attention Module</p></li>
+<li><p>空间注意力机制：对空间进行掩码的生成，进行打分，代表是Spatial Attention Module</p></li>
+<li><p>混合域注意力机制：同时对通道注意力和空间注意力进行评价打分，代表的有BAM, CBAM</p></li>
+</ul>
+<p>文章：</p>
+<ul class="simple">
+<li><p>专栏：<a class="reference external" href="https://zhuanlan.zhihu.com/cvattention">机器视觉Attention机制的研究</a></p>
+<ul>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/52925608">Attention算法调研——视觉应用概况</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/52786464">Attention算法调研(一)——机器翻译中的Attention</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/52861193">Attention算法调研(二)——机器翻译中的Self Attention</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/52958865">Attention算法调研(三)——视觉应用中的Hard Attention</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/53026371">Attention算法调研(四)——视觉应用中的Soft Attention</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/53155423">Attention算法调研(五)——视觉应用中的Self Attention</a></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="cbam">
+<h3>4.1 CBAM<a class="headerlink" href="#cbam" title="Permalink to this headline">¶</a></h3>
+<p>为了强调空间和通道这两个维度上的有意义特征，作者依次应用通道和空间注意力模块，分别在通道和空间维度上学习关注什么、在哪里关注。此外，通过了解要强调或抑制的信息也有助于网络内的信息流动。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/z8o0mdlygap9p5mkkgpbkcae/image.png" /></p>
+<p>主要网络架构也很简单，上图展示了和ResBlock的结合，对Feature Maps依次通过Channel attention和Spatial attention两个module。原文：   Given an intermediate feature map <span class="math notranslate nohighlight">\(\mathbf{F} \in \mathbb{R}^{C \times H \times W}\)</span> as input, CBAM sequentially infers a 1D channel attention map <span class="math notranslate nohighlight">\(\mathbf{M}_{\mathbf{c}} \in \mathbb{R}^{C \times 1 \times 1}\)</span> and a 2D spatial attention map <span class="math notranslate nohighlight">\(\mathbf{M}_{\mathbf{s}} \in \mathbb{R}^{1 \times H \times W}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathbf{F}^{\prime} &amp;=\mathbf{M}_{\mathbf{c}}(\mathbf{F}) \otimes \mathbf{F} \\
+\mathbf{F}^{\prime \prime} &amp;=\mathbf{M}_{\mathbf{s}}\left(\mathbf{F}^{\prime}\right) \otimes \mathbf{F}^{\prime}
+\end{aligned}\end{split}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\otimes\)</span>表示element-wise multiplication。两个模块详细的结构如下图所示：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/gkkkb0jf3q352fr8mdwgjgda/image.png" /></p>
+<p>至于为什么Channel在前，Spatial在后，是因为实验结果更好。下面分别看下两个模块。</p>
+<p><strong>Channel attention module</strong>的公式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathbf{M}_{\mathbf{c}}(\mathbf{F}) &amp;=\sigma(\textit{MLP}(\textit{AvgPool}(\mathbf{F}))+\textit{MLP}(\textit{MaxPool}(\mathbf{F}))) \\
+&amp;=\sigma\left(\mathbf{W}_{1}\left(\mathbf{W}_{\mathbf{0}}\left(\mathbf{F}_{\text{avg}}^{\mathbf{c}}\right)\right)+\mathbf{W}_{\mathbf{1}}\left(\mathbf{W}_{\mathbf{0}}\left(\mathbf{F}_{\text{max}}^{\mathbf{c}}\right)\right)\right)
+\end{aligned}\end{split}\]</div>
+<p>其中：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{F}_{\text{avg}}^{\mathbf{c}}\)</span>和<span class="math notranslate nohighlight">\(\mathbf{F}_{\text{max}}^{\mathbf{c}}\)</span>分别表示在空间<span class="math notranslate nohighlight">\(HW\)</span>维度上average-pooled和max-pooled features，大小为通道数<span class="math notranslate nohighlight">\(c\)</span>。作者认为结合max-pooling和average-pooling能提供更多的信息。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{W}_{\mathbf{0}}, \mathbf{W}_{\mathbf{1}} \in \mathbb{R}^{C / r \times C}\)</span>，<span class="math notranslate nohighlight">\(r\)</span>是reduction ratio，减少计算量的。<strong>注意这两个weight参数是被<span class="math notranslate nohighlight">\(\textit{MLP}\)</span>共享的</strong>，所以下面的代码使用了一个<code class="docutils literal notranslate"><span class="pre">sharedMLP</span></code>。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>表示sigmod函数。</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_c\in \mathbb{R}^{C\times 1 \times 1}\)</span>就是channel attention map。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ChannelAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_planes</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChannelAttention</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avg_pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveMaxPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sharedMLP</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_planes</span><span class="p">,</span> <span class="n">in_planes</span><span class="o">//</span><span class="n">ratio</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_planes</span><span class="o">//</span><span class="n">ratio</span><span class="p">,</span> <span class="n">in_planes</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">avg_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sharedMLP</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">max_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sharedMLP</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">avg_out</span> <span class="o">+</span> <span class="n">max_out</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{F}^{\prime} =\mathbf{M}_{\mathbf{c}}(\mathbf{F}) \otimes \mathbf{F}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="c1"># channel attention map</span>
+<span class="n">Mc</span> <span class="o">=</span> <span class="n">ChannelAttention</span><span class="p">(</span><span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mc shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Mc</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+
+<span class="c1"># features with channel attention</span>
+<span class="n">xc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">Mc</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;xc shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xc</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mc shape : torch.Size([1, 128, 1, 1])
+xc shape : torch.Size([1, 128, 14, 14])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Spatial attention module</strong>的公式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathbf{M}_{\mathbf{s}}(\mathbf{F}) &amp;=\sigma\left(f^{7 \times 7}([\textit{AvgPoll}(\mathbf{F}) ; \textit{MaxPool}(\mathbf{F})])\right) \\
+&amp;=\sigma\left(f^{7 \times 7}\left(\left[\mathbf{F}_{\text{avg}}^{\mathbf{s}} ; \mathbf{F}_{\text{max}}^{\mathbf{s}}\right]\right)\right)
+\end{aligned}\end{split}\]</div>
+<p>其中：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{F}_{\text{avg}}^{\mathbf{s}}, \mathbf{F}_{\text{max}}^{\mathbf{s}} \in \mathbb{R}^{1 \times H \times W}\)</span>，分别表示在通道<span class="math notranslate nohighlight">\(c\)</span>维度上average-pooled和max-pooled features，然后把这两个2D features被concatenate在一起。</p></li>
+<li><p><span class="math notranslate nohighlight">\(f^{7 \times 7}\)</span>表示filter size为<span class="math notranslate nohighlight">\(7\times7\)</span>的卷积。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>表示sigmod函数。</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_s\in \mathbb{R}^{H\times W}\)</span>就是spatial attention map。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpatialAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SpatialAttention</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">kernel_size</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s2">&quot;kernel size must be 3 or 7&quot;</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">kernel_size</span> <span class="o">==</span> <span class="mi">7</span> <span class="k">else</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">padding</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">avg_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">max_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">avg_out</span><span class="p">,</span> <span class="n">max_out</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{F}^{\prime \prime} =\mathbf{M}_{\mathbf{s}}\left(\mathbf{F}^{\prime}\right) \otimes \mathbf{F}^{\prime}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="c1"># channel attention map</span>
+<span class="n">Ms</span> <span class="o">=</span> <span class="n">SpatialAttention</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ms shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Ms</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+
+<span class="c1"># features with channel attention</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">Ms</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;xc shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Ms shape : torch.Size([1, 1, 14, 14])
+xc shape : torch.Size([1, 128, 14, 14])
+</pre></div>
+</div>
+</div>
+</div>
+<p>把两者结合起来就得到了<code class="docutils literal notranslate"><span class="pre">CBAM</span></code>模块：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CBAM</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planes</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="o">=</span> <span class="n">ChannelAttention</span><span class="p">(</span><span class="n">planes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">=</span> <span class="n">SpatialAttention</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">CBAM</span><span class="p">(</span><span class="mi">128</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out shape : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([1, 128, 14, 14])
+</pre></div>
+</div>
+</div>
+</div>
+<p>原文中把<code class="docutils literal notranslate"><span class="pre">CBAM</span></code>和<code class="docutils literal notranslate"><span class="pre">ResNet</span></code>集成时是这么说的：“We apply CBAM on the convolution outputs in each block”，可能是加在每个<code class="docutils literal notranslate"><span class="pre">ResBlock</span></code>输出上（未验证）。在这篇<a class="reference external" href="https://zhuanlan.zhihu.com/p/99261200">文章</a>中，<strong>作者为了能够用预训练的参数</strong>，把<code class="docutils literal notranslate"><span class="pre">CBAM</span></code>加在<code class="docutils literal notranslate"><span class="pre">ResBlock</span></code>之前和之后，见<code class="docutils literal notranslate"><span class="pre">ca/sa</span></code>和<code class="docutils literal notranslate"><span class="pre">ca1/sa1</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+<span class="k">class</span> <span class="nc">ResNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer4</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avgpool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../Math/XGBoost.jupyter.html" title="previous page">XGBoost与Python图解</a>
+    <a class='right-next' id="next-link" href="YOLO-V3.jupyter.html" title="next page">YOLO-V3</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

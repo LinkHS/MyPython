@@ -1,0 +1,1263 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pytorch &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Matplotlib" href="matplotlib.jupyter.html" />
+    <link rel="prev" title="Transformer" href="ML/transformer.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="Math/Math.jupyter.html">Math</a>
+  </li>
+  <li class="">
+    <a href="Math/中心极限定理.jupyter.html">中心极限定理</a>
+  </li>
+  <li class="">
+    <a href="Math/Poisson-Distribution.jupyter.html">泊松分布</a>
+  </li>
+  <li class="">
+    <a href="Math/Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine&Deep Learning</p>
+</li>
+  <li class="">
+    <a href="Math/XGBoost.jupyter.html">XGBoost与Python图解</a>
+  </li>
+  <li class="">
+    <a href="ML/CNN.jupyter.html">CNN</a>
+  </li>
+  <li class="">
+    <a href="ML/YOLO-V3.jupyter.html">YOLO-V3</a>
+  </li>
+  <li class="">
+    <a href="ML/Faster-RCNN.jupyter.html">Faster R-CNN</a>
+  </li>
+  <li class="">
+    <a href="ML/transformer.jupyter.html">Transformer</a>
+  </li>
+  <li class="active">
+    <a href="">Pytorch</a>
+  </li>
+  <li class="">
+    <a href="matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+  <li class="">
+    <a href="Course/pedometer.jupyter.html">A Pedometer in the Real World</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/PyTorch.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#tensor" class="nav-link">1 Tensor 基本操作</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#create-a-tensor" class="nav-link">1.1 Create a Tensor</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#tensor-dtype" class="nav-link">1.1.1 tensor.dtype</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#id1" class="nav-link">1.1.2 其他初始化方法</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id2" class="nav-link">1.2 Tensor 属性</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#operation" class="nav-link">1.3 Operation</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#mean" class="nav-link">1.3.1 mean 求均值</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#clamp" class="nav-link">1.3.2 - clamp 数值截断</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">2 训练</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#epochbatch-size" class="nav-link">2.1 获取每个epoch的batch_size</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">3 模型</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id5" class="nav-link">3.1 查看模型参数</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#torchsummary" class="nav-link">3.1.1 - torchsummary</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#legacy" class="nav-link">3.1.2 - Legacy</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#save-and-load" class="nav-link">3.2 Save and Load</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#load" class="nav-link">3.2.1 - Load</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#totensor-normalize-to-0-1" class="nav-link">3.3 ToTensor normalize to [0, 1]</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#tensorbatch" class="nav-link">3.4 - Tensor在batch维度上求均值</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#pytorch-hook" class="nav-link">4 Pytorch Hook</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#hook-for-tensors" class="nav-link">4.1 Hook for Tensors</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#hook-for-modules" class="nav-link">4.2 Hook for Modules</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#register-forward-hook" class="nav-link">4.2.1 Register forward hook</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#register-backward-hook" class="nav-link">4.2.2 Register backward hook</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#guided-backpropagation" class="nav-link">4.2.3 Guided Backpropagation</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pytorch">
+<h1>Pytorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tensor">
+<h2>1 Tensor 基本操作<a class="headerlink" href="#tensor" title="Permalink to this headline">¶</a></h2>
+<p>References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html">torch.Tensor</a></p></li>
+<li><p><a class="reference external" href="https://jhui.github.io/2018/02/09/PyTorch-Basic-operations/">PyTorch - Basic operations</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7f99a2049650&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([0.4963, 0.7682])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-a-tensor">
+<h3>1.1 Create a Tensor<a class="headerlink" href="#create-a-tensor" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Initialize with random number (uniform distribution)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.0885, 0.1320, 0.3074],
+        [0.6341, 0.4901, 0.8964]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># With normal distribution (SD=1, mean=0)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[-1.0845, -1.3986,  0.4033],
+        [ 0.8380, -0.7193, -0.4033]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 可以用括号指定维度</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[[0.6816, 0.9152, 0.3971, 0.8742],
+          [0.4194, 0.5529, 0.9527, 0.0362]],
+
+         [[0.1852, 0.3734, 0.3051, 0.9320],
+          [0.1759, 0.2698, 0.1507, 0.0317]],
+
+         [[0.2081, 0.9298, 0.7231, 0.7423],
+          [0.5263, 0.2437, 0.5846, 0.0332]]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tensor-dtype">
+<h4>1.1.1 <code class="docutils literal notranslate"><span class="pre">tensor.dtype</span></code><a class="headerlink" href="#tensor-dtype" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html">dtype</a>:</p>
+<ul class="simple">
+<li><p>torch.double</p></li>
+<li><p>torch.long</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[[0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]]],
+
+
+        [[[0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]]]], dtype=torch.int32)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>1.1.2 其他初始化方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> 
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size 4. Random permutation of integers from 0 to 9</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([1, 6, 5, 7, 0, 4, 2, 9, 3, 8])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>1.2 Tensor 属性<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensorA</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">tensorA</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tensorA</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="c1"># 形状</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(torch.Size([2, 3, 4, 5]), torch.Size([2, 3, 4, 5]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensorA</span><span class="o">.</span><span class="n">nelement</span><span class="p">()</span> <span class="c1"># 元素个数, total_train += mask.nelement()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">tensorA</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="operation">
+<h3>1.3 Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="mean">
+<h4>1.3.1 <code class="docutils literal notranslate"><span class="pre">mean</span></code> 求均值<a class="headerlink" href="#mean" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;mean(求均值)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>                <span class="c1"># torch.Size([3, 4])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">0</span><span class="p">),</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># torch.Size([1, 3, 4])</span>
+
+<span class="c1"># 先在维度1上求均值，再在维度2上求均值</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1"># torch.Size([2, 1, 1])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>       <span class="c1"># torch.Size([2])</span>
+
+<span class="k">del</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([3, 4])
+torch.Size([1, 3, 4])
+torch.Size([2, 1, 1])
+torch.Size([2])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clamp">
+<h4>1.3.2 - <code class="docutils literal notranslate"><span class="pre">clamp</span></code> 数值截断<a class="headerlink" href="#clamp" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在分割或者去模糊等任务评测时，需要注意将神经网路的输出截止到float型`[0.0, 1.0]`或者int型`[0, 255]`，因为最终要保存为图片看效果！</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.8108, 1.0000],
+        [0.7778, 1.0000]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id3">
+<h2>2 训练<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="epochbatch-size">
+<h3>2.1 获取每个epoch的batch_size<a class="headerlink" href="#epochbatch-size" title="Permalink to this headline">¶</a></h3>
+<p>更新时候需要</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+<span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">metric_logger</span><span class="o">.</span><span class="n">log_every</span><span class="p">(</span><span class="n">data_loader</span><span class="p">,</span> <span class="n">print_freq</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">blur_imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id4">
+<h2>3 模型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>3.1 查看模型参数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="torchsummary">
+<h4>3.1.1 - <code class="docutils literal notranslate"><span class="pre">torchsummary</span></code><a class="headerlink" href="#torchsummary" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchsummary</span> <span class="kn">import</span> <span class="n">summary</span>
+
+<span class="k">class</span> <span class="nc">ToyNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">o</span>
+    
+<span class="n">model</span> <span class="o">=</span> <span class="n">ToyNet</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1"># 单输入</span>
+<span class="c1">#summary(model, [(3, 256, 256), (1, 256, 256)]) # 多输入</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1              [-1, 5, 8, 8]             140
+              ReLU-2              [-1, 5, 8, 8]               0
+================================================================
+Total params: 140
+Trainable params: 140
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.00
+Params size (MB): 0.00
+Estimated Total Size (MB): 0.01
+----------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="legacy">
+<h4>3.1.2 - Legacy<a class="headerlink" href="#legacy" title="Permalink to this headline">¶</a></h4>
+<p>以下方式对模型有要求：每一层输入必须是单个Tensor；每一层顺序连接</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;output shape:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>conv output shape: torch.Size([1, 5, 8, 8])
+relu output shape: torch.Size([1, 5, 8, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>https://discuss.pytorch.org/t/different-between-permute-transpose-view-which-should-i-use/32916)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">ToyNet</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="save-and-load">
+<h3>3.2 Save and Load<a class="headerlink" href="#save-and-load" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="k">def</span> <span class="nf">save_on_master</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">is_main_process</span><span class="p">():</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="n">save_on_master</span><span class="p">({</span>
+    <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model_without_ddp</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="s1">&#39;epoch&#39;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+    <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="n">args</span>
+<span class="p">},</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;model_</span><span class="si">{}</span><span class="s1">.pth&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="load">
+<h4>3.2.1 - Load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">my_model</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">resume</span><span class="p">:</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">resume</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="totensor-normalize-to-0-1">
+<h3>3.3 <code class="docutils literal notranslate"><span class="pre">ToTensor</span></code> normalize to <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code><a class="headerlink" href="#totensor-normalize-to-0-1" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Transforms.ToTensor</span></code></p>
+</div>
+<div class="section" id="tensorbatch">
+<h3>3.4 - Tensor在batch维度上求均值<a class="headerlink" href="#tensorbatch" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+
+<span class="c1"># -1表示自动计算这一维度的大小，1表示在第二维度上计算，注意均值结果的维度变成了1x2</span>
+<span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([1., 1.], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保持求均值之前的维度2x1</span>
+<span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[1.],
+        [1.]], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pytorch-hook">
+<h2>4 Pytorch Hook<a class="headerlink" href="#pytorch-hook" title="Permalink to this headline">¶</a></h2>
+<p>参考资料：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/75054200">半小时学会 PyTorch Hook</a></p></li>
+</ul>
+<p>利用Hook，<strong>无需改变网络输入输出的结构就可以获取、改变网络中间层变量的值和梯度</strong>。这个功能被广泛用于可视化神经网络中间层的feature、gradient，从而诊断神经网络中可能出现的问题，分析网络有效性。</p>
+<ul class="simple">
+<li><p>Hook for Tensors：针对<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>的hook</p></li>
+<li><p>Hook for Modules：针对例如<code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code>、<code class="docutils literal notranslate"><span class="pre">nn.Linear</span></code>等网络模块的hook</p></li>
+<li><p>Guided Backpropagation：利用Hook实现神经网络可视化</p></li>
+</ul>
+<div class="section" id="hook-for-tensors">
+<h3>4.1 Hook for Tensors<a class="headerlink" href="#hook-for-tensors" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/bduxl6ngh3cmnq5mokaic85g/image.png" /></p>
+<p>在PyTorch的computation graph中，<strong>只有leaf nodes的变量会保留梯度</strong>，而中间变量的梯度只被用于反向传播，一旦完成反向传播其梯度就将自动释放，从而节约内存：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x.requires_grad:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y.requires_grad:&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z.requires_grad:&#39;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;w.requires_grad:&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;o.requires_grad:&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>  <span class="c1"># True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x.grad:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y.grad:&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;w.grad:&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z.grad:&#39;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;o.grad:&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x.requires_grad: True
+y.requires_grad: True
+z.requires_grad: True
+w.requires_grad: True
+o.requires_grad: True
+x.grad: tensor([1., 2., 3., 4.])
+y.grad: tensor([1., 2., 3., 4.])
+w.grad: tensor([ 4.,  6.,  8., 10.])
+z.grad: None
+o.grad: None
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/austin/anaconda3/envs/gluon/lib/python3.6/site-packages/torch/tensor.py:746: UserWarning: The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the gradient for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more informations.
+  warnings.warn(&quot;The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad &quot;
+</pre>
+</div>
+</div>
+</div>
+<p>由于<code class="docutils literal notranslate"><span class="pre">z</span></code>和<code class="docutils literal notranslate"><span class="pre">o</span></code>为中间变量，虽然<code class="docutils literal notranslate"><span class="pre">requires_grad=True</span></code>，但是反向传播后，它们的梯度并没有保留（<code class="docutils literal notranslate"><span class="pre">None</span></code>）。如果想保留它们的梯度，则需要指定<code class="docutils literal notranslate"><span class="pre">retain_grad()</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">retain_grad</span><span class="p">()</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">retain_grad</span><span class="p">()</span>
+<span class="n">o</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z.grad:&#39;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;o.grad:&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>z.grad: tensor([1., 2., 3., 4.])
+o.grad: tensor(1.)
+</pre></div>
+</div>
+</div>
+</div>
+<p>但是<code class="docutils literal notranslate"><span class="pre">retain_grad()</span></code>会增加内存占用，可以用<code class="docutils literal notranslate"><span class="pre">hook_fn(grad)</span></code>获取中间变量的梯度，使用完就释放掉：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hook_o_grad</span><span class="p">(</span><span class="n">grad</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hook_o_grad:&#39;</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">register_hook</span><span class="p">(</span><span class="n">hook_o_grad</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;o.grad:&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>hook_o_grad: tensor(1.)
+o.grad: None
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">hook_fn(grad)</span></code><strong>还可以修改梯度，作为函数返回值即可，可以用lambda快速实现</strong>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x.grad:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">register_hook</span><span class="p">(</span><span class="k">lambda</span> <span class="n">grad</span><span class="p">:</span> <span class="n">grad</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;o.grad:&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x.grad:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x.grad: tensor([ 3.,  6.,  9., 12.])
+o.grad: None
+x.grad: tensor([ 5., 10., 15., 20.])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>我们发现将<code class="docutils literal notranslate"><span class="pre">o.grad</span></code>扩大两倍，<code class="docutils literal notranslate"><span class="pre">x.grad</span></code>也随之扩大了两倍！</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">hook_o_grad</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hook-for-modules">
+<h3>4.2 Hook for Modules<a class="headerlink" href="#hook-for-modules" title="Permalink to this headline">¶</a></h3>
+<p>网络中的<code class="docutils literal notranslate"><span class="pre">nn.module</span></code>不像上一节中的<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>拥有显式的变量可以直接访问，而是被封装在神经网络中。我们通常只能获得网络整体的输入和输出，对于夹在网络中间的module，不但很难得知它输入/输出的梯度，甚至连它输入输出的数值都无法获得。除非设计网络时，在<code class="docutils literal notranslate"><span class="pre">forward()</span></code>的返回值中包含中间module的输入/输出，或者用很麻烦的办法。</p>
+<p>针对module输入/输出的数据和梯度，PyTorch分别提供了<code class="docutils literal notranslate"><span class="pre">register_forward_hook()</span></code>和<code class="docutils literal notranslate"><span class="pre">register_backward_hook()</span></code>，方便获取网络内部信息流。例如可以获取预训练网络的某一层特征，或者可视化分析某一层的特征和梯度变化。</p>
+<div class="section" id="register-forward-hook">
+<h4>4.2.1 Register forward hook<a class="headerlink" href="#register-forward-hook" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">nn.module</span></code>提供了<code class="docutils literal notranslate"><span class="pre">register_forward_hook</span></code>用于获取module forward时的输入和输出，这样可以方便地用预训练的神经网络提取特征，而不用改变预训练网络的结构。我们先来定义个一个网络（为了方便测试，我们手动初始化了参数）：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># w*x+b: weight第一维为batch，而bias不需要（广播机制？）</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fc1.weight:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fc1.bias:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fc2.weight:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fc2.bias:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu1</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">o</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="n">net</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fc1.weight: torch.Size([4, 3])
+fc1.bias: torch.Size([4])
+fc2.weight: torch.Size([1, 4])
+fc2.bias: torch.Size([1])
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Net(
+  (fc1): Linear(in_features=3, out_features=4, bias=True)
+  (relu1): ReLU()
+  (fc2): Linear(in_features=4, out_features=1, bias=True)
+)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Net</span></code>包含的的modules如下：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fc1</span></code>: <span class="math notranslate nohighlight">\(x_2 = w_1 x_1 + b_1\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relu1</span></code>: <span class="math notranslate nohighlight">\(x_2 = max(0, x_2)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fc2</span></code>: <span class="math notranslate nohighlight">\(o = w_2 x_2 + b_2\)</span></p></li>
+</ul>
+<p>现在给<code class="docutils literal notranslate"><span class="pre">net</span></code>中每一个module都注册forward hook函数，<code class="docutils literal notranslate"><span class="pre">nn.Module</span></code>利用<code class="docutils literal notranslate"><span class="pre">named_children</span></code>获取包含的modules：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hook_fn_forward1</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;input:&#39;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output:&#39;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+
+
+<span class="n">modules</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">named_children</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;register to hook_fn_forward:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span><span class="n">hook_fn_forward1</span><span class="p">)</span>
+
+<span class="c1"># 1x3, 第一维是batch</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># forward</span>
+<span class="n">o</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>register to hook_fn_forward: fc1
+register to hook_fn_forward: relu1
+register to hook_fn_forward: fc2
+
+Linear(in_features=3, out_features=4, bias=True)
+input: (tensor([[1., 1., 1.]]),)
+output: tensor([[3., 3., 3., 3.]], grad_fn=&lt;AddmmBackward&gt;)
+
+ReLU()
+input: (tensor([[3., 3., 3., 3.]], grad_fn=&lt;AddmmBackward&gt;),)
+output: tensor([[3., 3., 3., 3.]], grad_fn=&lt;ReluBackward0&gt;)
+
+Linear(in_features=4, out_features=1, bias=True)
+input: (tensor([[3., 3., 3., 3.]], grad_fn=&lt;ReluBackward0&gt;),)
+output: tensor([[13.]], grad_fn=&lt;AddmmBackward&gt;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[13.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>从结果可以看到每一个module的输入输出都通过<code class="docutils literal notranslate"><span class="pre">hook_fn_forward1()</span></code>打印出来了。</p>
+<p>同一个module的<code class="docutils literal notranslate"><span class="pre">register_forward_hook</span></code>还可以多次调用，注册不同的hook函数，这个module在forward时按照FIFO顺序调用这些hook函数。而且PyTorch从1.2.0版本开始，<strong>可以在hook函数中修改module的输出</strong>（即下一个module的输入），可以返回修改后的值<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">tensor</span></code>或者直接修改参数<code class="docutils literal notranslate"><span class="pre">output.data</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hook_fn_forward2</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">2:&#39;</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="c1"># 因为我们没有改变output的引用对象，所以不用返回新的output</span>
+    <span class="c1"># return output</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;register to hook_fn_forward2:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span><span class="n">hook_fn_forward2</span><span class="p">)</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">o</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>register to hook_fn_forward2: fc1
+register to hook_fn_forward2: relu1
+register to hook_fn_forward2: fc2
+
+Linear(in_features=3, out_features=4, bias=True)
+input: (tensor([[1., 1., 1.]]),)
+output: tensor([[3., 3., 3., 3.]], grad_fn=&lt;AddmmBackward&gt;)
+
+2:Linear(in_features=3, out_features=4, bias=True)
+
+ReLU()
+input: (tensor([[2., 2., 2., 2.]], grad_fn=&lt;AddmmBackward&gt;),)
+output: tensor([[2., 2., 2., 2.]], grad_fn=&lt;ReluBackward0&gt;)
+
+2:ReLU()
+
+Linear(in_features=4, out_features=1, bias=True)
+input: (tensor([[2., 2., 2., 2.]], grad_fn=&lt;ReluBackward0&gt;),)
+output: tensor([[9.]], grad_fn=&lt;AddmmBackward&gt;)
+
+2:Linear(in_features=4, out_features=1, bias=True)
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[2.]], grad_fn=&lt;AddmmBackward&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>从结果可以看到之前注册的<code class="docutils literal notranslate"><span class="pre">hook_fn_forward1()</span></code>和<code class="docutils literal notranslate"><span class="pre">hook_fn_forward2()</span></code>都被调用了，而且<code class="docutils literal notranslate"><span class="pre">hook_fn_forward2()</span></code>将输出都变成了<code class="docutils literal notranslate"><span class="pre">2</span></code>。注意<code class="docutils literal notranslate"><span class="pre">fc1</span></code>的输出不是<code class="docutils literal notranslate"><span class="pre">2</span></code>是因为先调用了<code class="docutils literal notranslate"><span class="pre">hook_fn_forward1()</span></code>，打印时还未调用<code class="docutils literal notranslate"><span class="pre">hook_fn_forward2()</span></code>。</p>
+<p><strong>提示：如果在<code class="docutils literal notranslate"><span class="pre">hook_fn_forward2()</span></code>中不是直接修改参数<code class="docutils literal notranslate"><span class="pre">output.data</span></code>，而是<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">torch.ones_like(output)</span></code>，这样是不会保留<code class="docutils literal notranslate"><span class="pre">requires_grad=True</span></code>信息的</strong>，如果调用<code class="docutils literal notranslate"><span class="pre">o.backward()</span></code>就会出错。</p>
+</div>
+<div class="section" id="register-backward-hook">
+<h4>4.2.2 Register backward hook<a class="headerlink" href="#register-backward-hook" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hook_fn_backward</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">grad_input</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># 为了符合反向传播的顺序，我们先打印 grad_output</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;grad_output:&#39;</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;grad_input:&#39;</span><span class="p">,</span> <span class="n">grad_input</span><span class="p">)</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;register to hook_fn_backward:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">register_backward_hook</span><span class="p">(</span><span class="n">hook_fn_backward</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fc1.weight: torch.Size([4, 3])
+fc1.bias: torch.Size([4])
+fc2.weight: torch.Size([1, 4])
+fc2.bias: torch.Size([1])
+
+register to hook_fn_backward: fc1
+register to hook_fn_backward: relu1
+register to hook_fn_backward: fc2
+
+Linear(in_features=4, out_features=1, bias=True)
+grad_output: (tensor([[1.]]),)
+grad_input: (tensor([1.]), tensor([[1., 1., 1., 1.]]), tensor([[3.],
+        [3.],
+        [3.],
+        [3.]]))
+
+ReLU()
+grad_output: (tensor([[1., 1., 1., 1.]]),)
+grad_input: (tensor([[1., 1., 1., 1.]]),)
+
+Linear(in_features=3, out_features=4, bias=True)
+grad_output: (tensor([[1., 1., 1., 1.]]),)
+grad_input: (tensor([1., 1., 1., 1.]), None, tensor([[1., 1., 1., 1.],
+        [1., 1., 1., 1.],
+        [1., 1., 1., 1.]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>网络的forward如下：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fc1</span></code>: <span class="math notranslate nohighlight">\(x_2 = w_1 x_1 + b_1\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relu1</span></code>: <span class="math notranslate nohighlight">\(x_2 = max(0, x_2)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fc2</span></code>: <span class="math notranslate nohighlight">\(o = w_2 x_2 + b_2\)</span></p></li>
+</ul>
+<p>对应的backward要求的<span class="math notranslate nohighlight">\(b_2, x_2, w_2, b_1, x_1, w_1\)</span>梯度如下（矩阵相乘时要根据shape调整一下顺序，这里没检查了）：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\frac{\partial o}{\partial b_2} &amp;= 1\\
+\\
+\frac{\partial o}{\partial x_2} &amp;= w_2\\
+\\
+\frac{\partial o}{\partial w_2} &amp;= x_1\\
+\\
+\frac{\partial o}{\partial b_1} &amp;= \frac{\partial o}{\partial x_2} \cdot \frac{\partial x_2}{\partial b_1} = w_2\\
+\\
+\frac{\partial o}{\partial x_1} &amp;= \frac{\partial o}{\partial x_2} \cdot \frac{\partial x_2}{\partial x_1} = w_2 w_1\\
+\\
+\frac{\partial o}{\partial w_1} &amp;= \frac{\partial o}{\partial x_2} \cdot \frac{\partial x_2}{\partial w_1} = w_2 x_1
+\end{align}
+\end{split}\]</div>
+<p>因为求<span class="math notranslate nohighlight">\(b_1, w_1\)</span>的梯度需要特征（数据）<span class="math notranslate nohighlight">\(x_2\)</span>的梯度，但是<span class="math notranslate nohighlight">\(x_1\)</span>的梯度在这里不是必须计算的。所以<code class="docutils literal notranslate"><span class="pre">fc1</span></code>和<code class="docutils literal notranslate"><span class="pre">fc2</span></code>的<code class="docutils literal notranslate"><span class="pre">grad_input</span></code>不仅包含了参数<code class="docutils literal notranslate"><span class="pre">w,</span> <span class="pre">b</span></code>的梯度，还包含了输入<span class="math notranslate nohighlight">\(x\)</span>的梯度。</p>
+<p>需要注意的到目前为止，PyTorch没有文档说明<code class="docutils literal notranslate"><span class="pre">grad_input</span></code>输出的顺序（参见论坛的讨论：<a class="reference external" href="https://discuss.pytorch.org/t/exact-meaning-of-grad-input-and-grad-output/14186">Exact meaning of grad_input and grad_output</a>），我是根据forward的shape推断的，顺序实际上由Autograd决定，例如这里调用的应该是<code class="docutils literal notranslate"><span class="pre">F.linear()</span></code>函数。</p>
+<p>想进一步了解Back Propagation，Autograd和hook的可以阅读：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://medium.com/&#64;14prakash/back-propagation-is-very-simple-who-made-it-complicated-97b794c97e5c">Back-Propagation is very simple. Who made it Complicated ?</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#default-gradient-layouts">AUTOMATIC DIFFERENTIATION PACKAGE - TORCH.AUTOGRAD</a></p></li>
+<li><p><a class="reference external" href="https://discuss.pytorch.org/t/how-the-hook-works/2222">How the hook works?</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">net</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="guided-backpropagation">
+<h4>4.2.3 Guided Backpropagation<a class="headerlink" href="#guided-backpropagation" title="Permalink to this headline">¶</a></h4>
+<p>PyTorch提供了hook方法，我们可以可视化神经网络。其中之一是对梯度可视化，因为梯度大的部分，则输入图片该区域对目标输出的影响较大，反之影响较小。借此，我们可以了解到神经网络的一些决策受图片中哪些区域影响、不同的feature maps提取的是哪些区域的特征。</p>
+<p>Guided Backpropagation算法来自（ICLR-2015）Striving for Simplicity: The All Convolutional Net。其基本原理和大多数可视化算法类似：通过反向传播，计算需要可视化的输出或者feature maps对网络输入的梯度，归一化该梯度，作为图片显示出来。</p>
+<p>Guided Backpropagation对反向传播过程中ReLU的部分做了微小的调整。先回忆传统的反向传播算法：假如第<span class="math notranslate nohighlight">\(l\)</span>层为ReLU，那么前向传播公式为：</p>
+<div class="math notranslate nohighlight">
+\[f_{i}^{l+1}=relu\left(f_{i}^{l}\right) = max \left(f_{i}^{l}, 0\right)\]</div>
+<p>当输入ReLU的值大于0时，其输出对输入的导数为1，当输入ReLU的值小于等于0时，其输出对输入的导数为0。根据链式法则，其反向传播公式如下：</p>
+<div class="math notranslate nohighlight">
+\[R_{i}^{l}=\left(f_{i}^{l}&gt;0\right) \cdot R_{i}^{l+1}=\left(f_{i}^{i}&gt;0\right) \cdot \frac{\partial o}{\partial f_{i}^{l+1}}\]</div>
+<p>ReLU反向传播时，只有输入大于0的位置才保留梯度（ReLU偏导为1），否则梯度直接变为0。Guided Backpropagation 在这个基础上，只传播梯度大于零的部分，抛弃梯度小于零的部分。具体原因我没看论文，据说因为梯度大于0的地方对应输入图片中对目标输出有正面作用的区域，而梯度小于0的地方对应对目标输出有负面作用的区域（个人认为用梯度的绝对值大小更合理一些？）。</p>
+<div class="math notranslate nohighlight">
+\[R_{i}^{l}=\left(f_{i}^{l}&gt;0\right) \cdot\left(R_{i}^{l+1}&gt;0\right) \cdot R_{i}^{l+1}\]</div>
+<p>用代码实现时，我们需要对网络中每一个ReLU注册反向传播hook，因为ReLU反向传播对输入features的梯度<code class="docutils literal notranslate"><span class="pre">grad_in</span></code>已经忽略了前向时features小于等于0位置上的梯度，所以我们只要将梯度<code class="docutils literal notranslate"><span class="pre">grad_in</span></code>中小于的0的部分截断为0即可：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Guided_backprop</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_reconstruction</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation_maps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_hooks</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">register_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">backward_hook_fn</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">grad_in</span><span class="p">,</span> <span class="n">grad_out</span><span class="p">):</span>
+            <span class="c1"># `grad_in[0]`表示feature_in的梯度，只保留大于0的部分</span>
+            <span class="n">new_grad</span> <span class="o">=</span> <span class="n">grad_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">new_grad</span><span class="p">[</span><span class="n">new_grad</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="c1"># ReLU没有parameter，输入端梯度是一个只有feature_in的tuple</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">new_grad</span><span class="p">,)</span>
+
+        <span class="c1"># 获取module，这里只适合第一层为`self.features`的网络，如：</span>
+        <span class="c1"># https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py</span>
+        <span class="n">modules</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">named_children</span><span class="p">())</span>
+
+        <span class="n">relu_layers</span> <span class="o">=</span> <span class="p">(</span><span class="n">module</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span>
+                              <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">relu_layers</span><span class="p">:</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">register_backward_hook</span><span class="p">(</span><span class="n">backward_hook_fn</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">,</span> <span class="n">target_class</span><span class="p">):</span>
+        <span class="n">model_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">input_image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">pred_class</span> <span class="o">=</span> <span class="n">model_output</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="c1"># 生成目标类one-hot向量，作为反向传播的起点</span>
+        <span class="n">grad_target_map</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">model_output</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                                      <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grad_target_map</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">target_class</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">grad_target_map</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pred_class</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">model_output</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">grad_target_map</span><span class="p">)</span>
+
+        <span class="c1"># 得到target class对输入图片的梯度，转换成图片格式，`grad`第一维为batch</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_image</span><span class="o">.</span><span class="n">grad</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">I</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">I</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="c1"># 把`std`重置为0.1，让梯度尽可能接近0</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">*</span> <span class="mf">0.1</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">+</span> <span class="mf">0.5</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">norm</span>
+
+
+<span class="k">def</span> <span class="nf">plot_Guided_backprop</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">]</span>
+    <span class="n">stds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">]</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">224</span>
+
+    <span class="n">transforms</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">stds</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">guided_bp</span> <span class="o">=</span> <span class="n">Guided_backprop</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">guided_bp</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plot_Guided_backprop</span><span class="p">(</span><span class="s2">&quot;./_files/cat.jpg&quot;</span><span class="p">)</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/PyTorch.jupyter_63_0.png" src="_images/PyTorch.jupyter_63_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2655
+</pre></div>
+</div>
+</div>
+</div>
+<p>Guided Backpropagation的缺点是对target class不敏感，设置不同的target class最终可能得到的gradient map差别不大。基于此，有<a class="reference external" href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1610.02391">Grad-CAM</a>等更高级的可视化方法，其他还有可视化中间特征图等，可以参考<a class="reference external" href="https://zhuanlan.zhihu.com/p/53683453">CNN的一些可视化方法</a>。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ML/transformer.jupyter.html" title="previous page">Transformer</a>
+    <a class='right-next' id="next-link" href="matplotlib.jupyter.html" title="next page">Matplotlib</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

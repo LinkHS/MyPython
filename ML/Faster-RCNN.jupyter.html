@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Faster R-CNN &#8212; Austin&#39;s Jupyter Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Transformer" href="transformer.jupyter.html" />
+    <link rel="prev" title="YOLO-V3" href="YOLO-V3.jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Austin's Jupyter Notes</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Welcome</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Maths</p>
+</li>
+  <li class="">
+    <a href="../Math/Math.jupyter.html">Math</a>
+  </li>
+  <li class="">
+    <a href="../Math/中心极限定理.jupyter.html">中心极限定理</a>
+  </li>
+  <li class="">
+    <a href="../Math/Poisson-Distribution.jupyter.html">泊松分布</a>
+  </li>
+  <li class="">
+    <a href="../Math/Genetic_Algorithm.jupyter.html">Genetic Algorithm</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine&Deep Learning</p>
+</li>
+  <li class="">
+    <a href="../Math/XGBoost.jupyter.html">XGBoost与Python图解</a>
+  </li>
+  <li class="">
+    <a href="CNN.jupyter.html">CNN</a>
+  </li>
+  <li class="">
+    <a href="YOLO-V3.jupyter.html">YOLO-V3</a>
+  </li>
+  <li class="active">
+    <a href="">Faster R-CNN</a>
+  </li>
+  <li class="">
+    <a href="transformer.jupyter.html">Transformer</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Packages</p>
+</li>
+  <li class="">
+    <a href="../PyTorch.jupyter.html">Pytorch</a>
+  </li>
+  <li class="">
+    <a href="../matplotlib.jupyter.html">Matplotlib</a>
+  </li>
+  <li class="">
+    <a href="../Python.jupyter.html">python</a>
+  </li>
+  <li class="">
+    <a href="../numpy/numpy.jupyter.html">Numpy</a>
+  </li>
+  <li class="">
+    <a href="../sympy.jupyter.html">sympy</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Course</p>
+</li>
+  <li class="">
+    <a href="../Course/流畅的Python/Readme.html">流畅的Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/Learning_Python_Design_Patterns/Readme.html">Python设计模式（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/Python3面向对象编程/Readme.html">Python3面向对象编程（第2版）</a>
+  </li>
+  <li class="">
+    <a href="../Course/MathPython/Readme.html">Master Math by Coding in Python</a>
+  </li>
+  <li class="">
+    <a href="../Course/pedometer.jupyter.html">A Pedometer in the Real World</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/ML/Faster-RCNN.jupyter.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#input" class="nav-link">1 Input</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#feature-extraction" class="nav-link">2 Feature Extraction</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#fpn" class="nav-link">2.1 FPN</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#region-proposal-network" class="nav-link">3 Region Proposal Network</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#anchors" class="nav-link">3.1 Anchors</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#rpn" class="nav-link">3.2 RPN</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#bounding-box-regression" class="nav-link">3.3 Bounding Box Regression</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#training-rpn" class="nav-link">3.4 Training RPN</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#nms" class="nav-link">3.5 NMS</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">3.6 RPN总结</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#fast-r-cnn" class="nav-link">4 Fast R-CNN</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#roi-pooling" class="nav-link">4.1 ROI Pooling</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#prediction" class="nav-link">4.2 Prediction</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#step-alternating-training" class="nav-link">5 4-Step Alternating Training</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#inference-test" class="nav-link">6 Inference (Test)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">7 推荐阅读</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">T</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="faster-r-cnn">
+<h1>Faster R-CNN<a class="headerlink" href="#faster-r-cnn" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/rcrfshe3jlo0a1idyukvu9qr/image.png" /></p>
+<p>Faster R-CNN将Fast R-CNN中的Selective Search换成了Region Proposal Network，这样位置网络就和分类网络结合起来，<strong>于是CNN提取的特征feature maps被两者共用</strong>，不仅极大加快了速度，还提升了精度（两者会互相促进）。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/gshcyphq57nz40fs8gxqju56/image.png" /></p>
+<p>Faster R-CNN的训练过程：</p>
+<ol class="simple">
+<li><p>提取图片features</p></li>
+<li><p>创建目标anchors</p></li>
+<li><p>RPN网络输出这些anchors的locations和objectness分数</p></li>
+<li><p>取locations和objectness分数最好的前N个anchors，又称为proposal layer</p></li>
+<li><p>将这N个anchors输入网络，取得更精确的locations得分和classification得分</p></li>
+<li><p>计算步骤3中的<code class="docutils literal notranslate"><span class="pre">rpn_cls_loss</span></code>和<code class="docutils literal notranslate"><span class="pre">rpn_reg_loss</span></code></p></li>
+<li><p>精算步骤5中的<code class="docutils literal notranslate"><span class="pre">roi_cls_loss</span></code>和<code class="docutils literal notranslate"><span class="pre">roi_reg_loss</span></code></p></li>
+</ol>
+<div class="section" id="input">
+<h2>1 Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<p>我们用PyTorch官方实现的Faster R-CNN网络来学习，论文中使用提取features的backbone网络是VGG，PyTorch优化使用了ResNet-50并结合了FPN，我们先看下第一层<code class="docutils literal notranslate"><span class="pre">transform</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the pretrained model from torchvision.models</span>
+<span class="c1"># Note: pretrained=True will get the pretrained weights for the model.</span>
+<span class="c1"># model.eval() to use the model for inference</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">fasterrcnn_resnet50_fpn</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">items</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;transform&#39;,
+ GeneralizedRCNNTransform(
+     Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+     Resize(min_size=(800,), max_size=1333, mode=&#39;bilinear&#39;)
+ ))
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出先对数据做了归一化<code class="docutils literal notranslate"><span class="pre">Normalize</span></code>，然后调整图片大小（等比缩放），在保证最长边不超过<code class="docutils literal notranslate"><span class="pre">1333</span></code>情况下，最短边缩放到<code class="docutils literal notranslate"><span class="pre">800</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1333</span><span class="p">):</span>
+    <span class="n">im_shape</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
+    <span class="n">min_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">im_shape</span><span class="p">))</span>
+    <span class="n">max_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">im_shape</span><span class="p">))</span>
+    <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">min_size</span> <span class="o">/</span> <span class="n">min_s</span>
+    <span class="k">if</span> <span class="n">max_s</span> <span class="o">*</span> <span class="n">scale_factor</span> <span class="o">&gt;</span> <span class="n">max_size</span><span class="p">:</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">max_size</span> <span class="o">/</span> <span class="n">max_s</span>
+
+    <span class="k">return</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+        <span class="n">image</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="n">recompute_scale_factor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># get some dummy image</span>
+<span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([3, 800, 1200])
+</pre></div>
+</div>
+</div>
+</div>
+<p>保证输入图片最长边不超过<code class="docutils literal notranslate"><span class="pre">1333</span></code>，避免内存爆炸：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">)</span>  <span class="c1"># get some dummy image</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([3, 1333, 577])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-extraction">
+<h2>2 Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h2>
+<p>Faster R-CNN网络主要有三个部分，如下图所示，分别为<code class="docutils literal notranslate"><span class="pre">feature</span> <span class="pre">extraction</span></code>、<code class="docutils literal notranslate"><span class="pre">region</span> <span class="pre">proposal</span></code>和<code class="docutils literal notranslate"><span class="pre">predication</span></code>：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/qw6exo53ufnppmtyfg1lyodu/image.png" /></p>
+<div class="section" id="fpn">
+<h3>2.1 FPN<a class="headerlink" href="#fpn" title="Permalink to this headline">¶</a></h3>
+<p>注意上图论文中的<code class="docutils literal notranslate"><span class="pre">feature</span> <span class="pre">extraction</span></code>使用的backbone是VGG，PyTorch官方版本使用了带FPN的ResNet-50。如下图所示，ResNet-50四个阶段的features都被使用了。低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。将低层的特征和高层的特征融合起来，有利于网络性能。另外目标框会随着features减小而减小，这样在被缩小了32倍的最后一层features上，小目标就会变得非常小，难以被检测出来，<strong>于是融合后不同尺度的特征负责检测不同大小的物体</strong></p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/thekkuvtlvdtvyeikrpz60gf/image.png" /></p>
+<p>如图所示，高层的特征会被放大2倍后，加上经过1x1卷积的底层特征，下面是结合了FPN的ResNet-50的输出：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.models.detection.backbone_utils</span> <span class="kn">import</span> <span class="n">resnet_fpn_backbone</span>
+<span class="n">backbone</span> <span class="o">=</span> <span class="n">resnet_fpn_backbone</span><span class="p">(</span><span class="s1">&#39;resnet50&#39;</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>  <span class="c1"># get some dummy image</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;features&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    
+<span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">backbone</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>features 0 torch.Size([1, 256, 200, 200])
+features 1 torch.Size([1, 256, 100, 100])
+features 2 torch.Size([1, 256, 50, 50])
+features 3 torch.Size([1, 256, 25, 25])
+features pool torch.Size([1, 256, 13, 13])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">features</span> <span class="pre">0/1/2/3</span></code>分别对应图中的<code class="docutils literal notranslate"><span class="pre">P2/3/4/5</span></code>，接下来就需要在这些features上预测原图中的物体。</p>
+</div>
+</div>
+<div class="section" id="region-proposal-network">
+<h2>3 Region Proposal Network<a class="headerlink" href="#region-proposal-network" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/golbh698jmwkjro1lo3dmx3t/image.png" /></p>
+<p>如上图所示，假设backbone的<code class="docutils literal notranslate"><span class="pre">stride=4</span></code>或者说原图Image被down sample了4倍，由于多次卷积操作，<code class="docutils literal notranslate"><span class="pre">feature_map</span></code>中一个cell的感受野要远大于左边的一个grid，甚至能达到整幅图的区域。上文中带FPN的ResNet-50提供了4种尺寸的feature maps，我们可以用这些feature maps中的cells来预测原图中的物体。</p>
+<div class="section" id="anchors">
+<h3>3.1 Anchors<a class="headerlink" href="#anchors" title="Permalink to this headline">¶</a></h3>
+<p>因为物体的形状和大小各种各样，所以一个cell需要能够预测形状和大小不同的物体（物体中心靠近cell中心）。如果直接让网络学习各种不确定的目标框会很难，所以我们对这些cells预先设置了一些anchors，让cells基于这些anchors预测大小和位置的偏移量。</p>
+<p>设anchors的大小为<span class="math notranslate nohighlight">\(s\)</span>，宽高比为<span class="math notranslate nohighlight">\(r&gt;0\)</span>，那么anchors的宽和高分别为<span class="math notranslate nohighlight">\(s/\sqrt{r}\)</span>和<span class="math notranslate nohighlight">\(s\sqrt{r}\)</span>。如果<span class="math notranslate nohighlight">\(r\)</span>有3种，<span class="math notranslate nohighlight">\(s\)</span>有2种，那么组合起来能得到6种框：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="p">[</span><span class="mf">16.</span><span class="p">,</span> <span class="mf">32.</span><span class="p">]</span>
+
+<span class="c1"># [width, height]</span>
+<span class="n">anchors</span> <span class="o">=</span> <span class="p">[[</span><span class="n">s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r</span><span class="p">),</span> <span class="n">s</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">r</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scale</span>
+                                          <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">ratio</span><span class="p">]</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">anchors</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[22.63, 11.31],
+       [16.  , 16.  ],
+       [11.31, 22.63],
+       [45.25, 22.63],
+       [32.  , 32.  ],
+       [22.63, 45.25]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>假设图像大小为<span class="math notranslate nohighlight">\(64\times 64\)</span>，我们看下上面6种anchors画在中心的样子：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+
+
+<span class="k">def</span> <span class="nf">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">416</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">416</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">13</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">w</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="n">grid</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">/</span><span class="n">grid</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">plot_anchors</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">anchors</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">anchors</span><span class="p">:</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">cx</span><span class="o">-</span><span class="n">w</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">cy</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+                         <span class="n">edgecolor</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="c1"># 图片尺寸</span>
+<span class="n">img_w</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">img_h</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">img_w</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">img_h</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">img_h</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="s1">&#39;.r&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">plot_anchors</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">anchors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Faster-RCNN.jupyter_17_0.png" src="../_images/Faster-RCNN.jupyter_17_0.png" />
+</div>
+</div>
+<p>我们可以脑补一下feature maps的每个cell都有预先设定的anchors，于是Region Proposal Network（RPN）就要对这些anchors进行处理。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>训练时，凡是越过图片边界（cross the boundary of the image）的anchors都被忽略</p></li>
+<li><p>测试时，越过边界的anchors被截断在边界处</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="rpn">
+<h3>3.2 RPN<a class="headerlink" href="#rpn" title="Permalink to this headline">¶</a></h3>
+<p>如下图所示，假设每个cell有<span class="math notranslate nohighlight">\(k\)</span>个anchors，于是RPN要判断这<span class="math notranslate nohighlight">\(k\)</span>个anchors否为物体（分类，classification layer），还要判断准确的位置和形状（回归，regression layer），在这之前先做一次3x3卷积得到channel数为256-d的featuer maps。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/m5tols2gexri5cmlqnkywwsa/image.png" /></p>
+<p>RPN网络代码如下：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="k">class</span> <span class="nc">RPNHead</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds a simple RPN Head with classification and regression heads</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        in_channels (int): number of channels of the input feature</span>
+<span class="sd">        num_anchors (int): number of anchors to be predicted</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">num_anchors</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RPNHead</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span>
+                              <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_logits</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">num_anchors</span><span class="p">,</span> 
+                                    <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bbox_pred</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">num_anchors</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> 
+                                   <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># type: (List[Tensor]) -&gt; Tuple[List[Tensor], List[Tensor]]</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">bbox_reg</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">feature</span><span class="p">))</span>
+            <span class="n">logits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_logits</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+            <span class="n">bbox_reg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox_pred</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">bbox_reg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>由于FPN的backbone会输出多组feature maps（分别为<code class="docutils literal notranslate"><span class="pre">stride=4/8/16/32</span></code>），所以<code class="docutils literal notranslate"><span class="pre">RPNHead</span></code>的<code class="docutils literal notranslate"><span class="pre">forward()</span></code>默认输入<code class="docutils literal notranslate"><span class="pre">x</span></code>为iteratble类型的，例如<code class="docutils literal notranslate"><span class="pre">[fm_1/4,</span> <span class="pre">fm_1/8,</span> <span class="pre">fm_1/16,</span> <span class="pre">fm_1/32]</span></code>。整个过程如下图所示（设<span class="math notranslate nohighlight">\(k=3\)</span>）：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/zrtax3k1fdob7k9t21gq9rxm/image.png" /></p>
+<p>需要注意的是，这里黄色<code class="docutils literal notranslate"><span class="pre">scores</span></code>的<code class="docutils literal notranslate"><span class="pre">channels=3</span></code>，而非<span class="math notranslate nohighlight">\(2k=10\)</span>，这是因为是判断框是否为物体的分类函数用了逻辑回归，直接输出的是logit而非概率，loss函数用了<code class="docutils literal notranslate"><span class="pre">binary_cross_entropy_with_logits</span></code>，应该是为了优化cross entropy和sigmoid的联合求导（类似softmax和corss entropy联合求导）。假设<span class="math notranslate nohighlight">\(w,h=32,c=10\)</span>，那么对应的代码为：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">scores</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">RPNHead</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)([</span><span class="n">x</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scores:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates:&quot;</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">coordinates</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>scores: torch.Size([1, 3, 32, 32])
+coordinates: torch.Size([1, 12, 32, 32])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bounding-box-regression">
+<h3>3.3 Bounding Box Regression<a class="headerlink" href="#bounding-box-regression" title="Permalink to this headline">¶</a></h3>
+<p>现在RPN预测的物体bounding box。如下图所示，<span class="math notranslate nohighlight">\(x_a, y_a, w_a, h_a\)</span>是某一个anchor，<span class="math notranslate nohighlight">\(x, y, w, h\)</span>是RPN基于这个anchor预测的bbox，<span class="math notranslate nohighlight">\(x^*, y^*, w^*, h^*\)</span>是对应目标的ground truth。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/y51jfgzsytzd8xjidhp6ij7l/image.png" /></p>
+<p>那么将中心坐标偏移量和宽高比分别归一化后可以得到<span class="math notranslate nohighlight">\(t_x, t_y, t_w, t_h\)</span>，也就是RPN网络需要学习输出的bbox信息，而<span class="math notranslate nohighlight">\(t_*, t_*, t_*, t_*\)</span>是ground truth，两者结合可以计算出bounding box regreesion分支的loss。</p>
+<div class="math notranslate nohighlight">
+\[t_{\mathrm{x}}=\left(x-x_{\mathrm{a}}\right) / w_{\mathrm{a}}, \quad t_{\mathrm{y}}=\left(y-y_{\mathrm{a}}\right) / h_{\mathrm{a}}\]</div>
+<div class="math notranslate nohighlight">
+\[t_{\mathrm{w}}=\log \left(w / w_{\mathrm{a}}\right), \quad t_{\mathrm{h}}=\log \left(h / h_{\mathrm{a}}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[t_{\mathrm{x}}^{*}=\left(x^{*}-x_{\mathrm{a}}\right) / w_{\mathrm{a}}, \quad t_{\mathrm{y}}^{*}=\left(y^{*}-y_{\mathrm{a}}\right) / h_{\mathrm{a}}\]</div>
+<div class="math notranslate nohighlight">
+\[t_{\mathrm{w}}^{*}=\log \left(w^{*} / w_{\mathrm{a}}\right), \quad t_{\mathrm{h}}^{*}=\log \left(h^{*} / h_{\mathrm{a}}\right)\]</div>
+<p>分别除以<span class="math notranslate nohighlight">\(w_a, h_a\)</span>进行归一化利于网络学习，但是为什么宽高比值都加了一个log函数呢？<strong>因为宽高比必须大于等于0，所以变成了一个带约束的优化问题，而<span class="math notranslate nohighlight">\(w/w_a=e^{t_w}\)</span>恒大于0，这样网络输出的<span class="math notranslate nohighlight">\(t_w, t_h\)</span>就没有限制了！！！</strong></p>
+</div>
+<div class="section" id="training-rpn">
+<h3>3.4 Training RPN<a class="headerlink" href="#training-rpn" title="Permalink to this headline">¶</a></h3>
+<p>anchors根据有无物体分为正样本和负样本：如果一个anchor和某一个gt框的IoU大于0.7就被认为是正样本，如果特殊情况下某个gt框没有任何一个anchor与之对应，就选IoU最高的那个anchor；凡是IoU小于0.3的都被认为是负样本。</p>
+<p>尽管可以所有的正负样本都可以参与训练，但是因为图片中目标个数有限，所以会导致大多数anchors都是负样本（背景）。例如<span class="math notranslate nohighlight">\(k=9\)</span>，feature maps的 <span class="math notranslate nohighlight">\(w=h=50\)</span>时，anchors总数为<span class="math notranslate nohighlight">\(9\times 50 \times50=22500\)</span>个，这样正负样本很不平衡，于是作者在一张图中随机各选取128个正负样本组成256个anchors的mini batch。</p>
+<p>RPN网络的Loss函数如下，<span class="math notranslate nohighlight">\(N_{reg}\)</span>只包括<span class="math notranslate nohighlight">\(p^*=1\)</span>的正样本：</p>
+<div class="math notranslate nohighlight">
+\[L\left(\left\{p_{i}\right\},\left\{t_{i}\right\}\right)=\frac{1}{N_{c l s}} \sum_{i} L_{c l s}\left(p_{i}, p_{i}^{*}\right)+\lambda \frac{1}{N_{r e g}} \sum_{i} p_{i}^{*} L_{r e g}\left(t_{i}, t_{i}^{*}\right)\]</div>
+</div>
+<div class="section" id="nms">
+<h3>3.5 NMS<a class="headerlink" href="#nms" title="Permalink to this headline">¶</a></h3>
+<p>因为RPN输出的目标框会有很多重叠的（如下图所示），所以我们需要使用NMS进行过滤。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+
+
+<span class="k">def</span> <span class="nf">plt_boxes</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; matplotlib Rectangle --- (xy, w, h)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">:</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">box</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                               <span class="n">edgecolor</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">bboxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="mi">20</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">bboxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="mi">20</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+
+<span class="c1"># [x1, y1, x2, y2, score]</span>
+<span class="n">dets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">218</span><span class="p">,</span>  <span class="mi">322</span><span class="p">,</span> <span class="mi">385</span><span class="p">,</span>  <span class="mi">491</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">247</span><span class="p">,</span>  <span class="mi">312</span><span class="p">,</span> <span class="mi">419</span><span class="p">,</span>  <span class="mi">461</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">237</span><span class="p">,</span>  <span class="mi">344</span><span class="p">,</span> <span class="mi">407</span><span class="p">,</span>  <span class="mi">510</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">757</span><span class="p">,</span>  <span class="mi">218</span><span class="p">,</span> <span class="mi">937</span><span class="p">,</span>  <span class="mi">394</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">768</span><span class="p">,</span>  <span class="mi">198</span><span class="p">,</span> <span class="mi">962</span><span class="p">,</span>  <span class="mi">364</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">740</span><span class="p">,</span>  <span class="mi">240</span><span class="p">,</span> <span class="mi">906</span><span class="p">,</span>  <span class="mi">414</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1101</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span>  <span class="mi">1302</span><span class="p">,</span> <span class="mi">303</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1110</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span>  <span class="mi">1331</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1123</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span>  <span class="mi">1362</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">]])</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt_boxes</span><span class="p">(</span><span class="n">dets</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Faster-RCNN.jupyter_28_0.png" src="../_images/Faster-RCNN.jupyter_28_0.png" />
+</div>
+</div>
+<p>首先按照分类得分高低将框排序，然后遍历（已删除的不再遍历），删除和当前框<span class="math notranslate nohighlight">\(\text{IoU}&gt;\text{threshold}\)</span>（论文中为0.7）的框。</p>
+<p>IoU的公式和示意图如下：</p>
+<div class="math notranslate nohighlight">
+\[J(\mathcal{A}, \mathcal{B})=\frac{|\mathcal{A} \cap \mathcal{B}|}{|\mathcal{A} \cup \mathcal{B}|}\]</div>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/1qp8e6jjgogbpi7cvuoo14h9/image.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nms</span><span class="p">(</span><span class="n">dets</span><span class="p">,</span> <span class="n">thres</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @dets, detecion results, shape: [batch, 5], form: [[x1, y1, x2, y2, score]]</span>
+<span class="sd">    @thres, threshold</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">kept_idx</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">order</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">kept_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">xx1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x1</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
+        <span class="n">yy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">y1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y1</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
+        <span class="n">xx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x2</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
+        <span class="n">yy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">y2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y2</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
+
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">xx2</span><span class="o">-</span><span class="n">xx1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">yy2</span><span class="o">-</span><span class="n">yy1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">inter</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span>
+        <span class="n">IoU</span> <span class="o">=</span> <span class="n">inter</span> <span class="o">/</span> <span class="p">(</span><span class="n">area</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">area</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">-</span> <span class="n">inter</span><span class="p">)</span>
+
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">IoU</span> <span class="o">&lt;=</span> <span class="n">thres</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="n">inds</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># IoU starts from 1, so add 1 here to align the index</span>
+
+    <span class="k">return</span> <span class="n">kept_idx</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">[757, 218, 937, 394, 0.96]</span>
+<span class="sd">[768, 198, 962, 364, 0.85]</span>
+<span class="sd">[740, 240, 906, 414, 0.83]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">dets_nms</span> <span class="o">=</span> <span class="n">dets</span><span class="p">[</span><span class="n">nms</span><span class="p">(</span><span class="n">dets</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt_boxes</span><span class="p">(</span><span class="n">dets_nms</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">del</span> <span class="n">dets</span><span class="p">,</span> <span class="n">dets_nms</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Faster-RCNN.jupyter_30_0.png" src="../_images/Faster-RCNN.jupyter_30_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>3.6 RPN总结<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>RPN的训练过程如下：</p>
+<ol class="simple">
+<li><p>生成anchors，忽略越界的anchors</p></li>
+<li><p>为anchors分配gt框，IoU&gt;0.7的为正样本，&lt;0.3的为负样本，其他anchors忽略</p></li>
+<li><p>按1:1比例随机选取正负样本，生成容量为256的batch进行训练</p></li>
+<li><p>对所有样本进行region proposal，保留正样本（有物体）的regions</p></li>
+<li><p>对proposal regions进行NMS，每张图选取2000个proposal regions，送入Fast R-CNN网络</p></li>
+</ol>
+<p>RPN的测试过程稍有不同：</p>
+<ol class="simple">
+<li><p>生成anchors，截断越界的anchors</p></li>
+<li><p>对所有anchors进行region proposal</p></li>
+<li><p>对proposal regions进行NMS，每张图选取300个proposal regions，送入Fast R-CNN网络</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="fast-r-cnn">
+<h2>4 Fast R-CNN<a class="headerlink" href="#fast-r-cnn" title="Permalink to this headline">¶</a></h2>
+<p>有了RPN输出的proposal regions，Fast R-CNN网络对这些regions进一步精炼，并且判断region的是哪一类物体。由于backbone提取的特征可以被RPN和Fast R-CNN共享，所以要将对应proposal regions的features提取出来（见“Feature Extraction”小节）。为了保证输入Fast R-CNN的feature maps大小一致（e.g.，<span class="math notranslate nohighlight">\(7x7\)</span>），需要用到ROI Pooling。</p>
+<div class="section" id="roi-pooling">
+<h3>4.1 ROI Pooling<a class="headerlink" href="#roi-pooling" title="Permalink to this headline">¶</a></h3>
+<p>如下图所示，候选框<span class="math notranslate nohighlight">\(r_0\)</span>和<span class="math notranslate nohighlight">\(r_1\)</span>形状不同，但是都要pooling到<span class="math notranslate nohighlight">\(2\times2\)</span>，而且两者还有个overlap的<span class="math notranslate nohighlight">\(x_{23}\)</span>，所以<span class="math notranslate nohighlight">\(x_{23}\)</span>上的梯度要累加。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/as2ru4a8hzjird3p9odb5e4j/image.png" /></p>
+<p>如下图所示，假设一个<span class="math notranslate nohighlight">\(8\times8\)</span>的feature map，其<code class="docutils literal notranslate"><span class="pre">stride=32</span></code>，其中一个proposal region在原图（256x256）中大小为230x160并且起点为原点（左下角），现在需要对这个框对应的RoI feature进行pooling得到<span class="math notranslate nohighlight">\(2\times2\)</span>的输出：</p>
+<ol class="simple">
+<li><p>计算这个框在feature map上对应的RoI位置，其右上角位置为(230/32=7.18, 160/32=5)，第一次量化操作得到(7, 5)；</p></li>
+<li><p>将对应的featurer RoI划分为<span class="math notranslate nohighlight">\(2\times2 = 4\)</span>个区域，每一个大小为(7/2=3.5, 5/2=2.5)，第二次量化得到(3, 2)、(4, 2)、(3, 3)、(3, 2)共4个区域的大小；</p></li>
+<li><p>在4个区域内做pooling操作，一般为max pooling；</p></li>
+</ol>
+<p>因为RoI Pooling的过程存在两次量化取整操作，会导致误差累积，所以后来出现了避免两次量化误差的RoI Align和积分形式的Precision RoI等Pooling方法。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/5wo1q5iih30vsbk29limtv90/image.png" /></p>
+<p>反向传播公式为：</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial L}{\partial x_{i}}=\sum_{r} \sum_{j}\left[i=i^{*}(r, j)\right] \frac{\partial L}{\partial y_{r j}}\]</div>
+<p>这里，<span class="math notranslate nohighlight">\(x_i\)</span>代表池化前特征图上的像素点；<span class="math notranslate nohighlight">\(y_{rj}\)</span>代表池化后的第<span class="math notranslate nohighlight">\(r\)</span>个候选区域的第<span class="math notranslate nohighlight">\(j\)</span>个点；<span class="math notranslate nohighlight">\(i^* (r,j)\)</span>代表点<span class="math notranslate nohighlight">\(y_{rj}\)</span>的来源，即最大池化时选出的最大像素值所在点的坐标。由上式可以看出，只有当池化后某一个点的像素值在池化过程中采用了当前点<span class="math notranslate nohighlight">\(x_i\)</span>的像素值（即满足<span class="math notranslate nohighlight">\(i=i^* (r,j)\)</span>，才在<span class="math notranslate nohighlight">\(x_i\)</span>代表处回传梯度。</p>
+</div>
+<div class="section" id="prediction">
+<h3>4.2 Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">¶</a></h3>
+<p>Fast R-CNN需要预测proposal regions的类别，并且进一步修正这些regions的位置和大小。先将RoI Pooling/Align得到的7x7特征经过两个全连接层，然后预测<code class="docutils literal notranslate"><span class="pre">cls_score</span></code>和<code class="docutils literal notranslate"><span class="pre">bbox_pred</span></code>，如下图所示（图中将features的channels简化为1，实际应该等于backbone的features的channels）：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/5kxs4lhbnyh8z9tnrefz5ae5/image.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TwoMLPHead</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">representation_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TwoMLPHead</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">representation_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc7</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">representation_size</span><span class="p">,</span> <span class="n">representation_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc6</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc7</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="k">class</span> <span class="nc">FastRCNNPredictor</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FastRCNNPredictor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_score</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bbox_pred</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_score</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">bbox_deltas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_pred</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">bbox_deltas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span><span class="o">+</span><span class="mi">1</span> <span class="c1"># 1 is background</span>
+<span class="n">channels</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">x_fc7</span> <span class="o">=</span> <span class="n">TwoMLPHead</span><span class="p">(</span><span class="n">channels</span><span class="o">*</span><span class="mi">7</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="bp">cls</span><span class="p">,</span> <span class="n">bbox</span> <span class="o">=</span> <span class="n">FastRCNNPredictor</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)(</span><span class="n">x_fc7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_fc7</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">bbox</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 11]) torch.Size([1, 44])
+</pre></div>
+</div>
+</div>
+</div>
+<p>最后的输出为每一类（包括背景）都预测了bbox，所以需要根据cls最高的那一类去取对应的bbox（其他bbox也不参与loss计算）。我觉得输出一个box就好了，网络更简单，也利于网络学习，但是我未验证过。</p>
+</div>
+</div>
+<div class="section" id="step-alternating-training">
+<h2>5 4-Step Alternating Training<a class="headerlink" href="#step-alternating-training" title="Permalink to this headline">¶</a></h2>
+<p>论文中说RPN网络和Fast R-CNN网络不能联合训练，因为ROI Pooling对位置和特征不可同时求梯度（ROI Pooling的输入是特征和<strong>基于同样特征预测的位置</strong>），但是RoI Warp Pooling就可以，这点我没想明白。</p>
+<p>作者推荐了一个4步训练法，流程如下：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/jqchbox6jcpi0kqmx8fzqkkm/image.png" /></p>
+<p>最后附上一张我觉得最能体现整个训练和测试过程的图：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/7jjjmmx9md96olys5a0gjj3a/image.png" /></p>
+</div>
+<div class="section" id="inference-test">
+<h2>6 Inference (Test)<a class="headerlink" href="#inference-test" title="Permalink to this headline">¶</a></h2>
+<p>用官方预训练好的模型：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">fasterrcnn_resnet50_fpn</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>FasterRCNN(
+  (transform): GeneralizedRCNNTransform(
+      Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+      Resize(min_size=(800,), max_size=1333, mode=&#39;bilinear&#39;)
+  )
+  (backbone): BackboneWithFPN(
+    (body): IntermediateLayerGetter(
+      (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+      (bn1): FrozenBatchNorm2d()
+      (relu): ReLU(inplace=True)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (layer1): Sequential(
+        (0): Bottleneck(
+          (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+          (downsample): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): FrozenBatchNorm2d()
+          )
+        )
+        (1): Bottleneck(
+          (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (2): Bottleneck(
+          (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+      )
+      (layer2): Sequential(
+        (0): Bottleneck(
+          (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+          (downsample): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): FrozenBatchNorm2d()
+          )
+        )
+        (1): Bottleneck(
+          (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (2): Bottleneck(
+          (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (3): Bottleneck(
+          (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+      )
+      (layer3): Sequential(
+        (0): Bottleneck(
+          (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+          (downsample): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): FrozenBatchNorm2d()
+          )
+        )
+        (1): Bottleneck(
+          (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (2): Bottleneck(
+          (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (3): Bottleneck(
+          (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (4): Bottleneck(
+          (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (5): Bottleneck(
+          (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+      )
+      (layer4): Sequential(
+        (0): Bottleneck(
+          (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+          (downsample): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): FrozenBatchNorm2d()
+          )
+        )
+        (1): Bottleneck(
+          (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+        (2): Bottleneck(
+          (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn1): FrozenBatchNorm2d()
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): FrozenBatchNorm2d()
+          (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn3): FrozenBatchNorm2d()
+          (relu): ReLU(inplace=True)
+        )
+      )
+    )
+    (fpn): FeaturePyramidNetwork(
+      (inner_blocks): ModuleList(
+        (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+        (2): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        (3): Conv2d(2048, 256, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (layer_blocks): ModuleList(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (extra_blocks): LastLevelMaxPool()
+    )
+  )
+  (rpn): RegionProposalNetwork(
+    (anchor_generator): AnchorGenerator()
+    (head): RPNHead(
+      (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (cls_logits): Conv2d(256, 3, kernel_size=(1, 1), stride=(1, 1))
+      (bbox_pred): Conv2d(256, 12, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): RoIHeads(
+    (box_roi_pool): MultiScaleRoIAlign()
+    (box_head): TwoMLPHead(
+      (fc6): Linear(in_features=12544, out_features=1024, bias=True)
+      (fc7): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNPredictor(
+      (cls_score): Linear(in_features=1024, out_features=91, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=364, bias=True)
+    )
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class labels from official PyTorch documentation for the pretrained model</span>
+<span class="c1"># Note that there are some N/A&#39;s </span>
+<span class="c1"># for complete list check https://tech.amikelive.com/node-718/what-object-categories-labels-are-in-coco-dataset/</span>
+<span class="c1"># we will use the same list for this notebook</span>
+<span class="n">COCO_INSTANCE_CATEGORY_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;__background__&#39;</span><span class="p">,</span> <span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;bicycle&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;motorcycle&#39;</span><span class="p">,</span> <span class="s1">&#39;airplane&#39;</span><span class="p">,</span> <span class="s1">&#39;bus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;truck&#39;</span><span class="p">,</span> <span class="s1">&#39;boat&#39;</span><span class="p">,</span> <span class="s1">&#39;traffic light&#39;</span><span class="p">,</span> <span class="s1">&#39;fire hydrant&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;stop sign&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;parking meter&#39;</span><span class="p">,</span> <span class="s1">&#39;bench&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;horse&#39;</span><span class="p">,</span> <span class="s1">&#39;sheep&#39;</span><span class="p">,</span> <span class="s1">&#39;cow&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;elephant&#39;</span><span class="p">,</span> <span class="s1">&#39;bear&#39;</span><span class="p">,</span> <span class="s1">&#39;zebra&#39;</span><span class="p">,</span> <span class="s1">&#39;giraffe&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;backpack&#39;</span><span class="p">,</span> <span class="s1">&#39;umbrella&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handbag&#39;</span><span class="p">,</span> <span class="s1">&#39;tie&#39;</span><span class="p">,</span> <span class="s1">&#39;suitcase&#39;</span><span class="p">,</span> <span class="s1">&#39;frisbee&#39;</span><span class="p">,</span> <span class="s1">&#39;skis&#39;</span><span class="p">,</span> <span class="s1">&#39;snowboard&#39;</span><span class="p">,</span> <span class="s1">&#39;sports ball&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;kite&#39;</span><span class="p">,</span> <span class="s1">&#39;baseball bat&#39;</span><span class="p">,</span> <span class="s1">&#39;baseball glove&#39;</span><span class="p">,</span> <span class="s1">&#39;skateboard&#39;</span><span class="p">,</span> <span class="s1">&#39;surfboard&#39;</span><span class="p">,</span> <span class="s1">&#39;tennis racket&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bottle&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;wine glass&#39;</span><span class="p">,</span> <span class="s1">&#39;cup&#39;</span><span class="p">,</span> <span class="s1">&#39;fork&#39;</span><span class="p">,</span> <span class="s1">&#39;knife&#39;</span><span class="p">,</span> <span class="s1">&#39;spoon&#39;</span><span class="p">,</span> <span class="s1">&#39;bowl&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;broccoli&#39;</span><span class="p">,</span> <span class="s1">&#39;carrot&#39;</span><span class="p">,</span> <span class="s1">&#39;hot dog&#39;</span><span class="p">,</span> <span class="s1">&#39;pizza&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;donut&#39;</span><span class="p">,</span> <span class="s1">&#39;cake&#39;</span><span class="p">,</span> <span class="s1">&#39;chair&#39;</span><span class="p">,</span> <span class="s1">&#39;couch&#39;</span><span class="p">,</span> <span class="s1">&#39;potted plant&#39;</span><span class="p">,</span> <span class="s1">&#39;bed&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;dining table&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;toilet&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;tv&#39;</span><span class="p">,</span> <span class="s1">&#39;laptop&#39;</span><span class="p">,</span> <span class="s1">&#39;mouse&#39;</span><span class="p">,</span> <span class="s1">&#39;remote&#39;</span><span class="p">,</span> <span class="s1">&#39;keyboard&#39;</span><span class="p">,</span> <span class="s1">&#39;cell phone&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;microwave&#39;</span><span class="p">,</span> <span class="s1">&#39;oven&#39;</span><span class="p">,</span> <span class="s1">&#39;toaster&#39;</span><span class="p">,</span> <span class="s1">&#39;sink&#39;</span><span class="p">,</span> <span class="s1">&#39;refrigerator&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">,</span> <span class="s1">&#39;book&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;clock&#39;</span><span class="p">,</span> <span class="s1">&#39;vase&#39;</span><span class="p">,</span> <span class="s1">&#39;scissors&#39;</span><span class="p">,</span> <span class="s1">&#39;teddy bear&#39;</span><span class="p">,</span> <span class="s1">&#39;hair drier&#39;</span><span class="p">,</span> <span class="s1">&#39;toothbrush&#39;</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  get_prediction</span>
+<span class="sd">    parameters:</span>
+<span class="sd">      - img_path - path of the input image</span>
+<span class="sd">      - threshold - threshold value for prediction score</span>
+<span class="sd">    method:</span>
+<span class="sd">      - Image is obtained from the image path</span>
+<span class="sd">      - the image is converted to image tensor using PyTorch&#39;s Transforms</span>
+<span class="sd">      - image is passed through the model to get the predictions</span>
+<span class="sd">      - class, box coordinates are obtained, but only prediction score &gt; threshold</span>
+<span class="sd">        are chosen.</span>
+<span class="sd">    </span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+  <span class="n">transform</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">T</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()])</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="n">img</span><span class="p">])</span>
+  <span class="n">pred_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">COCO_INSTANCE_CATEGORY_NAMES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())]</span>
+  <span class="n">pred_boxes</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())]</span>
+  <span class="n">pred_score</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;scores&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+  <span class="n">pred_t</span> <span class="o">=</span> <span class="p">[</span><span class="n">pred_score</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pred_score</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">threshold</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">pred_boxes</span> <span class="o">=</span> <span class="n">pred_boxes</span><span class="p">[:</span><span class="n">pred_t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">pred_class</span> <span class="o">=</span> <span class="n">pred_class</span><span class="p">[:</span><span class="n">pred_t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">pred_boxes</span><span class="p">,</span> <span class="n">pred_class</span>
+  
+
+
+<span class="k">def</span> <span class="nf">object_detection_api</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rect_th</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">text_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">text_th</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  object_detection_api</span>
+<span class="sd">    parameters:</span>
+<span class="sd">      - img_path - path of the input image</span>
+<span class="sd">      - threshold - threshold value for prediction score</span>
+<span class="sd">      - rect_th - thickness of bounding box</span>
+<span class="sd">      - text_size - size of the class label text</span>
+<span class="sd">      - text_th - thichness of the text</span>
+<span class="sd">    method:</span>
+<span class="sd">      - prediction is obtained from get_prediction method</span>
+<span class="sd">      - for each prediction, bounding box is drawn and text is written </span>
+<span class="sd">        with opencv</span>
+<span class="sd">      - the final image is displayed</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">boxes</span><span class="p">,</span> <span class="n">pred_cls</span> <span class="o">=</span> <span class="n">get_prediction</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)):</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">thickness</span><span class="o">=</span><span class="n">rect_th</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">pred_cls</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="n">text_size</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">thickness</span><span class="o">=</span><span class="n">text_th</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">object_detection_api</span><span class="p">(</span><span class="s2">&quot;../_files/people.jpg&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/austin/anaconda3/envs/gluon/lib/python3.6/site-packages/torch/nn/functional.py:2854: UserWarning: The default behavior for interpolate/upsample with float scale_factor will change in 1.6.0 to align with other frameworks/libraries, and use scale_factor directly, instead of relying on the computed output size. If you wish to keep the old behavior, please set recompute_scale_factor=True. See the documentation of nn.Upsample for details. 
+  warnings.warn(&quot;The default behavior for interpolate/upsample with float scale_factor will change &quot;
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of nonzero is deprecated:
+	nonzero(Tensor input, *, Tensor out)
+Consider using one of the following signatures instead:
+	nonzero(Tensor input, *, bool as_tuple)
+</pre>
+</div>
+<img alt="../_images/Faster-RCNN.jupyter_47_1.png" src="../_images/Faster-RCNN.jupyter_47_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">object_detection_api</span><span class="p">(</span><span class="s1">&#39;../_files/traffic-143391_960_720.jpg&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">text_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Faster-RCNN.jupyter_48_0.png" src="../_images/Faster-RCNN.jupyter_48_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7 推荐阅读<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.learnopencv.com/faster-r-cnn-object-detection-with-pytorch/">Faster R-CNN Object Detection with PyTorch</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/145842317">捋一捋pytorch官方FasterRCNN代码</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/31426458">一文读懂Faster RCNN</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/&#64;fractaldle/guide-to-build-faster-rcnn-in-pytorch-95b10c273439">Guide to build Faster RCNN in PyTorch</a></p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="YOLO-V3.jupyter.html" title="previous page">YOLO-V3</a>
+    <a class='right-next' id="next-link" href="transformer.jupyter.html" title="next page">Transformer</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Austin.Dawei<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
