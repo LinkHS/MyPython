@@ -1,23 +1,24 @@
 - file: index.md
 
-- header: Packages 
-- file: matplotlib.jupyter.md
-- file: Python.jupyter.md
-- file: numpy/numpy.jupyter.md
-- file: sympy.jupyter.md
-
 - header: Maths
 - file: Math/Math.jupyter.md
-  sections:
-    - file: Math/中心极限定理.jupyter.md
-    - file: Math/Poisson-Distribution.jupyter.md
-    - file: Math/Genetic_Algorithm.jupyter.md
+- file: Math/中心极限定理.jupyter.md
+- file: Math/Poisson-Distribution.jupyter.md
+- file: Math/Genetic_Algorithm.jupyter.md
 
 - header: Machine&Deep Learning
 - file: Math/XGBoost.jupyter.md
 - file: ML/CNN.jupyter.md 
 - file: ML/YOLO-V3.jupyter.md 
 - file: ML/Faster-RCNN.jupyter.md 
+- file: ML/transformer.jupyter.md 
+
+- header: Packages 
+- file: PyTorch.jupyter.md
+- file: matplotlib.jupyter.md
+- file: Python.jupyter.md
+- file: numpy/numpy.jupyter.md
+- file: sympy.jupyter.md
 
 - header: Course
 - file: Course/流畅的Python/Readme.md

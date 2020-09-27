@@ -11,7 +11,7 @@ from PIL import Image
 from torch import nn
 ```
 
-# Faster R-CNN Object Detection with PyTorch
+# Faster R-CNN
 ![](http://static.zybuluo.com/AustinMxnet/rcrfshe3jlo0a1idyukvu9qr/image.png)
 
 Faster R-CNN将Fast R-CNN中的Selective Search换成了Region Proposal Network，这样位置网络就和分类网络结合起来，**于是CNN提取的特征feature maps被两者共用**，不仅极大加快了速度，还提升了精度（两者会互相促进）。

@@ -1,5 +1,7 @@
 # Numpy
 
+![](../_files/np.png)
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
