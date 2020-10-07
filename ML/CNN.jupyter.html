@@ -201,33 +201,29 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#basic" class="nav-link">1 Basic</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#batchnorm" class="nav-link">2 BatchNorm</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#paper" class="nav-link">3 Paper</a><ul class="nav section-nav flex-column">
+            <a href="#basic" class="nav-link">1 Basic</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#senet" class="nav-link">3.1 SENet</a>
+            <a href="#batchnorm" class="nav-link">1.1 BatchNorm</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#sknet" class="nav-link">3.2 SKNet</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#resnext" class="nav-link">3.3 ResNeXt</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#resnest" class="nav-link">3.4 ResNeSt</a><ul class="nav section-nav flex-column">
+            <a href="#iou" class="nav-link">1.2 IoU</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h4">
-            <a href="#tricks" class="nav-link">3.4.1 Tricks</a>
+            <a href="#iou-loss" class="nav-link">1.2.1 IoU Loss</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#giou" class="nav-link">1.2.2 GIoU</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#diou" class="nav-link">1.2.3 DIoU</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#ciou" class="nav-link">1.2.4 CIoU</a>
         </li>
     
             </ul>
@@ -237,10 +233,38 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#cv-attention" class="nav-link">4 CV Attention</a><ul class="nav section-nav flex-column">
+            <a href="#paper" class="nav-link">2 Paper</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#cbam" class="nav-link">4.1 CBAM</a>
+            <a href="#senet" class="nav-link">2.1 SENet</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#sknet" class="nav-link">2.2 SKNet</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#resnext" class="nav-link">2.3 ResNeXt</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#resnest" class="nav-link">2.4 ResNeSt</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#tricks" class="nav-link">2.4.1 Tricks</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#cv-attention" class="nav-link">3 CV Attention</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#cbam" class="nav-link">3.1 CBAM</a>
         </li>
     
             </ul>
@@ -263,40 +287,599 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">from</span> <span class="nn">torchsummary</span> <span class="kn">import</span> <span class="n">summary</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="basic">
 <h2>1 Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="batchnorm">
-<h2>2 BatchNorm<a class="headerlink" href="#batchnorm" title="Permalink to this headline">¶</a></h2>
-<p>BatchNorm的介绍具体参考<a class="reference external" href="https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html">动手深度学习</a>。对于FC层输出在每个通道上进行BS(batch size)级别的归一化；对于Conv层输出在每个通道上HxWxBS级别的归一化。</p>
+<h3>1.1 BatchNorm<a class="headerlink" href="#batchnorm" title="Permalink to this headline">¶</a></h3>
+<p>BatchNorm的介绍具体参考<a class="reference external" href="https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html">动手深度学习</a>。对于FC层输出在每个通道上进行BS(batch size)级别的归一化；对于Conv层输出在每个通道上<span class="math notranslate nohighlight">\(H \times W \times B\)</span>级别的归一化。</p>
 <p>BatchNorm虽然好用，但是也有一些问题（详见<a class="reference external" href="https://www.techbeat.net/talks/MTU5NzEyNzg2MjU2MC0yOTktNzUzMjI=">Devils in BatchNorm</a>），例如不一致性（inconsistency）问题：</p>
 <ol class="simple">
 <li><p>使用了<a class="reference external" href="https://zhuanlan.zhihu.com/p/68748778">指数移动平均</a>会让学习的参数更加适应最新训练批次的样本</p></li>
 <li><p>训练集得到的batchnorm参数不一定适合测试集</p></li>
 </ol>
 <p>第1个不一致性问题可以使用Precise BatchNorm，例如暂停更新网络参数，只更新BatchNorm层的参数。</p>
+</div>
+<div class="section" id="iou">
+<h3>1.2 IoU<a class="headerlink" href="#iou" title="Permalink to this headline">¶</a></h3>
+<p>Intersection over union就是交并比，公式如下：
+<span class="math notranslate nohighlight">\($I o U=\frac{|A \cap B|}{|A \cup B|}\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># target output size of 10x7</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveMaxPool2d</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_iou</span><span class="p">(</span><span class="n">rec1</span><span class="p">,</span> <span class="n">rec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    computing IoU</span>
+<span class="sd">    :param rec1: (y0, x0, y1, x1), which reflects</span>
+<span class="sd">            (top, left, bottom, right)</span>
+<span class="sd">    :param rec2: (y0, x0, y1, x1)</span>
+<span class="sd">    :return: scala value of IoU</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># computing area of each rectangles</span>
+    <span class="n">S_rec1</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">rec1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">rec1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">S_rec2</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">rec2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># computing the sum_area</span>
+    <span class="n">sum_area</span> <span class="o">=</span> <span class="n">S_rec1</span> <span class="o">+</span> <span class="n">S_rec2</span>
+
+    <span class="c1"># find the each edge of intersect rectangle</span>
+    <span class="n">left_line</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">right_line</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">top_line</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">bottom_line</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># judge if there is an intersect</span>
+    <span class="k">if</span> <span class="n">left_line</span> <span class="o">&gt;=</span> <span class="n">right_line</span> <span class="ow">or</span> <span class="n">top_line</span> <span class="o">&gt;=</span> <span class="n">bottom_line</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">intersect</span> <span class="o">=</span> <span class="p">(</span><span class="n">right_line</span> <span class="o">-</span> <span class="n">left_line</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">bottom_line</span> <span class="o">-</span> <span class="n">top_line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">intersect</span> <span class="o">/</span> <span class="p">(</span><span class="n">sum_area</span> <span class="o">-</span> <span class="n">intersect</span><span class="p">))</span><span class="o">*</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+
+
+<span class="k">def</span> <span class="nf">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">plot_bboxes</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @bboxes: [[y0, x0, y1, x1], ...], which relflects (top, left, bottom, right)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 补齐颜色</span>
+    <span class="n">dlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dlen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">colors</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dlen</span><span class="p">)])</span>
+        
+    <span class="k">for</span> <span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">),</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+                         <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="c1"># (top, left, bottom, right)</span>
+<span class="n">bbox1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">bbox2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">plot_bboxes</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">],</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_6_0.png" src="../_images/CNN.jupyter_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compute_iou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5660377358490566
+</pre></div>
+</div>
+</div>
+</div>
+<p>IoU的问题：
+如果两个框没有相交，根据定义，IoU=0，不能反映两者的距离大小（重合度）。同时因为loss=0，没有梯度回传，无法进行学习训练。
+IoU无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等，但看得出来他们的重合度是不一样的，左边的图回归的效果最好，右边的最差。</p>
+<div class="section" id="iou-loss">
+<h4>1.2.1 IoU Loss<a class="headerlink" href="#iou-loss" title="Permalink to this headline">¶</a></h4>
+<p>训练时，目标检测一般用L2 loss来判断框的好坏，由于L2损失分别优化目标框的4个位置<span class="math notranslate nohighlight">\(x_0, y_0, x_1, y_1\)</span>，忽略了它们内在的联系，所以会出现某1-2个位置优化的很准，其它不准的情况。UnitBox论文中使用了IoU作为loss，<strong>将这4个变量当成一个整体去优化</strong>，这样还有个好处，IoU的取值范围为<span class="math notranslate nohighlight">\([0, 1]\)</span>，相当于归一化了，则不受bbox尺度影响了，<strong>模型可以适应多尺度目标</strong>。另一个问题就是L2 loss无法精确反应预测框的好坏，详见GIoU小节。</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/vv4txma59orl7db5sxb89cwi/image.png" /></p>
+<p>注意UnitBox是针对Densebox论文优化的，Densebox是anchor-free的方法，所以让每个点的向量预测距离上下左右边框的距离<span class="math notranslate nohighlight">\(x_t, x_b, x_l, x_r\)</span>，但是IoU loss不受影响。但是图中公式加了一个<span class="math notranslate nohighlight">\(-ln\)</span>，文中解释成输入为IoU的cross-entropy loss，当<span class="math notranslate nohighlight">\(p(IoU=1)=1\)</span>时，<span class="math notranslate nohighlight">\(\mathcal{L}=-pln(IoU)-(1-p)ln(1-IoU)=-ln(IoU)\)</span>。这里<span class="math notranslate nohighlight">\(p(IoU=1)=1\)</span>应该是不对的，个人觉得就是加速神经网络收敛，因为IoU的取值范围为<span class="math notranslate nohighlight">\([0, 1]\)</span>，所以越接近0，<span class="math notranslate nohighlight">\(-ln(IoU)\)</span>越接近于无穷大，如下图所示。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.000001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_10_0.png" src="../_images/CNN.jupyter_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="giou">
+<h4>1.2.2 GIoU<a class="headerlink" href="#giou" title="Permalink to this headline">¶</a></h4>
+<p><strong>L2 Loss的问题</strong></p>
+<ol class="simple">
+<li><p>L2 Loss的另一个问题（其他问题详见IoU Loss小节）是无法精确反应预测框的好坏，训练时候优化L2 Loss并不是完全在优化评价指标IoU，如下图所示gt框为绿色，虽然三个预测黑色框的L2相同，但是明显IoU大的框更好。这也说明，<strong>一个L2局部最优值不一定是IoU的局部最优值</strong>，这说明优化回归损失和IoU值之间仍然存在差距。</p></li>
+</ol>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/ayzgzo1236wf4kpkfb8ykfk6/image.png" /></p>
+<p><strong>IoU Loss的问题</strong></p>
+<ol class="simple">
+<li><p>如果两个框没有相交，<strong>无论距离多远，IoU都为0</strong>，无法反映两者的距离大小（重合度）。同时因为loss=0，<strong>没有梯度回传</strong>，无法进行学习训练。</p></li>
+<li><p>无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等为0.33，但是他们的重合度是不一样的，左边的图回归的效果最好（GIoU=0.33），右边的最差（GIoU=-0.1）。</p></li>
+</ol>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/d7508h8bbxpd5s8mxqaz9qn5/image.png" /></p>
+<p><strong>GIoU公式</strong></p>
+<p>对于两个bounding box A&amp;B，算出其最小凸集（包围A、B的最小包围框）C，然后计算C中除A B外的面积占C总面积的比值，最后用IOU减去这个比值：</p>
+<div class="math notranslate nohighlight">
+\[GIoU = IoU - \frac{C-(A\cup B)}{C}\]</div>
+<p><strong>GIoU特点</strong></p>
+<p>GIoU继承了IoU的一些优点，例如对物体尺寸不敏感，另外还有一些特点：</p>
+<ol class="simple">
+<li><p>GIOU是IOU的下界，且取值范围为<code class="docutils literal notranslate"><span class="pre">(-1,</span> <span class="pre">1]</span></code>。当两个框不重合时，IoU始终为0，不论A、B相隔多远，但是对于GIOU来说，A，B不重合度越高（离的越远），GIOU越趋近于-1。关于这点，下面再详细解释一下。</p></li>
+<li><p>当IoU为0时，<span class="math notranslate nohighlight">\(GIoU = -1 + \frac{A\cup B}{C}\)</span>，两个框没有重合之前，<span class="math notranslate nohighlight">\(A \cup B\)</span>不变，<strong>最大化GIoU等于最小化C，即两个框要不断靠近</strong>。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_giou</span><span class="p">(</span><span class="n">rec1</span><span class="p">,</span> <span class="n">rec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @param rec1: (y0, x0, y1, x1), which reflects</span>
+<span class="sd">            (top, left, bottom, right)</span>
+<span class="sd">    @param rec2: (y0, x0, y1, x1)</span>
+<span class="sd">    @return: scala value of IoU</span>
+<span class="sd">    注：图像原点为左上角</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">rec1</span>
+    <span class="n">y3</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="n">x4</span> <span class="o">=</span> <span class="n">rec2</span>
+    
+    <span class="n">area_C</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">))</span> <span class="o">*</span> \
+             <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y4</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y4</span><span class="p">))</span>
+    <span class="n">area_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span>
+    <span class="n">area_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x4</span><span class="o">-</span><span class="n">x3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y4</span><span class="o">-</span><span class="n">y3</span><span class="p">)</span>
+    <span class="n">sum_area</span> <span class="o">=</span> <span class="n">area_1</span> <span class="o">+</span> <span class="n">area_2</span>
+
+    <span class="n">w1</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>  <span class="c1"># 第一个矩形的宽</span>
+    <span class="n">w2</span> <span class="o">=</span> <span class="n">x4</span> <span class="o">-</span> <span class="n">x3</span>  <span class="c1"># 第二个矩形的宽</span>
+    <span class="n">h1</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span> <span class="o">+</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>  <span class="c1"># 交叉部分的宽</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y4</span><span class="p">)</span> <span class="o">+</span> <span class="n">h1</span> <span class="o">+</span> <span class="n">h2</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y4</span><span class="p">)</span>  <span class="c1"># 交叉部分的高</span>
+    
+    <span class="n">inter_area</span> <span class="o">=</span> <span class="n">W</span><span class="o">*</span><span class="n">H</span>
+    <span class="n">union_area</span> <span class="o">=</span> <span class="n">sum_area</span> <span class="o">-</span> <span class="n">inter_area</span>
+    <span class="k">if</span> <span class="n">W</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">H</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">iou</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">iou</span> <span class="o">=</span> <span class="n">inter_area</span> <span class="o">/</span> <span class="n">union_area</span>
+    <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">area_C</span> <span class="o">-</span> <span class="n">union_area</span><span class="p">)</span><span class="o">/</span><span class="n">area_C</span>
+    <span class="n">giou</span> <span class="o">=</span> <span class="n">iou</span> <span class="o">-</span> <span class="n">ratio</span>
+    <span class="k">return</span> <span class="n">giou</span><span class="p">,</span> <span class="n">iou</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (top, left, bottom, right)</span>
+<span class="n">bbox1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span>
+<span class="n">bbox2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">129</span><span class="p">]</span>
+<span class="n">bbox3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">140</span><span class="p">]</span>
+<span class="n">bbox4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span><span class="p">]</span>
+<span class="n">color1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># green</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># yellow</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">color4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># purple</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">plot_bboxes</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">],</span> <span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">color3</span><span class="p">,</span> <span class="n">color4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_13_0.png" src="../_images/CNN.jupyter_13_0.png" />
+</div>
+</div>
+<p>假设绿色的框为gt框，其他为预测框，从图中看出红色的框最好，紫色的最差（没有相交，IoU应该=0），我们分别看下GIoU和IoU是多少：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yellow, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   red, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;purple, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>yellow, GIoU:0.3819, IoU:0.4047
+   red, GIoU:0.4500, IoU:0.4500
+purple, GIoU:-0.2296, IoU:0.0000
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="section" id="diou">
+<h4>1.2.3 DIoU<a class="headerlink" href="#diou" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://arxiv.org/pdf/1911.08287.pdf">Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression</a></p>
+<p><strong>GIoU的问题</strong></p>
+<p>虽然GIoU可以缓解目标框和预测框不重叠情况下的梯度消失问题，但是两者是包含关系时就又退化为IoU Loss了，例如下图所示，目标框为绿色，三个预测框的GIoU和IoU完全相同：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (top, left, bottom, right)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="n">bbox1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span>
+<span class="n">bbox2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">65</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">bbox3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">85</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">110</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">bbox4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">75</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">130</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">color1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># green</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># yellow</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">color4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># purple</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="n">plot_bboxes</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">],</span> <span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">color3</span><span class="p">,</span> <span class="n">color4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yellow, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   red, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;purple, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_17_0.png" src="../_images/CNN.jupyter_17_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>yellow, GIoU:0.2619, IoU:0.2619
+   red, GIoU:0.2619, IoU:0.2619
+purple, GIoU:0.2619, IoU:0.2619
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面通过一个例子来说明GIoU的问题，如下图所示，第一行是GIoU的回归过程（第40、100、400次），绿色框为目标框，黑色为锚框，蓝色为使用GIoU Loss的预测框：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/pszqt70g6kvorrzu3rtgm9fa/image.png" /></p>
+<p>可以看出GIoU Loss中，蓝色预测框为了与目标框重叠，<strong>开始阶段会逐渐的增大尺寸，到后面重叠阶段，GIoU退化成IoU，因此，它需要在垂直和水平方向需要多次的迭代来达到收敛</strong>。于是DIoU（第二行红色框）的作者提出了两个问题：</p>
+<ul class="simple">
+<li><p>为了获得更快的收敛速度，是否可以直接最小化预测框和目标框之间的归一化距离？</p></li>
+<li><p>当与目标框有重叠甚至存在包含关系时，如何使得回归速度更准确、更快速？</p></li>
+</ul>
+<p><strong>Distance-IoU Loss</strong></p>
+<p>边界框回归的好坏需要考虑：</p>
+<ul class="simple">
+<li><p>重叠面积</p></li>
+<li><p>中心点距离</p></li>
+<li><p>长宽比</p></li>
+</ul>
+<p>无论是IoU还是GIoU都只考虑了第一点重叠面积，DIoU在此基础上考虑了第二点中心点距离：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/963tzvgz7lr4wjkyzf6xbule/image.png" /></p>
+<p>DIoU在IoU的基础上加入了一个惩罚项，用于度量目标框和预测框之间中心点的距离，在最小化边界框中心点的距离过程中，能够使得边界框收敛速度更快：</p>
+<div class="math notranslate nohighlight">
+\[DIoU = IoU - \frac{\rho^2\left(b, b^{gt}\right)}{c^{2}}\]</div>
+<p>式中<span class="math notranslate nohighlight">\(b\)</span>和<span class="math notranslate nohighlight">\(b^{gt}\)</span>分别代表两个框，<span class="math notranslate nohighlight">\(\rho\)</span>代表两点欧式距离（这里就是两个框的中心），<span class="math notranslate nohighlight">\(c\)</span>代表覆盖两个边界框的最小框的对角线长度(上图中蓝色线)。</p>
+<p>对应的DIoU Loss：
+<span class="math notranslate nohighlight">\($\mathcal{L}_{DIOU} = 1 - DIoU = 1 - IoU + \frac{\rho^{2}\left(b, b^{g t}\right)}{c^{2}}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_diou</span><span class="p">(</span><span class="n">rec1</span><span class="p">,</span> <span class="n">rec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @param rec1: (y0, x0, y1, x1), which reflects</span>
+<span class="sd">            (top, left, bottom, right)</span>
+<span class="sd">    @param rec2: (y0, x0, y1, x1)</span>
+<span class="sd">    @return: scala value of IoU</span>
+<span class="sd">    注：图像原点为左上角</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">rec1</span>
+    <span class="n">y3</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="n">x4</span> <span class="o">=</span> <span class="n">rec2</span>
+    
+    <span class="n">area_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span>
+    <span class="n">area_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x4</span><span class="o">-</span><span class="n">x3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y4</span><span class="o">-</span><span class="n">y3</span><span class="p">)</span>
+    <span class="n">sum_area</span> <span class="o">=</span> <span class="n">area_1</span> <span class="o">+</span> <span class="n">area_2</span>
+    <span class="n">b1w</span><span class="p">,</span> <span class="n">b2w</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x4</span> <span class="o">-</span> <span class="n">x3</span> <span class="c1"># 两个框的宽</span>
+    <span class="n">b1h</span><span class="p">,</span> <span class="n">b2h</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y4</span> <span class="o">-</span> <span class="n">y3</span> <span class="c1"># 两个框的高</span>
+    <span class="n">bcx1</span><span class="p">,</span> <span class="n">bcx2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x3</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span> <span class="c1"># 包含两个框的最小矩形的左上和右下顶点x坐标</span>
+    <span class="n">bcy1</span><span class="p">,</span> <span class="n">bcy2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y3</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="n">y4</span><span class="p">)</span> <span class="c1"># 包含两个框的最小矩形的左上和右下顶点y坐标</span>
+    
+    <span class="n">W</span> <span class="o">=</span> <span class="n">bcx1</span> <span class="o">+</span> <span class="n">b1w</span> <span class="o">+</span> <span class="n">b2w</span> <span class="o">-</span> <span class="n">bcx2</span>  <span class="c1"># 两个框交叉部分的宽</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">bcy1</span> <span class="o">+</span> <span class="n">b1h</span> <span class="o">+</span> <span class="n">b2h</span> <span class="o">-</span> <span class="n">bcy2</span>  <span class="c1"># 两个框交叉部分的高</span>
+    <span class="n">inter_area</span> <span class="o">=</span> <span class="n">W</span><span class="o">*</span><span class="n">H</span>
+    <span class="n">union_area</span> <span class="o">=</span> <span class="n">sum_area</span> <span class="o">-</span> <span class="n">inter_area</span>
+    <span class="k">if</span> <span class="n">W</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">H</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">iou</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">iou</span> <span class="o">=</span> <span class="n">inter_area</span> <span class="o">/</span> <span class="n">union_area</span>
+        
+    <span class="n">center_b1x</span><span class="p">,</span> <span class="n">center_b1y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">y1</span><span class="o">+</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">center_b2x</span><span class="p">,</span> <span class="n">center_b2y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x3</span><span class="o">+</span><span class="n">x4</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">y3</span><span class="o">+</span><span class="n">y4</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="p">(</span><span class="n">center_b1x</span><span class="o">-</span><span class="n">center_b2x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">center_b2y</span><span class="o">-</span><span class="n">center_b1y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="c1"># (right-left)**2 + (bottom-top)**2</span>
+    <span class="n">c2</span> <span class="o">=</span> <span class="p">(</span><span class="n">bcx2</span> <span class="o">-</span> <span class="n">bcx1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">bcy2</span> <span class="o">-</span> <span class="n">bcy1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">d2</span> <span class="o">/</span> <span class="n">c2</span>
+    <span class="n">diou</span> <span class="o">=</span> <span class="n">iou</span> <span class="o">-</span> <span class="n">ratio</span>
+    <span class="k">return</span> <span class="n">diou</span><span class="p">,</span> <span class="n">iou</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面我们看下在GIoU章节里那三个被包含在目标框中的预测框有没有得到优化：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="c1"># (top, left, bottom, right)</span>
+<span class="n">bbox1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span>
+<span class="n">bbox2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">65</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">bbox3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">85</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">110</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">bbox4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">75</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="mi">130</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">color1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># green</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># yellow</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">color4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># purple</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="n">plot_bboxes</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">],</span> <span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">color3</span><span class="p">,</span> <span class="n">color4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yellow, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   red, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;purple, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_21_0.png" src="../_images/CNN.jupyter_21_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>yellow, DIoU:0.2229, GIoU:0.2619, IoU:0.2619
+   red, DIoU:0.2560, GIoU:0.2619, IoU:0.2619
+purple, DIoU:0.2354, GIoU:0.2619, IoU:0.2619
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出最接近中心的红色框DIoU分数最高，最偏离中心的黄色框DIoU分数最低。DIoU解决了目标框回归三大问题（重叠面积，中心点距离，长宽比）的“中心点距离”，可以直接最小化预测框和目标框之间的归一化距离。</p>
+<p><strong>DIoU与NMS</strong>
+NMS（Non-Maximum Suppression，非极大值抑制）唯一考虑的因素就是重叠面积，这样显然是不合理的，如果存在遮挡的情况，这样就会产生错误的抑制。本文提出将DIoU应用于NMS中，这样不仅考虑重叠区域，还会将检测框与目标框中心点之间的距离考虑在内，这样能够有效避免上述错误。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s_{i}=\left\{\begin{array}{l}
+s_{i}, \quad I o U-\mathcal{R}_{D I o U}\left(\mathcal{M}, B_{i}\right)&lt;\varepsilon \\
+0, \quad I o U-\mathcal{R}_{D I o U}\left(\mathcal{M}, B_{i}\right) \geq \varepsilon
+\end{array}\right.
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(s_i\)</span>是分类分数，<span class="math notranslate nohighlight">\(\varepsilon\)</span>是NMS threshold。</p>
+<p>从下图可以看出，使用了DIou-NMS可以避免重叠的目标被过滤掉：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/dplq4xvg74b6upcjx4jynev8/image.png" /></p>
+</div>
+<div class="section" id="ciou">
+<h4>1.2.4 CIoU<a class="headerlink" href="#ciou" title="Permalink to this headline">¶</a></h4>
+<p>CIoU和DIoU在同一篇论文中提出来的，作者在这篇文章（<a class="reference external" href="https://arxiv.org/pdf/2005.03572.pdf">Enhancing Geometric Factors in Model Learning and Inference for Object Detection and Instance Segmentation</a>）里详细介绍了实现方法。<strong>针对DIoU遗留了“长宽比”的问题</strong>，CIoU在DIoU的基础上增加了长宽比的惩罚项：</p>
+<div class="math notranslate nohighlight">
+\[DIoU = IoU - \frac{\rho^2\left(b, b^{gt}\right)}{c^{2}} - \alpha v\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\alpha\)</span>是用来平衡比例的系数，<span class="math notranslate nohighlight">\(v\)</span>是用来衡量预测框和目标框之间的比例一致性：</p>
+<div class="math notranslate nohighlight">
+\[
+v=\frac{4}{\pi}\left(\arctan \left(\frac{w^{gt}}{h^{gt}}\right)-\arctan \left(\frac{w}{h}\right)\right)^{2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\alpha=\frac{v}{(1-I o U)+v}
+\]</div>
+<p>这里使用了<a class="reference external" href="https://mmdetection.readthedocs.io/en/latest/_modules/mmdet/models/losses/iou_loss.html">mmdetection</a>里的代码，和上述公式一致，但是作者的代码稍微有些区别（见后文）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">compute_ciou</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @pred (Tensor): Predicted bboxes of format (x1, y1, x2, y2), shape (n, 4).</span>
+<span class="sd">    @target (Tensor): Corresponding gt bboxes, shape (n, 4).</span>
+<span class="sd">    @eps (float): Eps to avoid log(0).</span>
+<span class="sd">    Return:</span>
+<span class="sd">        Tensor: Loss tensor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># overlap</span>
+    <span class="n">lt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">target</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">rb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span>
+    <span class="n">wh</span> <span class="o">=</span> <span class="p">(</span><span class="n">rb</span> <span class="o">-</span> <span class="n">lt</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">overlap</span> <span class="o">=</span> <span class="n">wh</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">wh</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># union</span>
+    <span class="n">ap</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ag</span> <span class="o">=</span> <span class="p">(</span><span class="n">target</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">target</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="n">ap</span> <span class="o">+</span> <span class="n">ag</span> <span class="o">-</span> <span class="n">overlap</span> <span class="o">+</span> <span class="n">eps</span>
+
+    <span class="c1"># IoU</span>
+    <span class="n">ious</span> <span class="o">=</span> <span class="n">overlap</span> <span class="o">/</span> <span class="n">union</span>
+
+    <span class="c1"># enclose area</span>
+    <span class="n">enclose_x1y1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">target</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">enclose_x2y2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span>
+    <span class="n">enclose_wh</span> <span class="o">=</span> <span class="p">(</span><span class="n">enclose_x2y2</span> <span class="o">-</span> <span class="n">enclose_x1y1</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">cw</span> <span class="o">=</span> <span class="n">enclose_wh</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">enclose_wh</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">c2</span> <span class="o">=</span> <span class="n">cw</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">ch</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">eps</span>
+
+    <span class="n">b1_x1</span><span class="p">,</span> <span class="n">b1_y1</span> <span class="o">=</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">b1_x2</span><span class="p">,</span> <span class="n">b1_y2</span> <span class="o">=</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pred</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">b2_x1</span><span class="p">,</span> <span class="n">b2_y1</span> <span class="o">=</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">b2_x2</span><span class="p">,</span> <span class="n">b2_y2</span> <span class="o">=</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">target</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">w1</span><span class="p">,</span> <span class="n">h1</span> <span class="o">=</span> <span class="n">b1_x2</span> <span class="o">-</span> <span class="n">b1_x1</span><span class="p">,</span> <span class="n">b1_y2</span> <span class="o">-</span> <span class="n">b1_y1</span> <span class="o">+</span> <span class="n">eps</span>
+    <span class="n">w2</span><span class="p">,</span> <span class="n">h2</span> <span class="o">=</span> <span class="n">b2_x2</span> <span class="o">-</span> <span class="n">b2_x1</span><span class="p">,</span> <span class="n">b2_y2</span> <span class="o">-</span> <span class="n">b2_y1</span> <span class="o">+</span> <span class="n">eps</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="p">((</span><span class="n">b2_x1</span> <span class="o">+</span> <span class="n">b2_x2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">b1_x1</span> <span class="o">+</span> <span class="n">b1_x2</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="p">((</span><span class="n">b2_y1</span> <span class="o">+</span> <span class="n">b2_y2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">b1_y1</span> <span class="o">+</span> <span class="n">b1_y2</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span>
+    <span class="n">rho2</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">right</span>
+
+    <span class="n">factor</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">w2</span> <span class="o">/</span> <span class="n">h2</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">w1</span> <span class="o">/</span> <span class="n">h1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># CIoU</span>
+    <span class="n">cious</span> <span class="o">=</span> <span class="n">ious</span> <span class="o">-</span> <span class="p">(</span><span class="n">rho2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ious</span> <span class="o">+</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cious</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">130</span>
+
+<span class="c1"># (top, left, bottom, right)</span>
+<span class="n">bbox1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span>  <span class="mi">60</span><span class="o">+</span><span class="n">h</span><span class="p">,</span>    <span class="mi">60</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">bbox2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span>  <span class="mi">65</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">65</span><span class="o">+</span><span class="n">w</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">bbox3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">85</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">110</span><span class="o">+</span><span class="n">w</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">bbox4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="mi">130</span><span class="o">+</span><span class="n">w</span><span class="o">-</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">color1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># green</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># yellow</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">color4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># purple</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plot_init_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="n">plot_bboxes</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">],</span> <span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">color3</span><span class="p">,</span> <span class="n">color4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yellow, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   red, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;purple, DIoU:</span><span class="si">%.4f</span><span class="s2">, GIoU:</span><span class="si">%.4f</span><span class="s2">, IoU:</span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">compute_diou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">compute_giou</span><span class="p">(</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CNN.jupyter_24_0.png" src="../_images/CNN.jupyter_24_0.png" />
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>yellow, DIoU:0.6291, GIoU:0.6335, IoU:0.6335
+   red, DIoU:0.1788, GIoU:0.1810, IoU:0.1810
+purple, DIoU:0.2783, GIoU:0.2941, IoU:0.2941
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (left, top, right, bottom)</span>
+<span class="n">bbox1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">bbox1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">bbox2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">bbox2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">bbox3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">bbox3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">bbox4</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">bbox4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">bboxes1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox1</span><span class="p">,</span> <span class="n">bbox1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">bboxes2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">bbox2</span><span class="p">,</span> <span class="n">bbox3</span><span class="p">,</span> <span class="n">bbox4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">compute_ciou</span><span class="p">(</span><span class="n">bboxes1</span><span class="p">,</span> <span class="n">bboxes2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([0.6291, 0.1757, 0.2768])
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以看出，DIoU和CIoU的差别不大。相比黄色框，紫色和红色的比例不是很好，所以CIoU的分数更低一些。</p>
+<p>另外作者的论文/代码对上述公式有些改变：</p>
+<ol class="simple">
+<li><p>作者在论文中对<span class="math notranslate nohighlight">\(\alpha\)</span>还做了分段函数，理由是当<span class="math notranslate nohighlight">\(IoU&lt;0.5\)</span>说明两个框并没有很好的匹配上，重点应该先优化两者的重叠度，此时退化成DIoU；而当<span class="math notranslate nohighlight">\(IoU \gt 0.5\)</span>时，需要重点优化比例。这与DIoU小节提到的motivation一致，即“当与目标框有重叠甚至存在包含关系时，如何使得回归速度更准确、更快速”：</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\alpha=\left\{\begin{array}{ll}
+0, &amp; \text { if } I o U&lt;0.5 \\
+\frac{V}{(1-I o U)+V}, &amp; \text { if } I o U \geq 0.5
+\end{array}\right.
+\end{split}\]</div>
+<ol class="simple">
+<li><p>根据<span class="math notranslate nohighlight">\(v=\frac{4}{\pi}\left(\arctan \left(\frac{w^{gt}}{h^{gt}}\right)-\arctan \left(\frac{w}{h}\right)\right)^{2}\)</span>，可以求得：</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial v}{\partial w}=\frac{8}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right) \times \frac{h}{w^{2}+h^{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial v}{\partial h}=-\frac{8}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right) \times \frac{w}{w^{2}+h^{2}}
+\]</div>
+<p>作者认为分母<span class="math notranslate nohighlight">\(w^2+h^2\)</span>很小（<a class="reference external" href="https://github.com/Zzh-tju/DIoU-SSD-pytorch/issues/4">作者将<span class="math notranslate nohighlight">\(w, h\)</span>归一化</a>为<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>），会产生梯度爆炸，所以直接去除了，详见但是作者提供的代码没有找到相关内容，只有一个<a class="reference external" href="https://github.com/Zzh-tju/DIoU-pytorch-detectron/issues/3">issue</a>回复将<span class="math notranslate nohighlight">\(w\)</span>和<span class="math notranslate nohighlight">\(h\)</span>设为<code class="docutils literal notranslate"><span class="pre">no_grad</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="o">...</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="n">c</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">w_gt</span> <span class="o">/</span> <span class="n">h_gt</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">w_pred</span> <span class="o">/</span> <span class="n">h_pred</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">w_pred1</span> <span class="o">=</span> <span class="n">w_pred</span> <span class="o">*</span> <span class="n">v</span>
+    <span class="n">h_pred1</span> <span class="o">=</span> <span class="n">h_pred</span> <span class="o">*</span> <span class="n">v</span>
+<span class="n">ciou_loss</span> <span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">iou</span><span class="o">+</span><span class="n">u</span><span class="o">+</span><span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">w_pred1</span><span class="o">*</span><span class="n">h_pred</span><span class="o">-</span> <span class="n">h_pred1</span><span class="o">*</span><span class="n">w_pred</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>在这个<a class="reference external" href="https://github.com/Zzh-tju/DIoU-SSD-pytorch/issues/4">issue</a>中，作者说<span class="math notranslate nohighlight">\(\alpha\)</span>也不参与梯度计算，没有给出任何理由，代码如下：</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">script</span> <span class="n">true</span>
+
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">iou</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Cluster-NMS</strong></p>
+<p>这篇文章除了介绍CIoU，另一个贡献是Cluster-NMS，有一些有趣的数学推导，目的是加速NMS，详见<a class="reference external" href="https://zhuanlan.zhihu.com/p/157900024">一文打尽目标检测NMS——效率提升篇</a>，而且还可以避免过滤重叠物体：</p>
+<p><img alt="" src="http://static.zybuluo.com/AustinMxnet/yjtmihgi7c9l3b1xfygp4ri2/image.png" /></p>
+</div>
+</div>
+</div>
 <div class="section" id="paper">
-<h2>3 Paper<a class="headerlink" href="#paper" title="Permalink to this headline">¶</a></h2>
+<h2>2 Paper<a class="headerlink" href="#paper" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="senet">
-<h3>3.1 SENet<a class="headerlink" href="#senet" title="Permalink to this headline">¶</a></h3>
+<h3>2.1 SENet<a class="headerlink" href="#senet" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/76033612">[论文笔记]-SENet和SKNet(附代码)</a></p></li>
 <li><p>Pytorch代码：https://github.com/moskomule/senet.pytorch</p></li>
@@ -381,7 +964,7 @@
 </div>
 </div>
 <div class="section" id="sknet">
-<h3>3.2 SKNet<a class="headerlink" href="#sknet" title="Permalink to this headline">¶</a></h3>
+<h3>2.2 SKNet<a class="headerlink" href="#sknet" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/76033612">[论文笔记]-SENet和SKNet(附代码)</a></p></li>
 </ul>
@@ -453,7 +1036,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>out shape : torch.Size([2, 1024, 14, 14])
-loss value : 0.4172205328941345
+loss value : 0.41586658358573914
 </pre></div>
 </div>
 </div>
@@ -543,7 +1126,7 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="section" id="resnext">
-<h3>3.3 ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">¶</a></h3>
+<h3>2.3 ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.zhihu.com/question/323424817">ResNeXt的分类效果为什么比Resnet好?</a></p></li>
 <li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/78019001">薰风读论文：ResNeXt 深入解读与模型实现</a></p></li>
@@ -716,7 +1299,7 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="section" id="resnest">
-<h3>3.4 ResNeSt<a class="headerlink" href="#resnest" title="Permalink to this headline">¶</a></h3>
+<h3>2.4 ResNeSt<a class="headerlink" href="#resnest" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>作者视频讲解：<a class="reference external" href="https://www.bilibili.com/video/BV1PV411k7ch">张航-ResNeSt：拆分注意力网络</a></p></li>
 </ul>
@@ -736,8 +1319,8 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3744, 0.5641, 0.6910],
-        [0.6256, 0.4359, 0.3090]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.5050, 0.5347, 0.5459],
+        [0.4950, 0.4653, 0.4541]])
 </pre></div>
 </div>
 </div>
@@ -757,15 +1340,15 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[0.3929, 0.5925, 0.6940],
-         [0.5490, 0.5550, 0.4919],
-         [0.4783, 0.5026, 0.4754],
-         [0.5935, 0.5793, 0.6971]],
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[[0.3815, 0.3320, 0.5162],
+         [0.4403, 0.3633, 0.5125],
+         [0.5521, 0.6012, 0.4880],
+         [0.5091, 0.5646, 0.5910]],
 
-        [[0.6071, 0.4075, 0.3060],
-         [0.4510, 0.4450, 0.5081],
-         [0.5217, 0.4974, 0.5246],
-         [0.4065, 0.4207, 0.3029]]])
+        [[0.6185, 0.6680, 0.4838],
+         [0.5597, 0.6367, 0.4875],
+         [0.4479, 0.3988, 0.5120],
+         [0.4909, 0.4354, 0.4090]]])
 </pre></div>
 </div>
 </div>
@@ -896,7 +1479,7 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="section" id="tricks">
-<h4>3.4.1 Tricks<a class="headerlink" href="#tricks" title="Permalink to this headline">¶</a></h4>
+<h4>2.4.1 Tricks<a class="headerlink" href="#tricks" title="Permalink to this headline">¶</a></h4>
 <p>本篇论文训练时用到了很多tricks。首先ResNet-D：</p>
 <p><img alt="" src="http://static.zybuluo.com/AustinMxnet/scdvz53jz5elyfjsgdwugxco/image.png" /></p>
 <ol class="simple">
@@ -909,7 +1492,7 @@ loss value : 0.4172205328941345
 </div>
 </div>
 <div class="section" id="cv-attention">
-<h2>4 CV Attention<a class="headerlink" href="#cv-attention" title="Permalink to this headline">¶</a></h2>
+<h2>3 CV Attention<a class="headerlink" href="#cv-attention" title="Permalink to this headline">¶</a></h2>
 <p>注意力机制可以分为：</p>
 <ul class="simple">
 <li><p>通道注意力机制：对通道生成掩码mask，进行打分，代表是SENet, Channel Attention Module</p></li>
@@ -930,7 +1513,7 @@ loss value : 0.4172205328941345
 </li>
 </ul>
 <div class="section" id="cbam">
-<h3>4.1 CBAM<a class="headerlink" href="#cbam" title="Permalink to this headline">¶</a></h3>
+<h3>3.1 CBAM<a class="headerlink" href="#cbam" title="Permalink to this headline">¶</a></h3>
 <p>为了强调空间和通道这两个维度上的有意义特征，作者依次应用通道和空间注意力模块，分别在通道和空间维度上学习关注什么、在哪里关注。此外，通过了解要强调或抑制的信息也有助于网络内的信息流动。</p>
 <p><img alt="" src="http://static.zybuluo.com/AustinMxnet/z8o0mdlygap9p5mkkgpbkcae/image.png" /></p>
 <p>主要网络架构也很简单，上图展示了和ResBlock的结合，对Feature Maps依次通过Channel attention和Spatial attention两个module。原文：   Given an intermediate feature map <span class="math notranslate nohighlight">\(\mathbf{F} \in \mathbb{R}^{C \times H \times W}\)</span> as input, CBAM sequentially infers a 1D channel attention map <span class="math notranslate nohighlight">\(\mathbf{M}_{\mathbf{c}} \in \mathbb{R}^{C \times 1 \times 1}\)</span> and a 2D spatial attention map <span class="math notranslate nohighlight">\(\mathbf{M}_{\mathbf{s}} \in \mathbb{R}^{1 \times H \times W}\)</span>:</p>
