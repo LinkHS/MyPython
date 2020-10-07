@@ -3,16 +3,18 @@
 ```python
 import torch
 import torch.nn.functional as F
+import numpy as np
 
 from torch import nn
 from torchsummary import summary
+import matplotlib.pyplot as plt
 ```
 
 ## Basic
 
 
-## BatchNorm
-BatchNorm的介绍具体参考[动手深度学习](https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html)。对于FC层输出在每个通道上进行BS(batch size)级别的归一化；对于Conv层输出在每个通道上HxWxBS级别的归一化。
+### BatchNorm
+BatchNorm的介绍具体参考[动手深度学习](https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html)。对于FC层输出在每个通道上进行BS(batch size)级别的归一化；对于Conv层输出在每个通道上$H \times W \times B$级别的归一化。
 
 BatchNorm虽然好用，但是也有一些问题（详见[Devils in BatchNorm](https://www.techbeat.net/talks/MTU5NzEyNzg2MjU2MC0yOTktNzUzMjI=)），例如不一致性（inconsistency）问题：
 1. 使用了[指数移动平均](https://zhuanlan.zhihu.com/p/68748778)会让学习的参数更加适应最新训练批次的样本
@@ -20,12 +22,499 @@ BatchNorm虽然好用，但是也有一些问题（详见[Devils in BatchNorm](h
 
 第1个不一致性问题可以使用Precise BatchNorm，例如暂停更新网络参数，只更新BatchNorm层的参数。
 
+
+### IoU
+Intersection over union就是交并比，公式如下：
+$$I o U=\frac{|A \cap B|}{|A \cup B|}$$
+
 ```python
-# target output size of 10x7
-m = nn.AdaptiveMaxPool2d((None, 7))
-input = torch.randn(1, 64, 10, 9)
-output = m(input)
+def compute_iou(rec1, rec2):
+    """
+    computing IoU
+    :param rec1: (y0, x0, y1, x1), which reflects
+            (top, left, bottom, right)
+    :param rec2: (y0, x0, y1, x1)
+    :return: scala value of IoU
+    """
+    # computing area of each rectangles
+    S_rec1 = (rec1[2] - rec1[0]) * (rec1[3] - rec1[1])
+    S_rec2 = (rec2[2] - rec2[0]) * (rec2[3] - rec2[1])
+
+    # computing the sum_area
+    sum_area = S_rec1 + S_rec2
+
+    # find the each edge of intersect rectangle
+    left_line = max(rec1[1], rec2[1])
+    right_line = min(rec1[3], rec2[3])
+    top_line = max(rec1[0], rec2[0])
+    bottom_line = min(rec1[2], rec2[2])
+
+    # judge if there is an intersect
+    if left_line >= right_line or top_line >= bottom_line:
+        return 0
+    else:
+        intersect = (right_line - left_line) * (bottom_line - top_line)
+        return (intersect / (sum_area - intersect))*1.0
 ```
+
+```python
+from matplotlib.patches import Rectangle
+
+
+def plot_init_grid(ax, w=512, h=512):
+    ax.xaxis.tick_top()
+    ax.set_xlim([0, w])
+    ax.set_ylim([0, h])
+    ax.invert_yaxis()
+
+
+def plot_bboxes(bboxes, ax, colors=[]):
+    """
+    @bboxes: [[y0, x0, y1, x1], ...], which relflects (top, left, bottom, right)
+    """
+    # 补齐颜色
+    dlen = len(bboxes) - len(colors)
+    if dlen > 0:
+        colors.extend([np.random.rand(3,) for x in range(dlen)])
+        
+    for (y0, x0, y1, x1), color in zip(bboxes, colors):
+        w = x1 - x0
+        h = y1 - y0
+        xy = (x0, y0)
+        rect = Rectangle(xy, w, h, linewidth=2, fill=False, linestyle='-.',
+                         edgecolor=color)
+        ax.add_patch(rect)
+
+
+# (top, left, bottom, right)
+bbox1 = [100, 100, 200, 200]
+bbox2 = [120, 90, 180, 200]
+
+plt.figure(figsize=(6, 6))
+ax = plt.gca()
+plot_init_grid(ax, 250, 250)
+plot_bboxes([bbox1, bbox2], ax)
+plt.show()
+```
+
+```python
+compute_iou(bbox1, bbox2)
+```
+
+IoU的问题：
+如果两个框没有相交，根据定义，IoU=0，不能反映两者的距离大小（重合度）。同时因为loss=0，没有梯度回传，无法进行学习训练。
+IoU无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等，但看得出来他们的重合度是不一样的，左边的图回归的效果最好，右边的最差。
+
+
+#### IoU Loss
+训练时，目标检测一般用L2 loss来判断框的好坏，由于L2损失分别优化目标框的4个位置$x_0, y_0, x_1, y_1$，忽略了它们内在的联系，所以会出现某1-2个位置优化的很准，其它不准的情况。UnitBox论文中使用了IoU作为loss，**将这4个变量当成一个整体去优化**，这样还有个好处，IoU的取值范围为$[0, 1]$，相当于归一化了，则不受bbox尺度影响了，**模型可以适应多尺度目标**。另一个问题就是L2 loss无法精确反应预测框的好坏，详见GIoU小节。
+
+![](http://static.zybuluo.com/AustinMxnet/vv4txma59orl7db5sxb89cwi/image.png)
+
+注意UnitBox是针对Densebox论文优化的，Densebox是anchor-free的方法，所以让每个点的向量预测距离上下左右边框的距离$x_t, x_b, x_l, x_r$，但是IoU loss不受影响。但是图中公式加了一个$-ln$，文中解释成输入为IoU的cross-entropy loss，当$p(IoU=1)=1$时，$\mathcal{L}=-pln(IoU)-(1-p)ln(1-IoU)=-ln(IoU)$。这里$p(IoU=1)=1$应该是不对的，个人觉得就是加速神经网络收敛，因为IoU的取值范围为$[0, 1]$，所以越接近0，$-ln(IoU)$越接近于无穷大，如下图所示。
+
+```python
+x = np.linspace(0.000001, 1, 1000)
+y = -np.log(x)
+
+plt.plot(x, y)
+plt.show()
+```
+
+#### GIoU
+**L2 Loss的问题**
+1. L2 Loss的另一个问题（其他问题详见IoU Loss小节）是无法精确反应预测框的好坏，训练时候优化L2 Loss并不是完全在优化评价指标IoU，如下图所示gt框为绿色，虽然三个预测黑色框的L2相同，但是明显IoU大的框更好。这也说明，**一个L2局部最优值不一定是IoU的局部最优值**，这说明优化回归损失和IoU值之间仍然存在差距。
+
+![](http://static.zybuluo.com/AustinMxnet/ayzgzo1236wf4kpkfb8ykfk6/image.png)
+
+**IoU Loss的问题**
+1. 如果两个框没有相交，**无论距离多远，IoU都为0**，无法反映两者的距离大小（重合度）。同时因为loss=0，**没有梯度回传**，无法进行学习训练。
+2. 无法精确的反映两者的重合度大小。如下图所示，三种情况IoU都相等为0.33，但是他们的重合度是不一样的，左边的图回归的效果最好（GIoU=0.33），右边的最差（GIoU=-0.1）。
+
+![](http://static.zybuluo.com/AustinMxnet/d7508h8bbxpd5s8mxqaz9qn5/image.png)
+
+**GIoU公式**
+
+对于两个bounding box A&B，算出其最小凸集（包围A、B的最小包围框）C，然后计算C中除A B外的面积占C总面积的比值，最后用IOU减去这个比值：
+
+$$GIoU = IoU - \frac{C-(A\cup B)}{C}$$
+
+**GIoU特点**
+
+GIoU继承了IoU的一些优点，例如对物体尺寸不敏感，另外还有一些特点：
+
+1. GIOU是IOU的下界，且取值范围为`(-1, 1]`。当两个框不重合时，IoU始终为0，不论A、B相隔多远，但是对于GIOU来说，A，B不重合度越高（离的越远），GIOU越趋近于-1。关于这点，下面再详细解释一下。
+
+2. 当IoU为0时，$GIoU = -1 + \frac{A\cup B}{C}$，两个框没有重合之前，$A \cup B$不变，**最大化GIoU等于最小化C，即两个框要不断靠近**。
+
+```python
+def compute_giou(rec1, rec2):
+    """
+    @param rec1: (y0, x0, y1, x1), which reflects
+            (top, left, bottom, right)
+    @param rec2: (y0, x0, y1, x1)
+    @return: scala value of IoU
+    注：图像原点为左上角
+    """
+    y1, x1, y2, x2 = rec1
+    y3, x3, y4, x4 = rec2
+    
+    area_C = (max(x1, x2, x3, x4) - min(x1, x2, x3, x4)) * \
+             (max(y1, y2, y3, y4) - min(y1, y2, y3, y4))
+    area_1 = (x2-x1) * (y2-y1)
+    area_2 = (x4-x3) * (y4-y3)
+    sum_area = area_1 + area_2
+
+    w1 = x2 - x1  # 第一个矩形的宽
+    w2 = x4 - x3  # 第二个矩形的宽
+    h1 = y2 - y1
+    h2 = y4 - y3
+    W = min(x1, x2, x3, x4) + w1 + w2 - max(x1, x2, x3, x4)  # 交叉部分的宽
+    H = min(y1, y2, y3, y4) + h1 + h2 - max(y1, y2, y3, y4)  # 交叉部分的高
+    
+    inter_area = W*H
+    union_area = sum_area - inter_area
+    if W < 0 or H < 0:
+        iou = 0
+    else:
+        iou = inter_area / union_area
+    ratio = (area_C - union_area)/area_C
+    giou = iou - ratio
+    return giou, iou
+```
+
+```python
+# (top, left, bottom, right)
+bbox1 = [100, 100, 200, 150]
+bbox2 = [120, 95, 195, 129]
+bbox3 = [110, 110, 185, 140]
+bbox4 = [110, 190, 240, 240]
+color1 = [0, 1, 0] # green
+color2 = [1, 1, 0] # yellow
+color3 = [1, 0, 0] # red
+color4 = [1, 0, 1] # purple
+
+
+plt.figure(figsize=(6, 6))
+ax = plt.gca()
+plot_init_grid(ax, 250, 250)
+plot_bboxes([bbox1, bbox2, bbox3, bbox4], ax, [color1, color2, color3, color4])
+plt.show()
+```
+
+假设绿色的框为gt框，其他为预测框，从图中看出红色的框最好，紫色的最差（没有相交，IoU应该=0），我们分别看下GIoU和IoU是多少：
+
+```python
+print("yellow, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox2)))
+print("   red, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox3)))
+print("purple, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox4)))
+```
+
+#### DIoU
+[Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression](https://arxiv.org/pdf/1911.08287.pdf)
+
+**GIoU的问题**
+
+虽然GIoU可以缓解目标框和预测框不重叠情况下的梯度消失问题，但是两者是包含关系时就又退化为IoU Loss了，例如下图所示，目标框为绿色，三个预测框的GIoU和IoU完全相同：
+
+```python
+# (top, left, bottom, right)
+w = 40
+h = 110
+bbox1 = [60, 60, 200, 180]
+bbox2 = [65, 65, 65+h, 65+w]
+bbox3 = [85, 110, 85+h, 110+w]
+bbox4 = [75, 130, 75+h, 130+w]
+color1 = [0, 1, 0] # green
+color2 = [1, 1, 0] # yellow
+color3 = [1, 0, 0] # red
+color4 = [1, 0, 1] # purple
+
+
+plt.figure(figsize=(6, 6))
+ax = plt.gca()
+plot_init_grid(ax, 220, 220)
+plot_bboxes([bbox1, bbox2, bbox3, bbox4], ax, [color1, color2, color3, color4])
+plt.show()
+
+print("yellow, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox2)))
+print("   red, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox3)))
+print("purple, GIoU:%.4f, IoU:%.4f"%(compute_giou(bbox1, bbox4)))
+```
+
+下面通过一个例子来说明GIoU的问题，如下图所示，第一行是GIoU的回归过程（第40、100、400次），绿色框为目标框，黑色为锚框，蓝色为使用GIoU Loss的预测框：
+
+![](http://static.zybuluo.com/AustinMxnet/pszqt70g6kvorrzu3rtgm9fa/image.png)
+
+可以看出GIoU Loss中，蓝色预测框为了与目标框重叠，**开始阶段会逐渐的增大尺寸，到后面重叠阶段，GIoU退化成IoU，因此，它需要在垂直和水平方向需要多次的迭代来达到收敛**。于是DIoU（第二行红色框）的作者提出了两个问题：
+- 为了获得更快的收敛速度，是否可以直接最小化预测框和目标框之间的归一化距离？
+- 当与目标框有重叠甚至存在包含关系时，如何使得回归速度更准确、更快速？
+
+**Distance-IoU Loss**
+
+边界框回归的好坏需要考虑：
+- 重叠面积
+- 中心点距离
+- 长宽比
+
+无论是IoU还是GIoU都只考虑了第一点重叠面积，DIoU在此基础上考虑了第二点中心点距离：
+
+![](http://static.zybuluo.com/AustinMxnet/963tzvgz7lr4wjkyzf6xbule/image.png)
+
+DIoU在IoU的基础上加入了一个惩罚项，用于度量目标框和预测框之间中心点的距离，在最小化边界框中心点的距离过程中，能够使得边界框收敛速度更快：
+
+$$DIoU = IoU - \frac{\rho^2\left(b, b^{gt}\right)}{c^{2}}$$
+
+式中$b$和$b^{gt}$分别代表两个框，$\rho$代表两点欧式距离（这里就是两个框的中心），$c$代表覆盖两个边界框的最小框的对角线长度(上图中蓝色线)。
+
+对应的DIoU Loss：
+$$\mathcal{L}_{DIOU} = 1 - DIoU = 1 - IoU + \frac{\rho^{2}\left(b, b^{g t}\right)}{c^{2}}$$
+
+```python
+def compute_diou(rec1, rec2):
+    """
+    @param rec1: (y0, x0, y1, x1), which reflects
+            (top, left, bottom, right)
+    @param rec2: (y0, x0, y1, x1)
+    @return: scala value of IoU
+    注：图像原点为左上角
+    """
+    y1, x1, y2, x2 = rec1
+    y3, x3, y4, x4 = rec2
+    
+    area_1 = (x2-x1) * (y2-y1)
+    area_2 = (x4-x3) * (y4-y3)
+    sum_area = area_1 + area_2
+    b1w, b2w = x2 - x1, x4 - x3 # 两个框的宽
+    b1h, b2h = y2 - y1, y4 - y3 # 两个框的高
+    bcx1, bcx2 = min(x1, x3), max(x2, x4) # 包含两个框的最小矩形的左上和右下顶点x坐标
+    bcy1, bcy2 = min(y1, y3), max(y2, y4) # 包含两个框的最小矩形的左上和右下顶点y坐标
+    
+    W = bcx1 + b1w + b2w - bcx2  # 两个框交叉部分的宽
+    H = bcy1 + b1h + b2h - bcy2  # 两个框交叉部分的高
+    inter_area = W*H
+    union_area = sum_area - inter_area
+    if W < 0 or H < 0:
+        iou = 0
+    else:
+        iou = inter_area / union_area
+        
+    center_b1x, center_b1y = (x1+x2)/2, (y1+y2)/2
+    center_b2x, center_b2y = (x3+x4)/2, (y3+y4)/2
+    d2 = (center_b1x-center_b2x)**2 + (center_b2y-center_b1y)**2
+    
+    # (right-left)**2 + (bottom-top)**2
+    c2 = (bcx2 - bcx1)**2 + (bcy2 - bcy1)**2
+        
+    ratio = d2 / c2
+    diou = iou - ratio
+    return diou, iou
+```
+
+下面我们看下在GIoU章节里那三个被包含在目标框中的预测框有没有得到优化：
+
+```python
+w = 40
+h = 110
+# (top, left, bottom, right)
+bbox1 = [60, 60, 200, 180]
+bbox2 = [65, 65, 65+h, 65+w]
+bbox3 = [85, 110, 85+h, 110+w]
+bbox4 = [75, 130, 75+h, 130+w]
+color1 = [0, 1, 0] # green
+color2 = [1, 1, 0] # yellow
+color3 = [1, 0, 0] # red
+color4 = [1, 0, 1] # purple
+
+
+plt.figure(figsize=(6, 6))
+ax = plt.gca()
+plot_init_grid(ax, 220, 220)
+plot_bboxes([bbox1, bbox2, bbox3, bbox4], ax, [color1, color2, color3, color4])
+plt.show()
+
+print("yellow, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox2)[0], *compute_giou(bbox1, bbox2)))
+print("   red, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox3)[0], *compute_giou(bbox1, bbox3)))
+print("purple, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox4)[0], *compute_giou(bbox1, bbox4)))
+```
+
+可以看出最接近中心的红色框DIoU分数最高，最偏离中心的黄色框DIoU分数最低。DIoU解决了目标框回归三大问题（重叠面积，中心点距离，长宽比）的“中心点距离”，可以直接最小化预测框和目标框之间的归一化距离。
+
+**DIoU与NMS**
+NMS（Non-Maximum Suppression，非极大值抑制）唯一考虑的因素就是重叠面积，这样显然是不合理的，如果存在遮挡的情况，这样就会产生错误的抑制。本文提出将DIoU应用于NMS中，这样不仅考虑重叠区域，还会将检测框与目标框中心点之间的距离考虑在内，这样能够有效避免上述错误。
+
+$$
+s_{i}=\left\{\begin{array}{l}
+s_{i}, \quad I o U-\mathcal{R}_{D I o U}\left(\mathcal{M}, B_{i}\right)<\varepsilon \\
+0, \quad I o U-\mathcal{R}_{D I o U}\left(\mathcal{M}, B_{i}\right) \geq \varepsilon
+\end{array}\right.
+$$
+
+$s_i$是分类分数，$\varepsilon$是NMS threshold。
+
+从下图可以看出，使用了DIou-NMS可以避免重叠的目标被过滤掉：
+
+![](http://static.zybuluo.com/AustinMxnet/dplq4xvg74b6upcjx4jynev8/image.png)
+
+#### CIoU
+CIoU和DIoU在同一篇论文中提出来的，作者在这篇文章（[Enhancing Geometric Factors in Model Learning and Inference for Object Detection and Instance Segmentation](https://arxiv.org/pdf/2005.03572.pdf)）里详细介绍了实现方法。**针对DIoU遗留了“长宽比”的问题**，CIoU在DIoU的基础上增加了长宽比的惩罚项：
+
+$$DIoU = IoU - \frac{\rho^2\left(b, b^{gt}\right)}{c^{2}} - \alpha v$$
+
+其中$\alpha$是用来平衡比例的系数，$v$是用来衡量预测框和目标框之间的比例一致性：
+
+$$
+v=\frac{4}{\pi}\left(\arctan \left(\frac{w^{gt}}{h^{gt}}\right)-\arctan \left(\frac{w}{h}\right)\right)^{2}
+$$
+
+$$
+\alpha=\frac{v}{(1-I o U)+v}
+$$
+
+这里使用了[mmdetection](https://mmdetection.readthedocs.io/en/latest/_modules/mmdet/models/losses/iou_loss.html)里的代码，和上述公式一致，但是作者的代码稍微有些区别（见后文）。
+
+```python
+import math
+
+def compute_ciou(pred, target, eps=1e-7):
+    """
+    @pred (Tensor): Predicted bboxes of format (x1, y1, x2, y2), shape (n, 4).
+    @target (Tensor): Corresponding gt bboxes, shape (n, 4).
+    @eps (float): Eps to avoid log(0).
+    Return:
+        Tensor: Loss tensor.
+    """
+    # overlap
+    lt = torch.max(pred[:, :2], target[:, :2])
+    rb = torch.min(pred[:, 2:], target[:, 2:])
+    wh = (rb - lt).clamp(min=0)
+    overlap = wh[:, 0] * wh[:, 1]
+
+    # union
+    ap = (pred[:, 2] - pred[:, 0]) * (pred[:, 3] - pred[:, 1])
+    ag = (target[:, 2] - target[:, 0]) * (target[:, 3] - target[:, 1])
+    union = ap + ag - overlap + eps
+
+    # IoU
+    ious = overlap / union
+
+    # enclose area
+    enclose_x1y1 = torch.min(pred[:, :2], target[:, :2])
+    enclose_x2y2 = torch.max(pred[:, 2:], target[:, 2:])
+    enclose_wh = (enclose_x2y2 - enclose_x1y1).clamp(min=0)
+
+    cw = enclose_wh[:, 0]
+    ch = enclose_wh[:, 1]
+
+    c2 = cw**2 + ch**2 + eps
+
+    b1_x1, b1_y1 = pred[:, 0], pred[:, 1]
+    b1_x2, b1_y2 = pred[:, 2], pred[:, 3]
+    b2_x1, b2_y1 = target[:, 0], target[:, 1]
+    b2_x2, b2_y2 = target[:, 2], target[:, 3]
+
+    w1, h1 = b1_x2 - b1_x1, b1_y2 - b1_y1 + eps
+    w2, h2 = b2_x2 - b2_x1, b2_y2 - b2_y1 + eps
+
+    left = ((b2_x1 + b2_x2) - (b1_x1 + b1_x2))**2 / 4
+    right = ((b2_y1 + b2_y2) - (b1_y1 + b1_y2))**2 / 4
+    rho2 = left + right
+
+    factor = 4 / math.pi**2
+    v = factor * torch.pow(torch.atan(w2 / h2) - torch.atan(w1 / h1), 2)
+
+    # CIoU
+    cious = ious - (rho2 / c2 + v**2 / (1 - ious + v))
+    return cious
+```
+
+```python
+w, h = 150, 130
+
+# (top, left, bottom, right)
+bbox1 = [60, 40,  60+h,    60+w]
+bbox2 = [65, 65,  65+h-30, 65+w-10]
+bbox3 = [85, 110, 85+h-50, 110+w-100]
+bbox4 = [75, 70, 75+h-80, 130+w-80]
+color1 = [0, 1, 0] # green
+color2 = [1, 1, 0] # yellow
+color3 = [1, 0, 0] # red
+color4 = [1, 0, 1] # purple
+
+
+plt.figure(figsize=(6, 6))
+ax = plt.gca()
+plot_init_grid(ax, 220, 220)
+plot_bboxes([bbox1, bbox2, bbox3, bbox4], ax, [color1, color2, color3, color4])
+plt.show()
+
+print("yellow, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox2)[0], *compute_giou(bbox1, bbox2)))
+print("   red, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox3)[0], *compute_giou(bbox1, bbox3)))
+print("purple, DIoU:%.4f, GIoU:%.4f, IoU:%.4f"%(compute_diou(bbox1, bbox4)[0], *compute_giou(bbox1, bbox4)))
+```
+
+```python
+# (left, top, right, bottom)
+bbox1[0], bbox1[1], bbox1[2], bbox1[3] = bbox1[1], bbox1[0], bbox1[3], bbox1[2]
+bbox2[0], bbox2[1], bbox2[2], bbox2[3] = bbox2[1], bbox2[0], bbox2[3], bbox2[2]
+bbox3[0], bbox3[1], bbox3[2], bbox3[3] = bbox3[1], bbox3[0], bbox3[3], bbox3[2]
+bbox4[0], bbox4[1], bbox4[2], bbox4[3] = bbox4[1], bbox4[0], bbox4[3], bbox4[2]
+
+bboxes1 = torch.tensor([bbox1, bbox1, bbox1], dtype=torch.float32)
+bboxes2 = torch.tensor([bbox2, bbox3, bbox4], dtype=torch.float32)
+compute_ciou(bboxes1, bboxes2)
+```
+
+可以看出，DIoU和CIoU的差别不大。相比黄色框，紫色和红色的比例不是很好，所以CIoU的分数更低一些。
+
+另外作者的论文/代码对上述公式有些改变：
+
+1. 作者在论文中对$\alpha$还做了分段函数，理由是当$IoU<0.5$说明两个框并没有很好的匹配上，重点应该先优化两者的重叠度，此时退化成DIoU；而当$IoU \gt 0.5$时，需要重点优化比例。这与DIoU小节提到的motivation一致，即“当与目标框有重叠甚至存在包含关系时，如何使得回归速度更准确、更快速”：
+
+$$
+\alpha=\left\{\begin{array}{ll}
+0, & \text { if } I o U<0.5 \\
+\frac{V}{(1-I o U)+V}, & \text { if } I o U \geq 0.5
+\end{array}\right.
+$$
+
+2. 根据$v=\frac{4}{\pi}\left(\arctan \left(\frac{w^{gt}}{h^{gt}}\right)-\arctan \left(\frac{w}{h}\right)\right)^{2}$，可以求得：
+
+$$
+\frac{\partial v}{\partial w}=\frac{8}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right) \times \frac{h}{w^{2}+h^{2}}
+$$
+
+$$
+\frac{\partial v}{\partial h}=-\frac{8}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right) \times \frac{w}{w^{2}+h^{2}}
+$$
+
+作者认为分母$w^2+h^2$很小（[作者将$w, h$归一化](https://github.com/Zzh-tju/DIoU-SSD-pytorch/issues/4)为`[0, 1]`），会产生梯度爆炸，所以直接去除了，详见但是作者提供的代码没有找到相关内容，只有一个[issue](https://github.com/Zzh-tju/DIoU-pytorch-detectron/issues/3)回复将$w$和$h$设为`no_grad`：
+
+```script magic_args="true"
+
+...
+u = d / c
+v = torch.atan(w_gt / h_gt) - torch.atan(w_pred / h_pred)
+with torch.no_grad():
+    w_pred1 = w_pred * v
+    h_pred1 = h_pred * v
+ciou_loss =(1-iou+u+8/(math.pi**2) * (w_pred1*h_pred- h_pred1*w_pred)).sum()
+```
+
+3. 在这个[issue](https://github.com/Zzh-tju/DIoU-SSD-pytorch/issues/4)中，作者说$\alpha$也不参与梯度计算，没有给出任何理由，代码如下：
+
+```script magic_args="true"
+
+with torch.no_grad():
+    alpha = v / (1 - iou + v)
+```
+
+**Cluster-NMS**
+
+这篇文章除了介绍CIoU，另一个贡献是Cluster-NMS，有一些有趣的数学推导，目的是加速NMS，详见[一文打尽目标检测NMS——效率提升篇](https://zhuanlan.zhihu.com/p/157900024)，而且还可以避免过滤重叠物体：
+
+![](http://static.zybuluo.com/AustinMxnet/yjtmihgi7c9l3b1xfygp4ri2/image.png)
+
 
 ## Paper
 
