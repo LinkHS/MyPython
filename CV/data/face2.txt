@@ -1,0 +1,6 @@
+821, 454 # Nose tip
+803, 611 # Chin
+685, 393 # Left eye left corner
+847, 416 # Right eye right corne
+730, 530 # Left Mouth corner
+825, 534 # Right mouth corner

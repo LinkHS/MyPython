@@ -4,6 +4,7 @@
 udacity_selfdriving/L13_Deep_Neural_Networks/temp/
 _build/
 .jupyter/
+temp/
 
 *.pyc
 *.swp

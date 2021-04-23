@@ -1,0 +1,6 @@
+748, 320 # Nose tip
+736, 448 # Chin
+702, 304 # Left eye left corner
+829, 316 # Right eye right corne
+701, 383 # Left Mouth corner
+764, 389 # Right mouth corner
